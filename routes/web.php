@@ -16,3 +16,21 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home')->middleware('role');
+
+Route::get('/admin', function () {
+    return view('userAdmin/index');
+})->name('admin');
+
+
+Route::get('/manager', function () {
+    return view('userManager/index');
+})->name('manager');
+
+
+Route::get('/worker', function () {
+    return view('userWorker/index');
+})->name('worker');
