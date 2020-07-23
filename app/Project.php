@@ -13,4 +13,5 @@ class Project extends Model
     {
         return $this->hasOne('App\Location');
     }
+
 }
