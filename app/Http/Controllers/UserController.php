@@ -1,0 +1,72 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\User;
+
+class UserController extends Controller
+{
+    //
+    public function index() {
+        $users = User::all();
+        return view('user/index', [
+            'users' => $users,
+        ]);
+    }
+
+    public function show($id) {
+        $user = User::find($id);
+        // return view('user/'.$id, [
+        //     'user' => $user,
+        // ]);
+
+        return view('user/info', [
+            'user' => $user,
+        ]);
+    }
+
+    public function create() {
+        return view('user/create');
+    }
+
+    public function createPost(Request $req) {
+        $user = new User();
+        $user->name = $req->name;
+        $user->email = $req->email;
+        $user->password = bcrypt($req->name) ;
+        $user->role = $req->role;
+        $user->managed = $req->managed;
+        $user->save();
+
+        return redirect(route('user_index'));
+    }
+
+    public function update($id) {
+        $user = User::find($id);
+
+
+        return view('user/update', [
+            'user' => $user,
+        ]);
+    }
+
+    public function updatePost(Request $req, $id) {
+
+        $user = User::find($id);
+        $user->name = $req->name;
+        $user->role = $req->role;
+        $user->managed = $req->managed;
+        $user->save();
+        // dd($user);
+        return redirect(route('user_index'));
+    }
+
+    public function delete($id) {
+        User::find($id)->delete();
+    }
+
+
+
+
+}
