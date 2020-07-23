@@ -18,10 +18,10 @@ class CreateProjectsTable extends Migration
             $table->string('project_name');
             $table->date('from_date');
             $table->date('to_date');
-            $table->unsignedBigInteger('location_check_in');
-            $table->foreign('location_check_in')->references('id')->on('locations')->onDelete('cascade');
-            $table->unsignedBigInteger('location_check_out');
-            $table->foreign('location_check_out')->references('id')->on('locations')->onDelete('cascade');
+            $table->unsignedBigInteger('location_lat');
+            $table->foreign('location_lat')->references('id')->on('locations')->onDelete('cascade');
+            $table->unsignedBigInteger('location_long');
+            $table->foreign('location_long')->references('id')->on('locations')->onDelete('cascade');
             $table->timestamps();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
                 });
