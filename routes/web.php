@@ -19,18 +19,26 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home')->middleware('role');
-
-Route::get('/admin', function () {
-    return view('userAdmin/index');
-})->name('admin');
+Route::get('/home', 'HomeController@index')->name('home');
 
 
-Route::get('/manager', function () {
-    return view('userManager/index');
-})->name('manager');
+// User Route
+
+Route::group(['prefix' => 'user'], function () {
+    Route::get('/', 'UserController@index')->name('user_index');
+    Route::get('/info/{id}', 'UserController@show')->name('user_show');
 
 
-Route::get('/worker', function () {
-    return view('userWorker/index');
-})->name('worker');
+    Route::get('/create', 'UserController@create')->name('user_create_form');
+    Route::post('/create', 'UserController@createPost')->name('user_create');
+
+
+    Route::get('/update/{id}', 'UserController@update')->name('user_update_form');
+    Route::post('/update/{id}', 'UserController@updatePost')->name('user_update');
+
+    Route::get('/delete/{id}', 'UserController@delete')->name('user_delete');
+
+});
+
+
+
