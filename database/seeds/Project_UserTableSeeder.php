@@ -18,12 +18,12 @@ class Project_UserTableSeeder extends Seeder
             'created_at'=>now(),
             'updated_at'=>now(),
         ]);
-        // DB::table('project_user')->insert([
-        //     'user_id'=>'3',
-        //     'project_id'=>'1',
-        //     'created_at'=>now(),
-        //     'updated_at'=>now(),
-        // ]);
+        DB::table('project_user')->insert([
+            'user_id'=>'3',
+            'project_id'=>'1',
+            'created_at'=>now(),
+            'updated_at'=>now(),
+        ]);
 
     }
 }

@@ -15,10 +15,10 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserTableSeeder::class,
             LocationTableSeeder::class,
-            // ProjectTableSeeder::class,
-            // Project_UserTableSeeder::class,
+            ProjectTableSeeder::class,
+            Project_UserTableSeeder::class,
             // AbsentApplicationTableSeeder::class,
-            // LocationTableSeeder::class,
+            LocationTableSeeder::class,
         ]);
     }
 }

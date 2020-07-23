@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use \App\Report;
+use Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +17,10 @@ use \App\Report;
 */
 
 Route::get('/', function () {
-    return view('/auth/login');
+    if(!Auth::check()) {
+        return view('/auth/login');
+    }
+    return route('/home');
 });
 
 Route::get('/welcome', 'TestController@index');
