@@ -16,8 +16,19 @@ class ProjectTableSeeder extends Seeder
             'project_name'=>'HRM',
             'from_date'=>'2020-02-02',
             'to_date'=>'2020-05-02',
-            'lat'=>'30.144',
-            'long'=>'144.144',
+            'location_lat'=>'1',
+            'location_long'=>'1',
+            'created_at'=>now(),
+            'updated_at'=>now(),
+            'user_id'=>'1'
+
+        ]);
+        DB::table('projects')->insert([
+            'project_name'=>'HRM1',
+            'from_date'=>'2020-07-07',
+            'to_date'=>'2020-09-09',
+            'location_lat'=>'2',
+            'location_long'=>'2',
             'created_at'=>now(),
             'updated_at'=>now(),
             'user_id'=>'1'

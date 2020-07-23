@@ -13,10 +13,12 @@ class DatabaseSeeder extends Seeder
     {
         // $this->call(UserSeeder::class);
         $this->call([
-            //UserTableSeeder::class,
-            //ProjectTableSeeder::class,
-            //Project_UserTableSeeder::class,
-            AbsentApplicationTableSeeder::class,
+            UserTableSeeder::class,
+            LocationTableSeeder::class,
+            // ProjectTableSeeder::class,
+            // Project_UserTableSeeder::class,
+            // AbsentApplicationTableSeeder::class,
+            // LocationTableSeeder::class,
         ]);
     }
 }
