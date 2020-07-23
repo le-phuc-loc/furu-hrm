@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use \App\Report;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,8 +16,17 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('/auth/login');
 });
+
+Route::get('/welcome', 'TestController@index');
+
+Route::post('/welcome', 'TestController@insert');
+
+Route::get('/test', function() {
+    return view('test');
+});
+
 
 Auth::routes();
 
@@ -35,6 +45,23 @@ Route::group(['prefix' => 'user'], function () {
     Route::post('/update/{id}', 'UserController@updatePost')->name('user_update');
 
     Route::get('/delete/{id}', 'UserController@delete')->name('user_delete');
+
+});
+
+
+Route::group(['prefix' => 'project'], function () {
+    Route::get('/', 'ProjectController@index')->name('project_index');
+    Route::get('/info/{id}', 'ProjectController@show')->name('project_show');
+
+
+    Route::get('/create', 'ProjectController@create')->name('project_create_form');
+    Route::post('/create', 'ProjectController@createPost')->name('project_create');
+
+
+    Route::get('/update/{id}', 'ProjectController@update')->name('project_update_form');
+    Route::post('/update/{id}', 'ProjectController@updatePost')->name('project_update');
+
+    Route::get('/delete/{id}', 'ProjectController@delete')->name('project_delete');
 
 });
 

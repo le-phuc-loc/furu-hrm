@@ -11,7 +11,7 @@
 
                 <div class="links">
                     <a href="{{ route('user_index') }}">User</a>
-
+                    <a href="{{ route('user_index') }}">Project</a>
                 </div>
             </div>
         </div>

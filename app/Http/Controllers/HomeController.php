@@ -20,8 +20,9 @@ class HomeController extends Controller
     }
 
     public function redirectByRole($role, $path) {
+        // dd($role);
 
-        $pathView = "user/".$role."/".$path;
+        $pathView = "role/".$role."/".$path;
         return $pathView;
 
     }
@@ -34,7 +35,12 @@ class HomeController extends Controller
     public function index()
     {
         if (!Auth::check()) {
-            return view('home');
+            return view('/login');
+        }
+
+        if (Auth::user()->role == null) {
+            Auth::user()->role = "worker";
+            Auth::user()->save();
         }
 
         return view($this->redirectByRole(Auth::user()->role, 'index'));
