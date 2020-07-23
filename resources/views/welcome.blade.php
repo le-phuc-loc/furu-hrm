@@ -38,7 +38,9 @@
           navigator.geolocation.getCurrentPosition(function(position) {
             var pos = {
               lat: position.coords.latitude,
+
               lng: position.coords.longitude,
+
             };
 
             infoWindow.setPosition(pos);

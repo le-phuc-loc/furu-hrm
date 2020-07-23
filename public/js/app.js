@@ -37345,6 +37345,7 @@ __webpack_require__(/*! /home/loc/Documents/furu-hrm/resources/js/app.js */"./re
 module.exports = __webpack_require__(/*! /home/loc/Documents/furu-hrm/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
+
 /***/ })
 
 /******/ });

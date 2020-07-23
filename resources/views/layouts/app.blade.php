@@ -12,7 +12,10 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 003216a53dee515c7cdefb4ddcb93a1b15221785
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
