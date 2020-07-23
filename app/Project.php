@@ -9,11 +9,9 @@ class Project extends Model
     public function user(){
         return $this->belongsToMany('App\User');
     }
-    public function location_lat()
+    public function location()
     {
-        return $this->hasOne('App\Location','project_id','location_id');
+        return $this->hasOne('App\Location');
     }
-    public function location_long(){
-        return $this->hasOne('App\Location','project_id','location_id');
-    }
+
 }
