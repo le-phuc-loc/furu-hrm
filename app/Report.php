@@ -15,6 +15,6 @@ class Report extends Model
     }
     public function location_check_out()
     {
-        return $this->hasOne('App\User', 'report_id', 'location_id');
+        return $this->hasOne('App\Location', 'report_id', 'location_id');
     }
 }
