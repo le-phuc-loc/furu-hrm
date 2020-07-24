@@ -27,7 +27,7 @@ class UserTableSeeder extends Seeder
                 'updated_at'=>now()
 
             ]);
-            DB::table('users')->insert([
+        DB::table('users')->insert([
             'name' => 'Hieu1',
             'email' => 'Hieu1@gmail.com',
             'email_verified_at'=>now(),
@@ -36,8 +36,8 @@ class UserTableSeeder extends Seeder
             'manager'=>'1',
             'created_at'=>now(),
             'updated_at'=>now()
-            ]);
-            DB::table('users')->insert([
+        ]);
+        DB::table('users')->insert([
             'name' => 'Hieu2',
             'email' => 'Hieu2@gmail.com',
             'email_verified_at'=>now(),
@@ -46,12 +46,22 @@ class UserTableSeeder extends Seeder
             'created_at'=>now(),
             'updated_at'=>now()
             ]);
-            DB::table('users')->insert([
+        DB::table('users')->insert([
             'name' => 'Hieu3',
             'email' => 'Hieu3@gmail.com',
             'email_verified_at'=>now(),
             'password' => Hash::make(12345678),
             'manager'=>'2',
+            'created_at'=>now(),
+            'updated_at'=>now()
+        ]);
+        DB::table('users')->insert([
+            'name' => 'Hieu4',
+            'email' => 'Hieu4@gmail.com',
+            'email_verified_at'=>now(),
+            'password' => Hash::make(12345678),
+            'role'=>'manager',
+            'manager'=>'1',
             'created_at'=>now(),
             'updated_at'=>now()
         ]);

@@ -12,7 +12,9 @@ class Location extends Model
     }
     public function project()
     {
-        return $this->hasOne('App\Project');
+        return $this->HasOne('App\Project');
     }
 
+
+    protected $fillable = ['location_name', 'lat', 'lng'];
 }

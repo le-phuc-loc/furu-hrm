@@ -8,7 +8,7 @@
                 <div class="card-header d-flex justify-content-between align-items-center">
                     {{ __('Create Project') }}
                     <button class="btn btn-secondary justify-content-end">
-                        <a class="text-white" href={{ route('project_create_form') }}>Create</a>
+                        <a class="text-white" href={{ route('project_create') }}>Create</a>
                     </button>
                 </div>
 
@@ -44,7 +44,7 @@
                             <label for="project-to-date" class="col-md-4 col-form-label text-md-right">{{ __('To date') }}</label>
 
                             <div class="col-md-6">
-                                <input id="project-to-date" type="date" class="form-control"  name="project-to-date" >
+                                <input id="project-to-date" type="date" class="form-control"  name="project_to_date" >
                             </div>
                         </div>
 
@@ -53,10 +53,11 @@
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Location') }}</label>
 
                             <div class="col-md-6">
+                                <input id="location_name" type="text" class="form-control @error('project_name') is-invalid @enderror" name="location_name" value="{{ old('location_name') }}" required autocomplete="project_name" autofocus>
                                 <p> lat </p>
-                                <input id="lat" type="number" class="form-control">
+                                <input id="lat" name="lat" step="any" type="number" class="form-control">
                                 <p> lng </p>
-                                <input id="lng" type="number" class="form-control">
+                                <input id="lng" name="lng" step="any" type="number" class="form-control">
 
                             </div>
                         </div>

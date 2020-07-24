@@ -8,7 +8,7 @@
                 <div class="card-header d-flex justify-content-between align-items-center">
                     {{ __('Projects Manager') }}
                     <button class="btn btn-secondary justify-content-end">
-                        <a class="text-white" href={{ route('project_create_form') }}>Create</a>
+                        <a class="text-white" href={{ route('project_create') }}>Create</a>
                     </button>
                 </div>
 
@@ -17,18 +17,18 @@
 
                     <div class="list-group col-md-12 ">
                         {{-- {{ dd($emp->titles) }} --}}
-                        @if(count($users) <= 0)
+                        @if(count($projects) <= 0)
                             <div class="list-group-item list-group-item-action"> Don't have Projects </div>
                         @else
                         {{-- <div>adadasdasd</div> --}}
 
-                            @foreach ($users as $user)
+                            @foreach ($projects as $project)
                                 <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
-                                    href={{ route('project_show', ['id' => $user->id]) }}>
-                                    {{ $user->name }} | {{ $user->email }}
+                                    href={{ route('project_info', ['id' => $project->id]) }}>
+                                    {{ $project->project_name }}
 
                                     <div class="">
-                                        {{ $user->role }}
+                                        {{ $project->location->location_name }}
                                     </div>
                                 </a>
                             @endforeach
