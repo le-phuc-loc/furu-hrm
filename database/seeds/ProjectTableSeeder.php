@@ -43,7 +43,7 @@ class ProjectTableSeeder extends Seeder
         DB::table('projects')->insert([
             'project_name'=>'God City',
             'from_date'=>'2021-01-01',
-            'to_date'=>'2020-12-30',
+            'to_date'=>'2021-12-30',
             'location_id'=>'4',
             'created_at'=>now(),
             'updated_at'=>now(),

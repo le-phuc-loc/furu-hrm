@@ -1,20 +1,28 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="content">
-                <div class="title m-b-md">
-                    Admin
-                </div>
 
-                <div class="links">
-                    <a href="{{ route('user_index') }}">User</a>
-                    <a href="{{ route('project_index') }}">Project</a>
-                </div>
-            </div>
+<div class="container">
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('user_index') }}">User</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('project_index') }}">Project</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+          </ul>
         </div>
-    </div>
+      </nav>
+      <br>
+    
 </div>
 @endsection
