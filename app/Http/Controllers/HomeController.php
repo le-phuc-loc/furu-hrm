@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Auth;
+
+
 class HomeController extends Controller
 {
     /**
@@ -16,6 +19,14 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
+    public function redirectByRole($role, $path) {
+        // dd($role);
+
+        $pathView = "role/".$role."/".$path;
+        return $pathView;
+
+    }
+
     /**
      * Show the application dashboard.
      *
@@ -23,6 +34,18 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        if (!Auth::check()) {
+            return view('/login');
+        }
+
+        if (Auth::user()->role == null) {
+            Auth::user()->role = "worker";
+            Auth::user()->save();
+        }
+
+        return view($this->redirectByRole(Auth::user()->role, 'index'));
+
     }
+
 }
+

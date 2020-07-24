@@ -5,17 +5,26 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Admin') }}</div>
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    {{ __('User Information') }}
+                    <button class="btn btn-secondary justify-content-end">
+                        <a class="text-white" href={{ route('user_create') }}>Create</a>
+                    </button>
+
+                </div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+
+
+                    <form method="POST" action="">
                         @csrf
 
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name"
+                                value="{{ $user->name }}" required autocomplete="name" autofocus readonly>
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -29,7 +38,8 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email"
+                                value="{{ $user->email }}" required autocomplete="email" readonly>
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -39,35 +49,36 @@
                             </div>
                         </div>
 
+
+
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                            <label for="role" class="col-md-4 col-form-label text-md-right">{{ __('Role') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <input id="role" type="text" class="form-control" value={{ $user->role }} name="role" readonly required autocomplete="">
                             </div>
                         </div>
 
+
                         <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                            <label for="manager" class="col-md-4 col-form-label text-md-right">{{ __('Manager') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <input id="manager" type="number" class="form-control" value="{{ $user->managed }}" name="manager" readonly required autocomplete="manager">
                             </div>
                         </div>
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
+                                <button class="btn btn-secondary text-white">
+                                    <a href="{{ route('user_update_form', ['id' => $user->id]) }}">
+                                        {{ __('Update') }}
+                                    </a>
+
                                 </button>
                             </div>
                         </div>
+
                     </form>
                 </div>
             </div>
