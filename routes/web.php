@@ -21,10 +21,18 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('role');
 
-Route::get('/admin', function () {
-    return view('userAdmin/index');
-})->name('admin');
-
+Route::get('/admin2', function () {
+    return view('layouts/admin_interface');
+})->name('admin2');
+Route::get('/manager2', function () {
+    return view('layouts/manager_interface');
+})->name('manager2');
+Route::get('/worker2', function () {
+    return view('layouts/worker_interface');
+})->name('worker2');
+Route::get('/create', function () {
+    return view('page/worker_interface');
+})->name('project_creaate');
 
 Route::get('/manager', function () {
     return view('userManager/index');
@@ -34,3 +42,4 @@ Route::get('/manager', function () {
 Route::get('/worker', function () {
     return view('userWorker/index');
 })->name('worker');
+Route::get('/admin', 'AdminController@index');
