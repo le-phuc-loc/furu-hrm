@@ -15,7 +15,8 @@ class CreateProjectsTable extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->unsignedBigInteger('managed')->nullable();
+            $table->foreign('managed')->references('id')->on('users')->onDelete('cascade');
             $table->string('project_name')->nullable();
             $table->integer('number_employees')->nullable();
             $table->date('from_date');

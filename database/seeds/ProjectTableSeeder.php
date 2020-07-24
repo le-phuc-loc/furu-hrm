@@ -19,7 +19,7 @@ class ProjectTableSeeder extends Seeder
             'location_id'=>'1',
             'created_at'=>now(),
             'updated_at'=>now(),
-            'user_id'=>'1'
+            'managed'=>'1'
 
         ]);
         DB::table('projects')->insert([
@@ -29,7 +29,7 @@ class ProjectTableSeeder extends Seeder
             'location_id'=>'2',
             'created_at'=>now(),
             'updated_at'=>now(),
-            'user_id'=>'1'
+            'managed'=>'1'
 
         ]);
     }

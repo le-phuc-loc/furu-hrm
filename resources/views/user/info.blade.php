@@ -8,7 +8,7 @@
                 <div class="card-header d-flex justify-content-between align-items-center">
                     {{ __('User Information') }}
                     <button class="btn btn-secondary justify-content-end">
-                        <a class="text-white" href={{ route('user_create_form') }}>Create</a>
+                        <a class="text-white" href={{ route('user_create') }}>Create</a>
                     </button>
 
                 </div>
