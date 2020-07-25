@@ -69,7 +69,35 @@ Route::group(['prefix' => 'project'], function () {
     Route::get('/assign/{id}', 'ProjectController@assign')->name('project_assign');
     Route::post('/assign/{id}', 'ProjectController@assignPost')->name('project_assign_post');
 
+    Route::post('/report/{id}', 'ProjectController@assignPost')->name('project_assign_post');
+
+
 });
+
+Route::group(['prefix' => 'report'], function () {
+    Route::get('/', 'ProjectController@index')->name('report_index');
+
+    Route::get('/info/{id}', 'ProjectController@show')->name('report_info');
+
+
+    Route::get('/create', 'ProjectController@create')->name('report_create');
+    Route::post('/create', 'ProjectController@store')->name('report_store');
+
+
+    Route::get('/update/{id}', 'ProjectController@edit')->name('report_edit');
+    Route::post('/update/{id}', 'ProjectController@update')->name('report_update');
+
+    Route::get('/delete/{id}', 'ProjectController@delete')->name('report_delete');
+
+    Route::get('/assign/{id}', 'ProjectController@checkin')->name('report_checkin');
+    Route::post('/assign/{id}', 'ProjectController@checkout')->name('report_checkout');
+
+
+
+});
+
+
+
 
 
 

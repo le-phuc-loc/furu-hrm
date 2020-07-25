@@ -11,10 +11,10 @@ class Report extends Model
     }
     public function location_check_in()
     {
-        return $this->hasOne('App\Location','report_id','location_id');
+        return $this->belongsTo('App\Location','location_check_in');
     }
     public function location_check_out()
     {
-        return $this->hasOne('App\Location', 'report_id', 'location_id');
+        return $this->belongsTo('App\Location','location_check_out');
     }
 }

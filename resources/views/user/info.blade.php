@@ -64,14 +64,14 @@
                             <label for="manager" class="col-md-4 col-form-label text-md-right">{{ __('Manager') }}</label>
 
                             <div class="col-md-6">
-                                <input id="manager" type="number" class="form-control" value="{{ $user->managed }}" name="manager" readonly required autocomplete="manager">
+                                <input id="manager" type="number" class="form-control" value="{{ $user->manager }}" name="manager" readonly required >
                             </div>
                         </div>
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button class="btn btn-secondary text-white">
-                                    <a href="{{ route('user_update_form', ['id' => $user->id]) }}">
+                                    <a href="{{ route('user_update', ['id' => $user->id]) }}">
                                         {{ __('Update') }}
                                     </a>
 

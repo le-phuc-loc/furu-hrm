@@ -84,6 +84,8 @@
 
 
 
-
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcQ8aJDgCEdlPz5MPuWkXfjQMKwAULO-k&callback=initMap">
+  </script>
 </body>
 </html>

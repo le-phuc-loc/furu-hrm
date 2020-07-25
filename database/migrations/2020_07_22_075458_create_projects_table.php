@@ -18,11 +18,11 @@ class CreateProjectsTable extends Migration
             $table->unsignedBigInteger('managed')->nullable();
             $table->foreign('managed')->references('id')->on('users')->onDelete('cascade');
             $table->string('project_name')->nullable();
-            $table->integer('number_employees')->nullable();
+            $table->integer('number_worker')->nullable();
             $table->date('from_date');
             $table->date('to_date');
-            $table->timestamp('time_to_checkin')->nullable();
-            $table->timestamp('time_to_checkout')->nullable();
+            $table->time('time_to_checkin')->nullable();
+            $table->time('time_to_checkout')->nullable();
             $table->foreignId('location_id')->constrained()->onDelete('cascade');
             $table->timestamps();
 

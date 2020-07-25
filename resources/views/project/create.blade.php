@@ -22,13 +22,21 @@
                             <label for="project_name" class="col-md-4 col-form-label text-md-right">{{ __('Project name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="project_name" type="text" class="form-control @error('project_name') is-invalid @enderror" name="project_name" value="{{ old('project_name') }}" required autocomplete="project_name" autofocus>
+                                <input id="project_name" name="project_name" type="text" class="form-control @error('project_name') is-invalid @enderror" name="project_name" value="{{ old('project_name') }}" required autocomplete="project_name" autofocus>
 
                                 @error('project_name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="project-from-date" class="col-md-4 col-form-label text-md-right">{{ __('NUmber of Worker') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="number-worker" type="number" class="form-control"  name="number_worker" >
                             </div>
                         </div>
 
@@ -45,6 +53,22 @@
 
                             <div class="col-md-6">
                                 <input id="project-to-date" type="date" class="form-control"  name="project_to_date" >
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="project-to-date" class="col-md-4 col-form-label text-md-right">{{ __('Time check in') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="time-check-in" type="time" class="form-control"  name="time_check_in" >
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="project-to-date" class="col-md-4 col-form-label text-md-right">{{ __('Time check out') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="time-check-out" type="time" class="form-control"  name="time_check_out" >
                             </div>
                         </div>
 

@@ -23,6 +23,23 @@ class Project extends Model
         return \Carbon\Carbon::parse($this->attributes['from_date'])->format('Y-m-d');
     }
 
+    public function getToDateAttribute($value) {
+        return \Carbon\Carbon::parse($this->attributes['to_date'])->format('Y-m-d');
+    }
+
+    public function getTimeToCheckinAttribute($value) {
+        return \Carbon\Carbon::parse($this->attributes['time_to_checkin'])->format('H:i:s');
+    }
+
+    public function getTimeToCheckOutAttribute($value) {
+        return \Carbon\Carbon::parse($this->attributes['time_to_checkout'])->format('H:i:s');
+    }
+
+    // protected $casts = [
+    //     'time_to_checkin' => 'date:hh:mm',
+    //     'time_to_checkout' => 'date:hh:mm',
+    // ];
+
 
 
 }

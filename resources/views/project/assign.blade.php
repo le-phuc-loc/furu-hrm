@@ -28,15 +28,18 @@
 
                             </div>
                         </div>
-
+                        {{-- {{ dd($admin) }} --}}
                         <div class="form-group row">
                             <label for="manager-select" class="col-md-4 col-form-label text-md-right">Manager select</label>
                             <div class="col-md-6">
                                 <select class="form-control" id="manager-select" name="manager">
+                                    <option class="project-manager" selected value="{{ $admin->id }}" >{{ $admin->name }}</option>
                                     @foreach ($managers as $manage)
-                                        <option class="project-manager" value="{{ $manage->id }}" >{{ $manage->name }}</option>
-
-
+                                        @if ($manage == $project->managed && $project->managed != null)
+                                            <option class="project-manager" selected value="{{ $manage->id }}" >{{ $manage->name }}</option>
+                                        @else
+                                            <option class="project-manager" value="{{ $manage->id }}" >{{ $manage->name }}</option>
+                                        @endif
                                     @endforeach
                                 </select>
                             </div>
@@ -55,7 +58,7 @@
 
 
                         <!-- Modal -->
-
+                        {{-- {{ dd($project->users) }} --}}
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
@@ -68,11 +71,11 @@
                                     <div class="modal-body">
                                         <ul class="list-group">
                                             @foreach ($workers as $worker)
-
                                                 <li class="list-group-item">
                                                     <input type="checkbox" value="{{ $worker->id }}" name="workers[]" id="workers-project">
                                                     {{ $worker->name }} - {{ $worker->role }}
                                                 </li>
+
                                             @endforeach
 
                                         </ul>
