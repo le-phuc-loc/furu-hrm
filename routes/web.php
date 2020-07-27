@@ -15,7 +15,7 @@ use \App\Report;
 |
 */
 
-Route::get('/', 'ReportController@index');
+Route::get('/', 'HomeController@index');
 
 Route::get('/welcome', 'TestController@index');
 

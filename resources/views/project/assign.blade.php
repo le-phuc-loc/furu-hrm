@@ -7,9 +7,10 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     {{ __('Assign Project') }}
-                    <button class="btn btn-secondary justify-content-end">
+
+                    <button type="button" class="btn btn-info add-new"  style="float: right;"> <i class="fa fa-plus"></i>
                         <a class="text-white" href={{ route('project_create') }}>Create</a>
-                    </button>
+                      </button>
                 </div>
 
                 <div class="card-body">
