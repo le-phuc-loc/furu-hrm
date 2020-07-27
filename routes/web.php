@@ -24,7 +24,8 @@ Route::post('/welcome', 'TestController@insert');
 Route::get('/test', function() {
     return view('test');
 });
-
+Route::pattern('id', '[0-9]+');
+Route::pattern('report_id', '[0-9]+');
 
 Auth::routes();
 
@@ -64,36 +65,34 @@ Route::group(['prefix' => 'project'], function () {
     Route::get('/assign/{id}', 'ProjectController@assign')->name('project.assign');
     Route::post('/assign/{id}', 'ProjectController@assignPost')->name('project.assign_post');
 
-    Route::post('/report/{id}', 'ProjectController@assignPost')->name('project.assign_post');
+
+    Route::group(['prefix' => 'report'], function () {
+        Route::get('/{id}', 'ReportController@index')->name('report.index');
+
+        Route::get('/{id}/info/{report_id}', 'ReportController@show')->name('report.info');
 
 
-});
-
-Route::group(['prefix' => 'report'], function () {
-    Route::get('/', 'ReportController@index')->name('report.index');
-
-    Route::get('/info/{id}', 'ProjectController@show')->name('report.info');
+        Route::get('/{id}/create', 'ReportController@create')->name('report.create');
+        Route::post('/{id}/create', 'ReportController@store')->name('report.store');
 
 
-    Route::get('/create', 'ProjectController@create')->name('report.create');
-    Route::post('/create', 'ProjectController@store')->name('report.store');
+        Route::get('/{id}/update/{report_id}', 'ReportController@edit')->name('report.edit');
+        Route::post('/{id}/update/{report_id}', 'ReportController@update')->name('report.update');
 
+        Route::get('/{id}/delete/{report_id}', 'ReportController@delete')->name('report.delete');
 
-    Route::get('/update/{id}', 'ProjectController@edit')->name('report.edit');
-    Route::post('/update/{id}', 'ProjectController@update')->name('report.update');
-
-    Route::get('/delete/{id}', 'ProjectController@delete')->name('report.delete');
-
-    Route::get('/checkin', 'ProjectController@checkin')->name('report.checkin');
-    Route::post('/checkout', 'ProjectController@checkout')->name('report.checkout');
+        Route::post('/{id}/checkin', 'ReportController@checkin')->name('report.checkin');
+        Route::post('/{id}/checkout', 'ReportController@checkout')->name('report.checkout');
 
 
 
+    });
 });
 
 
 
 
 
-Route::get('/report', 'ReportController@index');
+
+
 

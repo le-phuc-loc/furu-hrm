@@ -8,7 +8,7 @@
                 <div class="card-header d-flex justify-content-between align-items-center">
                     {{ __('User Information') }}
                     <button class="btn btn-secondary justify-content-end">
-                        <a class="text-white" href={{ route('user_create') }}>Create</a>
+                        <a class="text-white" href={{ route('user.create') }}>Create</a>
                     </button>
 
                 </div>
@@ -71,7 +71,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button class="btn btn-secondary text-white">
-                                    <a href="{{ route('user_update', ['id' => $user->id]) }}">
+                                    <a href="{{ route('user.update', ['id' => $user->id]) }}">
                                         {{ __('Update') }}
                                     </a>
 

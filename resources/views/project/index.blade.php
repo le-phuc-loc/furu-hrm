@@ -8,7 +8,7 @@
                 <div class="card-header d-flex justify-content-between align-items-center">
                     {{ __('Projects Manager') }}
                     <button class="btn btn-secondary justify-content-end">
-                        <a class="text-white" href={{ route('project_create') }}>Create</a>
+                        <a class="text-white" href={{ route('project.create') }}>Create</a>
                     </button>
                 </div>
 
@@ -24,7 +24,7 @@
 
                             @foreach ($projects as $project)
                                 <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
-                                    href={{ route('project_show', ['id' => $project->id]) }}>
+                                    href={{ route('project.show', ['id' => $project->id]) }}>
                                     {{ $project->project_name }}
 
                                     <div class="">

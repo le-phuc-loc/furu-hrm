@@ -7,6 +7,9 @@ use \App\Report;
 use \App\Project;
 use \App\ProjectUser;
 use \App\User;
+use \App\Location;
+use Auth;
+use \Carbon\Carbon;
 
 
 class ReportController extends Controller
@@ -16,16 +19,30 @@ class ReportController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request, $id)
     {
         //
         // dd(Report::getReportAllow());
-        $project = Project::find($request->project_id);
+        $project = Project::find($id);
+        if (count(Report::whereDate('created_at', '=', Carbon::now())->get() ) > 0) {
+            $report = Report::whereDate('created_at', '=', Carbon::now())->first();
+        }
+        else {
+            $report = new Report();
+            $project_user = ProjectUser::where('project_id', $project->id)
+            ->where('user_id', Auth::user()->id)
+            ->get()->first()->id;
+
+            $report->project_user_id = $project_user;
+            $report->save();
+        }
+        // dd($report->state);
         // dd( ProjectUser::all()->first()->reports());
         // var_dump(ProjectUser::all()->first()->reports()->first());
         // return Report::all()->first()->project_user()->first()->project;
         return view('/report/index', [
             'project' => $project,
+            'report' => $report,
         ]);
     }
 
@@ -34,56 +51,66 @@ class ReportController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function checkin(Request $request)
+    public function checkin(Request $request, $id)
     {
         //
 
-        $obj = new Report();
-        $project = Project::find($request->project_id);
 
+        $project = Project::find($request->id);
+        $obj = Report::whereDate('created_at', '=', Carbon::now())->first();
+        // dd($obj);
         $validatedData = $request->validate([
-            'time_checkin' => 'date_format:H:i|after:'.$project->time_to_checkin,
+            'time_checkin' => 'date_format:H:i|after:'.$project->time_checkin,
+            'time_checkin' => 'date_format:H:i|before:'.$project->time_checkout,
         ]);
 
 
         // $obj = Report::find($id);
-        $obj->project_user_id = ProjectUser::where('project_id', $request->project_id)
-                                            ->where('user_id', Auth::user()->id)
-                                            ->get();
-        $obj->time_checkin = $req->time_checkin;
+
+
+
+        $obj->time_checkin = Carbon::now()->format('H:i');
+
         $location = Location::create([
-            'location_name' => $req->location_name,
-            'lat' => $req->lat,
-            'lng' => $req->lng,
+            'location_name' => $request->location_name,
+            'lat' => $request->lat,
+            'lng' => $request->lng,
         ]);
-        $obj->state = Report::getReportCheckin();
         $obj->location_check_in = $location->id;
-        $obj->save;
-        dd($obj);
+        $obj->state = Report::getReportCheckin();
+        // dd($obj);
+        $obj->save();
+        return redirect(route('report.index', ['id' => $id]));
     }
 
 
     public function checkout(Request $request, $id) {
-        $obj = Report::find($id);
-        $project = $obj->project_user()->first()->project;
+
+        $obj = Report::whereDate('created_at', '=', Carbon::now())->first();
+        $project = Project::find($id);
 
         $validatedData = $request->validate([
-            'time_checkout' => 'date_format:H:i',
+            'time_checkout' => 'date_format:H:i|after:'.$project->time_checkin,
+            'time_checkout' => 'date_format:H:i|before:'.$project->time_checkout,
             'time_checkout' => 'date_format:H:i|after:'.$obj->time_checkin,
         ]);
-        $obj->time_checkout = $request->time_checkout;
+        $obj->time_checkout = Carbon::now()->format('H:i');
         $location = Location::create([
-            'location_name' => $req->location_name,
-            'lat' => $req->lat,
-            'lng' => $req->lng,
+            'location_name' => $request->location_name,
+            'lat' => $request->lat,
+            'lng' => $request->lng,
         ]);
-        $obj->state = Report::getReportDraw();
         $obj->location_check_out = $location->id;
+        $obj->state = Report::getReportDraw();
+        // dd($obj);
+        $obj->save();
+        return redirect(route('report.index', ['id' => $id]));
+
     }
     public function create($id)
     {
-        //
-        $obj = Report::with('project_user', 'project')->find($id);
+        $project = Project::find($id);
+        $obj = Report::with('project_user')->find($id);
         return view('/report/create', [
             'report' => $obj,
             'project_user' => $project_user,
@@ -91,13 +118,12 @@ class ReportController extends Controller
         ]);
     }
 
-    public function store() {
-        $obj = new Report();
-        $obj->project_user_id = ProjectUser::where('project_id', $request->project_id)
-                                            ->where('user_id', Auth::user()->id)
-                                            ->get();
+    public function store(Request $request, $id) {
+        $obj = Report::whereDate('created_at', '=', Carbon::now())->first();
+        $obj->content = $request->content;
         $obj->state = Report::getReportDraw();
         $obj->save();
+        return redirect(route('report.index', ['id' => $id]));
     }
 
     /**
@@ -128,15 +154,17 @@ class ReportController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, $report_id)
     {
         //
-        $obj = Report::with('project_user', 'project')->find($id);
-        return view('report/show', [
-            'report' => $obj,
-            'project_user' => $project_user,
-            'project' => $project,
-        ]);
+        // dd($report_id);
+        $obj = Report::with('project_user')->find($report_id);
+        // return view('report/show', [
+        //     'report' => $obj,
+        //     'project_user' => $project_user,
+        //     'project' => $project,
+        // ]);
+        return $obj;
     }
 
     /**

@@ -19,6 +19,8 @@ class ProjectTableSeeder extends Seeder
             'location_id'=>'1',
             'created_at'=>now(),
             'updated_at'=>now(),
+            'time_checkin' => '7:00',
+            'time_checkout' => '17:30',
             'managed'=>'1'
 
         ]);
@@ -29,6 +31,8 @@ class ProjectTableSeeder extends Seeder
             'location_id'=>'2',
             'created_at'=>now(),
             'updated_at'=>now(),
+            'time_checkin' => '7:00',
+            'time_checkout' => '17:30',
             'managed'=>'1'
         ]);
         DB::table('projects')->insert([
@@ -38,6 +42,8 @@ class ProjectTableSeeder extends Seeder
             'location_id'=>'1',
             'created_at'=>now(),
             'updated_at'=>now(),
+            'time_checkin' => '7:00',
+            'time_checkout' => '17:30',
             'managed'=>'1'
         ]);
         DB::table('projects')->insert([
@@ -47,6 +53,8 @@ class ProjectTableSeeder extends Seeder
             'location_id'=>'4',
             'created_at'=>now(),
             'updated_at'=>now(),
+            'time_checkin' => '7:00',
+            'time_checkout' => '17:30',
             'managed'=>'1'
         ]);
         DB::table('projects')->insert([
@@ -56,6 +64,8 @@ class ProjectTableSeeder extends Seeder
             'location_id'=>'4',
             'created_at'=>now(),
             'updated_at'=>now(),
+            'time_checkin' => '7:00',
+            'time_checkout' => '17:30',
             'managed'=>'1'
         ]);
     }
