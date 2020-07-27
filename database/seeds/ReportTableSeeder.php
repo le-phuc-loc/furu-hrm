@@ -17,7 +17,6 @@ class ReportTableSeeder extends Seeder
             'time_checkout'=>'2021-01-05 17:30:00',
             'location_check_in'=>'3',
             'location_check_out'=>'3',
-            'project_name'=>'Jarussic Park',
             'content'=>'Come to work but nothing to do',
             'project_user_id'=>'1'
         ]);
@@ -26,7 +25,6 @@ class ReportTableSeeder extends Seeder
             'time_checkout'=>'2021-01-01 17:30:00',
             'location_check_in'=>'4',
             'location_check_out'=>'4',
-            'project_name'=>'God City',
             'content'=>'Find Gods but nothing to see',
             'project_user_id'=>'2'
         ]);
@@ -35,7 +33,6 @@ class ReportTableSeeder extends Seeder
             'time_checkout'=>'2022-01-01 17:30:00',
             'location_check_in'=>'4',
             'location_check_out'=>'4',
-            'project_name'=>'Space Station',
             'content'=>'Fly with Aliens',
             'project_user_id'=>'3'
         ]);

@@ -16,9 +16,9 @@ class DatabaseSeeder extends Seeder
             UserTableSeeder::class,
             LocationTableSeeder::class,
             ProjectTableSeeder::class,
-            Project_UserTableSeeder::class,
-            Absent_ApplicationSeeder::class,
+            ProjectUserTableSeeder::class,
             ReportTableSeeder::class,
+            AbsentApplicationSeeder::class,
         ]);
     }
 }

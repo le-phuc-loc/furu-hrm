@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class Absent_ApplicationSeeder extends Seeder
+class AbsentApplicationSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -29,7 +29,7 @@ class Absent_ApplicationSeeder extends Seeder
         DB::table('absent_applications')->insert([
             'status'=>'2',
             'content'=>'NGhỉ',
-            'user_id'=>'7',
+            'user_id'=>'4',
             'created_at'=>now(),
             'updated_at'=>now(),
         ]);

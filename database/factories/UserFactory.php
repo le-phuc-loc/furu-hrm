@@ -20,14 +20,14 @@ use Illuminate\Support\Facades\DB;
 */
 
 $factory->define(User::class, function (Faker $faker) {
-    return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'email_verified_at' => now(),
-        'password' => Hash::make('123456'), // password
-        'remember_token' => Str::random(10),
-        'manager'=>'2',
-        'created_at'=>now(),
-        'updated_at'=>now()
-    ];
+    // return [
+    //     'name' => $faker->name,
+    //     'email' => $faker->unique()->safeEmail,
+    //     'email_verified_at' => now(),
+    //     'password' => Hash::make('123456'), // password
+    //     'remember_token' => Str::random(10),
+    //     'manager'=>'2',
+    //     'created_at'=>now(),
+    //     'updated_at'=>now()
+    // ];
 });
