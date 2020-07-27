@@ -24,6 +24,7 @@ class CreateReportsTable extends Migration
             $table->string('content');
             $table->unsignedBigInteger('project_user_id');
             $table->foreign('project_user_id')->references('id')->on('project_user')->onDelete('cascade');
+            $table->integer('state');
             $table->timestamps();
         });
     }

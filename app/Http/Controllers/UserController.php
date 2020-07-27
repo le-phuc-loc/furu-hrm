@@ -37,7 +37,7 @@ class UserController extends Controller
         return view('user/create');
     }
 
-    public function createPost(Request $req) {
+    public function store(Request $req) {
         $user = new User();
         $user->name = $req->name;
         $user->email = $req->email;
@@ -49,7 +49,7 @@ class UserController extends Controller
         return redirect(route('user_index'));
     }
 
-    public function update($id) {
+    public function edit($id) {
         $user = User::find($id);
 
 
@@ -58,7 +58,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function updatePost(Request $req, $id) {
+    public function update(Request $req, $id) {
 
         $user = User::find($id);
         $user->name = $req->name;

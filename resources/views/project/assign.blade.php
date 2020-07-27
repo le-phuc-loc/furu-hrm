@@ -8,7 +8,7 @@
                 <div class="card-header d-flex justify-content-between align-items-center">
                     {{ __('Assign Project') }}
                     <button class="btn btn-secondary justify-content-end">
-                        <a class="text-white" href={{ route('project_create') }}>Create</a>
+                        <a class="text-white" href={{ route('project.create') }}>Create</a>
                     </button>
                 </div>
 
@@ -35,11 +35,12 @@
                                 <select class="form-control" id="manager-select" name="manager">
                                     <option class="project-manager" selected value="{{ $admin->id }}" >{{ $admin->name }}</option>
                                     @foreach ($managers as $manage)
-                                        @if ($manage == $project->managed && $project->managed != null)
+                                        {{-- @if ($manage == $project->managed && $project->managed != null)
                                             <option class="project-manager" selected value="{{ $manage->id }}" >{{ $manage->name }}</option>
                                         @else
-                                            <option class="project-manager" value="{{ $manage->id }}" >{{ $manage->name }}</option>
-                                        @endif
+
+                                        @endif --}}
+                                        <option class="project-manager" value="{{ $manage->id }}" >{{ $manage->name }}</option>
                                     @endforeach
                                 </select>
                             </div>

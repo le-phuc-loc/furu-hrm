@@ -24,7 +24,7 @@
 
                             @foreach ($projects as $project)
                                 <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
-                                    href={{ route('project_info', ['id' => $project->id]) }}>
+                                    href={{ route('project_show', ['id' => $project->id]) }}>
                                     {{ $project->project_name }}
 
                                     <div class="">

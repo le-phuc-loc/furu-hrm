@@ -6,6 +6,7 @@ use \App\Location;
 use \App\User;
 use Auth;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
 
 use Illuminate\Http\Request;
@@ -48,29 +49,38 @@ class ProjectController extends Controller
         return view('project/create');
     }
 
-    public function createPost(Request $req) {
+    public function store(Request $request) {
         // dd($req->input());
+
+        $validatedData = $request->validate( [
+            'project_name' => 'required',
+            'project_from_date' => 'date',
+            'project_to_date' => 'date|after:project_from_date',
+            'time_checkin' => 'date_format:H:i',
+            'time_checkout' => 'date_format:H:i|after:time_checkin',
+        ]);
+
         $obj = new Project();
-        $obj->project_name = $req->project_name;
-        $obj->number_worker = $req->number_worker;
-        $obj->from_date = $req->project_from_date;
-        $obj->to_date = $req->project_to_date;
-        $obj->time_to_checkin = $req->time_check_in;
-        $obj->time_to_checkout = $req->time_check_out;
+        $obj->project_name = $request->project_name;
+        $obj->number_worker = $request->number_worker;
+        $obj->from_date = $request->project_from_date;
+        $obj->to_date = $request->project_to_date;
+        $obj->time_checkin = $request->time_check_in;
+        $obj->time_checkout = $request->time_check_out;
         $location = Location::create([
-            'location_name' => $req->location_name,
-            'lat' => $req->lat,
-            'lng' => $req->lng,
+            'location_name' => $request->location_name,
+            'lat' => $request->lat,
+            'lng' => $request->lng,
         ]);
         // var_dump($location);
         $obj->location_id = $location->id;
-        $obj->users()->attach($req->user_id);
+        $obj->users()->attach($request->user_id);
         $obj->save();
 
         return redirect(route('project_index'));
     }
 
-    public function update($id) {
+    public function edit($id) {
         $obj = Project::with(['location', 'managed', 'users'])->find($id);
 
 
@@ -79,15 +89,23 @@ class ProjectController extends Controller
         ]);
     }
 
-    public function updatePost(Request $req, $id) {
+    public function update(Request $req, $id) {
         // dd($req->input());
+        $validatedData = $request->validate( [
+            'project_name' => 'required',
+            'project_from_date' => 'date',
+            'project_to_date' => 'date|after:project_from_date',
+            'time_checkin' => 'date_format:H:i',
+            'time_checkout' => 'date_format:H:i|after:time_checkin',
+        ]);
+
         $obj = Project::find($id);
         $obj->project_name = $req->project_name;
         $obj->number_worker = $req->number_worker;
         $obj->from_date = $req->project_from_date;
         $obj->to_date = $req->project_to_date;
-        $obj->time_to_checkin = $req->time_check_in;
-        $obj->time_to_checkout = $req->time_check_out;
+        $obj->time_checkin = $req->time_check_in;
+        $obj->time_checkout = $req->time_check_out;
         $obj->location->update([
             'location_name' => $req->location_name,
             'lat' => $req->lat,
@@ -130,7 +148,7 @@ class ProjectController extends Controller
         $obj->save();
         // dd($obj);
         // dd($user);
-        return redirect(route('project_info', ['id' => $id]) );
+        return redirect(route('project_info', ['id' => $id]));
     }
 
 }
