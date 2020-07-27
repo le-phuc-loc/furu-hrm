@@ -2,9 +2,9 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class Project_User extends Model
+class ProjectUser extends Pivot
 {
     public function reports(){
         return $this->hasMany('App\Report');

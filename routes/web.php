@@ -75,7 +75,7 @@ Route::group(['prefix' => 'project'], function () {
 });
 
 Route::group(['prefix' => 'report'], function () {
-    Route::get('/', 'ProjectController@index')->name('report_index');
+    Route::get('/', 'ReportController@index')->name('report_index');
 
     Route::get('/info/{id}', 'ProjectController@show')->name('report_info');
 

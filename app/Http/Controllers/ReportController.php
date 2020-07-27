@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use \App\Report;
+use \App\Project;
+use \App\ProjectUser;
 
 class ReportController extends Controller
 {
@@ -15,7 +17,7 @@ class ReportController extends Controller
     public function index()
     {
         //
-        return view('report/index');
+        return ProjectUser::find(2)->reports();
     }
 
     /**
