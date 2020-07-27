@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Project extends Model
 {
     public function users(){
-        return $this->belongsToMany('App\User')->using("App\ProjectUser");
+
+        return $this->belongsToMany('App\User')->withTimestamps()->using('App\ProjectUser');
     }
 
     public function managed(){

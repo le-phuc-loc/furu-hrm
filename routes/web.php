@@ -15,12 +15,7 @@ use \App\Report;
 |
 */
 
-Route::get('/', function () {
-    if(!Auth::check()) {
-        return view('/auth/login');
-    }
-    return redirect('/home');
-});
+Route::get('/', 'ReportController@index');
 
 Route::get('/welcome', 'TestController@index');
 
@@ -100,4 +95,5 @@ Route::group(['prefix' => 'report'], function () {
 
 
 
+Route::get('/report', 'ReportController@index');
 

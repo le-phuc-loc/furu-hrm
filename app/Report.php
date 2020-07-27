@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Report extends Model
 {
     public function project_user(){
-        return $this->belongsTo('App\Project_User');
+        return $this->belongsTo('App\ProjectUser');
     }
     public function location_check_in()
     {

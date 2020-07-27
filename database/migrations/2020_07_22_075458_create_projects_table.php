@@ -18,7 +18,7 @@ class CreateProjectsTable extends Migration
             $table->unsignedBigInteger('managed')->nullable();
             $table->foreign('managed')->references('id')->on('users')->onDelete('cascade');
             $table->string('project_name')->nullable();
-            $table->integer('number_worker')->nullable();
+            $table->integer('number_worker')->nullable()->default('0');
             $table->date('from_date');
             $table->date('to_date');
             $table->time('time_to_checkin')->nullable();

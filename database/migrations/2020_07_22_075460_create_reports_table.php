@@ -21,7 +21,6 @@ class CreateReportsTable extends Migration
             $table->foreign('location_check_in')->references('id')->on('locations')->onDelete('cascade');
             $table->unsignedBigInteger('location_check_out');
             $table->foreign('location_check_out')->references('id')->on('locations')->onDelete('cascade');
-            $table->string('project_name');
             $table->string('content');
             $table->unsignedBigInteger('project_user_id');
             $table->foreign('project_user_id')->references('id')->on('project_user')->onDelete('cascade');

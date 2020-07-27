@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use \App\Report;
-use \App\Project;
+
 use \App\ProjectUser;
+use \App\User;
+
 
 class ReportController extends Controller
 {
@@ -17,7 +19,10 @@ class ReportController extends Controller
     public function index()
     {
         //
-        return ProjectUser::find(2)->reports();
+
+        // dd( ProjectUser::all()->first()->reports());
+        // var_dump(ProjectUser::all()->first()->reports()->first());
+        return ProjectUser::all()->first()->reports()->first();
     }
 
     /**
@@ -54,6 +59,9 @@ class ReportController extends Controller
         ]);
         $obj->location_check_out = $location->id;
         $obj->content = $request->content;
+    public function create()
+    {
+        //
     }
 
     /**

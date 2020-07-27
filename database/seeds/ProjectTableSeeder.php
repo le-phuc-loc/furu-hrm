@@ -30,7 +30,33 @@ class ProjectTableSeeder extends Seeder
             'created_at'=>now(),
             'updated_at'=>now(),
             'managed'=>'1'
-
+        ]);
+        DB::table('projects')->insert([
+            'project_name'=>'Jurassic Park',
+            'from_date'=>'2021-01-01',
+            'to_date'=>'2021-09-09',
+            'location_id'=>'1',
+            'created_at'=>now(),
+            'updated_at'=>now(),
+            'managed'=>'1'
+        ]);
+        DB::table('projects')->insert([
+            'project_name'=>'God City',
+            'from_date'=>'2021-01-01',
+            'to_date'=>'2021-12-30',
+            'location_id'=>'4',
+            'created_at'=>now(),
+            'updated_at'=>now(),
+            'managed'=>'1'
+        ]);
+        DB::table('projects')->insert([
+            'project_name'=>'Space Station',
+            'from_date'=>'2022-01-01',
+            'to_date'=>'2022-12-30',
+            'location_id'=>'4',
+            'created_at'=>now(),
+            'updated_at'=>now(),
+            'managed'=>'1'
         ]);
     }
 }
