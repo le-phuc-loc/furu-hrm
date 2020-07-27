@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.appAdmin')
 
-@section('content')
+@section('mainMenu')
 
 <div class="container">
     <nav class="navbar navbar-expand-md bg-dark navbar-dark">
@@ -23,6 +23,6 @@
         </div>
       </nav>
       <br>
-    
+
 </div>
 @endsection
