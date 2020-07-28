@@ -11,10 +11,10 @@
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('user_index') }}">User</a>
+              <a class="nav-link" href="{{ route('user.index') }}">User</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('project_index') }}">Project</a>
+              <a class="nav-link" href="{{ route('project.index') }}">Project</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Link</a>

@@ -15,7 +15,7 @@ use \App\Report;
 |
 */
 
-Route::get('/', 'ReportController@index');
+Route::get('/', 'HomeController@index');
 
 Route::get('/welcome', 'TestController@index');
 
@@ -72,19 +72,20 @@ Route::group(['prefix' => 'project'], function () {
         Route::get('/{id}/info/{report_id}', 'ReportController@show')->name('report.info');
 
 
-        Route::get('/{id}/create', 'ReportController@create')->name('report.create');
-        Route::post('/{id}/create', 'ReportController@store')->name('report.store');
+        Route::get('/{id}/create/{report_id}', 'ReportController@create')->name('report.create');
+        Route::post('/{id}/create/{report_id}', 'ReportController@store')->name('report.store');
 
 
-        Route::get('/{id}/update/{report_id}', 'ReportController@edit')->name('report.edit');
-        Route::post('/{id}/update/{report_id}', 'ReportController@update')->name('report.update');
+        Route::get('/update/{report_id}', 'ReportController@edit')->name('report.edit');
+        Route::post('/update/{report_id}', 'ReportController@update')->name('report.update');
 
-        Route::get('/{id}/delete/{report_id}', 'ReportController@delete')->name('report.delete');
+        Route::get('/delete/{report_id}', 'ReportController@delete')->name('report.delete');
 
         Route::post('/{id}/checkin', 'ReportController@checkin')->name('report.checkin');
         Route::post('/{id}/checkout', 'ReportController@checkout')->name('report.checkout');
 
-
+        Route::get('/{id}/send', 'ReportController@send')->name('report.send');
+        Route::get('/{id}/draw', 'ReportController@draw')->name('report.draw');
 
     });
 });

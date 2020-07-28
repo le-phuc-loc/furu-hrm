@@ -9,8 +9,8 @@
 
                 <div class="card-body">
                     <div class="links">
-                        <a href="{{ route('user_index') }}">User</a>
-                        <a href="{{ route('project_index') }}">Project</a>
+                        <a href="{{ route('user.index') }}">User</a>
+                        <a href="{{ route('project.index') }}">Project</a>
                     </div>
                 </div>
             </div>

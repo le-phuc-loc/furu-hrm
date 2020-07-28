@@ -7,9 +7,9 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     {{ __('Projects Manager') }}
-                    <button class="btn btn-secondary justify-content-end">
+                    {{-- <button class="btn btn-secondary justify-content-end">
                         <a class="text-white" href={{ route('project.create') }}>Create</a>
-                    </button>
+                    </button> --}}
                 </div>
 
                 <div class="card-body">
@@ -34,7 +34,7 @@
                             @endforeach
 
                         @endif
-                    </div>
+                    <div>
                 </div>
             </div>
         </div>

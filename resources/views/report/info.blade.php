@@ -7,9 +7,9 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     {{ __('Report Manager') }}
-                    {{-- <button class="btn btn-secondary justify-content-end">
+                    <button class="btn btn-secondary justify-content-end">
                         <a class="text-white" href={{ route('report.create', ['id' => $project->id]) }}>Create</a>
-                    </button> --}}
+                    </button>
                 </div>
 
                 <div class="card-body">
@@ -45,8 +45,33 @@
                             <button type="submit"> Checkin</button>
                         </form>
                     @else
-                        <form action="{{ route('report.create', ['id' => $project->id, 'report_id' => $report->id]) }}" method="get">
-                            <button type="submit"> Create Report </button>
+                        <form action="{{ route('report.store', ['id' => $project->id]) }}" method="post">
+                            @csrf
+                            <input type="hidden" name="location_name" value="meomeo">
+
+                            <input type="number" hidden name="lat" id="lat" value=12>
+
+                            <input type="number" hidden name="lng" id="lng" value=22>
+                            <div class="project-name">
+                                <label for="project-name"> Project name</label>
+                                <input type="text" name="project_name" id="project-name" readonly value="{{ $project->project_name }}">
+                            </div>
+                            <div>
+                                <label> Time checkin</label>
+                                <input type="time" readonly value="{{ $report->time_checkin }}">
+                            </div>
+                            <div>
+                                <label> Time check out</label>
+                                <input type="time" readonly value="{{ $report->time_checkout }}">
+                            </div>
+                            <div>
+                                <label> Content</label>
+                                <input type="text" name="content">
+                            </div>
+                            <button type="submit"> Store </button>
+                        </form>
+                        <form action="{{ route('report.store', ['id' => $project->id]) }}" method="post">
+                            <button type="submit"> Send </button>
                         </form>
                     @endif
 
