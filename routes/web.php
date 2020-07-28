@@ -48,11 +48,26 @@ Route::get('/worker', function () {
 })->name('worker');
 Route::get('/admin', 'AdminController@index');
 
+
+// ADmin
 //List User
-Route::get('/listUser', function () {
-    return view('user/admin/listUser');
-})->name('listUser');
+Route::get('/userAdmin', function () {
+    return view('user/admin/userAdmin');
+})->name('userAdmin');
 // Create user
-Route::get('/createUser', function () {
-    return view('user/admin/createUser');
-})->name('createUser');
+Route::get('/projectAdmin', function () {
+    return view('user/admin/projectAdmin');
+})->name('projectAdmin');
+//Assign Project
+Route::get('/assignAdmin', function () {
+    return view('user/admin/assignAdmin');
+})->name('assignAdmin');
+
+//Worker
+Route::get('/projectWorker', function () {
+    return view('user/worker/projectWorker');
+})->name('projectWorker');
+
+Route::get('/reportWorker', function () {
+    return view('user/worker/reportWorker');
+})->name('reportWorker');
