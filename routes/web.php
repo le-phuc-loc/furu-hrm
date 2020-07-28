@@ -27,6 +27,10 @@ Route::get('/test', function() {
 Route::pattern('id', '[0-9]+');
 Route::pattern('report_id', '[0-9]+');
 
+Route::get('/welcome1', function () {
+    return view('welcome1');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -93,7 +97,53 @@ Route::group(['prefix' => 'project'], function () {
 
 
 
+<<<<<<< HEAD
+
+=======
+Route::get('/admin2', function () {
+    return view('layouts/admin_interface');
+})->name('admin2');
+Route::get('/manager2', function () {
+    return view('layouts/manager_interface');
+})->name('manager2');
+Route::get('/worker2', function () {
+    return view('layouts/worker_interface');
+})->name('worker2');
+Route::get('/create', function () {
+    return view('page/create');
+})->name('project_create');
+>>>>>>> 0b1bd26304bc3a20b45554529ce988507ec77e79
 
 
 
+<<<<<<< HEAD
+=======
+Route::get('/worker', function () {
+    return view('userWorker/index');
+})->name('worker');
+Route::get('/admin', 'AdminController@index');
 
+
+// ADmin
+//List User
+Route::get('/userAdmin', function () {
+    return view('user/admin/userAdmin');
+})->name('userAdmin');
+// Create user
+Route::get('/projectAdmin', function () {
+    return view('user/admin/projectAdmin');
+})->name('projectAdmin');
+//Assign Project
+Route::get('/assignAdmin', function () {
+    return view('user/admin/assignAdmin');
+})->name('assignAdmin');
+
+//Worker
+Route::get('/projectWorker', function () {
+    return view('user/worker/projectWorker');
+})->name('projectWorker');
+
+Route::get('/reportWorker', function () {
+    return view('user/worker/reportWorker');
+})->name('reportWorker');
+>>>>>>> 0b1bd26304bc3a20b45554529ce988507ec77e79
