@@ -1,28 +1,127 @@
-@extends('layouts.appAdmin')
+@extends('layouts.side_bar')
 
-@section('mainMenu')
+@section('sidebar-menu')
+<nav class="mt-2">
+    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+        data-accordion="false">
+        <!-- Add icons to the links using the .nav-icon class
+with font-awesome or any other icon font library -->
+        <li class="nav-item">
+            <a href="{{ route('user.index') }}" class="nav-link ">
+                <i class="nav-icon fas fa-address-book"></i>
+                <p>
+                    Users
 
-<div class="container">
-    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="collapsibleNavbar">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" href="{{ route('user.index') }}">User</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ route('project.index') }}">Project</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-      <br>
+                </p>
+            </a>
 
-</div>
+        </li>
+        <li class="nav-item">
+            <a href="{{ route('project.index') }}" class="nav-link ">
+                <i class="nav-icon fas fa-address-book"></i>
+                <p>
+                    Projects
+                </p>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-table"></i>
+                <p>
+                    Manager
+                    <i class="fas fa-angle-left right"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="page/data.html" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Manager 1</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="page/data.html" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Manager 2</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="page/data.html" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Manager 3</p>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="nav-header">EXAMPLES</li>
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+                <i class="nav-icon far fa-envelope"></i>
+                <p>
+                    Mailbox
+                    <i class="fas fa-angle-left right"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="pages/mailbox/mailbox.html" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Inbox</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="pages/mailbox/compose.html" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Compose</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="pages/mailbox/read-mail.html" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Read</p>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+                <i class="nav-icon far fa-plus-square"></i>
+                <p>
+                    Extras
+                    <i class="fas fa-angle-left right"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="pages/examples/login.html" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Login</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="pages/examples/register.html" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Register</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="pages/examples/recover-password.html" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Recover Password</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="pages/examples/pace.html" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Pace</p>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="nav-item">
+        </li>
+    </ul>
+</nav>
 @endsection

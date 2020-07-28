@@ -1,4 +1,4 @@
-@extends('layouts.admin_interface')
+@extends('role.admin.index')
 
 @section('content1')
     <div class="row">

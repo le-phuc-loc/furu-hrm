@@ -15,7 +15,7 @@ use \App\Report;
 |
 */
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/welcome', 'TestController@index');
 
@@ -97,9 +97,6 @@ Route::group(['prefix' => 'project'], function () {
 
 
 
-<<<<<<< HEAD
-
-=======
 Route::get('/admin2', function () {
     return view('layouts/admin_interface');
 })->name('admin2');
@@ -112,12 +109,10 @@ Route::get('/worker2', function () {
 Route::get('/create', function () {
     return view('page/create');
 })->name('project_create');
->>>>>>> 0b1bd26304bc3a20b45554529ce988507ec77e79
 
 
 
-<<<<<<< HEAD
-=======
+
 Route::get('/worker', function () {
     return view('userWorker/index');
 })->name('worker');
@@ -146,4 +141,3 @@ Route::get('/projectWorker', function () {
 Route::get('/reportWorker', function () {
     return view('user/worker/reportWorker');
 })->name('reportWorker');
->>>>>>> 0b1bd26304bc3a20b45554529ce988507ec77e79

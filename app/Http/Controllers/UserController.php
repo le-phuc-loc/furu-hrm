@@ -33,29 +33,26 @@ class UserController extends Controller
         ]);
     }
 
-    public function create() {
-        return view('user/create');
-    }
+
 
     public function store(Request $req) {
+        // dd($req->input());
         $user = new User();
         $user->name = $req->name;
         $user->email = $req->email;
         $user->password = bcrypt($req->name) ;
         $user->role = $req->role;
-        $user->managed = $req->managed;
+        $user->manager = $req->manager;
         $user->save();
 
-        return redirect(route('user_index'));
+        return redirect(route('user.index'));
     }
 
     public function edit($id) {
         $user = User::find($id);
 
 
-        return view('user/update', [
-            'user' => $user,
-        ]);
+        return response()->json(['user' => $user], 200);
     }
 
     public function update(Request $req, $id) {
@@ -63,14 +60,15 @@ class UserController extends Controller
         $user = User::find($id);
         $user->name = $req->name;
         $user->role = $req->role;
-        $user->managed = $req->managed;
+        $user->manager = $req->manager;
         $user->save();
         // dd($user);
-        return redirect(route('user_index'));
+        return redirect(route('user.index'));
     }
 
     public function delete($id) {
         User::find($id)->delete();
+        return redirect(route('user.index'));
     }
 
 
