@@ -8,7 +8,7 @@
                 <div class="card-header d-flex justify-content-between align-items-center">
                     {{ __('User Manager') }}
                     <button class="btn btn-secondary justify-content-end">
-                        <a class="text-white" href={{ route('user_create') }}>Create</a>
+                        <a class="text-white" href={{ route('user.create') }}>Create</a>
                     </button>
                 </div>
 
@@ -24,7 +24,7 @@
 
                             @foreach ($users as $user)
                                 <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
-                                    href={{ route('user_show', ['id' => $user->id]) }}>
+                                    href={{ route('user.show', ['id' => $user->id]) }}>
                                     {{ $user->name }} | {{ $user->email }}
 
                                     <div class="">

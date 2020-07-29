@@ -15,16 +15,16 @@ class CreateReportsTable extends Migration
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
-            $table->timestamp('time_checkin')->nullable();
-            $table->timestamp('time_checkout')->nullable();
-            $table->unsignedBigInteger('location_check_in');
+            $table->time('time_checkin')->nullable();
+            $table->time('time_checkout')->nullable();
+            $table->unsignedBigInteger('location_check_in')->nullable();
             $table->foreign('location_check_in')->references('id')->on('locations')->onDelete('cascade');
-            $table->unsignedBigInteger('location_check_out');
+            $table->unsignedBigInteger('location_check_out')->nullable();
             $table->foreign('location_check_out')->references('id')->on('locations')->onDelete('cascade');
-            $table->string('project_name');
-            $table->string('content');
+            $table->string('content')->nullable();
             $table->unsignedBigInteger('project_user_id');
             $table->foreign('project_user_id')->references('id')->on('project_user')->onDelete('cascade');
+            $table->integer('state')->default('-2');
             $table->timestamps();
         });
     }

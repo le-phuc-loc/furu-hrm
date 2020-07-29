@@ -4,12 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Auth;
 
 class UserController extends Controller
 {
     //
     public function index() {
-        $users = User::all();
+        if (Auth::user()->role == 'admin') {
+            $users = User::all();
+        }
+        else if (Auth::user()->role == 'manager'){
+            $users = User::where('manager', Auth::user()->id)->get();
+        }
+
         return view('user/index', [
             'users' => $users,
         ]);
@@ -30,7 +37,7 @@ class UserController extends Controller
         return view('user/create');
     }
 
-    public function createPost(Request $req) {
+    public function store(Request $req) {
         $user = new User();
         $user->name = $req->name;
         $user->email = $req->email;
@@ -42,7 +49,7 @@ class UserController extends Controller
         return redirect(route('user_index'));
     }
 
-    public function update($id) {
+    public function edit($id) {
         $user = User::find($id);
 
 
@@ -51,7 +58,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function updatePost(Request $req, $id) {
+    public function update(Request $req, $id) {
 
         $user = User::find($id);
         $user->name = $req->name;

@@ -7,10 +7,9 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     {{ __('Assign Project') }}
-
-                    <button type="button" class="btn btn-info add-new"  style="float: right;"> <i class="fa fa-plus"></i>
-                        <a class="text-white" href={{ route('project_create') }}>Create</a>
-                      </button>
+                    <button class="btn btn-secondary justify-content-end">
+                        <a class="text-white" href={{ route('project.create') }}>Create</a>
+                    </button>
                 </div>
 
                 <div class="card-body">
@@ -29,15 +28,19 @@
 
                             </div>
                         </div>
-
+                        {{-- {{ dd($admin) }} --}}
                         <div class="form-group row">
                             <label for="manager-select" class="col-md-4 col-form-label text-md-right">Manager select</label>
                             <div class="col-md-6">
                                 <select class="form-control" id="manager-select" name="manager">
+                                    <option class="project-manager" selected value="{{ $admin->id }}" >{{ $admin->name }}</option>
                                     @foreach ($managers as $manage)
+                                        {{-- @if ($manage == $project->managed && $project->managed != null)
+                                            <option class="project-manager" selected value="{{ $manage->id }}" >{{ $manage->name }}</option>
+                                        @else
+
+                                        @endif --}}
                                         <option class="project-manager" value="{{ $manage->id }}" >{{ $manage->name }}</option>
-
-
                                     @endforeach
                                 </select>
                             </div>
@@ -56,7 +59,7 @@
 
 
                         <!-- Modal -->
-
+                        {{-- {{ dd($project->users) }} --}}
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
@@ -69,11 +72,11 @@
                                     <div class="modal-body">
                                         <ul class="list-group">
                                             @foreach ($workers as $worker)
-
                                                 <li class="list-group-item">
                                                     <input type="checkbox" value="{{ $worker->id }}" name="workers[]" id="workers-project">
                                                     {{ $worker->name }} - {{ $worker->role }}
                                                 </li>
+
                                             @endforeach
 
                                         </ul>

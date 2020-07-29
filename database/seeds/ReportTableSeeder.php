@@ -17,27 +17,27 @@ class ReportTableSeeder extends Seeder
             'time_checkout'=>'2021-01-05 17:30:00',
             'location_check_in'=>'3',
             'location_check_out'=>'3',
-            'project_name'=>'Jarussic Park',
             'content'=>'Come to work but nothing to do',
-            'project_user_id'=>'1'
+            'project_user_id'=>'1',
+            'state' => '1',
         ]);
         DB::table('reports')->insert([
             'time_checkin'=>'2021-01-01 07:30:50',
             'time_checkout'=>'2021-01-01 17:30:00',
             'location_check_in'=>'4',
             'location_check_out'=>'4',
-            'project_name'=>'God City',
             'content'=>'Find Gods but nothing to see',
-            'project_user_id'=>'2'
+            'project_user_id'=>'2',
+            'state' => '2',
         ]);
         DB::table('reports')->insert([
             'time_checkin'=>'2022-01-01 07:30:50',
             'time_checkout'=>'2022-01-01 17:30:00',
             'location_check_in'=>'4',
             'location_check_out'=>'4',
-            'project_name'=>'Space Station',
             'content'=>'Fly with Aliens',
-            'project_user_id'=>'3'
+            'project_user_id'=>'3',
+            'state' => '3',
         ]);
     }
 }
