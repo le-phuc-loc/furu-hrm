@@ -100,17 +100,17 @@
                                                 name="location_name" value=""
                                                 placeholder="Enter place" required autofocus>
 
-                                            <input type="number" id="lat" name="lat" step="any" class="form-control">
-                                            <input type="number" id="lng" name="lng" step="any" class="form-control">
-                                            <input type="text" id="place-id" name="place_id" class="form-control">
+                                            <input type="hidden" id="lat" name="lat" step="any" class="form-control">
+                                            <input type="hidden" id="lng" name="lng" step="any" class="form-control">
+                                            <input type="hidden" id="place-id" name="place_id" class="form-control">
                                         </div>
-                                        <div class="form-group" id="map">
 
-                                        </div>
 
                                     </div>
 
+                                    <div class="form-group" id="map">
 
+                                    </div>
 
                                     <div class="form-group row mb-0">
                                         <div class="col-md-6 offset-md-4">
@@ -220,9 +220,9 @@
                                                         class="form-control"
                                                         name="location_name" value="{{ old('location_name') }}" required
                                                         autocomplete="project_name" autofocus>
-                                                    <input id="update-lat" name="lat" step="any" type="number"
+                                                    <input id="update-lat" name="lat" step="any" type="hidden"
                                                         class="form-control">
-                                                    <input id="update-lng" name="lng" step="any" type="number"
+                                                    <input id="update-lng" name="lng" step="any" type="hidden"
                                                         class="form-control">
 
                                                     <input type="text" id="update-place-id" name="place_id" class="form-control">
@@ -285,12 +285,12 @@
                                         <button class="btn btn-primary btn-edit-project" data-toggle="modal"
                                             data-target="#update-project"
                                             value="{{ route('project.edit', ['id' => $project->id]) }}">
-                                            Edit
+                                            <i class="fa fa-edit" aria-hidden="true"></i>
                                         </button>
                                         <a type="button" class="btn btn-primary btn-project-delete"
                                             href="{{ route('project.delete', ['id' => $project->id]) }}"
                                             onclick="return confirm('Are you sure ????');">
-                                            Delete
+                                            <i class="fa fa-trash" aria-hidden="true"></i>
                                         </a>
 
                                     </td>
@@ -385,6 +385,7 @@
                 google.maps.event.addListener(map, "click", function(event)
                 {
                     marker.setPosition(event.latLng);
+
                     if (event.placeId) {
                         var request = {
                             location: event.placeId,
@@ -392,10 +393,9 @@
                         };
 
                         service = new google.maps.places.PlacesService(map);
-                        service.getDetails(request, callback);
-
-                        function callback(place, status) {
+                        service.getDetails(request, function(place, status) {
                             if (status == google.maps.places.PlacesServiceStatus.OK) {
+                                // confirm(place.formatted_address);
                                 if (state == "update"){
                                     $("#update-lat").val(place.geometry.location.lat);
                                     $("#update-lng").val(place.geometry.location.lng);
@@ -410,8 +410,12 @@
                                 }
 
                             }
+                            else {
+                                confirm(status);
+                            }
+                        });
 
-                        }
+
                     }
                     else {
                         if (state == "update") {

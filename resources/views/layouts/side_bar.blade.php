@@ -60,10 +60,10 @@
             margin-right: 12px;
         }
         .modal{
-            z-index: 20;
+            z-index: 40;
         }
         .modal-backdrop {
-            z-index: 10;
+            z-index: 39;
         }
 
 
