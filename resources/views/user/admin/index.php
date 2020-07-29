@@ -286,7 +286,7 @@
                             <td> 4</td>
                             <td>
                                 <button type="button" class="btn btn-primary" data-toggle="modal"
-                                    data-target="#updateProject" data-whatever="@sdkasasda">
+                                    data-target="#updateProject" data-whatever="@sdkasasda"><i class="fa fa-edit"></i>
                                     Update
                                 </button>
                                 <button type="button"  class="btn btn-primary"

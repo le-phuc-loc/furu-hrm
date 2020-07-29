@@ -284,7 +284,7 @@
                                     <td>
                                         <button class="btn btn-primary btn-edit-project" data-toggle="modal"
                                             data-target="#update-project"
-                                            value="{{ route('project.edit', ['id' => $project->id]) }}">
+                                            value="{{ route('project.edit', ['id' => $project->id]) }}"><i class="fa fa-edit"></i>
                                             Edit
                                         </button>
                                         <a type="button" class="btn btn-primary btn-project-delete"

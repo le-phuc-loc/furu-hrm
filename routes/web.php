@@ -134,10 +134,10 @@ Route::get('/assignAdmin', function () {
 })->name('assignAdmin');
 
 //Worker
-Route::get('/project', function () {
-    return view('user/worker/project');
-})->name('project');
+// Route::get('/project', function () {
+//     return view('user/worker/project');
+// })->name('project');
 
-Route::get('/report', function () {
-    return view('user/worker/report');
-})->name('report');
+// Route::get('/report', function () {
+//     return view('user/worker/report');
+// })->name('report');
