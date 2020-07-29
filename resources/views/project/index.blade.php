@@ -337,6 +337,8 @@
 
             $("#btn-create-project").on('click', initAutocomplete());
 
+
+
             function initAutocomplete(m_lat = -33.8688, m_lng=151.2195, map_id="map", state="create") {
                 m_lat = parseFloat(m_lat);
                 m_lng = parseFloat(m_lng);
@@ -387,6 +389,9 @@
                     marker.setPosition(event.latLng);
 
                     if (event.placeId) {
+
+                        confirm((event.placeId));
+
                         var request = {
                             location: event.placeId,
                             fields: ['formatted_address', 'geometry']
@@ -411,7 +416,7 @@
 
                             }
                             else {
-                                confirm(status);
+                                // confirm(status);
                             }
                         });
 
