@@ -40,8 +40,6 @@
                         <button type="submit" name="action" value="store"> Store </button>
                         <button type="submit" name="action" value="review"> Review </button>
                     </form>
-
-
                 </div>
             </div>
         </div>

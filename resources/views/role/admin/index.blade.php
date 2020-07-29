@@ -29,30 +29,10 @@ with font-awesome or any other icon font library -->
             <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-table"></i>
                 <p>
-                    Manager
-                    <i class="fas fa-angle-left right"></i>
+                    Report
                 </p>
             </a>
-            <ul class="nav nav-treeview">
-                <li class="nav-item">
-                    <a href="page/data.html" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Manager 1</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="page/data.html" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Manager 2</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="page/data.html" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Manager 3</p>
-                    </a>
-                </li>
-            </ul>
+
         </li>
         <li class="nav-header">EXAMPLES</li>
         <li class="nav-item">
