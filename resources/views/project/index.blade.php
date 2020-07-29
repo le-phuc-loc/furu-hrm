@@ -6,14 +6,15 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">List of project</h3>
-                    <button type="button" class="btn btn-info add-new" data-toggle="modal" data-target="#myModal"
+                    <button type="button" class="btn btn-info add-new" data-toggle="modal"
+                        id="btn-create-project" data-target="#modal-create-project"
                         style="float: right;"> <i class="fa fa-plus"></i>
                         Create
                     </button>
                 </div>
 
                 <!-- CREATE PROJECT -->
-                <div class="modal fade" id="myModal" >
+                <div class="modal fade" id="modal-create-project" >
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
 
@@ -25,7 +26,7 @@
 
                             <!-- Modal body -->
                             <div class="modal-body">
-                                <form method="POST" action="">
+                                <form method="POST" action="{{ route('project.store') }}">
                                     @csrf
 
                                     <div class="form-group row">
@@ -97,13 +98,13 @@
                                             <input id="location-name" type="text"
                                                 class="form-control controls"
                                                 name="location_name" value=""
-                                                placeholder="Enter place" autofocus>
+                                                placeholder="Enter place" required autofocus>
 
-                                            <input type="hidden" id="lat" name="lat" step="any" type="number" class="form-control">
-                                            <input type="hidden" id="lng" name="lng" step="any" type="number" class="form-control">
-
+                                            <input type="number" id="lat" name="lat" step="any" class="form-control">
+                                            <input type="number" id="lng" name="lng" step="any" class="form-control">
+                                            <input type="text" id="place-id" name="place_id" class="form-control">
                                         </div>
-                                        <div class="form-group" id="map" style="width: 100%; height: 200px;">
+                                        <div class="form-group" id="map">
 
                                         </div>
 
@@ -155,7 +156,7 @@
                                                 <div class="col-md-6">
                                                     <input id="update-project-name" type="text"
                                                         class="form-control @error('project_name') is-invalid @enderror"
-                                                        name="project_name" value="{{ old('project_name') }}" required
+                                                        name="project_name" value="" required
                                                         autocomplete="project_name" autofocus>
 
                                                     @error('project_name')
@@ -199,7 +200,7 @@
                                                     class="col-md-4 col-form-label text-md-right">{{ __('Time checkin') }}</label>
 
                                                 <div class="col-md-6">
-                                                    <input type="time" id="update-time-checkin" name="time-checkin">
+                                                    <input type="time" id="update-time-checkin" name="time_checkin">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -207,7 +208,7 @@
                                                     class="col-md-4 col-form-label text-md-right">{{ __('Time checkout') }}</label>
 
                                                 <div class="col-md-6">
-                                                    <input type="time" id="update-time-checkout" name="time-checkout">
+                                                    <input type="time" id="update-time-checkout" name="time_checkout">
                                                 </div>
                                             </div>
 
@@ -216,16 +217,19 @@
                                                     class="col-md-4 col-form-label text-md-right">{{ __('Location') }}</label>
                                                 <div class="col-md-6">
                                                     <input id="update-location-name" type="text"
-                                                        class="form-control @error('project_name') is-invalid @enderror"
+                                                        class="form-control"
                                                         name="location_name" value="{{ old('location_name') }}" required
                                                         autocomplete="project_name" autofocus>
-                                                    <p> lat </p>
                                                     <input id="update-lat" name="lat" step="any" type="number"
                                                         class="form-control">
-                                                    <p> lng </p>
                                                     <input id="update-lng" name="lng" step="any" type="number"
                                                         class="form-control">
+
+                                                    <input type="text" id="update-place-id" name="place_id" class="form-control">
                                                 </div>
+                                            </div>
+                                            <div class="form-group" id="update-map">
+
                                             </div>
                                             <div class="form-group row mb-0">
                                                 <div class="col-md-6 offset-md-4">
@@ -278,7 +282,7 @@
                                     <td> {{ $project->time_checkout }} </td>
                                     <td> {{ $project->location->location_name }} </td>
                                     <td>
-                                        <button class="btn btn-primary btn-project-edit" data-toggle="modal"
+                                        <button class="btn btn-primary btn-edit-project" data-toggle="modal"
                                             data-target="#update-project"
                                             value="{{ route('project.edit', ['id' => $project->id]) }}">
                                             Edit
@@ -302,7 +306,8 @@
     </div>
     <script>
         $(document).ready(function(e) {
-            $(".btn-project-edit").click(function(e) {
+            $('.modal').modal({backdrop: 'static', keyboard: false, show: false})
+            $(".btn-edit-project").click(function(e) {
                 var updateUrl = $(this).val();
                 console.log(updateUrl);
                 e.preventDefault();
@@ -321,49 +326,116 @@
                         $("#update-location-name").val(result.project.location.location_name);
                         $("#update-lat").val(result.project.location.lat);
                         $("#update-lng").val(result.project.location.lng);
+                        $("#update-place-id").val(result.project.location.place_id);
                         $("#project-update-form").attr('action', "/project/update/"+result.project.id);
+
+                        initAutocomplete(result.project.location.lat, result.project.location.lng, "update-map", "update");
                     }
                 });
+
             });
-        });
-    </script>
 
-    <script>
-        function initAutocomplete() {
-        const map = new google.maps.Map(document.getElementById("map"), {
-          center: {
-            lat: -33.8688,
-            lng: 151.2195
-          },
-          zoom: 13,
-          mapTypeId: "roadmap"
-        }); // Create the search box and link it to the UI element.
+            $("#btn-create-project").on('click', initAutocomplete());
 
-        const input = document.getElementById("location-name");
-        var autocomplete = new google.maps.places.Autocomplete(input);
-        autocomplete.bindTo("bounds", map);
+            function initAutocomplete(m_lat = -33.8688, m_lng=151.2195, map_id="map", state="create") {
+                m_lat = parseFloat(m_lat);
+                m_lng = parseFloat(m_lng);
+                position = new google.maps.LatLng(m_lat, m_lng);
+                // confirm(m_lat + "-------" + m_lng);
+                const map = new google.maps.Map(document.getElementById(map_id), {
+                center: position,
+                zoom: 13,
+                mapTypeId: "roadmap"
+                }); // Create the search box and link it to the UI element.
+                var input;
+                if (state == "update") {
+                    input = document.getElementById("update-location-name");
+                }
+                else {
+                    input = document.getElementById("location-name");
+                }
 
-        var marker = new google.maps.Marker({map: map});
 
-        google.maps.event.addListener(autocomplete, "place_changed", function()
-        {
-            var place = autocomplete.getPlace();
+                var autocomplete = new google.maps.places.Autocomplete(input);
+                autocomplete.bindTo("bounds", map);
 
-            if (place.geometry.viewport) {
-                map.fitBounds(place.geometry.viewport);
-            } else {
-                map.setCenter(place.geometry.location);
-                map.setZoom(15);
+                var marker = new google.maps.Marker({map: map});
+                marker.setPosition(position);
+
+                google.maps.event.addListener(autocomplete, "place_changed", function()
+                {
+                    var place = autocomplete.getPlace();
+                    map.fitBounds(place.geometry.viewport);
+                    if (state == "update") {
+                        $("#update-lat").val(place.geometry.location.lat);
+                        $("#update-lng").val(place.geometry.location.lng);
+                        $("#update-location-name").val(place.formatted_address);
+                        $("#update-place-id").val(place.place_id);
+                    }
+                    else {
+                        $("#lat").val(place.geometry.location.lat);
+                        $("#lng").val(place.geometry.location.lng);
+                        $("#location-name").val(place.formatted_address);
+                        $("#place-id").val(place.place_id);
+                    }
+
+                    marker.setPosition(place.geometry.location);
+                });
+
+                google.maps.event.addListener(map, "click", function(event)
+                {
+                    marker.setPosition(event.latLng);
+                    if (event.placeId) {
+                        var request = {
+                            location: event.placeId,
+                            fields: ['formatted_address', 'geometry']
+                        };
+
+                        service = new google.maps.places.PlacesService(map);
+                        service.getDetails(request, callback);
+
+                        function callback(place, status) {
+                            if (status == google.maps.places.PlacesServiceStatus.OK) {
+                                if (state == "update"){
+                                    $("#update-lat").val(place.geometry.location.lat);
+                                    $("#update-lng").val(place.geometry.location.lng);
+                                    $("#update-location-name").val(place.formatted_address);
+                                    $("#update-place-id").val(place.place_id);
+                                }
+                                else {
+                                    $("#lat").val(place.geometry.location.lat);
+                                    $("#lng").val(place.geometry.location.lng);
+                                    $("#location-name").val(place.formatted_address);
+                                    $("#place-id").val(place.place_id);
+                                }
+
+                            }
+
+                        }
+                    }
+                    else {
+                        if (state == "update") {
+                            $("#update-lat").val(event.latLng.lat);
+                            $("#update-lng").val(event.latLng.lng);
+                            $("#update-location-name").val("");
+                            $("#update-place-id").val(event.placeId);
+                        }
+                        else {
+                            $("#lat").val(event.latLng.lat);
+                            $("#lng").val(event.latLng.lng);
+                            $("#location-name").val("");
+                            $("#place-id").val(event.placeId);
+                        }
+
+
+                    }
+
+                });
+
             }
 
-            marker.setPosition(place.geometry.location);
-            });
-
-            google.maps.event.addListener(map, "click", function(event)
-            {
-                marker.setPosition(event.latLng);
         });
 
-      }
+
     </script>
 @endsection

@@ -50,7 +50,7 @@ class ProjectController extends Controller
     }
 
     public function store(Request $request) {
-        // dd($req->input());
+        // dd($request->input());
 
         $validatedData = $request->validate( [
             'project_name' => 'required',
@@ -63,32 +63,39 @@ class ProjectController extends Controller
         $obj = new Project();
         $obj->project_name = $request->project_name;
         $obj->number_worker = $request->number_worker;
-        $obj->from_date = $request->project_from_date;
-        $obj->to_date = $request->project_to_date;
-        $obj->time_checkin = $request->time_check_in;
-        $obj->time_checkout = $request->time_check_out;
-        $location = Location::create([
-            'location_name' => $request->location_name,
-            'lat' => $request->lat,
-            'lng' => $request->lng,
-        ]);
+        $obj->from_date = $request->from_date;
+        $obj->to_date = $request->to_date;
+        $obj->time_checkin = $request->time_checkin;
+        $obj->time_checkout = $request->time_checkout;
+
+        //create location
+        $location = new Location();
+        $location->location_name = $request->location_name;
+        $location->lat = $request->lat;
+        $location->lng = $request->lng;
+        $location->place_id = $request->place_id;
+        $location->save();
+
+
+
+
         // var_dump($location);
         $obj->location_id = $location->id;
         $obj->users()->attach($request->user_id);
         $obj->save();
+        // dd($obj);
+        // dd($location);
 
-        return redirect(route('project_index'));
+        return redirect(route('project.index'));
     }
 
     public function edit($id) {
         $obj = Project::with(['location', 'managed', 'users'])->find($id);
-
-
         return response()->json(['project' => $obj], 200);
     }
 
     public function update(Request $request, $id) {
-        // dd($req->input());
+        // dd($request->input());
         $validatedData = $request->validate( [
             'project_name' => 'required',
             'project_from_date' => 'date',
@@ -108,6 +115,7 @@ class ProjectController extends Controller
             'location_name' => $request->location_name,
             'lat' => $request->lat,
             'lng' => $request->lng,
+            'place_id' => $request->place_id,
         ]);
         $obj->users()->attach($request->user_id);
         $obj->save();

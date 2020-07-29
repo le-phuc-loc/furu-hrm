@@ -34,7 +34,13 @@
 
     <style>
         #map {
-            height: 100%;
+            width: 100%;
+            height: 200px;
+        }
+
+        #update-map {
+            width: 100%;
+            height: 200px;
         }
 
         .pac-card {
