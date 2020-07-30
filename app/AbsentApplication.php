@@ -11,4 +11,8 @@ class AbsentApplication extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+
+
+
 }

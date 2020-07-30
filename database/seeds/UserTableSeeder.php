@@ -70,6 +70,7 @@ class UserTableSeeder extends Seeder
             'email' => 'loclion17@gmail.com',
             'email_verified_at'=>now(),
             'password' => Hash::make(12345678),
+            'role' => 'manager',
             'manager'=>'1',
             'created_at'=>now(),
             'updated_at'=>now()

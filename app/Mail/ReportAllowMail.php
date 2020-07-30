@@ -7,18 +7,24 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class ReportMail extends Mailable
+class ReportAllowMail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $sender;
+    public $receiver;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+
+
+    public function __construct($sender, $receiver)
     {
         //
+        $this->sender = $sender;
+        $this->receiver = $receiver;
     }
 
     /**
@@ -28,6 +34,9 @@ class ReportMail extends Mailable
      */
     public function build()
     {
-        return $this->from('loclion17@gmail.com')->view('mails.report');
+        return $this->from($this->sender->email)
+            ->view('mails.report-allow', [
+                'receiver' => $this->receiver,
+            ]);
     }
 }

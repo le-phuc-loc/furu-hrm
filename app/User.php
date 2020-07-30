@@ -51,4 +51,15 @@ class User extends Authenticatable
     public function project_user() {
         return $this->hasMany('\App\ProjectUser');
     }
+
+    public function reports() {
+        return $this->hasManyThrough(
+            '\App\Report',
+            '\App\ProjectUser',
+            'user_id',
+            'project_user_id',
+            'id',
+            'id'
+        );
+    }
 }

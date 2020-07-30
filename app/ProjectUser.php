@@ -13,11 +13,11 @@ class ProjectUser extends Pivot
         return $this->hasMany('App\Report');
     }
 
-    // public function project() {
-    //     return $this->belongsTo('\App\Project');
-    // }
+    public function project() {
+        return $this->belongsTo('\App\Project');
+    }
 
-    // public function user() {
-    //     return $this->belongsTo('\App\User');
-    // }
+    public function user() {
+        return $this->belongsTo('\App\User');
+    }
 }
