@@ -1,7 +1,7 @@
 @extends('role.admin.index')
 
 @section('content')
-    {{-- <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
         crossorigin="anonymous" />
@@ -11,19 +11,29 @@
             $('#dataTable1').DataTable();
         });
 
-    </script> --}}
+    </script>
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h3 class="mt-4">List Absent</h3>
+                        <h1 class="mt-4">Dashboard</h1>
                     </div>
                 </div>
                 <br>
                 <div class="card mb-4">
                     <div class="card-header">
-                        <i class="fas fa-table mr-1"></i>List
+                        <div class="dropdown">
+                            <i class="fas fa-table mr-1"></i>
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Choose project
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -80,14 +90,18 @@
                                                 </td>
                                                 <td></td>
                                                 {{-- <td> {{ $user->absentApplication()}} </td> --}}
-                                                <td><button>Abcd</button></td>
+                                                <td><button class="btn btn-primary btn-edit-project" data-toggle="modal"
+                                                    data-target="#timework-modal"
+                                                    value="">
+                                                    <i class="fa fa-edit" aria-hidden="true"></i>
+                                                </button></td>
 
                                                 <td>
                                                     <button type="submit" class="btn btn-primary" onclick="confirm">
                                                         {{ __('Approve') }}
                                                     </button>
                                                     <button type="button" class="btn btn-primary" data-toggle="modal"
-                                                        data-target="#reject-modal">
+                                                        data-target="#timework-modal">
                                                         Reject
                                                     </button>
                                                 </td>
@@ -102,12 +116,12 @@
             </div>
         </main>
         {{-- Reject --}}
-        <div class="modal fade" id="reject-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        <div class="modal fade" id="timework-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Reject</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Time-Working</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -124,39 +138,10 @@
                                     <div class="col-md-6">
                                         <input id="project_name" type="text" class="form-control" name="project_name"
                                             value="" required autocomplete="project_name" autofocus>
-
-
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
-                                    <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
-                                    <div class="col-md-6">
-                                        <input id="name" type="text" class="form-control" name="name" value="" required
-                                            autocomplete="name" autofocus>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="manager_by" class="col-md-4 col-form-label text-md-right">Manager by</label>
-                                    <div class="col-md-6">
-                                        <input id="manager_by" type="text" class="form-control" name="manager_by" value=""
-                                            required autocomplete="manager_by" autofocus>
-                                    </div>
-                                </div>
 
-                                <div class="form-group row">
-                                    <label for="content" class="col-md-4 col-form-label text-md-right">Reasons</label>
-                                    <div class="col-md-6">
-                                        <textarea class="form-control" name="content" rows="3"></textarea>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="content" class="col-md-4 col-form-label text-md-right">Date</label>
-                                    <div class="col-md-6">
-                                        <input id="Date" type="text" class="form-control" name="Date" value="" required
-                                            autocomplete="Date" autofocus>
-                                    </div>
-                                </div>
 
                             </form>
                         </ul>
