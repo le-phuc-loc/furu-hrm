@@ -95,7 +95,7 @@ Route::group(['prefix' => 'project'], function () {
 });
 
 
-
+Route::get('/admin/user', 'Admin\UserController@index');
 
 Route::get('/admin2', function () {
     return view('layouts/admin_interface');
