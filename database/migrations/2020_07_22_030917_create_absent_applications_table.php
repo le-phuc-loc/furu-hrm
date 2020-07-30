@@ -17,6 +17,7 @@ class CreateAbsentApplicationsTable extends Migration
             $table->id();
             $table->integer('state');
             $table->timestamp('date_off')->nullable();
+            $table->integer('number_off')->nullable();
             $table->string('content');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();

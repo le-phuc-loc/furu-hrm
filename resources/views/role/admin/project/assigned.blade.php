@@ -17,50 +17,20 @@
                                 <div class="col-md-6">
                                     <input id="project_name" type="text" class="form-control" name="project_name"
                                         value="{{ $project->project_name }}"
-                                        required autocomplete="project_name" autofocus>
+                                        required autocomplete="project_name" autofocus readonly>
 
 
                                 </div>
                             </div>
-
                             <div class="form-group row">
-                                <label for="manager-select" class="col-md-4 col-form-label text-md-right">Manager
-                                    select</label>
+                                <label for="manager"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Manager') }}</label>
                                 <div class="col-md-6">
-                                    <select class="form-control" id="manager-select" name="manager">
-                                        {{-- <beautify start="@foreach" end="@endforeach"
-                                            exp="^^$managers as $manage^^"> --}}
-                                            {{-- <option class="project-manager" value="{{ $manage->id }}">
-                                                {{ $manage->name }}</option> --}}
-                                            @if (count($managers) <= 0)
-                                                <option class="project-manager disable" value="1">
-                                                    Don't have manager
-                                                </option>
-                                            @else
-                                                @if ($project->managed == 1)
-                                                    <option class="project-manager disable" value="1">
-                                                        {{ $admin->name }}
-                                                    </option>
-                                                @else
-                                                    <option class="project-manager disable" value="1">
-                                                        Select Manager
-                                                    </option>
-                                                @endif
-
-                                                @foreach ($managers as $manager)
-                                                    <option class="project-manager" value="{{ $manager->id }}">
-                                                        {{ $manager->name }}
-                                                    </option>
-                                                @endforeach
-                                            @endif
-
-
-                                            {{-- </beautify> --}}
-                                    </select>
+                                    <input id="manager" type="text" class="form-control" name="manager"
+                                        value=""
+                                        required autocomplete="manager" autofocus>
                                 </div>
-                                {{-- <input id="manager" type="text" name="manager"> --}}
                             </div>
-
                             <div class="form-group row">
                                 <label for="manager-select" class="col-md-4 col-form-label text-md-right">Worker
                                     select</label>
@@ -134,6 +104,10 @@
                                     <a type="button" class="btn btn-primary"
                                         href="{{ route('admin.project.assign', ['id' => $project->id]) }}">
                                         {{ __('Assign') }}
+                                    </a>
+                                    <a type="button" class="btn btn-secondary"
+                                         href="{{ route('admin.project.index') }}" >
+                                         {{ __('Cancel')}}
                                     </a>
                                 </div>
                             </div>

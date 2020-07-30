@@ -100,27 +100,31 @@ Route::group([
         Route::get('/draw', 'ReportController@draw')->name('report.draw');
 
     });
-
+    //ABsent
     Route::group(['prefix' => 'absent'], function () {
-        Route::get('/', 'ReportController@index')->name('report.index');
+        Route::get('/', 'AbsentController@index')->name('admin.absent.index');
+    });
+    //Dashboard
+    Route::group(['prefix' => 'dashboard'], function () {
+        Route::get('/', 'DashboardController@index')->name('admin.dashboard.index');
 
-        Route::get('/info/{id}', 'ReportController@show')->name('report.info');
+        // Route::get('/info/{id}', 'AbsentController@show')->name('report.info');
 
 
-        Route::get('/create/{id}', 'ReportController@create')->name('report.create');
-        Route::post('/create/{id}', 'ReportController@store')->name('report.store');
+        // Route::get('/create/{id}', 'AbsentController@create')->name('report.create');
+        // Route::post('/create/{id}', 'AbsentController@store')->name('report.store');
 
 
-        Route::get('/update/{id}', 'ReportController@edit')->name('report.edit');
-        Route::post('/update/{id}', 'ReportController@update')->name('report.update');
+        // Route::get('/update/{id}', 'AbsentController@edit')->name('report.edit');
+        // Route::post('/update/{id}', 'AbsentController@update')->name('report.update');
 
-        Route::get('/delete/{id}', 'ReportController@delete')->name('report.delete');
+        // Route::get('/delete/{id}', 'AbsentController@delete')->name('report.delete');
 
-        Route::post('/checkin', 'ReportController@checkin')->name('report.checkin');
-        Route::post('/checkout', 'ReportController@checkout')->name('report.checkout');
+        // Route::post('/checkin', 'AbsentController@checkin')->name('report.checkin');
+        // Route::post('/checkout', 'AbsentController@checkout')->name('report.checkout');
 
-        Route::get('/send', 'ReportController@send')->name('report.send');
-        Route::get('/draw', 'ReportController@draw')->name('report.draw');
+        // Route::get('/send', 'AbsentController@send')->name('report.send');
+        // Route::get('/draw', 'AbsentController@draw')->name('report.draw');
 
 
     });

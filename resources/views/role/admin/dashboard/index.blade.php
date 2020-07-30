@@ -1,7 +1,7 @@
 @extends('role.admin.index')
 
 @section('content')
-    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+    {{-- <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
         crossorigin="anonymous" />
@@ -11,7 +11,7 @@
             $('#dataTable1').DataTable();
         });
 
-    </script>
+    </script> --}}
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid">
@@ -31,20 +31,20 @@
                                 <thead>
                                     <tr>
                                         <th>Name</th>
-                                        <th>Date Off</th>
+                                        <th>Email</th>
+                                        <th>Role</th>
                                         <th>Number days off</th>
-                                        <th>Content</th>
-                                        <th>Created at</th>
+                                        <th>Time working</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tfoot>
                                     <tr>
                                         <th>Name</th>
-                                        <th>Date Off</th>
+                                        <th>Email</th>
+                                        <th>Role</th>
                                         <th>Number days off</th>
-                                        <th>Content</th>
-                                        <th>Created at</th>
+                                        <th>Time working</th>
                                         <th>Action</th>
                                     </tr>
                                 </tfoot>
@@ -66,20 +66,21 @@
                                         </td>
                                     </tr> --}}
 
-                                        @if(count($absents) <= 0)
+                                        @if(count($users) <= 0)
                                             <div class="list-group-item list-group-item-action"> Don't
-                                                    have absent form
+                                                    have user
                                             </div>
                                         @else
-                                            @foreach($absents as $absent)
+                                            @foreach($users as $user)
                                             <tr>
-                                                <td>{{ $absent->user->name }}</td>
-                                                <td>{{ $absent->date_off }}</td>
+                                                <td>{{ $user->name }}</td>
+                                                <td>{{ $user->email }}</td>
                                                 <td>
-                                                    {{ $absent->number_off }}
+                                                    {{ $user->role }}
                                                 </td>
-                                                <td> {{ $absent->content }} </td>
-                                                <td> {{ $absent->created_at }} </td>
+                                                <td></td>
+                                                {{-- <td> {{ $user->absentApplication()}} </td> --}}
+                                                <td><button>Abcd</button></td>
 
                                                 <td>
                                                     <button type="submit" class="btn btn-primary" onclick="confirm">
