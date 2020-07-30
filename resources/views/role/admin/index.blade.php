@@ -11,7 +11,6 @@ with font-awesome or any other icon font library -->
                 <i class="nav-icon fas fa-address-book"></i>
                 <p>
                     Users
-
                 </p>
             </a>
 

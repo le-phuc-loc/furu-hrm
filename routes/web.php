@@ -91,6 +91,7 @@ Route::group(['prefix' => 'project'], function () {
         Route::get('/{id}/send', 'ReportController@send')->name('report.send');
         Route::get('/{id}/draw', 'ReportController@draw')->name('report.draw');
 
+
     });
 });
 
@@ -119,7 +120,7 @@ Route::get('/worker', function () {
 Route::get('/admin', 'AdminController@index');
 
 
-// ADmin
+// Admin
 //List User
 Route::get('/userAdmin', function () {
     return view('user/admin/userAdmin');

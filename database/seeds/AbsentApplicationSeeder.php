@@ -13,21 +13,21 @@ class AbsentApplicationSeeder extends Seeder
     public function run()
     {
         DB::table('absent_applications')->insert([
-            'status'=>'0',
+            'state'=>'0',
             'content'=>'Do not see got so NGhi',
             'user_id'=>'3',
             'created_at'=>now(),
             'updated_at'=>now(),
         ]);
         DB::table('absent_applications')->insert([
-            'status'=>'1',
+            'state'=>'1',
             'content'=>'Like thì Absent',
             'user_id'=>'4',
             'created_at'=>now(),
             'updated_at'=>now(),
         ]);
         DB::table('absent_applications')->insert([
-            'status'=>'2',
+            'state'=>'2',
             'content'=>'NGhỉ',
             'user_id'=>'4',
             'created_at'=>now(),

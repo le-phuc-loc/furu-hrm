@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin</title>
+    <title></title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -60,10 +60,10 @@
             margin-right: 12px;
         }
         .modal{
-            z-index: 20;
+            z-index: 40;
         }
         .modal-backdrop {
-            z-index: 10;
+            z-index: 39;
         }
 
 
