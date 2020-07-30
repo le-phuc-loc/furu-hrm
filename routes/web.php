@@ -17,9 +17,7 @@ use \App\Report;
 
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('/welcome', 'TestController@index');
 
-Route::post('/welcome', 'TestController@insert');
 
 Route::get('/test', function() {
     return view('test');
@@ -27,69 +25,235 @@ Route::get('/test', function() {
 Route::pattern('id', '[0-9]+');
 Route::pattern('report_id', '[0-9]+');
 
-Route::get('/welcome1', function () {
-    return view('welcome1');
-});
+// Route::get('/welcome1', function () {
+//     return view('welcome1');
+// });
 
 Auth::routes();
 
+// admin
 Route::get('/home', 'HomeController@index')->name('home');
-
-Route::group(['prefix' => 'user'], function () {
-    Route::get('/', 'UserController@index')->name('user.index');
-    Route::get('/info/{id}', 'UserController@show')->name('user.show');
-
-
-    Route::get('/create', 'UserController@create')->name('user.create');
-    Route::post('/create', 'UserController@store')->name('user.store');
+Route::group([ 'prefix' => 'admin'], function() {
+    Route::group(['prefix' => 'user'], function() {
+        Route::get('/', 'Admin\AdminUserController@index')->name('admin.user.index');
+        Route::get('/info/{id}', 'UserController@show')->name('admin.user.show');
 
 
-    Route::get('/update/{id}', 'UserController@edit')->name('user.edit');
-    Route::post('/update/{id}', 'UserController@update')->name('user.update');
+        Route::get('/create', 'UserController@create')->name('admin.user.create');
+        Route::post('/create', 'UserController@store')->name('admin.user.store');
 
-    Route::get('/delete/{id}', 'UserController@delete')->name('user.delete');
+
+        Route::get('/update/{id}', 'UserController@edit')->name('admin.user.edit');
+        Route::post('/update/{id}', 'UserController@update')->name('admin.user.update');
+
+        Route::get('/delete/{id}', 'UserController@delete')->name('admin.user.delete');
+    });
+
+    Route::group(['prefix' => 'project'], function() {
+        Route::get('/', 'UserController@index')->name('admin.project.index');
+        Route::get('/info/{id}', 'UserController@show')->name('admin.project.show');
+
+
+        Route::get('/create', 'UserController@create')->name('admin.project.create');
+        Route::post('/create', 'UserController@store')->name('admin.project.store');
+
+
+        Route::get('/update/{id}', 'UserController@edit')->name('admin.project.edit');
+        Route::post('/update/{id}', 'UserController@update')->name('admin.project.update');
+
+        Route::get('/delete/{id}', 'UserController@delete')->name('admin.project.delete');
+    });
+
+    Route::group(['prefix' => 'report'], function () {
+        Route::get('/', 'ReportController@index')->name('report.index');
+
+        Route::get('/info/{id}', 'ReportController@show')->name('report.info');
+
+
+        Route::get('/create/{id}', 'ReportController@create')->name('report.create');
+        Route::post('/create/{id}', 'ReportController@store')->name('report.store');
+
+
+        Route::get('/update/{id}', 'ReportController@edit')->name('report.edit');
+        Route::post('/update/{id}', 'ReportController@update')->name('report.update');
+
+        Route::get('/delete/{id}', 'ReportController@delete')->name('report.delete');
+
+        Route::post('/checkin', 'ReportController@checkin')->name('report.checkin');
+        Route::post('/checkout', 'ReportController@checkout')->name('report.checkout');
+
+        Route::get('/send', 'ReportController@send')->name('report.send');
+        Route::get('/draw', 'ReportController@draw')->name('report.draw');
+
+    });
+
+    Route::group(['prefix' => 'absent'], function () {
+        Route::get('/', 'ReportController@index')->name('report.index');
+
+        Route::get('/info/{id}', 'ReportController@show')->name('report.info');
+
+
+        Route::get('/create/{id}', 'ReportController@create')->name('report.create');
+        Route::post('/create/{id}', 'ReportController@store')->name('report.store');
+
+
+        Route::get('/update/{id}', 'ReportController@edit')->name('report.edit');
+        Route::post('/update/{id}', 'ReportController@update')->name('report.update');
+
+        Route::get('/delete/{id}', 'ReportController@delete')->name('report.delete');
+
+        Route::post('/checkin', 'ReportController@checkin')->name('report.checkin');
+        Route::post('/checkout', 'ReportController@checkout')->name('report.checkout');
+
+        Route::get('/send', 'ReportController@send')->name('report.send');
+        Route::get('/draw', 'ReportController@draw')->name('report.draw');
+
+    });
 
 });
 
 
-Route::group(['prefix' => 'project'], function () {
-    Route::get('/', 'ProjectController@index')->name('project.index');
-    Route::get('/info/{id}', 'ProjectController@show')->name('project.show');
+// manager
+
+Route::group(['namespace' => 'Manager', 'prefix' => 'manager'], function() {
+    Route::group(['prefix' => 'user'], function() {
+        Route::get('/', 'UserController@index')->name('admin.user.index');
+        Route::get('/info/{id}', 'UserController@show')->name('admin.user.show');
 
 
-    Route::get('/create', 'ProjectController@create')->name('project.create');
-    Route::post('/create', 'ProjectController@store')->name('project.store');
+        Route::get('/create', 'UserController@create')->name('admin.user.create');
+        Route::post('/create', 'UserController@store')->name('admin.user.store');
 
 
-    Route::get('/update/{id}', 'ProjectController@edit')->name('project.edit');
-    Route::post('/update/{id}', 'ProjectController@update')->name('project.update');
+        Route::get('/update/{id}', 'UserController@edit')->name('admin.user.edit');
+        Route::post('/update/{id}', 'UserController@update')->name('admin.user.update');
 
-    Route::get('/delete/{id}', 'ProjectController@delete')->name('project.delete');
+        Route::get('/delete/{id}', 'UserController@delete')->name('admin.user.delete');
+    });
 
-    Route::get('/assign/{id}', 'ProjectController@assign')->name('project.assign');
-    Route::post('/assign/{id}', 'ProjectController@assignPost')->name('project.assign_post');
+    Route::group(['prefix' => 'project'], function() {
+        Route::get('/', 'UserController@index')->name('admin.user.index');
+        Route::get('/info/{id}', 'UserController@show')->name('admin.user.show');
 
+
+        Route::get('/create', 'UserController@create')->name('admin.user.create');
+        Route::post('/create', 'UserController@store')->name('admin.user.store');
+
+
+        Route::get('/update/{id}', 'UserController@edit')->name('admin.user.edit');
+        Route::post('/update/{id}', 'UserController@update')->name('admin.user.update');
+
+        Route::get('/delete/{id}', 'UserController@delete')->name('admin.user.delete');
+    });
 
     Route::group(['prefix' => 'report'], function () {
-        Route::get('/{id}', 'ReportController@index')->name('report.index');
+        Route::get('/', 'ReportController@index')->name('report.index');
 
-        Route::get('/{id}/info/{report_id}', 'ReportController@show')->name('report.info');
-
-
-        Route::get('/{id}/create/{report_id}', 'ReportController@create')->name('report.create');
-        Route::post('/{id}/create/{report_id}', 'ReportController@store')->name('report.store');
+        Route::get('/info/{id}', 'ReportController@show')->name('report.info');
 
 
-        Route::get('/update/{report_id}', 'ReportController@edit')->name('report.edit');
-        Route::post('/update/{report_id}', 'ReportController@update')->name('report.update');
+        Route::get('/create/{id}', 'ReportController@create')->name('report.create');
+        Route::post('/create/{id}', 'ReportController@store')->name('report.store');
 
-        Route::get('/delete/{report_id}', 'ReportController@delete')->name('report.delete');
 
-        Route::post('/{id}/checkin', 'ReportController@checkin')->name('report.checkin');
-        Route::post('/{id}/checkout', 'ReportController@checkout')->name('report.checkout');
+        Route::get('/update/{id}', 'ReportController@edit')->name('report.edit');
+        Route::post('/update/{id}', 'ReportController@update')->name('report.update');
 
-        Route::get('/{id}/send', 'ReportController@send')->name('report.send');
-        Route::get('/{id}/draw', 'ReportController@draw')->name('report.draw');
+        Route::get('/delete/{id}', 'ReportController@delete')->name('report.delete');
+
+        Route::post('/checkin', 'ReportController@checkin')->name('report.checkin');
+        Route::post('/checkout', 'ReportController@checkout')->name('report.checkout');
+
+        Route::get('/send', 'ReportController@send')->name('report.send');
+        Route::get('/draw', 'ReportController@draw')->name('report.draw');
+
+    });
+
+    Route::group(['prefix' => 'absent'], function () {
+        Route::get('/', 'ReportController@index')->name('report.index');
+
+        Route::get('/info/{id}', 'ReportController@show')->name('report.info');
+
+
+        Route::get('/create/{id}', 'ReportController@create')->name('report.create');
+        Route::post('/create/{id}', 'ReportController@store')->name('report.store');
+
+
+        Route::get('/update/{id}', 'ReportController@edit')->name('report.edit');
+        Route::post('/update/{id}', 'ReportController@update')->name('report.update');
+
+        Route::get('/delete/{id}', 'ReportController@delete')->name('report.delete');
+
+        Route::post('/checkin', 'ReportController@checkin')->name('report.checkin');
+        Route::post('/checkout', 'ReportController@checkout')->name('report.checkout');
+
+        Route::get('/send', 'ReportController@send')->name('report.send');
+        Route::get('/draw', 'ReportController@draw')->name('report.draw');
+
+    });
+});
+
+
+// worker
+Route::group(['namespace' => 'Worker', 'prefix' => 'worker'], function() {
+    Route::group(['prefix' => 'project'], function() {
+        Route::get('/', 'UserController@index')->name('admin.user.index');
+        Route::get('/info/{id}', 'UserController@show')->name('admin.user.show');
+
+
+        Route::get('/create', 'UserController@create')->name('admin.user.create');
+        Route::post('/create', 'UserController@store')->name('admin.user.store');
+
+
+        Route::get('/update/{id}', 'UserController@edit')->name('admin.user.edit');
+        Route::post('/update/{id}', 'UserController@update')->name('admin.user.update');
+
+        Route::get('/delete/{id}', 'UserController@delete')->name('admin.user.delete');
+    });
+
+    Route::group(['prefix' => 'report'], function () {
+        Route::get('/', 'ReportController@index')->name('report.index');
+
+        Route::get('/info/{id}', 'ReportController@show')->name('report.info');
+
+
+        Route::get('/create/{id}', 'ReportController@create')->name('report.create');
+        Route::post('/create/{id}', 'ReportController@store')->name('report.store');
+
+
+        Route::get('/update/{id}', 'ReportController@edit')->name('report.edit');
+        Route::post('/update/{id}', 'ReportController@update')->name('report.update');
+
+        Route::get('/delete/{id}', 'ReportController@delete')->name('report.delete');
+
+        Route::post('/checkin', 'ReportController@checkin')->name('report.checkin');
+        Route::post('/checkout', 'ReportController@checkout')->name('report.checkout');
+
+        Route::get('/send', 'ReportController@send')->name('report.send');
+        Route::get('/draw', 'ReportController@draw')->name('report.draw');
+
+    });
+
+    Route::group(['prefix' => 'absent'], function () {
+        Route::get('/', 'ReportController@index')->name('report.index');
+
+        Route::get('/info/{id}', 'ReportController@show')->name('report.info');
+
+
+        Route::get('/create/{id}', 'ReportController@create')->name('report.create');
+        Route::post('/create/{id}', 'ReportController@store')->name('report.store');
+
+
+        Route::get('/update/{id}', 'ReportController@edit')->name('report.edit');
+        Route::post('/update/{id}', 'ReportController@update')->name('report.update');
+
+        Route::get('/delete/{id}', 'ReportController@delete')->name('report.delete');
+
+        Route::post('/checkin', 'ReportController@checkin')->name('report.checkin');
+        Route::post('/checkout', 'ReportController@checkout')->name('report.checkout');
+
+        Route::get('/send', 'ReportController@send')->name('report.send');
+        Route::get('/draw', 'ReportController@draw')->name('report.draw');
 
     });
 });
@@ -97,47 +261,6 @@ Route::group(['prefix' => 'project'], function () {
 
 
 
-Route::get('/admin2', function () {
-    return view('layouts/admin_interface');
-})->name('admin2');
-Route::get('/manager2', function () {
-    return view('layouts/manager_interface');
-})->name('manager2');
-Route::get('/worker2', function () {
-    return view('layouts/worker_interface');
-})->name('worker2');
-Route::get('/create', function () {
-    return view('page/create');
-})->name('project_create');
+// Route::get('/user', 'UserController@index')->name('user.index');
 
 
-
-
-Route::get('/worker', function () {
-    return view('userWorker/index');
-})->name('worker');
-Route::get('/admin', 'AdminController@index');
-
-
-// ADmin
-//List User
-Route::get('/userAdmin', function () {
-    return view('user/admin/userAdmin');
-})->name('userAdmin');
-// Create user
-Route::get('/projectAdmin', function () {
-    return view('user/admin/projectAdmin');
-})->name('projectAdmin');
-//Assign Project
-Route::get('/assignAdmin', function () {
-    return view('user/admin/assignAdmin');
-})->name('assignAdmin');
-
-//Worker
-Route::get('/projectWorker', function () {
-    return view('user/worker/projectWorker');
-})->name('projectWorker');
-
-Route::get('/reportWorker', function () {
-    return view('user/worker/reportWorker');
-})->name('reportWorker');

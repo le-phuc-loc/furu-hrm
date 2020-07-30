@@ -1,39 +1,21 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\User;
-use Auth;
 
-class UserController extends Controller
+use \App\User;
+
+class AdminUserController extends Controller
 {
     //
     public function index() {
-        if (Auth::user()->role == 'admin') {
-            $users = User::all();
-        }
-        else if (Auth::user()->role == 'manager'){
-            $users = User::where('manager', Auth::user()->id)->get();
-        }
-
+        $users = User::all();
         return view('role/admin/user/index', [
             'users' => $users,
         ]);
     }
-
-    public function show($id) {
-        $user = User::find($id);
-        // return view('user/'.$id, [
-        //     'user' => $user,
-        // ]);
-
-        return view('user/info', [
-            'user' => $user,
-        ]);
-    }
-
-
 
     public function store(Request $req) {
         // dd($req->input());
@@ -45,7 +27,7 @@ class UserController extends Controller
         $user->manager = $req->manager;
         $user->save();
 
-        return redirect(route('user.index'));
+        return redirect()->route('admin.user.index');
     }
 
     public function edit($id) {
@@ -61,15 +43,13 @@ class UserController extends Controller
         $user->manager = $req->manager;
         $user->save();
         // dd($user);
-        return redirect(route('user.index'));
+        return redirect()->route('admin.user.index');
     }
 
     public function delete($id) {
         User::find($id)->delete();
-        return redirect(route('user.index'));
+        return redirect()->route('admin.user.index');
     }
-
-
 
 
 }
