@@ -6,11 +6,9 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
-                        {{ __('Assign Project') }}
+                        {{ __('Assigned worker in Project') }}
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="">
-                            @csrf
 
                             <div class="form-group row">
                                 <label for="project_name"
@@ -106,9 +104,12 @@
                                                     @foreach ($workers as $worker)
                                                        @if (count($worker->projects()->get()) < 2)
                                                             <li class="list-group-item">
-                                                                <input type="checkbox" value="{{ $worker->id }}" name="workers[]"
-                                                                    id="workers-project">
                                                                 {{ $worker->name }} - {{ $worker->role }}
+
+                                                                <a href="{{ route('admin.project.deleteAssigned', ['id' => $project->id, 'user_id' => $worker->id]) }}">
+                                                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                                                </a>
+
                                                             </li>
                                                        @endif
                                                     @endforeach
@@ -121,7 +122,7 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
-                                                data-dismiss="modal">Confirm</button>
+                                                data-dismiss="modal">Comfirm</button>
                                         </div>
                                     </div>
                                 </div>
@@ -130,12 +131,12 @@
 
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        {{ __('Submit') }}
-                                    </button>
+                                    <a type="button" class="btn btn-primary"
+                                        href="{{ route('admin.project.assign', ['id' => $project->id]) }}">
+                                        {{ __('Assign') }}
+                                    </a>
                                 </div>
                             </div>
-                        </form>
 
 
                     </div>

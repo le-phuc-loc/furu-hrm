@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 use \App\User;
 
-class AdminUserController extends Controller
+class UserController extends Controller
 {
     //
     public function index() {

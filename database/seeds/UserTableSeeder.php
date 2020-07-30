@@ -60,7 +60,6 @@ class UserTableSeeder extends Seeder
             'email' => 'Hieu4@gmail.com',
             'email_verified_at'=>now(),
             'password' => Hash::make(12345678),
-            'role'=>'manager',
             'manager'=>'1',
             'created_at'=>now(),
             'updated_at'=>now()
@@ -71,7 +70,6 @@ class UserTableSeeder extends Seeder
             'email' => 'loclion17@gmail.com',
             'email_verified_at'=>now(),
             'password' => Hash::make(12345678),
-            'role'=>'manager',
             'manager'=>'1',
             'created_at'=>now(),
             'updated_at'=>now()
@@ -82,7 +80,6 @@ class UserTableSeeder extends Seeder
             'email' => 'hieub1609704@student.ctu.edu.vn',
             'email_verified_at'=>now(),
             'password' => Hash::make(12345678),
-            'role'=>'manager',
             'manager'=>'1',
             'created_at'=>now(),
             'updated_at'=>now()
@@ -93,7 +90,6 @@ class UserTableSeeder extends Seeder
             'email' => 'locb1605396@student.ctu.edu.vn',
             'email_verified_at'=>now(),
             'password' => Hash::make(12345678),
-            'role'=>'manager',
             'manager'=>'1',
             'created_at'=>now(),
             'updated_at'=>now()
@@ -104,7 +100,6 @@ class UserTableSeeder extends Seeder
             'email' => 'lephucloc1711@gmail.com',
             'email_verified_at'=>now(),
             'password' => Hash::make(12345678),
-            'role'=>'manager',
             'manager'=>'1',
             'created_at'=>now(),
             'updated_at'=>now()
@@ -115,7 +110,6 @@ class UserTableSeeder extends Seeder
             'email' => 'luanb1609781@student.ctu.edu.vn',
             'email_verified_at'=>now(),
             'password' => Hash::make(12345678),
-            'role'=>'manager',
             'manager'=>'1',
             'created_at'=>now(),
             'updated_at'=>now()
