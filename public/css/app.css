@@ -479,7 +479,6 @@ mark,
   display: inline-block;
 }
 
-
 .list-inline-item:not(:last-child) {
   margin-right: 0.5rem;
 }
@@ -10928,5 +10927,4 @@ a.text-dark:focus {
     border-color: #dee2e6;
   }
 }
-
 

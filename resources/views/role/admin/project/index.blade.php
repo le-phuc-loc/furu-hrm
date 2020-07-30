@@ -131,13 +131,6 @@
                 </div>
             </div>
 
-                                                <div class="form-group row">
-                                                    <label for="password"
-                                                        class="col-md-4 col-form-label text-md-right">{{ __('Location') }}</label>
-                                                    <div class="col-md-6">
-                                                        <input id="location-name" type="text" class="form-control controls"
-                                                            name="location_name" value="" placeholder="Enter place" required
-                                                            autofocus>
 
             <!-- card body -->
             <div class="card-body">
@@ -312,11 +305,7 @@
 </div>
     <script>
         $(document).ready(function(e) {
-            $('.modal').modal({
-                backdrop: 'static',
-                keyboard: false,
-                show: false
-            })
+            $('.modal').modal({backdrop: 'static', keyboard: false, show: false})
             $(".btn-edit-project").click(function(e) {
                 var updateUrl = $(this).val();
                 console.log(updateUrl);
@@ -324,7 +313,7 @@
                 $.ajax({
                     type: 'GET',
                     url: updateUrl,
-                    success: function(result) {
+                    success:function(result) {
 
                         console.log(result.user);
                         $("#update-project-name").val(result.project.project_name);
@@ -337,11 +326,9 @@
                         $("#update-lat").val(result.project.location.lat);
                         $("#update-lng").val(result.project.location.lng);
                         $("#update-place-id").val(result.project.location.place_id);
-                        $("#project-update-form").attr('action', "/project/update/" + result
-                            .project.id);
+                        $("#project-update-form").attr('action', "/project/update/"+result.project.id);
 
-                        initAutocomplete(result.project.location.lat, result.project.location
-                            .lng, "update-map", "update");
+                        initAutocomplete(result.project.location.lat, result.project.location.lng, "update-map", "update");
                     }
                 });
 
@@ -353,20 +340,21 @@
 
 
 
-            function initAutocomplete(m_lat = -33.8688, m_lng = 151.2195, map_id = "map", state = "create") {
+            function initAutocomplete(m_lat = -33.8688, m_lng=151.2195, map_id="map", state="create") {
                 m_lat = parseFloat(m_lat);
                 m_lng = parseFloat(m_lng);
                 position = new google.maps.LatLng(m_lat, m_lng);
                 // confirm(m_lat + "-------" + m_lng);
                 const map = new google.maps.Map(document.getElementById(map_id), {
-                    center: position,
-                    zoom: 13,
-                    mapTypeId: "roadmap"
+                center: position,
+                zoom: 13,
+                mapTypeId: "roadmap"
                 }); // Create the search box and link it to the UI element.
                 var input;
                 if (state == "update") {
                     input = document.getElementById("update-location-name");
-                } else {
+                }
+                else {
                     input = document.getElementById("location-name");
                 }
 
@@ -375,12 +363,11 @@
                 var autocomplete = new google.maps.places.Autocomplete(input);
                 autocomplete.bindTo("bounds", map);
 
-                var marker = new google.maps.Marker({
-                    map: map
-                });
+                var marker = new google.maps.Marker({map: map});
                 marker.setPosition(position);
 
-                google.maps.event.addListener(autocomplete, "place_changed", function() {
+                google.maps.event.addListener(autocomplete, "place_changed", function()
+                {
                     var place = autocomplete.getPlace();
                     map.fitBounds(place.geometry.viewport);
                     if (state == "update") {
@@ -401,7 +388,8 @@
                     marker.setPosition(place.geometry.location);
                 });
 
-                google.maps.event.addListener(map, "click", function(event) {
+                google.maps.event.addListener(map, "click", function(event)
+                {
                     marker.setPosition(event.latLng);
 
                     if (event.placeId) {
@@ -431,19 +419,22 @@
                                     $("#place-id").val(event.placeId);
                                 }
 
-                            } else {
+                            }
+                            else {
                                 // confirm(status);
                             }
                         });
 
 
-                    } else {
+                    }
+                    else {
                         if (state == "update") {
                             $("#update-lat").val(event.latLng.lat);
                             $("#update-lng").val(event.latLng.lng);
                             $("#update-location-name").val("");
                             $("#update-place-id").val(event.placeId);
-                        } else {
+                        }
+                        else {
                             $("#lat").val(event.latLng.lat);
                             $("#lng").val(event.latLng.lng);
                             $("#location-name").val("");
@@ -458,9 +449,7 @@
             }
 
         });
-<<<<<<< HEAD
 
-=======
->>>>>>> ef0d09e06bb291228371aab6e33ff10f770b777f
+
     </script>
 @endsection
