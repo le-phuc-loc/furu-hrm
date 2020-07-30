@@ -11,7 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -72,20 +72,9 @@
             </div>
         </nav>
 
-
-
         <main class="py-4">
             @yield('content')
         </main>
-
-        <div id="map"></div>
     </div>
-
-
-
-
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcQ8aJDgCEdlPz5MPuWkXfjQMKwAULO-k&callback=initMap">
-  </script>
 </body>
 </html>

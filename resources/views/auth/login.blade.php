@@ -12,14 +12,12 @@
                         @csrf
 
                         <div class="form-group row">
-
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('User Name') }}</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('email') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                                 @error('name')
-
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -67,7 +65,6 @@
                             </div>
                         </div>
                     </form>
-
                 </div>
             </div>
         </div>

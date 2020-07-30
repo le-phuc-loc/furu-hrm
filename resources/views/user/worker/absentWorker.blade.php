@@ -6,11 +6,12 @@
         <main>
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-sm-6">
-                        <h3 class="mt-4">List of Reports</h3>
+                    <div class="col-12">
+                        <h3 class="mt-4">List of absense Form</h3>
                     </div>
                 </div>
                 <br>
+
                 <div class="card mb-4">
                     <div class="card-header">
                         <i class="fas fa-table mr-1"></i>List about 30 days
@@ -26,9 +27,8 @@
                                     <tr>
                                         <th>Name</th>
                                         <th>Project name</th>
-                                        <th>Location</th>
                                         <th>Content</th>
-                                        <th>Time</th>
+                                        <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -36,24 +36,23 @@
                                     <tr>
                                         <th>Name</th>
                                         <th>Project name</th>
-                                        <th>Location</th>
                                         <th>Content</th>
-                                        <th>Time</th>
+                                        <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
-
                                     <tr>
                                         <td></td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td></td>
-                                        <td><button class="btn btn-primary" data-toggle="modal" data-target="#edit-modal"
-                                                style="float: left;">
+                                        <td>
+                                            <button class="btn btn-primary" data-toggle="modal" data-target="#update-modal">
                                                 Edit
                                             </button>
+                                            <button class="btn btn-primary"
+                                                onclick="return confirm('Are U sure !!');">Delete</button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -63,7 +62,8 @@
                 </div>
             </div>
         </main>
-        <!-- Creaete REPORT MODAL -->
+
+        <!-- Create Absense form MODAL -->
         <div class="modal fade" id="create-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -80,48 +80,36 @@
                                 class="col-md-4 col-form-label text-md-right">{{ __('Project name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="project_name" type="text" class="form-control" name="project_name"
-                                    value="" required autocomplete="project_name" autofocus>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="time_checkin"
-                                class="col-md-4 col-form-label text-md-right">{{ __('Time checkin') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="time_checkin" type="text" class="form-control" name="time_checkin"
-                                    value="" required autocomplete="time_checkin" autofocus>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="time_checkout"
-                                class="col-md-4 col-form-label text-md-right">{{ __('Time checkout') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="time_checkout" type="text" class="form-control" name="time_checkout"
-                                    value="" required autocomplete="time_checkout" autofocus>
+                                <input id="project_name" type="text" class="form-control" name="project_name" value=""
+                                    required autocomplete="project_name" autofocus>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="content" class="col-md-4 col-form-label text-md-right">{{ __('Content') }}</label>
 
                             <div class="col-md-6">
-                                <input id="content" type="text" class="form-control" name="content" value=""
-                                    required autocomplete="content" autofocus style="padding: 2.375rem .75rem">
+                                <input id="content" type="text" class="form-control" name="content" value="" required
+                                    autocomplete="content" autofocus style="padding: 2.375rem .75rem">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="status" class="col-md-4 col-form-label text-md-right">{{ __('status') }}</label>
+                            <div class="col-md-6">
+                                <input id="name" type="status"
+                                    class="form-control @error('project_name') is-invalid @enderror" name="status" min="1"
+                                    max=" ">
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Save changes</button>
                         <button type="button" class="btn btn-primary" onclick="return confirm('Sending!!!!');">Send</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Edit REPORT MODAL -->
-        <div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        <!-- update absent form -->
+        <div class="modal fade" id="update-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -137,42 +125,30 @@
                                 class="col-md-4 col-form-label text-md-right">{{ __('Project name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="project_name" type="text" class="form-control" name="project_name"
-                                    value="chưa có" required autocomplete="project_name" autofocus>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="time_checkin"
-                                class="col-md-4 col-form-label text-md-right">{{ __('Time checkin') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="time_checkin" type="text" class="form-control" name="time_checkin"
-                                    value="chưa lun" required autocomplete="time_checkin" autofocus>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="time_checkout"
-                                class="col-md-4 col-form-label text-md-right">{{ __('Time checkout') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="time_checkout" type="text" class="form-control" name="time_checkout"
-                                    value="cũng chưa" required autocomplete="time_checkout" autofocus>
+                                <input id="project_name" type="text" class="form-control" name="project_name" value=""
+                                    required autocomplete="project_name" autofocus>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="content" class="col-md-4 col-form-label text-md-right">{{ __('Content') }}</label>
 
                             <div class="col-md-6">
-                                <input id="content" type="text" class="form-control" name="content" value="chưa nốt"
-                                    required autocomplete="content" autofocus style="padding: 2.375rem .75rem">
+                                <input id="content" type="text" class="form-control" name="content" value="" required
+                                    autocomplete="content" autofocus style="padding: 2.375rem .75rem">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="status" class="col-md-4 col-form-label text-md-right">{{ __('status') }}</label>
+                            <div class="col-md-6">
+                                <input id="name" type="status"
+                                    class="form-control @error('project_name') is-invalid @enderror" name="status" min="0"
+                                    max="2">
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Save changes</button>
                         <button type="button" class="btn btn-primary" onclick="return confirm('Sending!!!!');">Send</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
                     </div>
                 </div>
             </div>

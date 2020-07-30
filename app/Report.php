@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Report extends Model
 {
+<<<<<<< HEAD
+    //
+=======
 
     protected static $REPORT_CHECKIN = -1;
     protected static $REPORT_DRAW = 0;
@@ -39,4 +42,5 @@ class Report extends Model
 
 
 
+>>>>>>> ed5ec05dbf78563d2be7e20c533f3dd0134ebb06
 }
