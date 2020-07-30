@@ -24,6 +24,10 @@ class Project extends Model
         return $this->hasOneThrough('\App\Report', '\App\ProjectUser');
     }
 
+    public function project_user() {
+        return $this->hasMany('\App\ProjectUser');
+    }
+
     public function getFromDateAttribute($value) {
         return \Carbon\Carbon::parse($this->attributes['from_date'])->format('Y-m-d');
     }

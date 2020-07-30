@@ -35,10 +35,15 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::group([
     'namespace' => 'Admin',
-    'prefix' => 'admin'],
+    'prefix' => 'admin',
+
+],
     function() {
-    Route::group(['prefix' => 'user'], function() {
-        Route::get('/', 'AdminUserController@index')->name('admin.user.index');
+    Route::group([
+        'prefix' => 'user',
+
+    ], function() {
+        Route::get('/', 'UserController@index')->name('admin.user.index');
         Route::get('/info/{id}', 'UserController@show')->name('admin.user.show');
 
 
@@ -53,18 +58,24 @@ Route::group([
     });
 
     Route::group(['prefix' => 'project'], function() {
-        Route::get('/', 'UserController@index')->name('admin.project.index');
-        Route::get('/info/{id}', 'UserController@show')->name('admin.project.show');
+        Route::get('/', 'ProjectController@index')->name('admin.project.index');
+        Route::get('/info/{id}', 'ProjectController@show')->name('admin.project.show');
 
 
-        Route::get('/create', 'UserController@create')->name('admin.project.create');
-        Route::post('/create', 'UserController@store')->name('admin.project.store');
+        Route::get('/create', 'ProjectController@create')->name('admin.project.create');
+        Route::post('/create', 'ProjectController@store')->name('admin.project.store');
 
 
-        Route::get('/update/{id}', 'UserController@edit')->name('admin.project.edit');
-        Route::post('/update/{id}', 'UserController@update')->name('admin.project.update');
+        Route::get('/update/{id}', 'ProjectController@edit')->name('admin.project.edit');
+        Route::post('/update/{id}', 'ProjectController@update')->name('admin.project.update');
 
-        Route::get('/delete/{id}', 'UserController@delete')->name('admin.project.delete');
+        Route::get('/delete/{id}', 'ProjectController@delete')->name('admin.project.delete');
+
+        Route::get('/assigned/{id}', 'ProjectController@assigned')->name('admin.project.assigned');
+        Route::get('/assign/{id}', 'ProjectController@assign')->name('admin.project.assign');
+        Route::post('/assign/{id}', 'ProjectController@assignPost')->name('admin.project.assign_post');
+        Route::get('/assigned/{id}/delete', 'ProjectController@deleteAssigned')->name('admin.project.deleteAssigned');
+
     });
 
     Route::group(['prefix' => 'report'], function () {

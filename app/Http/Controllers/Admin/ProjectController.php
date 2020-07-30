@@ -5,12 +5,18 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+
+use \App\Project;
+use \App\Location;
+use \App\User;
+use \App\ProjectUser;
+
 class ProjectController extends Controller
 {
     //
     public function index() {
         $objs = Project::all();
-        return view('project/index', [
+        return view('role/admin/project/index', [
             'projects' => $objs,
         ]);
     }
@@ -86,21 +92,47 @@ class ProjectController extends Controller
         $obj->users()->attach($request->user_id);
         $obj->save();
         // dd($user);
-        return redirect()->route('project.index');
+        return redirect()->route('admin.project.index');
     }
 
     public function delete($id) {
         Project::find($id)->delete();
-        return redirect()->route('project.index');
+        return redirect()->route('admin.project.index');
     }
 
     public function assign($id) {
         $project = Project::with(['location', 'managed', 'users'])->find($id);
         $managers = User::where('role', 'manager')->get();
-        $workers = User::where('role', 'worker')->get();
+        $workers = User::with('projects')
+            ->where('role', 'worker')
+            ->whereNotIn('id', ProjectUser::select('user_id')
+                ->where('project_id', $id)
+                ->get()
+                ->pluck('user_id'))
+            ->get();
         $admin = User::where('role', 'admin')->first();
+        // dd(ProjectUser::select('user_id')->where('project_id', $id)->get()->pluck('user_id'));
+        return view('role/admin/project/assign')->with([
+            'project' => $project,
+            'managers' => $managers,
+            'workers' => $workers,
+            'admin' => $admin,
+        ]);
+    }
 
-        return view('project/assign')->with([
+    public function assigned($id) {
+        $project = Project::with(['location', 'managed', 'users'])->find($id);
+        $managers = User::where('role', 'manager')->get();
+        $workers = User::with('projects')
+            ->where('role', 'worker')
+            ->whereIn('id', ProjectUser::select('user_id')
+                ->where('project_id', $id)
+                ->get()
+                ->pluck('user_id'))
+            ->get();
+        $admin = User::where('role', 'admin')->first();
+        // dd(ProjectUser::select('user_id')->where('project_id', $id)->get()->pluck('user_id'));
+        return view('role/admin/project/assigned')->with([
             'project' => $project,
             'managers' => $managers,
             'workers' => $workers,
@@ -112,7 +144,7 @@ class ProjectController extends Controller
 
         // dd($req->input());
         $obj = Project::find($id);
-        $obj->managed = $req->manager;
+        $obj->managed = $request->manager;
         foreach ($request->workers as $worker) {
             $obj->users()->attach($worker);
         }
@@ -121,8 +153,18 @@ class ProjectController extends Controller
         $obj->save();
         // dd($obj);
         // dd($user);
-        return redirect(route('project_info', ['id' => $id]));
+        return redirect()->route('admin.project.assigned');
     }
 
+    public function deleteAssigned(Request $request, $id) {
+        // $project_id = $request->project_id;
+        $user_id = $request->user_id;
+        ProjectUser::where('user_id', $user_id)
+            ->where('project_id', $id)
+            ->get()
+            ->first()
+            ->delete();
+            return redirect()->route('admin.project.assigned',['id' => $id] );
+    }
 
 }

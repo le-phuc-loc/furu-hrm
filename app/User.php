@@ -47,4 +47,8 @@ class User extends Authenticatable
     public function absentApplication(){
         return $this->hasMany('App\AbsentApplication');
     }
+
+    public function project_user() {
+        return $this->hasMany('\App\ProjectUser');
+    }
 }

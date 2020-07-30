@@ -26,7 +26,7 @@
 
                         <!-- Modal body -->
                         <div class="modal-body">
-                            <form method="POST" action="{{ route('project.store') }}">
+                            <form method="POST" action="{{ route('admin.project.store') }}">
                                 @csrf
 
                                 <div class="form-group row">
@@ -257,8 +257,7 @@
                         <th>Number</th>
                         <th>From date</th>
                         <th>From to</th>
-                        <th>Time checkin</th>
-                        <th>Time checkout</th>
+
                         <th>location</th>
                         <th>Action</th>
                     </tr>
@@ -272,25 +271,34 @@
                         @foreach ($projects as $project)
                             <tr>
                                 <td>{{ $project->project_name }}</td>
-                                <td>{{ $project->manager }}</td>
+                                <td>{{ $project->managed }}</td>
                                 <td>
                                     {{ $project->number_worker }}
                                 </td>
                                 <td> {{ $project->from_date }} </td>
                                 <td> {{ $project->to_date }} </td>
-                                <td> {{ $project->time_checkin }} </td>
-                                <td> {{ $project->time_checkout }} </td>
+
                                 <td> {{ $project->location->location_name }} </td>
                                 <td>
                                     <button class="btn btn-primary btn-edit-project" data-toggle="modal"
                                         data-target="#update-project"
-                                        value="{{ route('project.edit', ['id' => $project->id]) }}">
+                                        value="{{ route('admin.project.edit', ['id' => $project->id]) }}">
                                         <i class="fa fa-edit" aria-hidden="true"></i>
                                     </button>
                                     <a type="button" class="btn btn-primary btn-project-delete"
-                                        href="{{ route('project.delete', ['id' => $project->id]) }}"
+                                        href="{{ route('admin.project.delete', ['id' => $project->id]) }}"
                                         onclick="return confirm('Are you sure ????');">
                                         <i class="fa fa-trash" aria-hidden="true"></i>
+                                    </a>
+
+                                    {{-- <a type="button" class="btn btn-primary btn-edit-project"
+                                        href="{{ route('admin.project.assign', ['id' => $project->id]) }}">
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                    </a> --}}
+
+                                    <a  class="btn btn-primary btn-assign-project" role="button"
+                                    href="{{ route('admin.project.assign', ['id' => $project->id]) }}">
+                                    <i class="fa fa-edit" aria-hidden="true"></i>
                                     </a>
 
                                 </td>
@@ -326,7 +334,7 @@
                         $("#update-lat").val(result.project.location.lat);
                         $("#update-lng").val(result.project.location.lng);
                         $("#update-place-id").val(result.project.location.place_id);
-                        $("#project-update-form").attr('action', "/project/update/"+result.project.id);
+                        $("#project-update-form").attr('action', "/admin/project/update/"+result.project.id);
 
                         initAutocomplete(result.project.location.lat, result.project.location.lng, "update-map", "update");
                     }

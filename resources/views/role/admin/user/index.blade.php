@@ -261,7 +261,7 @@
                         $("#update-email").val(result.user.email);
                         $("#update-manager").val(result.user.manager);
                         $("#update-role").val(result.user.role);
-                        $("#user-update-form").attr('action', "/user/update/"+result.user.id);
+                        $("#user-update-form").attr('action', "/admin/user/update/"+result.user.id);
                     }
                 });
             });
