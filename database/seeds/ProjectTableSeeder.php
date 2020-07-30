@@ -55,7 +55,7 @@ class ProjectTableSeeder extends Seeder
             'updated_at'=>now(),
             'time_checkin' => '7:00',
             'time_checkout' => '17:30',
-            'managed'=>'1'
+            'managed'=>'6'
         ]);
         DB::table('projects')->insert([
             'project_name'=>'Space Station',
@@ -66,7 +66,7 @@ class ProjectTableSeeder extends Seeder
             'updated_at'=>now(),
             'time_checkin' => '7:00',
             'time_checkout' => '17:30',
-            'managed'=>'1'
+            'managed'=>'6'
         ]);
     }
 }

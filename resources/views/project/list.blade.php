@@ -1,6 +1,7 @@
 @extends('role.admin.index')
 
 @section('content')
+
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid">

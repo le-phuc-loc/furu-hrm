@@ -22,6 +22,22 @@
                     </p>
                 </a>
             </li>
+            <li class="nav-item">
+                <a href="{{ route('admin.absent.index')}} " class="nav-link ">
+                    <i class="nav-icon fas fa-address-book"> </i>
+                    <p>
+                        Absent
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('admin.dashboard.index')}} " class="nav-link ">
+                    <i class="nav-icon fas fa-address-book"> </i>
+                    <p>
+                        Dashboard
+                    </p>
+                </a>
+            </li>
         </ul>
     </nav>
 @endsection
