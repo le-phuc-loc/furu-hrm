@@ -1,7 +1,7 @@
 @extends('role.admin.index')
 
 @section('content')
-    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+    {{-- <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
         crossorigin="anonymous" />
@@ -11,7 +11,7 @@
             $('#dataTable1').DataTable();
         });
 
-    </script>
+    </script> --}}
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid">
@@ -90,11 +90,7 @@
                                                 </td>
                                                 <td></td>
                                                 {{-- <td> {{ $user->absentApplication()}} </td> --}}
-                                                <td><button class="btn btn-primary btn-edit-project" data-toggle="modal"
-                                                    data-target="#timework-modal"
-                                                    value="">
-                                                    <i class="fa fa-edit" aria-hidden="true"></i>
-                                                </button></td>
+                                                <td></td>
 
                                                 <td>
                                                     <button type="submit" class="btn btn-primary" onclick="confirm">

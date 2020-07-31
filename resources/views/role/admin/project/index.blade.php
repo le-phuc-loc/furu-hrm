@@ -298,7 +298,7 @@
 
                                     <a  class="btn btn-primary btn-assign-project" role="button"
                                     href="{{ route('admin.project.assigned', ['id' => $project->id]) }}">
-                                    <i class="fa fa-edit" aria-hidden="true"></i>
+                                    <i class="fa fa-tasks" aria-hidden="true"></i>
                                     </a>
 
                                 </td>

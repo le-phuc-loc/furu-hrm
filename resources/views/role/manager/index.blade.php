@@ -12,7 +12,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('project.index') }}" class="nav-link">
+                <a href="{{ route('manager.project.index') }}" class="nav-link">
                     <i class="nav-icon fas fa-book"></i>
                         Projects
                 </a>
