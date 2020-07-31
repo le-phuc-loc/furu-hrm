@@ -21,38 +21,49 @@
                                         @csrf
 
                                         <form>
+                                            <div class="form-group">
+                                                <label for="project_name">Name User</label>
+                                                <input type="text" class="form-control" id="project_name" readonly
+                                                  value="{{ $report->project_user->user->name }}">
+                                            </div>
                                             <div class="form-row">
                                               <div class="form-group col-md-6">
                                                 <label for="time_checkin">Time checkin</label>
-                                                <input type="text" class="form-control" id="time_checkin" >
+                                                <input type="date" class="form-control" id="time_checkin" readonly
+                                                    value="{{ $report->time_checkin }}">
                                               </div>
                                               <div class="form-group col-md-6">
                                                 <label for="location_checkin">Location checkin</label>
-                                                <input type="text" class="form-control" id="location_checkin">
+                                                {{-- {{ dd($report->location_checkin) }} --}}
+                                                <input type="text" class="form-control" id="location_checkin" readonly
+                                                    value="{{ $report->location_checkin->location_name }}">
                                               </div>
                                             </div>
                                             <div class="form-row">
                                                 <div class="form-group col-md-6">
                                                   <label for="time_checkout">Time checkout</label>
-                                                  <input type="text" class="form-control" id="time_checkout" >
+                                                  <input type="date" class="form-control" id="time_checkout" readonly
+                                                    value="{{ $report->time_checkout }}">
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                   <label for="location_checkout">Location checkout</label>
-                                                  <input type="text" class="form-control" id="location_checkout">
+                                                  <input type="text" class="form-control" id="location_checkout" readonly
+                                                    value="{{ $report->location_checkout->location_name }}">
                                                 </div>
                                               </div>
                                             <div class="form-group">
                                               <label for="project_name">Project</label>
-                                              <input type="text" class="form-control" id="project_name" >
+                                              <input type="text" class="form-control" id="project_name" readonly
+                                                value="{{ $report->project_user->project->project_name }}">
                                             </div>
-                                            <div class="form-group">
-                                              <label for="location_name">Address</label>
-                                              <input type="text" class="form-control" id="location_name">
-                                            </div>
+
                                             <div class="form-group">
                                                 <label for="content">Content</label>
-                                                <input type="text" class="form-control" id="content">
-                                              </div>
+                                                <textarea class="form-control"
+                                                name="content" rows="5" readonly>
+                                                    {{ $report->content }}
+                                                </textarea>
+                                            </div>
 
                                             @if ($report->state != 2)
                                                 <a type="button" href="{{ route('manager.report.approve', ['id' => $report->id, 'user_id' => $report->project_user->user->id]) }}"

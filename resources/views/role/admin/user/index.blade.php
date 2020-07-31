@@ -229,12 +229,12 @@
                                                 <button class="btn btn-primary btn-user-edit" data-toggle="modal"
                                                     data-target="#update-user"
                                                     value="{{ route('admin.user.edit', ['id' => $user->id]) }}">
-                                                    Edit
+                                                    <i class="fa fa-edit" aria-hidden="true"></i>
                                                 </button>
                                                 <a type="button" class="btn btn-primary btn-user-delete"
                                                     href="{{ route('admin.user.delete', ['id' => $user->id]) }}"
                                                     onclick="return confirm('Are you sure ????');">
-                                                    Delete
+                                                    <i class="fa fa-trash" aria-hidden="true"></i>
                                                 </a>
 
                                             </td>

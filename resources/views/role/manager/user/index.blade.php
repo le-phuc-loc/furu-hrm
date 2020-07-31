@@ -56,7 +56,7 @@
                                         <td>
                                             <a type="button" type="button"
                                             href="{{ route('manager.report.index', ['user_id' => $user->id]) }}" class="btn btn-primary">
-                                                Reports
+                                            <i class="nav-icon fas fa-book"></i>
                                             </button>
 
 

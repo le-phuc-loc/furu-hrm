@@ -36,6 +36,7 @@ class AbsentRejectMail extends Mailable
     {
         return $this->from($this->sender->email)
             ->view('mails.absent-reject', [
+                'sender' => $this->sender,
                 'receiver' => $this->receiver,
                 'reason' => $this->reason,
             ]);

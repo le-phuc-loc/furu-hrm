@@ -7,3 +7,4 @@
     {{ $reason }}
     {{$sender->name}}
 </div>
+

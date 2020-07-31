@@ -83,7 +83,13 @@ class ReportController extends Controller
         return redirect()->route('manager.report.index');
     }
 
-    // public function
+    public function show($id) {
+        $report = Report::find($id);
+
+        return view('role/manager/report/detail', [
+            'report' => $report,
+        ]);
+    }
 
 
     public function reject(Request $request, $id) {

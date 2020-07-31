@@ -66,7 +66,7 @@
                                                     @if ($report->state != 2)
                                                         <a type="button" href="{{ route('manager.report.approve', ['id' => $report->id, 'user_id' => $report->project_user->user->id]) }}"
                                                             class="btn btn-primary">
-                                                            Approve
+                                                            <i class="fa fa-check" aria-hidden="true"></i>
                                                         </a>
                                                         <button type="button" class="btn btn-primary btn-reject-report" data-toggle="modal"
                                                             data-target="#reject-modal"
@@ -76,12 +76,12 @@
                                                             data-user_id = "{{ $report->project_user->user->id }}"
                                                             data-report_id = "{{ $report->id }}"
                                                             >
-                                                            Reject
+                                                            <i class="fa fa-ban" aria-hidden="true"></i>
                                                         </button>
                                                     @endif
 
-                                                    <a class="btn btn-primary" href=""
-                                                        role="button">Detail</a>
+                                                    <a class="btn btn-primary" href="{{ route('manager.report.info', ['id' => $report->id]) }}"
+                                                        role="button"> <i class="fa fa-info-circle" aria-hidden="true"></i></a>
 
                                                 </td>
                                             </tr>

@@ -11,7 +11,7 @@ class Project extends Model
         return $this->belongsToMany('App\User')->withTimestamps()->using('App\ProjectUser');
     }
 
-    public function managed(){
+    public function manager(){
         return $this->belongsTo('App\User');
     }
 

@@ -1,10 +1,9 @@
 
-
-<p> Hello {{ $receiver->name }}</p>
+<p>   Hello {{$receiver->name}}! I rejected your absent.</p>
+<br>
 <div>
-    I reject your Absent
-    <div></div>
-    Reason
-    {{ $reason }}
-    {{$sender->name}}
+    Reason:	{{$reason}}
+<br><br><br><br>
+    Sender:	{{$sender->name}}
+
 </div>
