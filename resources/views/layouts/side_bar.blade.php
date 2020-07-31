@@ -36,6 +36,9 @@
 
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> --}}
+
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -73,14 +76,14 @@
             padding-bottom: 12px;
             margin-right: 12px;
         }
-        .modal{
-            z-index: 40;
+
+        .modal {
+            z-index: 998 !important;
         }
+
         .modal-backdrop {
             z-index: 39;
         }
-
-
 
     </style>
 </head>
@@ -153,10 +156,10 @@
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
 
                     <div class="info">
-                        <a class="d-block" href="{{ route('logout') }}"
-                            onclick="event.preventDefault();
+                        <a class="d-block" href="{{ route('logout') }}" onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
+                            <i class="nav-icon fa fa-sign-out-alt"></i>
+                            Logout
                         </a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
@@ -193,7 +196,7 @@
 
     </script>
     <!-- Bootstrap 4 -->
-    <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    {{-- <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- ChartJS -->
     <script src="/plugins/chart.js/Chart.min.js"></script>
     <!-- Sparkline -->
@@ -201,47 +204,26 @@
     <!-- JQVMap -->
     <script src="/plugins/jqvmap/jquery.vmap.min.js"></script>
     <script src="/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
-    <!-- jQuery Knob Chart -->
-    <script src="/plugins/jquery-knob/jquery.knob.min.js"></script>
+    <!-- jQuery Knob Chart --> --}}
+    {{-- <script src="/plugins/jquery-knob/jquery.knob.min.js"></script> --}}
     <!-- daterangepicker -->
     <script src="/plugins/moment/moment.min.js"></script>
     <script src="/plugins/daterangepicker/daterangepicker.js"></script>
-    <!-- Tempusdominus Bootstrap 4 -->
-    <script src="/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-    <!-- Summernote -->
-    <script src="/plugins/summernote/summernote-bs4.min.js"></script>
-    <!-- overlayScrollbars -->
-    <script src="/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
     <!-- AdminLTE App -->
     <script src="/dist/js/adminlte.js"></script>
-    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="/dist/js/pages/dashboard.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="/dist/js/demo.js"></script>
 
-    <!-- Update User-->
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsMyaK7aIpFYjTIbPBafSnxxOg3SwSIIk&libraries=places&callback=initAutocomplete"
+        async defer></script>
+
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
     <script>
-        $('#updateUser').on('show.bs.modal', function (event) {
-          var button = $(event.relatedTarget) // Button that triggered the modal
-          var user = button.data('whatever') // Extract info from data-* attributes
-          // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-          // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-          var modal = $(this)
-          modal.find('.modal-body input').val(user)
-        })
+        $(document).ready(function() {
+            $('#dataTable1').DataTable();
+        });
+
     </script>
-    <script>
-        $('#updateProject').on('show.bs.modal', function (event) {
-          var button = $(event.relatedTarget) // Button that triggered the modal
-          var project = button.data('whatever') // Extract info from data-* attributes
-          // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-          // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-          var modal = $(this)
-          modal.find('.modal-body input').val(project)
-        })
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsMyaK7aIpFYjTIbPBafSnxxOg3SwSIIk&libraries=places&callback=initAutocomplete"
-    async defer></script>
 </body>
 
 </html>

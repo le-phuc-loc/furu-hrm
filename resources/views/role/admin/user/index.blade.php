@@ -4,10 +4,16 @@
 @section('content')
     <div class="row">
         <div class="col-12 ">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h1 class="mt-4">List Users</h1>
+                </div>
+            </div>
+            <br>
             <div class="card">
                 <!-- Card Header -->
                 <div class="card-header">
-                    <h2 class="card-title">List of Users</h2>
+                    <i class="fas fa-table mr-1"></i>List
                     <button type="button" class="btn btn-info add-new" data-toggle="modal" data-target="#create-user"
                         style="float: right;"> <i class="fa fa-plus"></i>
                         Create

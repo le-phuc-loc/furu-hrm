@@ -17,7 +17,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h3 class="mt-4">List Absent</h3>
+                        <h1 class="mt-4">List Absent</h1>
                     </div>
                 </div>
                 <br>
@@ -107,7 +107,7 @@
         {{-- Reject --}}
         <div class="modal fade" id="reject-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Reject</h5>
@@ -172,7 +172,7 @@
                 </div>
             </div>
         </div>
-        <!-- Creaete Absense MODAL -->
+        <!-- Create Absense MODAL -->
         <div class="modal fade" id="create-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
