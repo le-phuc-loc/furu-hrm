@@ -28,14 +28,24 @@ class Report extends Model
     public function project_user(){
         return $this->belongsTo('App\ProjectUser');
     }
-    public function location_check_in()
+    public function location_checkin()
     {
         return $this->belongsTo('App\Location','location_check_in');
     }
-    public function location_check_out()
+    public function location_checkout()
     {
         return $this->belongsTo('App\Location','location_check_out');
     }
+
+
+    public function getTimeCheckinAttribute($value) {
+        return \Carbon\Carbon::parse($this->attributes['time_checkin'])->format('Y-m-d');
+    }
+
+    public function getTimeCheckoutAttribute($value) {
+        return \Carbon\Carbon::parse($this->attributes['time_checkout'])->format('Y-m-d');
+    }
+
 
 
 

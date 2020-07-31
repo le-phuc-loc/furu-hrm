@@ -48,9 +48,18 @@ class User extends Authenticatable
         return $this->hasMany('App\AbsentApplication');
     }
 
+    public function sum_day_off(){
+        return $this->hasMany('App\AbsentApplication')
+            ->selectRaw("SUM(number_off) as num_day_off")
+            ->groupBy('user_id');
+    }
+
+
     public function project_user() {
         return $this->hasMany('\App\ProjectUser');
     }
+
+
 
     public function reports() {
         return $this->hasManyThrough(
@@ -62,4 +71,21 @@ class User extends Authenticatable
             'id'
         );
     }
+
+    // public function time_working() {
+    //     return $this->hasManyThrough(
+    //         '\App\Report',
+    //         '\App\ProjectUser',
+    //         'user_id',
+    //         'project_user_id',
+    //         'id',
+    //         'id'
+    //     )
+    //     ->leftJoin('project_user', 'users.id', "=", "project_user.user_id")
+    //     ->selectRaw('sum(TIMESTAMPDIFF(hour, time_checkin, time_checkout)) as time_working, user_id')
+    //     ->groupBy('user_id');
+    // }
+
+
+
 }

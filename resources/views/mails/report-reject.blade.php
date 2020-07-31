@@ -6,3 +6,4 @@
     Reason
     {{ $reason }}
 </div>
+

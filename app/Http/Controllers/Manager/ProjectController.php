@@ -17,7 +17,8 @@ class ProjectController extends Controller
     public function index() {
 
         $objs = Project::where('managed', Auth::user()->id)
-            ->where('to_date', '<=', Carbon::now())
+            ->where('to_date', '>=', Carbon::now())
+            ->where('from_date', '<=', Carbon::now())
             ->get();
         // dd(Auth::user()->id);
         return view('role/manager/project/index', [

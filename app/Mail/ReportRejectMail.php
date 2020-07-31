@@ -37,6 +37,7 @@ class ReportRejectMail extends Mailable
         // dd($this->receiver);
         return $this->from($this->sender->email)
             ->view('mails.report-reject', [
+                'sender' => $this->sender,
                 'receiver' => $this->receiver,
                 'reason' => $this->reason,
             ]);

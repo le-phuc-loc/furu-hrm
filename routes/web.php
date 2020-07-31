@@ -57,7 +57,9 @@ Route::group([
         Route::get('/delete/{id}', 'UserController@delete')->name('admin.user.delete');
     });
 
-    Route::group(['prefix' => 'project'], function() {
+    Route::group([
+        'prefix' => 'project'
+    ], function() {
         Route::get('/', 'ProjectController@index')->name('admin.project.index');
         Route::get('/info/{id}', 'ProjectController@show')->name('admin.project.show');
 
@@ -78,13 +80,15 @@ Route::group([
 
     });
 
-    Route::group(['prefix' => 'report'], function () {
-        Route::get('/', 'ReportController@index')->name('report.index');
+    Route::group([
+        'prefix' => 'report',
+    ], function () {
+        Route::get('/', 'ReportController@index')->name('admin.report.index');
 
-        Route::get('/info/{id}', 'ReportController@show')->name('report.info');
+        Route::get('/info/{id}', 'ReportController@show')->name('admin.report.info');
 
 
-        Route::get('/create/{id}', 'ReportController@create')->name('report.create');
+        Route::get('/create/{id}', 'ReportController@create')->name('admin.report.create');
         Route::post('/create/{id}', 'ReportController@store')->name('report.store');
 
 
@@ -93,43 +97,22 @@ Route::group([
 
         Route::get('/delete/{id}', 'ReportController@delete')->name('report.delete');
 
-        Route::post('/checkin', 'ReportController@checkin')->name('report.checkin');
-        Route::post('/checkout', 'ReportController@checkout')->name('report.checkout');
-
-        Route::get('/send', 'ReportController@send')->name('report.send');
-        Route::get('/draw', 'ReportController@draw')->name('report.draw');
-
     });
-    //ABsent
-    Route::group(['prefix' => 'absent'], function () {
+
+    Route::group([
+        'prefix' => 'absent',
+    ], function() {
         Route::get('/', 'AbsentController@index')->name('admin.absent.index');
+
+        Route::get('/approve/{id}', 'AbsentController@approve')->name('admin.absent.approve');
+        Route::post('/reject/{id}', 'AbsentController@reject')->name('admin.absent.reject');
     });
-    //Dashboard
-    Route::group(['prefix' => 'dashboard'], function () {
-        Route::get('/', 'DashboardController@index')->name('admin.dashboard.index');
-
-        // Route::get('/info/{id}', 'AbsentController@show')->name('report.info');
 
 
-        // Route::get('/create/{id}', 'AbsentController@create')->name('report.create');
-        // Route::post('/create/{id}', 'AbsentController@store')->name('report.store');
 
-
-        // Route::get('/update/{id}', 'AbsentController@edit')->name('report.edit');
-        // Route::post('/update/{id}', 'AbsentController@update')->name('report.update');
-
-        // Route::get('/delete/{id}', 'AbsentController@delete')->name('report.delete');
-
-        // Route::post('/checkin', 'AbsentController@checkin')->name('report.checkin');
-        // Route::post('/checkout', 'AbsentController@checkout')->name('report.checkout');
-
-        // Route::get('/send', 'AbsentController@send')->name('report.send');
-        // Route::get('/draw', 'AbsentController@draw')->name('report.draw');
-
-
-    });
 
 });
+
 
 
 //manager
