@@ -59,8 +59,8 @@ class ProjectTableSeeder extends Seeder
         ]);
         DB::table('projects')->insert([
             'project_name'=>'Space Station',
-            'from_date'=>'2022-01-01',
-            'to_date'=>'2022-12-30',
+            'from_date'=>'2020-01-01',
+            'to_date'=>'2020-7-7',
             'location_id'=>'4',
             'created_at'=>now(),
             'updated_at'=>now(),

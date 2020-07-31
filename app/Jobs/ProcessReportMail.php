@@ -10,6 +10,8 @@ use Illuminate\Queue\SerializesModels;
 
 use App\Mail\ReportAllowMail;
 use App\Mail\ReportRejectMail;
+use App\Mail\AbsentAllowMail;
+use App\Mail\AbsentRejectMail;
 use Mail;
 
 class ProcessReportMail implements ShouldQueue
@@ -50,6 +52,14 @@ class ProcessReportMail implements ShouldQueue
             break;
             case "report-reject":
                 $email = new ReportRejectMail($this->sender, $this->receiver, $this->data);
+                Mail::to($this->receiver->email)->send($email);
+            break;
+            case "absent-allow":
+                $email = new AbsentAllowMail($this->sender, $this->receiver, $this->data);
+                Mail::to($this->receiver->email)->send($email);
+            break;
+            case "absent-reject":
+                $email = new AbsentRejectMail($this->sender, $this->receiver, $this->data);
                 Mail::to($this->receiver->email)->send($email);
             break;
           }

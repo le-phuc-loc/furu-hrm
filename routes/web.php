@@ -180,14 +180,10 @@ Route::group([
         Route::get('/info/{id}', 'AbsentController@show')->name('manager.absent.info');
 
 
-        Route::get('/create/{id}', 'AbsentController@create')->name('manager.absent.create');
-        Route::post('/create/{id}', 'AbsentController@store')->name('manager.absent.store');
+        Route::post('/create', 'AbsentController@store')->name('manager.absent.store');
 
-        Route::get('/approve/{id}', 'AbsentController@approve')->name('manager.absent.create');
-        Route::post('/reject/{id}', 'AbsentController@reject')->name('manager.absent.store');
-
-        Route::get('/update/{id}', 'ReportController@edit')->name('manager.absent.edit');
-        Route::post('/update/{id}', 'ReportController@update')->name('manager.absent.update');
+        Route::get('/approve/{id}', 'AbsentController@approve')->name('manager.absent.approve');
+        Route::post('/reject/{id}', 'AbsentController@reject')->name('manager.absent.reject');
 
         Route::get('/delete/{id}', 'AbsentController@delete')->name('manager.absent.delete');
 
@@ -198,18 +194,18 @@ Route::group([
 // worker
 Route::group(['namespace' => 'Worker', 'prefix' => 'worker'], function() {
     Route::group(['prefix' => 'project'], function() {
-        Route::get('/', 'UserController@index')->name('admin.user.index');
-        Route::get('/info/{id}', 'UserController@show')->name('admin.user.show');
+        Route::get('/', 'ProjectController@index')->name('admin.user.index');
+        Route::get('/info/{id}', 'ProjectController@show')->name('admin.user.show');
 
 
-        Route::get('/create', 'UserController@create')->name('admin.user.create');
-        Route::post('/create', 'UserController@store')->name('admin.user.store');
+        Route::get('/create', 'ProjectController@create')->name('admin.user.create');
+        Route::post('/create', 'ProjectController@store')->name('admin.user.store');
 
 
-        Route::get('/update/{id}', 'UserController@edit')->name('admin.user.edit');
-        Route::post('/update/{id}', 'UserController@update')->name('admin.user.update');
+        Route::get('/update/{id}', 'ProjectController@edit')->name('admin.user.edit');
+        Route::post('/update/{id}', 'ProjectController@update')->name('admin.user.update');
 
-        Route::get('/delete/{id}', 'UserController@delete')->name('admin.user.delete');
+        Route::get('/delete/{id}', 'ProjectController@delete')->name('admin.user.delete');
     });
 
     Route::group(['prefix' => 'report'], function () {
@@ -262,6 +258,6 @@ Route::group(['namespace' => 'Worker', 'prefix' => 'worker'], function() {
 
 
 
-Route::get('/user', 'UserController@index')->name('user.index');
+// Route::get('/user', 'UserController@index')->name('user.index');
 
 

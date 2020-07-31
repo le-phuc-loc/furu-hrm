@@ -79,7 +79,7 @@ class ProjectUserTableSeeder extends Seeder
             'updated_at'=>now(),
         ]);
         DB::table('project_user')->insert([
-            'user_id'=>'6',
+            'user_id'=>'9',
             'project_id'=>'5',
             'created_at'=>now(),
             'updated_at'=>now(),

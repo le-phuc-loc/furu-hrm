@@ -34,21 +34,28 @@ class ReportController extends Controller
         //     ->get());
         // dd(Report::whereIn('id', User::find(Auth::user()->id)
         //     ));
-        if(!isset($request->project_id)) {
-            $reports =  Report::whereIn('project_user_id',
-            ProjectUser::whereIn('project_id',
-            User::find(Auth::user()->id)
-                ->projects()
-                ->get()
-                ->pluck('id'))
-                ->get()->pluck('id'))
-                ->get();
-        }
-        else {
-            // dd(Project::find($request->project_id)->reports()->get());
+        if(isset($request->project_id)) {
             $reports = Project::find($request->project_id)
                 ->reports()
                 ->get();
+        }
+        else if (isset($request->user_id)) {
+            $reports = User::find($request->user_id)
+                ->reports()
+                ->get();
+        }
+        else {
+            $reports =  Report::whereIn('project_user_id',
+            ProjectUser::whereIn('project_id',
+            User::find(Auth::user()->id)
+                ->manage()
+                ->get()
+                ->pluck('id'))
+                ->get()->pluck('id'))
+                ->where('state', Report::getReportWaitting())
+                ->get();
+            // dd(Project::find($request->project_id)->reports()->get());
+
             // dd($reports->first()->project_user->user);
         }
 
@@ -76,6 +83,7 @@ class ReportController extends Controller
         return redirect()->route('manager.report.index');
     }
 
+    // public function
 
 
     public function reject(Request $request, $id) {

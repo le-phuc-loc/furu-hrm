@@ -41,7 +41,7 @@ class User extends Authenticatable
     }
 
     public function manage() {
-        return $this->HasMany('App\Project');
+        return $this->HasMany('App\Project', 'managed', 'id');
     }
 
     public function absentApplication(){

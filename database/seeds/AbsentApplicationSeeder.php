@@ -36,5 +36,14 @@ class AbsentApplicationSeeder extends Seeder
             'created_at'=>now(),
             'updated_at'=>now(),
         ]);
+
+        DB::table('absent_applications')->insert([
+            'state'=>'-2',
+            'content'=>'NGhỉ asdasdasd',
+            'number_off'=>'7',
+            'user_id'=>'8',
+            'created_at'=>now(),
+            'updated_at'=>now(),
+        ]);
     }
 }
