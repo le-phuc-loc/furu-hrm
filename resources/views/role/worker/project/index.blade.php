@@ -45,15 +45,6 @@
                                             <td> {{ $project->to_date }} </td>
                                             <td> {{ $project->location->location_name }} </td>
                                             <td>
-                                                <button class="btn btn-primary btn-edit-project" data-toggle="modal"
-                                                    data-target="#update-project"
-                                                    value="{{ route('manager.project.edit', ['id' => $project->id]) }}">
-                                                    <i class="fa fa-edit" aria-hidden="true"></i>
-                                                </button>
-                                                <a class="btn btn-primary" href="{{ route('manager.user.index', ['project_id' => $project->id]) }}"
-                                                    role="button">
-                                                    <i class="fa fa-users" aria-hidden="true"></i>
-                                                </a>
                                             </td>
                                         </tr>
                                     @endforeach

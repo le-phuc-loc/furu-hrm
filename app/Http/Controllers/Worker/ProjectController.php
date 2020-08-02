@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 
 use \App\Project;
+use \App\User;
 use Auth;
 
 use \Carbon\Carbon;
@@ -14,11 +15,12 @@ class ProjectController extends Controller
 {
     //
     public function index() {
-        $objs = Project::where('managed', Auth::user()->id)
-            ->where('to_date', '<=', Carbon::now())
+        $objs = User::find(Auth::user()->id)->projects()
+            ->where('to_date', '>=', Carbon::now())
+            ->where('from_date', '<=', Carbon::now())
             ->get();
         // dd($obj);
-        return view('role/manager/project/index', [
+        return view('role/worker/project/index', [
             'projects' => $objs,
         ]);
     }

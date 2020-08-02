@@ -31,6 +31,7 @@
 
     <!-- Scripts -->
     <script src="/plugins/jquery/jquery.min.js"></script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
     <!-- jQuery UI 1.11.4 -->
     <script src="/plugins/jquery-ui/jquery-ui.min.js"></script>
 
@@ -46,8 +47,6 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <style>
         #map {
@@ -76,14 +75,14 @@
             padding-bottom: 12px;
             margin-right: 12px;
         }
-        .modal{
+
+        .modal {
             z-index: 998 !important;
         }
+
         .modal-backdrop {
             z-index: 39;
         }
-
-
 
     </style>
 </head>
@@ -156,10 +155,10 @@
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
 
                     <div class="info">
-                        <a class="d-block" href="{{ route('logout') }}"
-                            onclick="event.preventDefault();
+                        <a class="d-block" href="{{ route('logout') }}" onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
+                            <i class="nav-icon fa fa-sign-out-alt"></i>
+                            Logout
                         </a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
@@ -212,15 +211,17 @@
     <!-- AdminLTE App -->
     <script src="/dist/js/adminlte.js"></script>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsMyaK7aIpFYjTIbPBafSnxxOg3SwSIIk&libraries=places&callback=initAutocomplete"
-    async defer></script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsMyaK7aIpFYjTIbPBafSnxxOg3SwSIIk&libraries=places&callback=initAutocomplete"
+        async defer></script>
 
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-    <script >
-    $(document).ready(function() {
-        $('#dataTable1').DataTable();
-      });
+    <script>
+        $(document).ready(function() {
+            $('#dataTable1').DataTable();
+        });
+
     </script>
 </body>
 

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Report extends Model
 {
-
+    protected static $REPORT_CREATED = -2;
     protected static $REPORT_CHECKIN = -1;
     protected static $REPORT_DRAW = 0;
     protected static $REPORT_WAITTING = 1;

@@ -2,8 +2,9 @@
 
 <p> Hello {{ $receiver->name }}</p>
 <div>
-    I reject your report
+    I rejected your report
     Reason
     {{ $reason }}
+    {{$sender->name}}
 </div>
 

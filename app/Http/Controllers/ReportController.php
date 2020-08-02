@@ -72,11 +72,6 @@ class ReportController extends Controller
             'time_checkin' => 'date_format:H:i|before:'.$project_user->project->time_checkout,
         ]);
 
-
-        // $obj = Report::find($id);
-
-
-
         $obj->time_checkin = Carbon::now()->format('H:i');
 
         $location = Location::create([

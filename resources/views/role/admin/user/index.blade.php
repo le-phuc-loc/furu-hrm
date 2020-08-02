@@ -2,13 +2,18 @@
 @extends('role.admin.index')
 
 @section('content')
-
     <div class="row">
         <div class="col-12 ">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h1 class="mt-4">List Users</h1>
+                </div>
+            </div>
+            <br>
             <div class="card">
                 <!-- Card Header -->
                 <div class="card-header">
-                    <h2 class="card-title">List of Users</h2>
+                    <i class="fas fa-table mr-1"></i>List
                     <button type="button" class="btn btn-info add-new" data-toggle="modal" data-target="#create-user"
                         style="float: right;"> <i class="fa fa-plus"></i>
                         Create
@@ -92,14 +97,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label for="manager"
-                                            class="col-md-4 col-form-label text-md-right">{{ __('Manager') }}</label>
-                                        <div class="col-md-6">
-                                            <input type="number" id="manager" name="manager" min="0" max="100"
-                                                class="form-control">
-                                        </div>
-                                    </div>
+
 
                                 </div>
 
@@ -179,14 +177,7 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="form-group row">
-                                                <label for="manager"
-                                                    class="col-md-4 col-form-label text-md-right">{{ __('Manager') }}</label>
-                                                <div class="col-md-6">
-                                                    <input type="number" id="update-manager" name="manager"
-                                                        class="form-control">
-                                                </div>
-                                            </div>
+
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                             <button type="submit" class="btn btn-primary">Update</button>
                                         </form>

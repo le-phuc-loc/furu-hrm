@@ -36,7 +36,7 @@
                                                 <label for="location_checkin">Location checkin</label>
                                                 {{-- {{ dd($report->location_checkin) }} --}}
                                                 <input type="text" class="form-control" id="location_checkin" readonly
-                                                    value="{{ $report->location_checkin->location_name }}">
+                                                    value="{{ (isset($report->location_checkin)) ? $report->location_checkin->location_name : "" }}">
                                               </div>
                                             </div>
                                             <div class="form-row">
@@ -48,7 +48,7 @@
                                                 <div class="form-group col-md-6">
                                                   <label for="location_checkout">Location checkout</label>
                                                   <input type="text" class="form-control" id="location_checkout" readonly
-                                                    value="{{ $report->location_checkout->location_name }}">
+                                                    value="{{ (isset($report->location_checkout)) ? $report->location_checkout->location_name : "" }}">
                                                 </div>
                                               </div>
                                             <div class="form-group">

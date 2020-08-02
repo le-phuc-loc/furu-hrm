@@ -190,7 +190,7 @@
                                     <button type="submit" class="btn btn-primary">
                                         {{ __('Send') }}
                                     </button>
-                                    <button class="btn btn-primary" data-dismiss="modal">Close</button>
+                                    <button class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 </div>
                             </div>
                         </form>

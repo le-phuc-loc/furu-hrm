@@ -6,4 +6,5 @@
     <div></div>
     Reason
     {{ $reason }}
+    {{$sender->name}}
 </div>

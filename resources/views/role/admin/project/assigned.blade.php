@@ -26,8 +26,9 @@
                                 <label for="manager"
                                     class="col-md-4 col-form-label text-md-right">{{ __('Manager') }}</label>
                                 <div class="col-md-6">
+                                    {{-- {{dd($project->manager->name)}} --}}
                                     <input id="manager" type="text" class="form-control" name="manager"
-                                        value=""
+                                        value=" "
                                         required autocomplete="manager" autofocus>
                                 </div>
                             </div>

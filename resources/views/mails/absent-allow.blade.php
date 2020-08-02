@@ -1,5 +1,6 @@
 
 <p> Hello {{ $receiver->name }}</p>
 <div>
-    I allow your Absent
+    I allowed your Absent
+    {{$sender->name}}
 </div>
