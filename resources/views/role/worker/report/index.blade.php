@@ -54,23 +54,21 @@
                                                         role="button">Detail</a>
 
                                                     @if ($report->state == -1)
-                                                        <button class="btn btn-primary btn-checkout" value="{{ route('manager.report.info', ['id' => $report->id]) }}"
+                                                        <button class="btn btn-primary btn-checkout" value="{{ route('worker.report.checkout', ['id' => $report->id]) }}"
                                                             role="button">Checkout</button>
                                                     @elseif ($report->state == -2)
-                                                        <button class="btn btn-primary btn-checkin" value="{{ route('manager.report.info', ['id' => $report->id]) }}"
+                                                        <button class="btn btn-primary btn-checkin" value="{{ route('worker.report.checkin', ['id' => $report->id]) }}"
                                                             role="button">Checkin </button>
                                                     @endif
-                                                    <button class="test">asdasd</button>
                                                 </td>
                                             </tr>
                                         @endforeach
                                     @endif
                                 </tbody>
                             </table>
-                            <div id="map" style="background-color: black"></div>
+                            {{-- <div id="map" style="background-color: black"></div> --}}
 
-                            <input type="number" name="" id="lat" step="any">
-                            <input type="number" name="" id="lng" step="any">
+
                         </div>
                     </div>
                 </div>
@@ -116,52 +114,77 @@
             </div>
         </div>
         <!-- Edit REPORT MODAL -->
-        <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsMyaK7aIpFYjTIbPBafSnxxOg3SwSIIk&libraries=places&callback=initAutocomplete"
-        async defer></script>
+
         <script>
             // Note: This example requires that you consent to location sharing when
             // prompted by your browser. If you see the error "The Geolocation service
             // failed.", it means you probably did not give permission for the browser to
             // locate you.
-            var map, infoWindow;
-            function initAutocomplete() {
-              map = new google.maps.Map(document.getElementById('map'), {
-                center: {lat: -34.397, lng: 150.644},
-                zoom: 6
-              });
-              infoWindow = new google.maps.InfoWindow;
 
-              // Try HTML5 geolocation.
-              if (navigator.geolocation) {
+            $(".btn-checkin").click(function(e) {
+                e.preventDefault();
+
+                var url = $(this).val();
+                // alert(url);
+                if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function(position) {
-                  var pos = {
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude
-                  };
-                  $("#lat").val(pos.lat);
-                  $("#lng").val(pos.lng);
-
-                  infoWindow.setPosition(pos);
-                  infoWindow.setContent('Location found.');
-                  infoWindow.open(map);
-                  map.setCenter(pos);
-                }, function() {
-                  handleLocationError(true, infoWindow, map.getCenter());
+                    lat = position.coords.latitude;
+                    lng = position.coords.longitude;
+                    $('#lat').val(lat);
+                    $('#lng').val(lng);
+                    $.ajax({
+                        type:'GET',
+                        url: url,
+                        data:{
+                            lat:lat,
+                            lng:lng
+                        },
+                        success:function(data){
+                            location.reload();
+                            alert(data.success);
+                        }
+                    });
                 });
-              } else {
-                // Browser doesn't support Geolocation
-                handleLocationError(false, infoWindow, map.getCenter());
-              }
-            }
+                // alert(lat);
 
-            function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-              infoWindow.setPosition(pos);
-              infoWindow.setContent(browserHasGeolocation ?
-                                    'Error: The Geolocation service failed.' :
-                                    'Error: Your browser doesn\'t support geolocation.');
-              infoWindow.open(map);
-            }
+
+                }
+            });
+
+
+            $(".btn-checkout").click(function(e) {
+                e.preventDefault();
+
+                var url = $(this).val();
+                // alert(url);
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function(position) {
+                        lat = position.coords.latitude;
+                        lng = position.coords.longitude;
+                        $('#lat').val(lat);
+                        $('#lng').val(lng);
+                        $.ajax({
+                            type:'GET',
+                            url: url,
+                            data:{
+                                lat:lat,
+                                lng:lng
+                            },
+                            success:function(data){
+                                location.reload();
+                                alert(data.success);
+                            }
+                        });
+                    });
+
+
+
+                }
+            });
+
+
+
+
           </script>
 
 

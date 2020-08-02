@@ -17,10 +17,9 @@
                                     {{ __('Report Project') }}
                                 </div>
                                 <div class="card-body">
-                                    <form method="POST" action="">
+                                    <form method="POST" action="{{ route('worker.report.sendOrDraw', ['id' => $report->id]) }}">
                                         @csrf
 
-                                        <form>
                                             <div class="form-group">
                                                 <label for="project_name">Name User</label>
                                                 <input type="text" class="form-control" id="project_name" readonly
@@ -60,7 +59,7 @@
                                             <div class="form-group">
                                                 <label for="content">Content</label>
                                                 <textarea class="form-control"
-                                                name="content" rows="5" readonly>
+                                                name="content" rows="5">
                                                     {{ $report->content }}
                                                 </textarea>
                                             </div>
@@ -70,15 +69,15 @@
                                             @elseif ($report->state == 2)
                                                 <div> Report is allowed </div>
                                             @else
-                                                <a type="button" href="{{ route('worker.report.send', ['id' => $report->id]) }}"
+                                                <button type="submit" name="action" value="send"
                                                     class="btn btn-primary">
                                                     Send
-                                                </a>
+                                                </button>
 
-                                                <a type="button" href="{{ route('worker.report.draw', ['id' => $report->id]) }}"
+                                                <button type="submit" name="action" value="draw"
                                                     class="btn btn-primary">
                                                     Save but not send
-                                                </a>
+                                                </button>
 
 
                                             @endif

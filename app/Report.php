@@ -25,6 +25,10 @@ class Report extends Model
         return self::$REPORT_CHECKIN;
     }
 
+    public static function getReportCreated() {
+        return self::$REPORT_CREATED;
+    }
+
     public function project_user(){
         return $this->belongsTo('App\ProjectUser');
     }
@@ -39,11 +43,11 @@ class Report extends Model
 
 
     public function getTimeCheckinAttribute($value) {
-        return \Carbon\Carbon::parse($this->attributes['time_checkin'])->format('Y-m-d');
+        return \Carbon\Carbon::parse($this->attributes['time_checkin'])->format('H:i');
     }
 
     public function getTimeCheckoutAttribute($value) {
-        return \Carbon\Carbon::parse($this->attributes['time_checkout'])->format('Y-m-d');
+        return \Carbon\Carbon::parse($this->attributes['time_checkout'])->format('H:i');
     }
 
 
