@@ -97,14 +97,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label for="manager"
-                                            class="col-md-4 col-form-label text-md-right">{{ __('Manager') }}</label>
-                                        <div class="col-md-6">
-                                            <input type="number" id="manager" name="manager" min="0" max="100"
-                                                class="form-control">
-                                        </div>
-                                    </div>
+
 
                                 </div>
 
@@ -184,14 +177,7 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="form-group row">
-                                                <label for="manager"
-                                                    class="col-md-4 col-form-label text-md-right">{{ __('Manager') }}</label>
-                                                <div class="col-md-6">
-                                                    <input type="number" id="update-manager" name="manager"
-                                                        class="form-control">
-                                                </div>
-                                            </div>
+
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                             <button type="submit" class="btn btn-primary">Update</button>
                                         </form>

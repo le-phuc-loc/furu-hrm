@@ -101,7 +101,7 @@ class ProjectController extends Controller
     }
 
     public function assign($id) {
-        $project = Project::with(['location', 'managed', 'users'])->find($id);
+        $project = Project::with(['location', 'manager', 'users'])->find($id);
         $managers = User::where('role', 'manager')->get();
         $workers = User::with('projects')
             ->where('role', 'worker')

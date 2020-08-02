@@ -45,7 +45,6 @@
                                             <td> {{ $project->to_date }} </td>
                                             <td> {{ $project->location->location_name }} </td>
                                             <td>
-
                                             </td>
                                         </tr>
                                     @endforeach

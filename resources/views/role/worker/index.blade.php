@@ -17,12 +17,18 @@
                         Projects
                 </a>
             </li>
-            {{-- <li class="nav-item">
-                <a href="{{ route('absent') }}" class="nav-link">
+            <li class="nav-item">
+                <a href="{{ route('worker.report.index') }}" class="nav-link">
                     <i class="nav-icon fas fa-book"></i>
-                        Absent
+                        Report
                 </a>
-            </li> --}}
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('worker.absent.index') }}" class="nav-link">
+                    <i class="nav-icon fas fa-book"></i>
+                        Absent Application
+                </a>
+            </li>
         </ul>
 
          <!-- INFORMATION USER MODAL -->

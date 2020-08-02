@@ -23,6 +23,16 @@
     <link rel="stylesheet" href="/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <!-- Daterange picker -->
     <link rel="stylesheet" href="/plugins/daterangepicker/daterangepicker.css">
+    <!-- summernote -->
+    <link rel="stylesheet" href="/plugins/summernote/summernote-bs4.min.css">
+
+
+    <!-- Scripts -->
+    <script src="/plugins/jquery/jquery.min.js"></script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="/plugins/jquery-ui/jquery-ui.min.js"></script>
+
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Fonts -->
@@ -43,6 +53,8 @@
         async defer></script>
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+
     <style>
         #map {
             width: 100%;
@@ -126,11 +138,6 @@
                 @yield('sidebar-menu')
                 <!-- Sidebar Menu -->
 
-                <!-- /.sidebar-menu -->
-                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-
-
-                </div>
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
 
                     <div class="info">

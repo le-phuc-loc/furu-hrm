@@ -1,7 +1,5 @@
 @extends('layouts.side_bar')
-
 @section('sidebar-menu')
-
     <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
@@ -31,8 +29,8 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('admin.report.index') }} " class="nav-link ">
-                    <i class="nav-icon fas fa-tachometer-alt"> </i>
+                <a href="{{ route('admin.report.index')}} " class="nav-link ">
+                    <i class="nav-icon fas fa-address-book"> </i>
                     <p>
                         Dashboard
                     </p>

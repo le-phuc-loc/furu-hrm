@@ -24,7 +24,6 @@ class UserController extends Controller
         $user->email = $req->email;
         $user->password = bcrypt($req->name) ;
         $user->role = $req->role;
-        $user->manager = $req->manager;
         $user->save();
 
         return redirect()->route('admin.user.index');
@@ -40,7 +39,6 @@ class UserController extends Controller
         $user = User::find($id);
         $user->name = $req->name;
         $user->role = $req->role;
-        $user->manager = $req->manager;
         $user->save();
         // dd($user);
         return redirect()->route('admin.user.index');

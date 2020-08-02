@@ -36,12 +36,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group([
     'namespace' => 'Admin',
     'prefix' => 'admin',
-
 ],
     function() {
     Route::group([
         'prefix' => 'user',
-
     ], function() {
         Route::get('/', 'UserController@index')->name('admin.user.index');
         Route::get('/info/{id}', 'UserController@show')->name('admin.user.show');
@@ -179,26 +177,16 @@ Route::group(['namespace' => 'Worker', 'prefix' => 'worker'], function() {
     Route::group(['prefix' => 'project'], function() {
         Route::get('/', 'ProjectController@index')->name('worker.project.index');
         Route::get('/info/{id}', 'ProjectController@show')->name('admin.user.show');
-
-
-        Route::get('/create', 'ProjectController@create')->name('admin.user.create');
-        Route::post('/create', 'ProjectController@store')->name('admin.user.store');
-
-
-        Route::get('/update/{id}', 'ProjectController@edit')->name('admin.user.edit');
-        Route::post('/update/{id}', 'ProjectController@update')->name('admin.user.update');
-
-        Route::get('/delete/{id}', 'ProjectController@delete')->name('admin.user.delete');
     });
 
     Route::group(['prefix' => 'report'], function () {
-        Route::get('/', 'ReportController@index')->name('report.index');
+        Route::get('/', 'ReportController@index')->name('worker.report.index');
 
-        Route::get('/info/{id}', 'ReportController@show')->name('report.info');
+        Route::get('/info/{id}', 'ReportController@show')->name('worker.report.info');
 
 
         Route::get('/create/{id}', 'ReportController@create')->name('report.create');
-        Route::post('/create/{id}', 'ReportController@store')->name('report.store');
+        Route::post('/create', 'ReportController@store')->name('worker.report.store');
 
 
         Route::get('/update/{id}', 'ReportController@edit')->name('report.edit');
@@ -206,34 +194,25 @@ Route::group(['namespace' => 'Worker', 'prefix' => 'worker'], function() {
 
         Route::get('/delete/{id}', 'ReportController@delete')->name('report.delete');
 
-        Route::post('/checkin', 'ReportController@checkin')->name('report.checkin');
-        Route::post('/checkout', 'ReportController@checkout')->name('report.checkout');
+        Route::get('/checkin/{id}', 'ReportController@checkin')->name('worker.report.checkin');
+        Route::get('/checkout/{id}', 'ReportController@checkout')->name('worker.report.checkout');
 
-        Route::get('/send', 'ReportController@send')->name('report.send');
-        Route::get('/draw', 'ReportController@draw')->name('report.draw');
+        Route::post('/sendOrDraw/{id}', 'ReportController@sendOrDraw')->name('worker.report.sendOrDraw');
 
     });
 
     Route::group(['prefix' => 'absent'], function () {
-        Route::get('/', 'ReportController@index')->name('report.index');
+        Route::get('/', 'AbsentController@index')->name('worker.absent.index');
 
-        Route::get('/info/{id}', 'ReportController@show')->name('report.info');
+        Route::get('/info/{id}', 'AbsentController@show')->name('worker.absent.info');
 
-
-        Route::get('/create/{id}', 'ReportController@create')->name('report.create');
-        Route::post('/create/{id}', 'ReportController@store')->name('report.store');
+        Route::post('/create', 'AbsentController@store')->name('worker.absent.store');
 
 
-        Route::get('/update/{id}', 'ReportController@edit')->name('report.edit');
-        Route::post('/update/{id}', 'ReportController@update')->name('report.update');
+        Route::get('/update/{id}', 'AbsentController@edit')->name('worker.absent.edit');
+        Route::post('/update/{id}', 'AbsentController@update')->name('worker.absent.update');
 
-        Route::get('/delete/{id}', 'ReportController@delete')->name('report.delete');
-
-        Route::post('/checkin', 'ReportController@checkin')->name('report.checkin');
-        Route::post('/checkout', 'ReportController@checkout')->name('report.checkout');
-
-        Route::get('/send', 'ReportController@send')->name('report.send');
-        Route::get('/draw', 'ReportController@draw')->name('report.draw');
+        Route::get('/delete/{id}', 'AbsentController@delete')->name('worker.absent.delete');
 
     });
 });
