@@ -247,10 +247,8 @@
                         $("#update-content").val(result.absent.content);
                         $("#update-date-off").val(result.absent.date_off);
                         $("#update-number-off").val(result.absent.number_off);
-
                         $("#absent-update-form").attr('action', "/worker/absent/update/" +
                             result.absent.id);
-
 
                     }
                 });

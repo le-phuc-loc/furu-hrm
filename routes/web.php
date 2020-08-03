@@ -31,6 +31,11 @@ Route::pattern('report_id', '[0-9]+');
 
 Auth::routes();
 
+
+//register admin
+Route::get('/admin/register', 'Admin\RegisterAdminController@index')->name('register.admin');
+Route::post('/admin/register', 'Admin\RegisterAdminController@register')->name('register.admin.post');
+
 // admin
 Route::group([
     'namespace' => 'Admin',

@@ -40,19 +40,26 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
-        $this->middleware('adminExist')->except('logout');
+        $this->middleware('adminExist');
+
     }
 
     public function username(){
         return 'name';
     }
 
-    public function login(Request $request){
+    // public function login(Request $request){
 
-        $validator=Validator::make($request->all(),[
-            'name'=>['required','exists:users'],
-            'password'=>['required','between:8,20']
-        ]);
-
-    }
+    //     $validatedData = $request->validate( [
+    //         'name' => ['required', 'string', 'max:255'],
+    //         'password' => ['required', 'string', 'min:8'],
+    //     ]);
+    //     if (Auth::attempt(['name' => $name, 'password' => $password])) {
+    //         // Success
+    //         return redirect()->intended('/');
+    //     } else {
+    //         // Go back on error (or do what you want)
+    //         return redirect()->back();
+    //     }
+    // }
 }
