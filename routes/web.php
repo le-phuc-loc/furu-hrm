@@ -32,7 +32,6 @@ Route::pattern('report_id', '[0-9]+');
 Auth::routes();
 
 // admin
-Route::get('/home', 'HomeController@index')->name('home');
 Route::group([
     'namespace' => 'Admin',
     'prefix' => 'admin',

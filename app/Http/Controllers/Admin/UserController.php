@@ -17,13 +17,21 @@ class UserController extends Controller
         ]);
     }
 
-    public function store(Request $req) {
+    public function store(Request $request) {
         // dd($req->input());
+        $validatedData = $request->validate(
+            [
+                'name' => ['required', 'string', 'max:255', 'unique:users'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'password' => ['required', 'string', 'min:8'],
+            ]
+        );
+
         $user = new User();
-        $user->name = $req->name;
-        $user->email = $req->email;
-        $user->password = bcrypt($req->name) ;
-        $user->role = $req->role;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->name) ;
+        $user->role = $request->role;
         $user->save();
 
         return redirect()->route('admin.user.index');
@@ -34,11 +42,18 @@ class UserController extends Controller
         return response()->json(['user' => $user], 200);
     }
 
-    public function update(Request $req, $id) {
+    public function update(Request $request, $id) {
 
+        $validatedData = $request->validate(
+            [
+                'name' => ['required', 'string', 'max:255', 'unique:users'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'password' => ['required', 'string', 'min:8'],
+            ]
+        );
         $user = User::find($id);
-        $user->name = $req->name;
-        $user->role = $req->role;
+        $user->name = $request->name;
+        $user->role = $request->role;
         $user->save();
         // dd($user);
         return redirect()->route('admin.user.index');

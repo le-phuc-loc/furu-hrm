@@ -1,4 +1,4 @@
-@extends('role.manager.index')
+@extends('role.worker.index')
 
 @section('content')
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
@@ -247,10 +247,8 @@
                         $("#update-content").val(result.absent.content);
                         $("#update-date-off").val(result.absent.date_off);
                         $("#update-number-off").val(result.absent.number_off);
-
                         $("#absent-update-form").attr('action', "/worker/absent/update/" +
                             result.absent.id);
-
 
                     }
                 });

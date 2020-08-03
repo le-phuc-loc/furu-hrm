@@ -45,7 +45,7 @@
     <div class="modal fade" id="modal-create-project" >
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-
+                <form method="POST" action="{{ route('admin.project.store') }}">
                 <!-- Modal Header -->
                 <div class="modal-header">
                     <h4 class="modal-title">Create Project</h4>
@@ -54,7 +54,7 @@
 
                 <!-- Modal body -->
                 <div class="modal-body">
-                    <form method="POST" action="{{ route('admin.project.store') }}">
+
                         @csrf
 
                         <div class="form-group row">
@@ -67,9 +67,9 @@
                                     autocomplete="project_name" autofocus>
 
                                 @error('project_name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                                 @enderror
                             </div>
                         </div>
@@ -82,6 +82,11 @@
                                     class="form-control @error('project_name') is-invalid @enderror"
                                     name="number_worker" min="1" >
                             </div>
+                            @error('project_name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="form-group row">
                             <label for="project-from-date"
@@ -140,21 +145,18 @@
 
                         </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-secondary">
-                                    {{ __('Create') }}
-                                </button>
-                            </div>
-                        </div>
 
-                    </form>
+
+
                 </div>
                 <!-- Modal footer -->
                 <div class="modal-footer">
+                    <button type="submit" class="btn btn-secondary">
+                        {{ __('Create') }}
+                    </button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
-
+            </form>
             </div>
         </div>
     </div>
