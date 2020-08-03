@@ -18,7 +18,7 @@ class ReportTableSeeder extends Seeder
             'location_check_in'=>'3',
             'location_check_out'=>'3',
             'content'=>'Come to work but nothing to do',
-            'project_user_id'=>'1',
+            'project_user_id'=>'12',
             'state' => '1',
         ]);
         DB::table('reports')->insert([
@@ -27,7 +27,7 @@ class ReportTableSeeder extends Seeder
             'location_check_in'=>'4',
             'location_check_out'=>'4',
             'content'=>'Find Gods but nothing to see',
-            'project_user_id'=>'2',
+            'project_user_id'=>'13',
             'state' => '2',
         ]);
         DB::table('reports')->insert([
@@ -36,7 +36,7 @@ class ReportTableSeeder extends Seeder
             'location_check_in'=>'4',
             'location_check_out'=>'4',
             'content'=>'Fly with Aliens',
-            'project_user_id'=>'3',
+            'project_user_id'=>'14',
             'state' => '3',
         ]);
     }

@@ -55,18 +55,18 @@ class ProjectTableSeeder extends Seeder
             'updated_at'=>now(),
             'time_checkin' => '7:00',
             'time_checkout' => '17:30',
-            'managed'=>'1'
+            'managed'=>'6'
         ]);
         DB::table('projects')->insert([
             'project_name'=>'Space Station',
-            'from_date'=>'2022-01-01',
-            'to_date'=>'2022-12-30',
+            'from_date'=>'2020-01-01',
+            'to_date'=>'2020-7-7',
             'location_id'=>'4',
             'created_at'=>now(),
             'updated_at'=>now(),
             'time_checkin' => '7:00',
             'time_checkout' => '17:30',
-            'managed'=>'1'
+            'managed'=>'6'
         ]);
     }
 }

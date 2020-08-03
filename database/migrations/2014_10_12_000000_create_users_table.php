@@ -21,7 +21,6 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->string('role')->nullable()->default('worker');
-            $table->integer('manager')->nullable();
             $table->timestamps();
         });
     }

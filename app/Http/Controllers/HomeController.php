@@ -19,7 +19,7 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
-    public function redirectByRole($role, $path) {
+    public function redirectByRole($role, $path = "index") {
         // dd($role);
 
         $pathView = "role/".$role."/".$path;
@@ -34,17 +34,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if (!Auth::check()) {
-            return view('/login');
-        }
-
-        if (Auth::user()->role == null) {
-            Auth::user()->role = "worker";
-            Auth::user()->save();
-        }
-
-        return view($this->redirectByRole(Auth::user()->role, 'index'));
-
+        return view($this->redirectByRole(Auth::user()->role));
     }
 
 }

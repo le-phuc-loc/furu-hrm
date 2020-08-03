@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Report extends Model
 {
-
+    protected static $REPORT_CREATED = -2;
     protected static $REPORT_CHECKIN = -1;
     protected static $REPORT_DRAW = 0;
     protected static $REPORT_WAITTING = 1;
@@ -25,17 +25,31 @@ class Report extends Model
         return self::$REPORT_CHECKIN;
     }
 
+    public static function getReportCreated() {
+        return self::$REPORT_CREATED;
+    }
+
     public function project_user(){
         return $this->belongsTo('App\ProjectUser');
     }
-    public function location_check_in()
+    public function location_checkin()
     {
         return $this->belongsTo('App\Location','location_check_in');
     }
-    public function location_check_out()
+    public function location_checkout()
     {
         return $this->belongsTo('App\Location','location_check_out');
     }
+
+
+    public function getTimeCheckinAttribute($value) {
+        return \Carbon\Carbon::parse($this->attributes['time_checkin'])->format('H:i');
+    }
+
+    public function getTimeCheckoutAttribute($value) {
+        return \Carbon\Carbon::parse($this->attributes['time_checkout'])->format('H:i');
+    }
+
 
 
 

@@ -10,6 +10,9 @@ use \App\User;
 use \App\Location;
 use Auth;
 use \Carbon\Carbon;
+use Mail;
+use \App\Mail\ReportMail;
+use \App\Jobs\ProcessReportMail;
 
 
 class ReportController extends Controller
@@ -23,17 +26,19 @@ class ReportController extends Controller
     {
         //
         // dd(Report::getReportAllow());
-        $project = Project::find($id);
-        if (count(Report::whereDate('created_at', '=', Carbon::now())->get() ) > 0) {
-            $report = Report::whereDate('created_at', '=', Carbon::now())->first();
+        $project_user = ProjectUser::where('user_id', Auth::user()->id)
+            ->where('project_id', $id)->first();
+        // dd($project_user->project);
+
+        //check report is already exist
+        if (count(Report::whereDate('created_at', '=', Carbon::now())
+                ->where('project_user_id', $project_user->id)->get()) > 0) {
+            $report = Report::whereDate('created_at', '=', Carbon::now())
+                ->where('project_user_id', $project_user->id)->first();
         }
         else {
             $report = new Report();
-            $project_user = ProjectUser::where('project_id', $project->id)
-            ->where('user_id', Auth::user()->id)
-            ->get()->first()->id;
-
-            $report->project_user_id = $project_user;
+            $report->project_user_id = $project_user->id;
             $report->save();
         }
         // dd($report->state);
@@ -41,7 +46,7 @@ class ReportController extends Controller
         // var_dump(ProjectUser::all()->first()->reports()->first());
         // return Report::all()->first()->project_user()->first()->project;
         return view('/report/index', [
-            'project' => $project,
+            'project' => $project_user->project,
             'report' => $report,
         ]);
     }
@@ -56,18 +61,16 @@ class ReportController extends Controller
         //
 
 
-        $project = Project::find($request->id);
-        $obj = Report::whereDate('created_at', '=', Carbon::now())->first();
+        $project_user = ProjectUser::where('user_id', Auth::user()->id)
+            ->where('project_id', $id)->first();
+        $obj = Report::whereDate('created_at', '=', Carbon::now())
+            ->where('project_user_id', $project_user->id)
+            ->first();
         // dd($obj);
         $validatedData = $request->validate([
-            'time_checkin' => 'date_format:H:i|after:'.$project->time_checkin,
-            'time_checkin' => 'date_format:H:i|before:'.$project->time_checkout,
+            'time_checkin' => 'date_format:H:i|after:'.$project_user->project->time_checkin,
+            'time_checkin' => 'date_format:H:i|before:'.$project_user->project->time_checkout,
         ]);
-
-
-        // $obj = Report::find($id);
-
-
 
         $obj->time_checkin = Carbon::now()->format('H:i');
 
@@ -85,13 +88,15 @@ class ReportController extends Controller
 
 
     public function checkout(Request $request, $id) {
+        $project_user = ProjectUser::where('user_id', Auth::user()->id)
+            ->where('project_id', $id)->first();
+        $obj = Report::whereDate('created_at', '=', Carbon::now())
+        ->where('project_user_id', $project_user->id)->first();
 
-        $obj = Report::whereDate('created_at', '=', Carbon::now())->first();
-        $project = Project::find($id);
 
         $validatedData = $request->validate([
-            'time_checkout' => 'date_format:H:i|after:'.$project->time_checkin,
-            'time_checkout' => 'date_format:H:i|before:'.$project->time_checkout,
+            'time_checkout' => 'date_format:H:i|after:'.$project_user->project->time_checkin,
+            'time_checkout' => 'date_format:H:i|before:'.$project_user->project->time_checkout,
             'time_checkout' => 'date_format:H:i|after:'.$obj->time_checkin,
         ]);
         $obj->time_checkout = Carbon::now()->format('H:i');
@@ -107,22 +112,36 @@ class ReportController extends Controller
         return redirect(route('report.index', ['id' => $id]));
 
     }
-    public function create($id)
+    public function create($id, $report_id)
     {
         $project = Project::find($id);
-        $obj = Report::with('project_user')->find($id);
+        $obj = Report::with('project_user')->find($report_id);
         return view('/report/create', [
             'report' => $obj,
-            'project_user' => $project_user,
             'project' => $project,
         ]);
     }
 
-    public function store(Request $request, $id) {
-        $obj = Report::whereDate('created_at', '=', Carbon::now())->first();
-        $obj->content = $request->content;
-        $obj->state = Report::getReportDraw();
-        $obj->save();
+    public function store(Request $request, $id, $report_id) {
+        switch ($request->input('action')) {
+            case 'store':
+                $report = Report::find($report_id);
+                $report->content = $request->content;
+                $report->state = Report::getReportDraw();
+                $report->save();
+                return redirect(route('report.draw', [
+                    'id' => $id,
+                ]));
+            break;
+
+            case 'review':
+                $report = Report::find($report_id);
+                $report->content = $request->content;
+                $report->state = Report::getReportWaitting();
+                $report->save();
+                return 'review';
+            break;
+        }
         return redirect(route('report.index', ['id' => $id]));
     }
 
@@ -135,17 +154,26 @@ class ReportController extends Controller
     public function draw(Request $request, $id)
     {
         //
-        $obj = Report::find($id);
-        $obj->content = $request->content;
-        $obj->state = Report::getReportDraw();
+        $project_user = ProjectUser::where('user_id', Auth::user()->id)
+            ->where('project_id', $id)->first();
+        $reports = Report::where('project_user_id', $project_user->id)
+            ->where('state', Report::getReportDraw())
+            ->get();
+        return view('report/draw', [
+            'reports' => $reports,
+
+        ]);
     }
 
     public function send(Request $request, $id)
     {
         //
-        $obj = Report::find($id);
-        $obj->content = $request->content;
-        $obj->state = Report::getReportWaitting();
+        $receivers = ['loclion17@gmail.com', 'locb1605396@student.ctu.edu.vn'];
+        foreach ($receivers as $receiver) {
+            dispatch(new ProcessReportMail($receiver));
+        }
+
+        return "mail sent";
     }
 
     /**
@@ -173,14 +201,13 @@ class ReportController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($report_id)
     {
         //
-        $obj = Report::with('project_user', 'project')->find($id);
-        return view('report/edit', [
+        $obj = Report::find($report_id);
+        // dd($obj);
+        return view('report.update', [
             'report' => $obj,
-            'project_user' => $project_user,
-            'project' => $project,
         ]);
     }
 
