@@ -35,6 +35,7 @@ Auth::routes();
 Route::group([
     'namespace' => 'Admin',
     'prefix' => 'admin',
+    'middleware'=>'admin',
 ],
     function() {
     Route::group([
@@ -116,7 +117,8 @@ Route::group([
 
 Route::group([
     'namespace' => 'Manager',
-    'prefix' => 'manager'
+    'prefix' => 'manager',
+    'middleware'=>'manager',
 ], function() {
     Route::group(['prefix' => 'user'], function() {
         Route::get('/', 'UserController@index')->name('manager.user.index');
@@ -172,7 +174,7 @@ Route::group([
 
 
 // worker
-Route::group(['namespace' => 'Worker', 'prefix' => 'worker'], function() {
+Route::group(['namespace' => 'Worker', 'prefix' => 'worker','middleware'=>'worker'], function() {
     Route::group(['prefix' => 'project'], function() {
         Route::get('/', 'ProjectController@index')->name('worker.project.index');
         Route::get('/info/{id}', 'ProjectController@show')->name('admin.user.show');
@@ -186,10 +188,6 @@ Route::group(['namespace' => 'Worker', 'prefix' => 'worker'], function() {
 
         Route::get('/create/{id}', 'ReportController@create')->name('report.create');
         Route::post('/create', 'ReportController@store')->name('worker.report.store');
-
-
-        Route::get('/update/{id}', 'ReportController@edit')->name('report.edit');
-        Route::post('/update/{id}', 'ReportController@update')->name('report.update');
 
         Route::get('/delete/{id}', 'ReportController@delete')->name('report.delete');
 
