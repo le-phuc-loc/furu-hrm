@@ -5,17 +5,11 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-<<<<<<< HEAD:resources/views/user/admin/createUser.blade.php
-                <div class="card-header d-flex justify-content-between align-items-end">
-                    {{ __('Create User') }}
-
-=======
                 <div class="card-header d-flex justify-content-between align-items-center">
                     {{ __('Project Info') }}
                     <button class="btn btn-secondary justify-content-end">
                         <a class="text-white" href={{ route('project.create') }}>Create</a>
                     </button>
->>>>>>> ed5ec05dbf78563d2be7e20c533f3dd0134ebb06:resources/views/project/info.blade.php
                 </div>
 
                 <div class="card-body">

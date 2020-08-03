@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 
 class ProjectUser extends Pivot
 {
+
+    protected $table = "project_user";
+
     public function reports(){
         return $this->hasMany('App\Report');
     }

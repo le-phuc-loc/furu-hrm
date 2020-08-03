@@ -17,7 +17,7 @@ class UserController extends Controller
             $users = User::where('manager', Auth::user()->id)->get();
         }
 
-        return view('user/index', [
+        return view('role/admin/user/index', [
             'users' => $users,
         ]);
     }
@@ -50,8 +50,6 @@ class UserController extends Controller
 
     public function edit($id) {
         $user = User::find($id);
-
-
         return response()->json(['user' => $user], 200);
     }
 

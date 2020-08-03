@@ -64,17 +64,13 @@ class ReportController extends Controller
         $project_user = ProjectUser::where('user_id', Auth::user()->id)
             ->where('project_id', $id)->first();
         $obj = Report::whereDate('created_at', '=', Carbon::now())
-        ->where('project_user_id', $project_user->id)->first();
+            ->where('project_user_id', $project_user->id)
+            ->first();
         // dd($obj);
         $validatedData = $request->validate([
             'time_checkin' => 'date_format:H:i|after:'.$project_user->project->time_checkin,
             'time_checkin' => 'date_format:H:i|before:'.$project_user->project->time_checkout,
         ]);
-
-
-        // $obj = Report::find($id);
-
-
 
         $obj->time_checkin = Carbon::now()->format('H:i');
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -16,6 +17,14 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
+    public function redirectByRole($role, $path = "index") {
+        // dd($role);
+
+        $pathView = "role/".$role."/".$path;
+        return $pathView;
+
+    }
+
     /**
      * Show the application dashboard.
      *
@@ -23,7 +32,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view($this->redirectByRole(Auth::user()->role));
     }
 
 }

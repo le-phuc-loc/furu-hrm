@@ -11,7 +11,7 @@ class Project extends Model
         return $this->belongsToMany('App\User')->withTimestamps()->using('App\ProjectUser');
     }
 
-    public function managed(){
+    public function manager(){
         return $this->belongsTo('App\User');
     }
 
@@ -20,8 +20,19 @@ class Project extends Model
         return $this->BelongsTo('App\Location');
     }
 
-    public function report() {
-        return $this->hasOneThrough('\App\Report', '\App\ProjectUser');
+    public function reports() {
+        return $this->hasManyThrough(
+            '\App\Report',
+            '\App\ProjectUser',
+            'project_id',
+            'project_user_id',
+            'id',
+            'id'
+        );
+    }
+
+    public function project_user() {
+        return $this->hasMany('\App\ProjectUser');
     }
 
     public function getFromDateAttribute($value) {
