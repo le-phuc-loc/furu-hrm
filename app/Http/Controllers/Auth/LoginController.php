@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
+use Auth;
+
 
 class LoginController extends Controller
 {
@@ -37,11 +41,18 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
         $this->middleware('adminExist')->except('logout');
-
     }
 
     public function username(){
         return 'name';
+    }
+
+    public function login(Request $request){
+
+        $validator=Validator::make($request->all(),[
+            'name'=>['required','exists:users'],
+            'password'=>['required','between:8,20']
+        ]);
 
     }
 }
