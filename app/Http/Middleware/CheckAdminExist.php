@@ -19,7 +19,7 @@ class CheckAdminExist
 
         // dd($user);
         if(count($user)<=0){
-            return redirect()->route('register');
+            return redirect()->route('register.admin');
         }
         return $next($request);
     }

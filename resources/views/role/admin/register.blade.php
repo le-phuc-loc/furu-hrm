@@ -5,10 +5,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+                <div class="card-header">{{ __('Register Admin') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('register.admin.post') }}">
                         @csrf
 
                         <div class="form-group row">
@@ -39,7 +39,13 @@
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Role') }}</label>
 
+                            <div class="col-md-6">
+                                <input id="role" type="text" name="role" readonly class="form-control" value="admin">
+                            </div>
+                        </div>
 
 
 
