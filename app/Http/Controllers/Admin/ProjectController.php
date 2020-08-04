@@ -30,7 +30,8 @@ class ProjectController extends Controller
             'project_to_date' => 'date|after:project_from_date',
             'time_checkin' => 'date_format:H:i',
             'time_checkout' => 'date_format:H:i|after:time_checkin',
-        ]);
+            ]
+        );
 
         $obj = new Project();
         $obj->project_name = $request->project_name;
