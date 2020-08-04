@@ -10,31 +10,31 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
-    {{-- <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css"> --}}
+    <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Tempusdominus Bootstrap 4 -->
-    <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <link rel="stylesheet" href="/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
     <!-- iCheck -->
-    <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <link rel="stylesheet" href="/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <!-- JQVMap -->
-    <link rel="stylesheet" href="plugins/jqvmap/jqvmap.min.css">
+    <link rel="stylesheet" href="/plugins/jqvmap/jqvmap.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="/dist/css/adminlte.min.css">
     <!-- overlayScrollbars -->
-    <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <link rel="stylesheet" href="/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <!-- Daterange picker -->
-    <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="/plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
-    <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
+    <link rel="stylesheet" href="/plugins/summernote/summernote-bs4.min.css">
 
 
     <!-- Scripts -->
-    <script src="plugins/jquery/jquery.min.js"></script>
+    <script src="/plugins/jquery/jquery.min.js"></script>
     {{-- <script src="{{ asset('js/all.js') }}" defer></script> --}}
     <script src="{{ asset('js/app.js') }}" defer></script>
     <!-- jQuery UI 1.11.4 -->
-    <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+    <script src="/plugins/jquery-ui/jquery-ui.min.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> --}}
@@ -46,7 +46,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    {{-- <link href="{{ asset('css/all.css') }}" rel="stylesheet"> --}}
+    <link href="{{ asset('css/all.css') }}" rel="stylesheet">
 
 
     <style>
@@ -193,7 +193,7 @@
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 
     <!-- Bootstrap 4 -->
-    {{-- <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+     <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- ChartJS -->
     <script src="/plugins/chart.js/Chart.min.js"></script>
     <!-- Sparkline -->
@@ -202,12 +202,12 @@
     <script src="/plugins/jqvmap/jquery.vmap.min.js"></script>
     <script src="/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
     <!-- jQuery Knob Chart --> --}}
-    {{-- <script src="/plugins/jquery-knob/jquery.knob.min.js"></script> --}}
+    <script src="/plugins/jquery-knob/jquery.knob.min.js"></script>
     <!-- daterangepicker -->
-    {{-- <script src="plugins/moment/moment.min.js"></script>
-    <script src="plugins/daterangepicker/daterangepicker.js"></script> --}}
+    <script src="/plugins/moment/moment.min.js"></script>
+    <script src="/plugins/daterangepicker/daterangepicker.js"></script>
     <!-- AdminLTE App -->
-    {{-- <script src="dist/js/adminlte.js"></script> --}}
+    <script src="/dist/js/adminlte.js"></script>
 
     <script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsMyaK7aIpFYjTIbPBafSnxxOg3SwSIIk&libraries=places&callback=initAutocomplete"
