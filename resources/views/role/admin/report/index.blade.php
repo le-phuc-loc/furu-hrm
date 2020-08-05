@@ -26,9 +26,8 @@
                         <div class="dropdown">
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-
                                 Choose project
-                            </button>
+                            </button>             
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 @if (count($projects) <= 0)
                                     <div class="dropdown-item"> Don't have any project </div>
@@ -40,11 +39,20 @@
                                     @endforeach
                                 @endif
 
-                            </div>
+                            </div>                        
                         </div>
                     </div>
+                    
                     <div class="card-body">
-                        <div class="table-responsive">
+                        <div class="table-responsive"> 
+                        <p>
+                            <form action="action_page.php" >
+                                Select a month   :                           
+                                <input type="month" name=" month" >                               
+                                <input type="submit" >
+                                
+                            </form>
+                            </p>
                             <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
@@ -74,11 +82,8 @@
                                                     </td>
                                                     <td> {{ $user->absentApplication->pluck('number_off')->sum() }} </td>
                                                     {{-- <td> {{ $user->absentApplication()}} </td> --}}
-                                                    <td>
-                                                        {{-- {{
-                                                            $user->reports->selectRaw
-                                                        }} --}}
-                                                    </td>
+                                                    <td> {{ $user->reports->pluck('time_working')->sum() }} </td>
+                                                    {{-- <td> {{ $user->reports()}} </td> --}}
 
 
                                                 </tr>

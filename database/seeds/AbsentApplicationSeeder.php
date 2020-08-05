@@ -30,7 +30,7 @@ class AbsentApplicationSeeder extends Seeder
         ]);
         DB::table('absent_applications')->insert([
             'state'=>'2',
-            'content'=>'NGhỉ',
+            'content'=>'4',
             'number_off'=>'7',
             'user_id'=>'9',
             'created_at'=>now(),

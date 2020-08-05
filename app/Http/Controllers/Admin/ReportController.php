@@ -13,6 +13,15 @@ use \App\Project;
 class ReportController extends Controller
 {
     //
+    public function totalTime(){
+        $data = DB::table('reports')->get()->toArray();
+       
+        $time_checkout= hour('H:i:s', $date) ;
+        $time_checkin = hour('H:i:s') ; 
+                    
+        echo $time_working = (strtotime($time_checkout) - strtotime($time_checkin)) / (60 * 60 * 24);
+    
+    }  
     public function index(Request $request) {
 
         // dd(User::with(['absentApplication', 'reports'])->get());
@@ -23,7 +32,7 @@ class ReportController extends Controller
 
         }
         $projects = Project::all();
-
+        
         // dd(
         //     DB::table('reports')
         //     ->join('project_user', 'reports.project_user_id', "=", "project_user.id")
@@ -34,7 +43,7 @@ class ReportController extends Controller
         //     ->get()
 
         // );
-
+            
         // dd(
         //     DB::table('project_user')
         //         ->

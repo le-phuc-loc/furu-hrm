@@ -90,6 +90,7 @@ Route::group([
         Route::post('/update/{id}', 'ReportController@update')->name('report.update');
 
         Route::get('/delete/{id}', 'ReportController@delete')->name('report.delete');
+        Route::get('/delete/{id}', 'ReportController@delete')->name('report');
 
     });
 
@@ -217,5 +218,3 @@ Route::group(['namespace' => 'Worker', 'prefix' => 'worker'], function() {
 
 
 // Route::get('/user', 'UserController@index')->name('user.index');
-
-

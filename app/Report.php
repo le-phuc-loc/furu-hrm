@@ -50,7 +50,7 @@ class Report extends Model
     public function getTimeCheckoutAttribute($value) {
         return \Carbon\Carbon::parse($this->attributes['time_checkout'])->format('H:i');
     }
-
+    
 
 
 

@@ -45,7 +45,7 @@
     <div class="modal fade" id="modal-create-project" >
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-
+                <form method="POST" action="{{ route('admin.project.store') }}">
                 <!-- Modal Header -->
                 <div class="modal-header">
                     <h4 class="modal-title">Create Project</h4>
@@ -54,7 +54,7 @@
 
                 <!-- Modal body -->
                 <div class="modal-body">
-                    <form method="POST" action="{{ route('admin.project.store') }}">
+
                         @csrf
 
                         <div class="form-group row">
@@ -67,30 +67,40 @@
                                     autocomplete="project_name" autofocus>
 
                                 @error('project_name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                                 @enderror
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="number"
+                            <label for="number_worker"
                                 class="col-md-4 col-form-label text-md-right">{{ __('Number') }}</label>
                             <div class="col-md-6">
-                                <input id="name" type="number"
-                                    class="form-control @error('project_name') is-invalid @enderror"
+                                <input id="number_worker" type="number"
+                                    class="form-control @error('number_worker') is-invalid @enderror"
                                     name="number_worker" min="1" >
                             </div>
+                            @error('number_worker')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="form-group row">
-                            <label for="project-from-date"
+                            <label for="from_date"
                                 class="col-md-4 col-form-label text-md-right">{{ __('From date') }}</label>
 
                             <div class="col-md-6">
-                                <input id="project-from-date" type="date" class="form-control"
+                                <input id="from_date" type="date" class="form-control @error('from_date') is-invalid @enderror"
                                     name="from_date">
                             </div>
+                            @error('from_date')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
 
                         <div class="form-group row">
@@ -98,25 +108,40 @@
                                 class="col-md-4 col-form-label text-md-right">{{ __('To date') }}</label>
 
                             <div class="col-md-6">
-                                <input id="project-to-date" type="date" class="form-control"
+                                <input id="project-to-date" type="date" class="form-control @error('to_date') is-invalid @enderror"
                                     name="to_date">
                             </div>
+                            @error('to_date')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="form-group row">
                             <label for="project-from-date"
                                 class="col-md-4 col-form-label text-md-right">{{ __('Time checkin') }}</label>
 
                             <div class="col-md-6">
-                                <input type="time" name="time_checkin">
+                                <input type="time" name="time_checkin" class="form-control @error('time_checkin') is-invalid @enderror" name="time_checkin">
                             </div>
+                            @error('time_checkin')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="form-group row">
                             <label for="project-from-date"
                                 class="col-md-4 col-form-label text-md-right">{{ __('Time checkout') }}</label>
 
                             <div class="col-md-6">
-                                <input type="time" name="time_checkout">
+                                <input type="time" name="time_checkout" class="form-control @error('time_checkout') is-invalid @enderror" name="time_checkout">
                             </div>
+                            @error('time_checkout')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
 
                         <div class="form-group row">
@@ -140,21 +165,18 @@
 
                         </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-secondary">
-                                    {{ __('Create') }}
-                                </button>
-                            </div>
-                        </div>
 
-                    </form>
+
+
                 </div>
                 <!-- Modal footer -->
                 <div class="modal-footer">
+                    <button type="submit" class="btn btn-secondary">
+                        {{ __('Create') }}
+                    </button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
-
+            </form>
             </div>
         </div>
     </div>
