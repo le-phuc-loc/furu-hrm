@@ -75,6 +75,7 @@
                                                     <td> {{ $user->absentApplication->pluck('number_off')->sum() }} </td>
                                                     {{-- <td> {{ $user->absentApplication()}} </td> --}}
                                                     <td>
+                                                        {{ $user->reports->pluck('time_working')->sum() }}
                                                         {{-- {{
                                                             $user->reports->selectRaw
                                                         }} --}}

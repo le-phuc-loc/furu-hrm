@@ -181,7 +181,7 @@
         </div>
     </div>
     {{-- Update Project --}}
-    <div class="card-body">
+    {{-- <div class="card-body">
         <form id="project-update-form" method="POST" action="">
             @csrf
             <div class="modal fade" id="update-project" tabindex="-1" role="dialog" aria-labelledby="updateLabel" aria-hidden="true">
@@ -296,5 +296,5 @@
                 </div>
             </div>
         </form>
-    </div>
+    </div> --}}
 @endsection

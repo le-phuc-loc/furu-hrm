@@ -14,6 +14,8 @@
     </script> --}}
     <div id="layoutSidenav_content">
         <main>
+           <p> Test= {{env('APP_NAME')}}</p>
+
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-sm-6">

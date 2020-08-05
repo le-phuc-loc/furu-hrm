@@ -72,13 +72,19 @@ class ProjectController extends Controller
 
     public function update(Request $request, $id) {
         // dd($request->input());
-        $validatedData = $request->validate( [
+        $validatedData = $request->validate(
+            [
             'project_name' => 'required',
             'from_date' => 'date',
             'to_date' => 'date|after:from_date',
-            // 'time_checkin' => 'date_format:H:i',
-            // 'time_checkout' => 'date_format:H:i|after:time_checkin',
-        ]);
+            'time_checkin' => '',
+            'time_checkout' => 'after:time_checkin',
+            ],
+            [
+                'time_checkout'=>'asdjasdkajsdk',
+            ]
+
+        );
 
 
         $obj = Project::find($id);

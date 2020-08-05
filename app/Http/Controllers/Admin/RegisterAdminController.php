@@ -12,23 +12,28 @@ use Illuminate\Support\Facades\Hash;
 class RegisterAdminController extends Controller
 {
     //
-
     public function __construct()
     {
         $this->middleware('guest');
     }
 
     public function index() {
-        return view('role/admin/register');
+        $key=config('key.default_code');
+        return view('role/admin/register',compact('key'));
+        // return view('role/admin/register');
     }
 
     public function register(Request $request) {
+        $key=config('key.default_code');
+            if($request->defaultkey!=$key){
+                return redirect()->route('register.admin');
+            } ;
+            $validatedData = $request->validate( [
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'password' => ['required', 'string', 'min:8', 'confirmed'],
+            ]);
 
-        $validatedData = $request->validate( [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
 
         // dd($request->input());
         $user = new User();

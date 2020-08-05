@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Http\Middleware;
+use Illuminate\Http\Request;
 
 use Closure;
 use App\User;
+
 class CheckAdminExist
 {
     /**
@@ -19,7 +21,10 @@ class CheckAdminExist
 
         // dd($user);
         if(count($user)<=0){
+            // $default_code =$this->secret('What is the password?');
+            // return redirect()->route('register.admin');
             return redirect()->route('register.admin');
+
         }
         return $next($request);
     }
