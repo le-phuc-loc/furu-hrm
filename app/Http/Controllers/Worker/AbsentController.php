@@ -27,6 +27,9 @@ class AbsentController extends Controller
     }
 
     public function store(Request $request) {
+
+
+
         $absent = new AbsentApplication();
         $absent->content = $request->content;
         $absent->date_off = $request->date_off;
@@ -45,13 +48,13 @@ class AbsentController extends Controller
 
     public function update(Request $request, $id) {
         // dd($request->input());
-        // $validatedData = $request->validate( [
-        //     'project_name' => 'required',
-        //     'project_from_date' => 'date',
-        //     'project_to_date' => 'date|after:project_from_date',
-        //     'time_checkin' => 'date_format:H:i',
-        //     'time_checkout' => 'date_format:H:i|after:time_checkin',
-        // ]);
+        $validatedData = $request->validate( [
+            'project_name' => 'required',
+            'project_from_date' => 'date',
+            'project_to_date' => 'date|after:project_from_date',
+            'time_checkin' => 'date_format:H:i',
+            'time_checkout' => 'date_format:H:i|after:time_checkin',
+        ]);
 
         $absent = AbsentApplication::find($id);
         $absent->content = $request->content;

@@ -30,6 +30,10 @@ class ProjectController extends Controller
             'project_to_date' => 'date|after:project_from_date',
             'time_checkin' => 'date_format:H:i',
             'time_checkout' => 'date_format:H:i|after:time_checkin',
+        ],
+        [
+            'project_to_date.after'=>'Please check...',
+            'time_checkout.after'=>'Time checkout is after ...'
         ]);
 
         $obj = new Project();
@@ -62,19 +66,26 @@ class ProjectController extends Controller
     }
 
     public function edit($id) {
-        $obj = Project::with(['location', 'managed', 'users'])->find($id);
+        $obj = Project::with(['location', 'manager', 'users'])->find($id);
         return response()->json(['project' => $obj], 200);
     }
 
     public function update(Request $request, $id) {
         // dd($request->input());
-        $validatedData = $request->validate( [
+        $validatedData = $request->validate(
+            [
             'project_name' => 'required',
-            'project_from_date' => 'date',
-            'project_to_date' => 'date|after:project_from_date',
-            'time_checkin' => 'date_format:H:i',
-            'time_checkout' => 'date_format:H:i|after:time_checkin',
-        ]);
+            'from_date' => 'date',
+            'to_date' => 'date|after:from_date',
+            'time_checkin' => '',
+            'time_checkout' => 'after:time_checkin',
+            ],
+            [
+                'time_checkout'=>'asdjasdkajsdk',
+            ]
+
+        );
+
 
         $obj = Project::find($id);
         $obj->project_name = $request->project_name;
@@ -91,7 +102,7 @@ class ProjectController extends Controller
         ]);
         $obj->users()->attach($request->user_id);
         $obj->save();
-        // dd($user);
+        // dd($obj);
         return redirect()->route('admin.project.index');
     }
 

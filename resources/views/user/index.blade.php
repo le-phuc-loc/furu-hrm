@@ -22,12 +22,6 @@
                                 </button>
                             </div>
 
-<<<<<<< HEAD
-                            <!-- Modal Create-->
-                            <div class="modal fade" id="create-user">
-                                <div class="modal-dialog modal-dialog-centered">
-                                    <div class="modal-content">
-=======
                             <!-- Modal body -->
                             <div class="modal-body">
                                 <form method="POST" action="">
@@ -82,7 +76,6 @@
                                             @enderror
                                         </div>
                                     </div>
->>>>>>> ef0d09e06bb291228371aab6e33ff10f770b777f
 
                                         <!-- Modal Header -->
                                         <div class="modal-header">

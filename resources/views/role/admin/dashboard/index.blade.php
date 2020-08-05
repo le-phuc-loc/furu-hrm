@@ -1,9 +1,21 @@
 @extends('role.admin.index')
 
 @section('content')
+    {{-- <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
+        crossorigin="anonymous" />
 
+    <script>
+        $(document).ready(function() {
+            $('#dataTable1').DataTable();
+        });
+
+    </script> --}}
     <div id="layoutSidenav_content">
         <main>
+           <p> Test= {{env('APP_NAME')}}</p>
+
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-sm-6">
@@ -14,22 +26,14 @@
                 <div class="card mb-4">
                     <div class="card-header">
                         <div class="dropdown">
+                            <i class="fas fa-table mr-1"></i>
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-
                                 Choose project
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                @if (count($projects) <= 0)
-                                    <div class="dropdown-item"> Don't have any project </div>
-                                @else
-                                    @foreach ($projects as $project)
-                                        <a class="dropdown-item" href="{{ route('admin.report.index', ['project_id' => $project->id]) }}">
-                                            {{ $project->project_name }}
-                                        </a>
-                                    @endforeach
-                                @endif
-
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
                             </div>
                         </div>
                     </div>
@@ -43,37 +47,66 @@
                                         <th>Role</th>
                                         <th>Number days off</th>
                                         <th>Time working</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
-
+                                <tfoot>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Role</th>
+                                        <th>Number days off</th>
+                                        <th>Time working</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </tfoot>
                                 <tbody>
-
+                                    {{-- <tr>
+                                        <td>acvas</td>
+                                        <td>acvas</td>
+                                        <td>acvas</td>
+                                        <td>acvas</td>
+                                        <td>acvas</td>
+                                        <td>
+                                            <button type="submit" class="btn btn-primary" onclick="confirm">
+                                                {{ __('Approve') }}
+                                            </button>
+                                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                data-target="#reject-modal">
+                                                Reject
+                                            </button>
+                                        </td>
+                                    </tr> --}}
 
                                         @if(count($users) <= 0)
                                             <div class="list-group-item list-group-item-action"> Don't
                                                     have user
                                             </div>
                                         @else
-                                        {{-- {{ dd($users->find(9)->absentApplication) }} --}}
                                             @foreach($users as $user)
-                                                <tr>
-                                                    <td>{{ $user->name }}</td>
-                                                    <td>{{ $user->email }}</td>
-                                                    <td>
-                                                        {{ $user->role }}
-                                                    </td>
-                                                    <td> {{ $user->absentApplication->pluck('number_off')->sum() }} </td>
-                                                    {{-- <td> {{ $user->absentApplication()}} </td> --}}
-                                                    <td>
-                                                        {{ $user->reports->pluck('time_working')->sum() }}
-                                                        {{-- {{
-                                                            $user->reports->selectRaw
-                                                        }} --}}
-                                                    </td>
-                                                </tr>
+                                            <tr>
+                                                <td>{{ $user->name }}</td>
+                                                <td>{{ $user->email }}</td>
+                                                <td>
+                                                    {{ $user->role }}
+                                                </td>
+                                                <td></td>
+                                                {{-- <td> {{ $user->absentApplication()}} </td> --}}
+                                                <td></td>
+
+                                                <td>
+                                                    <button type="submit" class="btn btn-primary" onclick="confirm">
+                                                        {{ __('Approve') }}
+                                                    </button>
+                                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                        data-target="#timework-modal">
+                                                        Reject
+                                                    </button>
+                                                </td>
+                                            </tr>
                                             @endforeach
                                         @endif
-                                </tbody>
+                            </tbody>
                             </table>
                         </div>
                     </div>
@@ -105,6 +138,8 @@
                                             value="" required autocomplete="project_name" autofocus>
                                     </div>
                                 </div>
+
+
 
                             </form>
                         </ul>
