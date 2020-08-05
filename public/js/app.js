@@ -509,15 +509,14 @@ eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourc
 /***/ }),
 
 /***/ 0:
-/*!****************************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/scss/fontawesome.scss ***!
-  \****************************************************************************************************/
+/*!*************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/app.scss ***!
+  \*************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! /home/loc/Documents/furu-hrm/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /home/loc/Documents/furu-hrm/resources/sass/app.scss */"./resources/sass/app.scss");
-!(function webpackMissingModule() { var e = new Error("Cannot find module '/home/loc/Documents/furu-hrm/resources/sass/scss/fontawesome.scss'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+module.exports = __webpack_require__(/*! /home/loc/Documents/furu-hrm/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
