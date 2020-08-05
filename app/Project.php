@@ -12,7 +12,7 @@ class Project extends Model
     }
 
     public function manager(){
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\User', 'managed', 'id');
     }
 
     public function location()

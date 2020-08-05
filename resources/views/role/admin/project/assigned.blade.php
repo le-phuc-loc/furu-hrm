@@ -22,14 +22,14 @@
 
                                 </div>
                             </div>
+                            {{-- {{ dd($project->manager->name) }} --}}
                             <div class="form-group row">
-                                <label for="manager"
+                                <label for=""
                                     class="col-md-4 col-form-label text-md-right">{{ __('Manager') }}</label>
                                 <div class="col-md-6">
                                     {{-- {{dd($project->manager->name)}} --}}
-                                    <input id="manager" type="text" class="form-control" name="manager"
-                                        value=" "
-                                        required autocomplete="manager" autofocus>
+                                    <input class="form-control" type="text" value="{{ $project->manager->name }}" >
+                                    <input type="hidden" name="manager" value="{{ $project->manager->id }}">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -121,9 +121,9 @@
     </div>
 
     <script>
-        $(document).ready(function() {
-            $('input#manager').val($("project-manager[selected='selected']").val());
-        });
+        // $(document).ready(function() {
+        //     $('input#manager').val($("project-manager[selected='selected']").val());
+        // });
 
     </script>
 @endsection

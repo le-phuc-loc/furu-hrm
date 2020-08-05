@@ -135,7 +135,6 @@ class ProjectController extends Controller
         // dd(ProjectUser::select('user_id')->where('project_id', $id)->get()->pluck('user_id'));
         return view('role/admin/project/assigned')->with([
             'project' => $project,
-            'managers' => $managers,
             'workers' => $workers,
             'admin' => $admin,
         ]);

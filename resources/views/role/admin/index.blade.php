@@ -42,7 +42,7 @@
         </ul>
     </nav>
     <!-- CREATE PROJECT -->
-    <div class="modal fade" id="modal-create-project" >
+    {{-- <div class="modal fade" id="modal-create-project" >
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <form method="POST" action="{{ route('admin.project.store') }}">
@@ -159,9 +159,9 @@
             </form>
             </div>
         </div>
-    </div>
+    </div> --}}
     {{-- Update Project --}}
-    <div class="card-body">
+    {{-- <div class="card-body">
         <form id="project-update-form" method="POST" action="">
             @csrf
             <div class="modal fade" id="update-project" tabindex="-1" role="dialog" aria-labelledby="updateLabel" aria-hidden="true">
@@ -276,5 +276,5 @@
                 </div>
             </div>
         </form>
-    </div>
+    </div> --}}
 @endsection
