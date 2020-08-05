@@ -39,11 +39,11 @@
                             <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
-                                        <th>@sortablelink('Name')</th>
-                                        <th>@sortablelink('Email')</th>
-                                        <th>@sortablelink('Role')</th>
-                                        <th>@sortablelink('Number days off')</th>
-                                        <th>@sortablelink('Time working')</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Role</th>
+                                        <th>Number days off</th>
+                                        <th>Time working</th>
                                     </tr>
                                 </thead>
 

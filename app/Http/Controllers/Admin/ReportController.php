@@ -5,11 +5,10 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Kyslik\ColumnSortable\Sortable;
+use Yajra\Datatables\Datatables;
 use App\Report;
 use \App\User;
 use \App\Project;
-
 class ReportController extends Controller
 {
 
@@ -46,4 +45,17 @@ class ReportController extends Controller
             'projects' => $projects,
         ]);
     }
+    public function datatables()
+    {
+        $users = User::select('name', 'email', 'role')->get();
+        return Datatables::of($users)
+        ->addColumn('action', function ($user) {
+            $deletebtn = '<a class="btn btn-secondary btn-sm" href=""><i class="fa fa-trash-o"></i></a>';
+
+            return $deletebtn;
+        })
+        ->removeColumn('id')
+        ->rawColumns(['action'])
+        ->make(true);
+   }
 }

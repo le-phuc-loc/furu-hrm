@@ -15,6 +15,9 @@
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Tempusdominus Bootstrap 4 -->
     <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <!-- datatable-->
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
+
     <!-- iCheck -->
     <link rel="stylesheet" href="/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <!-- Theme style -->
@@ -172,12 +175,15 @@
     </div>
     <script>
         $.widget.bridge('uibutton', $.ui.button)
+    </script>
 
     <script >
     $(document).ready(function() {
         $('#dataTable1').DataTable();
       });
     </script>
+       <!-- DataTables -->
+       <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
     <script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsMyaK7aIpFYjTIbPBafSnxxOg3SwSIIk&libraries=places&callback=initAutocomplete"
         async defer></script>
