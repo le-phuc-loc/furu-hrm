@@ -5,14 +5,14 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
-
+use Kyslik\ColumnSortable\Sortable;
+use App\Report;
 use \App\User;
 use \App\Project;
 
 class ReportController extends Controller
 {
-    //
+
     public function index(Request $request) {
 
         // dd(User::with(['absentApplication', 'reports'])->get());

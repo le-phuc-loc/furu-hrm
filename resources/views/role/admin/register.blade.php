@@ -72,14 +72,6 @@
                             </div>
                         </div>
 
-                        {{-- <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Key') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="key" type="password" class="form-control" name="key" value="{{$key}}" required autocomplete="">
-                            </div>
-                        </div> --}}
-
                         <div class="form-group row">
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Default key') }}</label>
 

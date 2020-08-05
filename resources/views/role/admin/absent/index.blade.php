@@ -70,15 +70,15 @@
                                                         <a type="button"
                                                         href="{{ route('admin.absent.approve', ['id' => $absent->id, 'user_id' => $absent->user->id]) }}"
                                                         class="btn btn-primary">
-                                                        <i class="fa fa-check" aria-hidden="true"></i>
-                                                    </a>
+                                                        <i class="fa fa-check" alt="Edit" aria-hidden="true"></i>
+                                                        </a>
                                                         <button class="btn btn-primary"
                                                             data-toggle="modal"
                                                             data-name = "{{ $absent->user->name }}"
                                                             data-user_id = "{{ $absent->user->id }}"
                                                             data-absent_id = "{{ $absent->id }}"
                                                             data-target="#reject-modal">
-                                                            <i class="fa fa-ban" aria-hidden="true"></i>
+                                                            <i class="fa fa-ban" alt="Edit" aria-hidden="true"></i>
                                                         </button>
                                                     @endif
                                                 </td>

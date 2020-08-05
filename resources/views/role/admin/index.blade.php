@@ -39,7 +39,7 @@
         </ul>
     </nav>
     <!-- CREATE PROJECT -->
-    <div class="modal fade" id="modal-create-project">
+    {{-- <div class="modal fade" id="modal-create-project">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <form method="POST" action="{{ route('admin.project.store') }}">
@@ -71,20 +71,12 @@
                         </div>
 
                         <div class="form-group row">
-<<<<<<< HEAD
-                            <label for="number" class="col-md-4 col-form-label text-md-right">{{ __('Number') }}</label>
-                            <div class="col-md-6">
-                                <input id="name" type="number"
-                                    class="form-control @error('project_name') is-invalid @enderror" name="number_worker"
-                                    min="1">
-=======
                             <label for="number_worker"
                                 class="col-md-4 col-form-label text-md-right">{{ __('Number') }}</label>
                             <div class="col-md-6">
                                 <input id="number_worker" type="number"
                                     class="form-control @error('number_worker') is-invalid @enderror"
                                     name="number_worker" min="1" >
->>>>>>> ef1519f20e38049f391733b7fdc24b7bb9f425ad
                             </div>
                             @error('number_worker')
                                 <span class="invalid-feedback" role="alert">
@@ -97,12 +89,8 @@
                                 class="col-md-4 col-form-label text-md-right">{{ __('From date') }}</label>
 
                             <div class="col-md-6">
-<<<<<<< HEAD
-                                <input id="project-from-date" type="date" class="form-control" name="from_date">
-=======
                                 <input id="from_date" type="date" class="form-control @error('from_date') is-invalid @enderror"
                                     name="from_date">
->>>>>>> ef1519f20e38049f391733b7fdc24b7bb9f425ad
                             </div>
                             @error('from_date')
                                 <span class="invalid-feedback" role="alert">
@@ -116,12 +104,8 @@
                                 class="col-md-4 col-form-label text-md-right">{{ __('To date') }}</label>
 
                             <div class="col-md-6">
-<<<<<<< HEAD
-                                <input id="project-to-date" type="date" class="form-control" name="to_date">
-=======
                                 <input id="project-to-date" type="date" class="form-control @error('to_date') is-invalid @enderror"
                                     name="to_date">
->>>>>>> ef1519f20e38049f391733b7fdc24b7bb9f425ad
                             </div>
                             @error('to_date')
                                 <span class="invalid-feedback" role="alert">
@@ -171,12 +155,7 @@
                         </div>
 
                         <div class="form-group" id="map">
-
                         </div>
-
-
-
-
                 </div>
                 <!-- Modal footer -->
                 <div class="modal-footer">
@@ -188,7 +167,7 @@
             </form>
             </div>
         </div>
-    </div>
+    </div> --}}
     {{-- Update Project --}}
     {{-- <div class="card-body">
         <form id="project-update-form" method="POST" action="">
@@ -299,10 +278,5 @@
                 </div>
             </div>
         </form>
-<<<<<<< HEAD
-    </div>
-    @endsection
-=======
     </div> --}}
 @endsection
->>>>>>> ef1519f20e38049f391733b7fdc24b7bb9f425ad

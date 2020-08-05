@@ -68,7 +68,6 @@
                             </table>
                             {{-- <div id="map" style="background-color: black"></div> --}}
 
-
                         </div>
                     </div>
                 </div>

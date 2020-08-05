@@ -38,15 +38,11 @@
 
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<<<<<<< HEAD
-=======
+
     {{-- <script
         src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
     </script> --}}
-
-
->>>>>>> ef1519f20e38049f391733b7fdc24b7bb9f425ad
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <script src="/plugins/jquery/jquery.min.js"></script>
@@ -150,10 +146,7 @@
                 @yield('sidebar-menu')
                 <!-- Sidebar Menu -->
 
-<<<<<<< HEAD
-=======
                 <!-- /.sidebar-menu -->
->>>>>>> ef1519f20e38049f391733b7fdc24b7bb9f425ad
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
 
                     <div class="info">
@@ -177,27 +170,16 @@
             </section>
         </div>
     </div>
-<<<<<<< HEAD
-
-
-		<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-		<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-=======
     <script>
         $.widget.bridge('uibutton', $.ui.button)
->>>>>>> ef1519f20e38049f391733b7fdc24b7bb9f425ad
 
     <script >
     $(document).ready(function() {
         $('#dataTable1').DataTable();
       });
     </script>
-<<<<<<< HEAD
-
-=======
     <script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsMyaK7aIpFYjTIbPBafSnxxOg3SwSIIk&libraries=places&callback=initAutocomplete"
         async defer></script>
->>>>>>> ef1519f20e38049f391733b7fdc24b7bb9f425ad
 </body>
 </html>

@@ -23,13 +23,15 @@
 
 
                             </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="manager" class="col-md-4 col-form-label text-md-right">{{ __('Manager') }}</label>
-                            <div class="col-md-6">
-                                {{-- {{ dd($project->manager->name) }} --}}
-                                <input id="managed" type="text" class="form-control" name="managed"
-                                    value="{{ $project->managed }} " required autocomplete="managed" autofocus readonly>
+                            {{-- {{ dd($project->manager->name) }} --}}
+                            <div class="form-group row">
+                                <label for=""
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Manager') }}</label>
+                                <div class="col-md-6">
+                                    {{-- {{dd($project->manager->name)}} --}}
+                                    <input class="form-control" type="text" value="{{ $project->manager->name }}" >
+                                    <input type="hidden" name="manager" value="{{ $project->manager->id }}">
+                                </div>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -41,16 +43,59 @@
                                     Choose worker
                                 </button>
                             </div>
-                        </div>
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <a type="button" class="btn btn-primary"
-                                    href="{{ route('admin.project.assign', ['id' => $project->id]) }}">
-                                    {{ __('Assign') }}
-                                </a>
-                                <a type="button" class="btn btn-secondary" href="{{ route('admin.project.index') }}">
-                                    {{ __('Cancel') }}
-                                </a>
+
+
+
+                            <!-- Modal -->
+
+                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">List Workers</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <ul class="list-group">
+                                                {{-- <beautify start="@foreach" end="@endforeach"
+                                                    exp="^^$workers as $worker^^">
+
+                                                    <li class="list-group-item">
+                                                        <input type="checkbox" value="{{ $worker->id }}" name="workers[]"
+                                                            id="workers-project">
+                                                        {{ $worker->name }} - {{ $worker->role }}
+                                                    </li>
+                                                </beautify> --}}
+
+                                                @if (count($workers) <= 0)
+                                                    Don't have worker
+                                                @else
+                                                    @foreach ($workers as $worker)
+                                                        <li class="list-group-item">
+                                                            {{ $worker->name }} - {{ $worker->role }}
+
+                                                            <a href="{{ route('admin.project.deleteAssigned', ['id' => $project->id, 'user_id' => $worker->id]) }}">
+                                                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                                            </a>
+
+                                                        </li>
+                                                    @endforeach
+                                                @endif
+
+
+
+                                            </ul>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Comfirm</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -60,9 +105,9 @@
     </div>
 
     <script>
-        $(document).ready(function() {
-            $('input#manager').val($("project-manager[selected='selected']").val());
-        });
+        // $(document).ready(function() {
+        //     $('input#manager').val($("project-manager[selected='selected']").val());
+        // });
 
     </script>
     <!--Worker Select Modal -->
