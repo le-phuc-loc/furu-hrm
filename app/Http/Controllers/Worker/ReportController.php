@@ -63,7 +63,7 @@ class ReportController extends Controller
     public function sendOrDraw(Request $request, $id)
     {
         switch ($request->input('action')) {
-            case 'send':
+            case 'draw':
                 $report = Report::find($id);
                 $report->content = $request->content;
                 $report->state = Report::getReportDraw();
@@ -71,7 +71,7 @@ class ReportController extends Controller
 
             break;
 
-            case 'draw':
+            case 'send':
                 $report = Report::find($id);
                 $report->content = $request->content;
                 $report->state = Report::getReportWaitting();

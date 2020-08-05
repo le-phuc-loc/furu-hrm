@@ -145,6 +145,11 @@
                                         <div class="col-md-6">
                                             <textarea class="form-control" name="content" rows="3"></textarea>
                                         </div>
+                                        @error('content')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
                                     </div>
 
 
