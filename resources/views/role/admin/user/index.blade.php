@@ -11,7 +11,8 @@
             </div>
             <br>
             <div class="card">
-                <!-- Card Header -->
+                <!-- CREATE USER -->
+
                 <div class="card-header">
                     <i class="fas fa-table mr-1"></i>List
                     <button type="button" class="btn btn-info add-new" data-toggle="modal" data-target="#create-user"
@@ -112,7 +113,7 @@
                 </div>
 
                 <!-- TABLE -------->
-                <!-- card body -->
+                <!-- UPDATE-->
                 <div class="card-body">
                         @csrf
                         <!-- Update............... -->

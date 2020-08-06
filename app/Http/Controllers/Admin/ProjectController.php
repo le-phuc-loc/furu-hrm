@@ -26,7 +26,7 @@ class ProjectController extends Controller
 
         $validatedData = $request->validate( [
             'project_name' => 'required',
-            'project_from_date' => 'date',
+            'project_from_date' => 'date|after',
             'project_to_date' => 'date|after:project_from_date',
             'time_checkin' => 'date_format:H:i',
             'time_checkout' => 'date_format:H:i|after:time_checkin',

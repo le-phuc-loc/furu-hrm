@@ -53,6 +53,7 @@ class UserController extends Controller
         // dd($request->input());
         $user = User::find($id);
         $user->name = $request->name;
+        $user->email=$request->email;
         $user->role = $request->role;
         $user->save();
         // dd($user);
