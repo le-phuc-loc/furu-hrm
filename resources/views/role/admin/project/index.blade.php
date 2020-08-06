@@ -101,114 +101,151 @@
                     </button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
-            </form>
+                </form>
 
             </div>
         </div>
     </div>
     {{-- Update Project --}}
-    <div class="modal fade" id="update-project" tabindex="-1" role="dialog" aria-labelledby="updateLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
+    <div class="card-body">
+        <form id="project-update-form" method="POST" action="">
+            @csrf
+            <div class="modal fade" id="update-project" tabindex="-1" role="dialog" aria-labelledby="updateLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
 
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">Update Project</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Update Project</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+
+
+                            <div class="form-group row">
+                                <label for="project_name"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Project name') }}</label>
+                                <div class="col-md-6">
+                                    <input id="update-project-name" type="text"
+                                        class="form-control @error('project_name') is-invalid @enderror"
+                                        name="project_name" value="" required autocomplete="project_name" autofocus>
+
+                                    @error('project_name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="number"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Number worker') }}</label>
+                                <div class="col-md-6">
+                                    <input id="update-number-worker" type="number"
+                                        class="form-control @error('number_worker') is-invalid @enderror"
+                                        name="number_worker" min="1">
+                                    @error('number_worker')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="update-from-date"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('From date') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="update-from-date" type="date"
+                                        class="form-control @error('from_date') is-invalid @enderror"
+                                        name="from_date">
+                                </div>
+                                @error('from_date')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="update-todate"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('To date') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="update-to-date" type="date"
+                                        class="form-control @error('to_date') is-invalid @enderror" name="to_date">
+                                </div>
+                                @error('to_date')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                            <div class="form-group row">
+                                <label for="update-time-checkin"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Time checkin') }}</label>
+
+                                <div class="col-md-6">
+                                    <input type="time" id="update-time-checkin"
+                                        class="form-control @error('time_checkin') is-invalid @enderror"
+                                        name="time_checkin">
+                                </div>
+                                @error('time_checkin')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                            <div class="form-group row">
+                                <label for="update-time_checkout"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Time checkout') }}</label>
+
+                                <div class="col-md-6">
+                                    <input type="time" id="update-time-checkout"
+                                        class="form-control @error('time_checkout') is-invalid @enderror"
+                                        name="time_checkout">
+                                </div>
+                                @error('time_checkout')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="password"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Location') }}</label>
+                                <div class="col-md-6">
+                                    <input id="update-location-name" type="text" class="form-control"
+                                        name="location_name" value="{{ old('location_name') }}" required
+                                        autocomplete="project_name" autofocus>
+                                    <input id="update-lat" name="lat" step="any" type="hidden" class="form-control">
+                                    <input id="update-lng" name="lng" step="any" type="hidden" class="form-control">
+
+                                    <input type="text" id="update-place-id" name="place_id" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group" id="update-map">
+
+                            </div>
+
+                        </div>
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-secondary">
+                                {{ __('Update') }}
+                            </button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
                 </div>
-
-                <!-- Modal body -->
-                <div class="modal-body">
-
-
-                    <div class="form-group row">
-                        <label for="project_name"
-                            class="col-md-4 col-form-label text-md-right">{{ __('Project name') }}</label>
-                        <div class="col-md-6">
-                            <input id="update-project-name" type="text"
-                                class="form-control @error('project_name') is-invalid @enderror" name="project_name"
-                                value="" required autocomplete="project_name" autofocus>
-
-                            @error('project_name')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="number"
-                            class="col-md-4 col-form-label text-md-right">{{ __('Number worker') }}</label>
-                        <div class="col-md-6">
-                            <input id="update-number-worker" type="number"
-                                class="form-control @error('project_name') is-invalid @enderror"
-                                name="number_worker" min="1">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="update-from-date"
-                            class="col-md-4 col-form-label text-md-right">{{ __('From date') }}</label>
-
-                        <div class="col-md-6">
-                            <input id="update-from-date" type="date" class="form-control" name="from_date">
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="update-to-date"
-                            class="col-md-4 col-form-label text-md-right">{{ __('To date') }}</label>
-
-                        <div class="col-md-6">
-                            <input id="update-to-date" type="date" class="form-control" name="to_date">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="project-from-date"
-                            class="col-md-4 col-form-label text-md-right">{{ __('Time checkin') }}</label>
-
-                        <div class="col-md-6">
-                            <input type="time" id="update-time-checkin" name="time_checkin">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="project-from-date"
-                            class="col-md-4 col-form-label text-md-right">{{ __('Time checkout') }}</label>
-
-                        <div class="col-md-6">
-                            <input type="time" id="update-time-checkout" name="time_checkout">
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="password"
-                            class="col-md-4 col-form-label text-md-right">{{ __('Location') }}</label>
-                        <div class="col-md-6">
-                            <input id="update-location-name" type="text" class="form-control" name="location_name"
-                                value="{{ old('location_name') }}" required autocomplete="project_name" autofocus>
-                            <input id="update-lat" name="lat" step="any" type="hidden" class="form-control">
-                            <input id="update-lng" name="lng" step="any" type="hidden" class="form-control">
-
-                            <input type="text" id="update-place-id" name="place_id" class="form-control">
-                        </div>
-                    </div>
-                    <div class="form-group" id="update-map">
-
-                    </div>
-
-                </div>
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-secondary">
-                        {{ __('Edit') }}
-                    </button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </form>
-
             </div>
-        </div>
+        </form>
     </div>
     <div class="row">
         <div class="col-12 ">
@@ -290,143 +327,7 @@
                     </tbody>
                 </table>
             </div>
-            {{-- Update Project --}}
-            {{-- <div class="card-body">
-                <form id="project-update-form" method="POST" action="">
-                    @csrf
-                    <div class="modal fade" id="update-project" tabindex="-1" role="dialog" aria-labelledby="updateLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
 
-                                <!-- Modal Header -->
-                                <div class="modal-header">
-                                    <h4 class="modal-title">Update Project</h4>
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                </div>
-
-                                <!-- Modal body -->
-                                <div class="modal-body">
-
-
-                                    <div class="form-group row">
-                                        <label for="project_name"
-                                            class="col-md-4 col-form-label text-md-right">{{ __('Project name') }}</label>
-                                        <div class="col-md-6">
-                                            <input id="update-project-name" type="text"
-                                                class="form-control @error('project_name') is-invalid @enderror"
-                                                name="project_name" value="" required autocomplete="project_name" autofocus>
-
-                                            @error('project_name')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label for="number"
-                                            class="col-md-4 col-form-label text-md-right">{{ __('Number worker') }}</label>
-                                        <div class="col-md-6">
-                                            <input id="update-number-worker" type="number"
-                                                class="form-control @error('number_worker') is-invalid @enderror"
-                                                name="number_worker" min="1">
-                                            @error('number_worker')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="update-from-date"
-                                            class="col-md-4 col-form-label text-md-right">{{ __('From date') }}</label>
-
-                                        <div class="col-md-6">
-                                            <input id="update-from-date" type="date" class="form-control @error('from_date') is-invalid @enderror" name="from_date">
-                                        </div>
-                                        @error('from_date')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label for="update-todate"
-                                            class="col-md-4 col-form-label text-md-right">{{ __('To date') }}</label>
-
-                                        <div class="col-md-6">
-                                            <input id="update-to-date" type="date" class="form-control @error('to_date') is-invalid @enderror" name="to_date">
-                                        </div>
-                                        @error('to_date')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="update-time-checkin"
-                                            class="col-md-4 col-form-label text-md-right">{{ __('Time checkin') }}</label>
-
-                                        <div class="col-md-6">
-                                            <input type="time" id="update-time-checkin" class="form-control @error('time_checkin') is-invalid @enderror" name="time_checkin">
-                                        </div>
-                                        @error('time_checkin')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="update-time_checkout"
-                                            class="col-md-4 col-form-label text-md-right">{{ __('Time checkout') }}</label>
-
-                                        <div class="col-md-6">
-                                            <input type="time" id="update-time-checkout" class="form-control @error('time_checkout') is-invalid @enderror" name="time_checkout">
-                                        </div>
-                                        @error('time_checkout')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label for="password"
-                                            class="col-md-4 col-form-label text-md-right">{{ __('Location') }}</label>
-                                        <div class="col-md-6">
-                                            <input id="update-location-name" type="text" class="form-control"
-                                                name="location_name" value="{{ old('location_name') }}" required
-                                                autocomplete="project_name" autofocus>
-                                            <input id="update-lat" name="lat" step="any" type="hidden" class="form-control">
-                                            <input id="update-lng" name="lng" step="any" type="hidden" class="form-control">
-
-                                            <input type="text" id="update-place-id" name="place_id" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="form-group" id="update-map">
-
-                                    </div>
-                                    <div class="form-group row mb-0">
-                                        <div class="col-md-6 offset-md-4">
-                                            <button type="submit" class="btn btn-secondary">
-                                                {{ __('Update') }}
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Modal footer -->
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div> --}}
         </div>
 
         <script>

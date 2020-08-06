@@ -58,7 +58,7 @@
                                         @foreach ($reports as $report)
                                             <tr>
                                                 {{-- {{ dd($report->project_user->user) }} --}}
-                                                <td>{{ $report->project_user->user->name }}</td>
+                                                <td>{{ $report->project_user->user->name  }}</td>
                                                 <td>{{ $report->project_user->user->email }}</td>
                                                 <td> {{ $report->content }}</td>
                                                 <td>
