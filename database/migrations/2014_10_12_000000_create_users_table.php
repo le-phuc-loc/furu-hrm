@@ -24,6 +24,12 @@ class CreateUsersTable extends Migration
             $table->string('role')->nullable()->default('worker');
             $table->timestamps();
         });
+        Schema::table('users', function ($table) {
+            $table->string('api_token', 80)->after('password')
+                                ->unique()
+                                ->nullable()
+                                ->default(null);
+        });
     }
 
     /**

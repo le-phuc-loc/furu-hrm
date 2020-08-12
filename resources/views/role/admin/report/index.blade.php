@@ -3,15 +3,105 @@
 @section('content')
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js"></script>
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
         crossorigin="anonymous" />
 
-    <script>
+    <!-- <script>
         $(document).ready(function() {
             $('#dataTable1').DataTable();
         });
 
-    </script>
+    </script> -->
+        <!-- <script> -->
+            <!-- // $(document).ready(function()){
+            //     $('.input-daterange').datepicker ({
+            //         todayBtn:'linked',
+            //     format:'yyyy-mm-dd',
+            //     autoclose:true
+            // });
+            // load_data();
+            // function load_data(to_date = '')
+            // {
+            //     $('#dataTable1').DataTable({
+            //         processing:true,
+            //         serverSide:true,
+            //         ajax: {
+            //             url:{{ route('admin.report.index') }},
+            //             data:{to_date:to_date}
+            //         },
+            //         colums:[
+            //             {
+            //                 date:'id',
+            //                 name:'id'
+            //             },
+            //             {
+            //                 data:'name',
+            //                 name:'name'
+            //             },
+            //             {
+            //                 data:'email',
+            //                 name:'email'
+            //             },
+            //             {
+            //                 data:'role',
+            //                 name:'role'
+            //             },
+                            {
+            //                 data:'number_off',
+            //                 name:'number_off'
+            //             },
+                           {
+            //                 data:'time_working',
+            //                 name:'time_working'
+            //             },
+                 
+                    
+            //         ]
+            //     }
+            // }
+            // $('#filter').click(function() {
+            //     var to_date =$('#to_date').val();
+            //     if(to_date !='')
+            //     {
+            //         $('#dataTable1').DataTable().destroy();
+            //         load_data(to_date);
+            //     }
+            //     else
+            //     {
+            //         alert('Both Date is required');
+            //     }
+            // });
+            // $('#refresh').click(function(){
+            //     $('#to_date').val('');
+            //     $('#dataTable1').DataTable().destroy();
+            //     load_data();
+            // });
+        }); 
+</script> -->
+<script>
+        $(document).ready(function(){
+        $("#bdaymonth").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#dataTable1 tr").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+        });
+</script>
+<script>
+        $(document).ready(function(){
+        $("#to_date1").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#dataTable1 tr").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+        });
+</script>
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid">
@@ -45,14 +135,14 @@
                     
                     <div class="card-body">
                         <div class="table-responsive"> 
-                        <p>
-                            <form action="action_page.php" >
-                                Select a month   :                           
-                                <input type="month" name=" month" >                               
-                                <input type="submit" >
-                                
-                            </form>
-                            </p>
+                            <div class="row input-daterange">
+                                <div class="col-md-4">
+                                <input type="month" id="bdaymonth" name="bdaymonth">
+                                </div>  
+                                <div class="col-md-4">
+                                    <input type="text" name="to_date" id="to_date1" class="form-control" placeholder="many 3months off" x />
+                                </div>  
+                            </div>    
                             <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
@@ -72,7 +162,7 @@
                                                     have user
                                             </div>
                                         @else
-                                        {{-- {{ dd($users->find(9)->absentApplication) }} --}}
+                                        {{-- {{ dd($users->find(9)->absentApplication)->reports }} --}}
                                             @foreach($users as $user)
                                                 <tr>
                                                     <td>{{ $user->name }}</td>
@@ -137,3 +227,5 @@
         </div>
     </div>
 @endsection
+
+

@@ -59,7 +59,10 @@ class User extends Authenticatable
         return $this->hasMany('\App\ProjectUser');
     }
 
-
+    // public function users() {
+    //     $users = User::with(['reports','absent_applications'])->get();
+    //     // return $this->hasMany('\App\ProjectUser');
+    // }
 
     public function reports() {
         return $this->hasManyThrough(
@@ -68,7 +71,8 @@ class User extends Authenticatable
             'user_id',
             'project_user_id',
             'id',
-            'id'
+            'id',
+            '\App\Absent',
         );
     }
 

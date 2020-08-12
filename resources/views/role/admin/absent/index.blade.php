@@ -12,6 +12,16 @@
         });
 
     </script>
+    <script>
+    $(document).ready(function(){
+    $("#myInput").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#myTable tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    });
+    });
+</script>
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid">
@@ -29,9 +39,14 @@
                             Create
                         </button> --}}
                     </div>
+                    
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
+                             <div class="row input-daterange">
+                                <div class="col-md-4">
+                                <input type="month" id="myInput" name="bdaymonth">
+                            </div>  
+                                <table class="table table-bordered" id="myTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
                                         <th>Name</th>
