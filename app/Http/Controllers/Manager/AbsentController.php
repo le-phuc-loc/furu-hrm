@@ -10,8 +10,7 @@ use \App\User;
 use \App\Project;
 use \App\ProjectUser;
 use Auth;
-
-
+use Illuminate\Support\Facades\DB;
 use Mail;
 use \App\Jobs\ProcessReportMail;
 
@@ -28,6 +27,7 @@ class AbsentController extends Controller
                     ->get()->pluck('user_id'))
                     ->get()->pluck('id'))
                 ->where('state', AbsentApplication::getAbsentWaitting())->get();
+
 
 
         return view('role/manager/absent/index', [
@@ -48,7 +48,6 @@ class AbsentController extends Controller
             $absent->state = AbsentApplication::getAbsentAllow();
             $absent->save();
         }
-
         return redirect()->route('manager.absent.index');
     }
 

@@ -107,9 +107,6 @@
         </div>
     </div>
     {{-- Update Project --}}
-    <div class="card-body">
-        <form id="project-update-form" method="POST" action="">
-            @csrf
             <div class="modal fade" id="update-project" tabindex="-1" role="dialog" aria-labelledby="updateLabel"
                 aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
@@ -245,8 +242,7 @@
                     </div>
                 </div>
             </div>
-        </form>
-    </div>
+
     <div class="row">
         <div class="col-12 ">
             <div class="row">

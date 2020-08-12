@@ -18,9 +18,9 @@ class RegisterAdminController extends Controller
     }
 
     public function index() {
-        $key=config('key.default_code');
-        return view('role/admin/register',compact('key'));
-        // return view('role/admin/register');
+        // $key=config('key.default_code');
+        // return view('role/admin/register',compact('key'));
+        return view('role/admin/register');
     }
 
     public function register(Request $request) {
@@ -40,7 +40,7 @@ class RegisterAdminController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->role = $request->role;
-        $user->password = Hash::make($request->passwork);
+        $user->password = Hash::make($request->password);
         $user->save();
 
         return redirect()->route('login');

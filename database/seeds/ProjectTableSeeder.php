@@ -14,8 +14,8 @@ class ProjectTableSeeder extends Seeder
     {
         DB::table('projects')->insert([
             'project_name'=>'HRM',
-            'from_date'=>'2020-02-02',
-            'to_date'=>'2020-05-02',
+            'from_date'=>'2020-08-08',
+            'to_date'=>'2020-10-10',
             'location_id'=>'1',
             'created_at'=>now(),
             'updated_at'=>now(),
@@ -37,8 +37,8 @@ class ProjectTableSeeder extends Seeder
         ]);
         DB::table('projects')->insert([
             'project_name'=>'Jurassic Park',
-            'from_date'=>'2021-01-01',
-            'to_date'=>'2021-09-09',
+            'from_date'=>'2020-01-01',
+            'to_date'=>'2020-09-09',
             'location_id'=>'1',
             'created_at'=>now(),
             'updated_at'=>now(),
@@ -48,8 +48,8 @@ class ProjectTableSeeder extends Seeder
         ]);
         DB::table('projects')->insert([
             'project_name'=>'God City',
-            'from_date'=>'2021-01-01',
-            'to_date'=>'2021-12-30',
+            'from_date'=>'2020-01-01',
+            'to_date'=>'2020-12-30',
             'location_id'=>'4',
             'created_at'=>now(),
             'updated_at'=>now(),
@@ -60,7 +60,7 @@ class ProjectTableSeeder extends Seeder
         DB::table('projects')->insert([
             'project_name'=>'Space Station',
             'from_date'=>'2020-01-01',
-            'to_date'=>'2020-7-7',
+            'to_date'=>'2020-12-12',
             'location_id'=>'4',
             'created_at'=>now(),
             'updated_at'=>now(),
