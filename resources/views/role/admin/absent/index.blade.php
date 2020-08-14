@@ -53,7 +53,7 @@
                                             </div>
                                         @else
                                             @foreach($absents as $absent)
-                                            <tr>
+                                            <tr >
                                                 <td>{{ $absent->user->name }}</td>
                                                 <td>{{ $absent->user->role }}</td>
                                                 <td>{{ $absent->date_off }}</td>

@@ -19,26 +19,22 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
-    // public function redirectByRole($role, $path = "index") {
-    //     // dd($role);
+    public function redirectByRole($role, $path = "index") {
+        // dd($role);
 
-    //     $pathView = "role/".$role."/".$path;
-    //     return $pathView;
+        $pathView = "role/".$role."/".$path;
+        return $pathView;
 
-    // }
+    }
 
-    // /**
-    //  * Show the application dashboard.
-    //  *
-    //  * @return \Illuminate\Contracts\Support\Renderable
-    //  */
-    // public function index()
-    // {
-    //     return view($this->redirectByRole(Auth::user()->role));
-    // }
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
     public function index()
     {
-        return view('home');
+        return view($this->redirectByRole(Auth::user()->role));
     }
 
 }
