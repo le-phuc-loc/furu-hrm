@@ -45,7 +45,7 @@ class User extends Authenticatable
     }
 
     public function absentApplication(){
-        return $this->hasMany('App\AbsentApplication');
+        return $this->hasMany('App\AbsentApplication','user_id','id');
     }
 
     public function sum_day_off(){

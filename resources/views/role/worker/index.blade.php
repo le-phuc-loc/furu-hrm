@@ -24,6 +24,7 @@
                         Absent Application
                 </a>
             </li>
+
         </ul>
 
          <!-- INFORMATION USER MODAL -->

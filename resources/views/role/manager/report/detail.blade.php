@@ -23,13 +23,13 @@
                                         <form>
                                             <div class="form-group">
                                                 <label for="project_name">Name User</label>
-                                                <input type="text" class="form-control" id="project_name" readonly
+                                                <input type="text" class="form-control" readonly
                                                   value="{{ $report->project_user->user->name }}">
                                             </div>
                                             <div class="form-row">
                                               <div class="form-group col-md-6">
                                                 <label for="time_checkin">Time checkin</label>
-                                                <input type="date" class="form-control" id="time_checkin" readonly
+                                                <input type="time" class="form-control" id="time_checkin" readonly
                                                     value="{{ $report->time_checkin }}">
                                               </div>
                                               <div class="form-group col-md-6">
@@ -42,7 +42,7 @@
                                             <div class="form-row">
                                                 <div class="form-group col-md-6">
                                                   <label for="time_checkout">Time checkout</label>
-                                                  <input type="date" class="form-control" id="time_checkout" readonly
+                                                  <input type="time" class="form-control" id="time_checkout" readonly
                                                     value="{{ $report->time_checkout }}">
                                                 </div>
                                                 <div class="form-group col-md-6">

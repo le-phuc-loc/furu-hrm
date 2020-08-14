@@ -65,14 +65,14 @@
                                                     Absent Application approved
                                                 @else
                                                     <a type="button"
-                                                    href="{{ route('manager.absent.approve', ['id' => $absent->id, 'user_id' => $absent->user->id]) }}"
+                                                    href="{{ route('manager.absent.approve', ['id' => $absent->id, 'user_id' => $absent->user_id]) }}"
                                                     class="btn btn-primary">
                                                         {{ __('Approve') }}
                                                     </a>
                                                     <button class="btn btn-primary"
                                                         data-toggle="modal"
-                                                        data-name = "{{ $absent->user->name }}"
-                                                        data-user_id = "{{ $absent->user->id }}"
+                                                        data-name = "{{ $absent->name }}"
+                                                        data-user_id = "{{ $absent->user_id }}"
                                                         data-absent_id = "{{ $absent->id }}"
                                                         data-target="#reject-modal">
                                                         Reject
