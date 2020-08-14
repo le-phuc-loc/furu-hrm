@@ -18,22 +18,46 @@ class AbsentController extends Controller
 {
     //
     public function index(Request $request) {
+        $absents=AbsentApplication::with('User')
+            ->join('project_user', 'absent_applications.user_id', "=", "project_user.user_id")
+            ->join('projects','projects.id','=','project_user.project_id')
+            ->where('managed',Auth::user()->id)
+            ->where('state', AbsentApplication::getAbsentWaitting())
+            // ->select('User.name')
+            ->get();
+        // dd($absents);
+       return view('role.manager.absent.index',compact('absents'));
 
-        $absents = AbsentApplication::whereIn('user_id',
-                User::whereIn('id',
-                ProjectUser::whereIn('project_id',
-                Project::where('managed',
-                Auth::user()->id)->get()->pluck('id'))
-                    ->get()->pluck('user_id'))
-                    ->get()->pluck('id'))
-                ->where('state', AbsentApplication::getAbsentWaitting())->get();
+        $manage=Project::with(['users','project_user'])
+            ->where('managed',Auth::user()->id)->get();
+
+        $absents=DB::table('absent_applications')
+            ->join('project_user','project_user.user_id','absent_applications.user_id')
+            ->where('state', AbsentApplication::getAbsentWaitting())->get();
+        // $result = array_diff( $manage , $absents);
+
+        // dd($result);
+        // dd($manage1);
+        // dd($absents);
+        // foreach($manage as $m){
+        //     echo $m->project_name;
+        // }
+        // return $manage[1]->project_name;
+
+        // // $absents = AbsentApplication::whereIn('user_id',
+        //         User::whereIn('id',
+        //         ProjectUser::whereIn('project_id',
+        //         Project::where('managed',
+        //         Auth::user()->id)->get()->pluck('id'))
+        //             ->get()->pluck('user_id'))
+        //             ->get()->pluck('id'))
+        //         ->where('state', AbsentApplication::getAbsentWaitting())->get();
 
 
 
-        return view('role/manager/absent/index', [
-            'absents' => $absents,
-        ]);
-        // return view("role/manager/report/index");
+        // return view('role/manager/absent/index', [
+        //     'absents' => $absents,
+        // ]);
     }
 
     public function approve(Request $request, $id) {
