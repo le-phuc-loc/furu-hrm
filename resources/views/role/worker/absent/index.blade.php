@@ -23,7 +23,7 @@
                 <br>
                 <div class="card mb-4">
                     <div class="card-header">
-                        <i class="fas fa-table mr-1"></i>List
+                        <i class="fas fa-table mr-1"></i> List
                         <button type="button" class="btn btn-info add-new" data-toggle="modal" data-target="#create-modal"
                             data-name="{{ Auth::user()->name }}"
                             style="float: right;"> <i class="fa fa-plus"></i>
@@ -99,7 +99,7 @@
             </div>
         </main>
 
-        <!-- Update Absense MODAL -->
+        Update Absense MODAL
         <div class="modal fade" id="create-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -168,8 +168,8 @@
                         {{ __('Absense Form') }}
                     </div>
                     <div class="card-body">
-                        <form id="absent-update-form" method="POST" action="">
-                            @csrf
+                        <!-- <form id="absent-update-form" method="POST" action=""> -->
+                            <!-- @csrf
 
                             <div class="form-group row">
                                 <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
@@ -214,7 +214,7 @@
                                     <button class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 </div>
                             </div>
-                        </form>
+                        </form> -->
                     </div>
                 </div>
             </div>

@@ -44,6 +44,11 @@ class AbsentController extends Controller
 
 
     public function reject(Request $request, $id) {
+        $validatedData = $request->validate(
+            [
+                'content'=>'required',
+            ]);
+
         if (!isset($request->user_id)) {
             return redirect()->route('admin.absent.index');
         }

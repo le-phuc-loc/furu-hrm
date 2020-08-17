@@ -34,7 +34,7 @@ class ReportController extends Controller
         // dd(User::find(Auth::user()->id)->reports()->whereDate('reports.created_at', "=", Carbon::now())->get());
         if (count(User::find(Auth::user()->id)
             ->reports()
-            ->whereDate('reports.created_at', "=", Carbon::now())
+            ->whereDate('reports.created_at', "=", Carbon::now('Asia/Ho_Chi_Minh'))
             ->get()
             ) <= 0) {
             if(isset($request->project_id)) {
@@ -63,7 +63,7 @@ class ReportController extends Controller
     public function sendOrDraw(Request $request, $id)
     {
         switch ($request->input('action')) {
-            case 'send':
+            case 'draw':
                 $report = Report::find($id);
                 $report->content = $request->content;
                 $report->state = Report::getReportDraw();
@@ -71,7 +71,7 @@ class ReportController extends Controller
 
             break;
 
-            case 'draw':
+            case 'send':
                 $report = Report::find($id);
                 $report->content = $request->content;
                 $report->state = Report::getReportWaitting();
@@ -87,7 +87,7 @@ class ReportController extends Controller
         // dd(Carbon::now()->format('H:i'));
         $report = Report::find($id);
 
-        $report->time_checkin = Carbon::now()->format('H:i');
+        $report->time_checkin = Carbon::now('Asia/Ho_Chi_Minh')->format('H:i');
         $location_name = $request->lat."+".$request->lng;
         $location = Location::create([
             'location_name' => $location_name,
@@ -106,7 +106,7 @@ class ReportController extends Controller
         // dd(Carbon::now()->format('H:i'));
         $report = Report::find($id);
 
-        $report->time_checkout = Carbon::now()->format('H:i');
+        $report->time_checkout = Carbon::now('Asia/Ho_Chi_Minh')->format('H:i');
         $location_name = $request->lat."+".$request->lng;
         $location = Location::create([
             'location_name' => $location_name,

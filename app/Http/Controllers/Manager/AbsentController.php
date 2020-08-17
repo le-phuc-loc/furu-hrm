@@ -10,8 +10,7 @@ use \App\User;
 use \App\Project;
 use \App\ProjectUser;
 use Auth;
-
-
+use Illuminate\Support\Facades\DB;
 use Mail;
 use \App\Jobs\ProcessReportMail;
 
@@ -30,6 +29,7 @@ class AbsentController extends Controller
                 ->where('state', AbsentApplication::getAbsentWaitting())->get();
 
 
+
         return view('role/manager/absent/index', [
             'absents' => $absents,
         ]);
@@ -43,18 +43,22 @@ class AbsentController extends Controller
         }
         else {
             $user = User::find($request->user_id);
-            dispatch(new ProcessReportMail(Auth::user(), $user, "absent-allow"));
+            //hàng đợi
+            dispatch(new ProcessReportMail(Auth::user(), $user, "absent-allow")); // ???
             $absent = AbsentApplication::find($id);
             $absent->state = AbsentApplication::getAbsentAllow();
             $absent->save();
         }
-
         return redirect()->route('manager.absent.index');
     }
 
 
 
     public function reject(Request $request, $id) {
+        $validatedData = $request->validate(
+            [
+                'content'=>'required',
+            ]);
         if (!isset($request->user_id)) {
             return redirect()->route('manager.absent.index');
         }

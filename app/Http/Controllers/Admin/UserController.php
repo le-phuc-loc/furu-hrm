@@ -30,7 +30,7 @@ class UserController extends Controller
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->password = bcrypt($request->name) ;
+        $user->password = bcrypt($request->password) ;
         $user->role = $request->role;
         $user->save();
 
@@ -53,6 +53,7 @@ class UserController extends Controller
         // dd($request->input());
         $user = User::find($id);
         $user->name = $request->name;
+        $user->email=$request->email;
         $user->role = $request->role;
         $user->save();
         // dd($user);

@@ -85,7 +85,7 @@
                                                         <a type="button"
                                                         href="{{ route('admin.absent.approve', ['id' => $absent->id, 'user_id' => $absent->user->id]) }}"
                                                         class="btn btn-primary">
-                                                            {{ __('Approve') }}
+                                                        <i class="fa fa-check" alt="Edit" aria-hidden="true"></i>
                                                         </a>
                                                         <button class="btn btn-primary"
                                                             data-toggle="modal"
@@ -93,7 +93,7 @@
                                                             data-user_id = "{{ $absent->user->id }}"
                                                             data-absent_id = "{{ $absent->id }}"
                                                             data-target="#reject-modal">
-                                                            Reject
+                                                            <i class="fa fa-ban" alt="Edit" aria-hidden="true"></i>
                                                         </button>
                                                     @endif
                                                 </td>
@@ -138,8 +138,13 @@
                                     <div class="form-group row">
                                         <label for="content" class="col-md-4 col-form-label text-md-right">Reasons</label>
                                         <div class="col-md-6">
-                                            <textarea class="form-control" name="content" rows="3"></textarea>
+                                            <textarea class="form-control @error('content') is-invalid @enderror" name="content" rows="3"></textarea>
                                         </div>
+                                        @error('content')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                     </div>
 
 

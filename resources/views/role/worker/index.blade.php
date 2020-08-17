@@ -5,15 +5,10 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class
     with font-awesome or any other icon font library -->
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="modal" data-target="#update">
-                    <i class="nav-icon fas fa-address-book"></i>
-                        Information
-                </a>
-            </li>
+
             <li class="nav-item">
                 <a href="{{ route('worker.project.index') }}" class="nav-link">
-                    <i class="nav-icon fas fa-book"></i>
+                    <i class="nav-icon fa fa-bars"></i>
                         Projects
                 </a>
             </li>
@@ -25,8 +20,14 @@
             </li>
             <li class="nav-item">
                 <a href="{{ route('worker.absent.index') }}" class="nav-link">
-                    <i class="nav-icon fas fa-book"></i>
+                    <i class="nav-icon fa fa fa-edit"></i>
                         Absent Application
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('worker.user.index') }}" class="nav-link">
+                    <i class="nav-icon fa fa fa-edit"></i>
+                        User
                 </a>
             </li>
         </ul>

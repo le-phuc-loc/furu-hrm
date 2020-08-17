@@ -212,6 +212,19 @@ Route::group(['namespace' => 'Worker', 'prefix' => 'worker'], function() {
         Route::get('/delete/{id}', 'AbsentController@delete')->name('worker.absent.delete');
 
     });
+    Route::group(['prefix' => 'user'], function () {
+        Route::get('/', 'Usercontroller@index')->name('worker.user.index');
+        Route::get('/info/{id}', 'UserController@show')->name('worker.user.show');
+
+
+        Route::get('/create', 'UserController@create')->name('admin.user.create');
+        Route::post('/create', 'Usercontroller@store')->name('worker.user.store');
+
+
+        Route::get('/update/{id}', 'Usercontroller@edit')->name('worker.user.edit');
+        Route::post('/update/{id}', 'Usercontroller@update')->name('worker.user.update');
+
+    });    
 });
 
 

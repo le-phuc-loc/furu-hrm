@@ -22,14 +22,14 @@
 
                                 </div>
                             </div>
+                            {{-- {{ dd($project->manager->name) }} --}}
                             <div class="form-group row">
-                                <label for="manager"
+                                <label for=""
                                     class="col-md-4 col-form-label text-md-right">{{ __('Manager') }}</label>
                                 <div class="col-md-6">
                                     {{-- {{dd($project->manager->name)}} --}}
-                                    <input id="manager" type="text" class="form-control" name="manager"
-                                        value=" "
-                                        required autocomplete="manager" autofocus>
+                                    <input class="form-control" type="text" value="{{ $project->manager->name }}" >
+                                    <input type="hidden" name="manager" value="{{ $project->manager->id }}">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -73,16 +73,14 @@
                                                     Don't have worker
                                                 @else
                                                     @foreach ($workers as $worker)
-                                                       @if (count($worker->projects()->get()) < 2)
-                                                            <li class="list-group-item">
-                                                                {{ $worker->name }} - {{ $worker->role }}
+                                                        <li class="list-group-item">
+                                                            {{ $worker->name }} - {{ $worker->role }}
 
-                                                                <a href="{{ route('admin.project.deleteAssigned', ['id' => $project->id, 'user_id' => $worker->id]) }}">
-                                                                    <i class="fa fa-trash" aria-hidden="true"></i>
-                                                                </a>
+                                                            <a href="{{ route('admin.project.deleteAssigned', ['id' => $project->id, 'user_id' => $worker->id]) }}">
+                                                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                                            </a>
 
-                                                            </li>
-                                                       @endif
+                                                        </li>
                                                     @endforeach
                                                 @endif
 
@@ -121,9 +119,9 @@
     </div>
 
     <script>
-        $(document).ready(function() {
-            $('input#manager').val($("project-manager[selected='selected']").val());
-        });
+        // $(document).ready(function() {
+        //     $('input#manager').val($("project-manager[selected='selected']").val());
+        // });
 
     </script>
 @endsection

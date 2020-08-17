@@ -11,7 +11,8 @@
             </div>
             <br>
             <div class="card">
-                <!-- Card Header -->
+                <!-- CREATE USER -->
+
                 <div class="card-header">
                     <i class="fas fa-table mr-1"></i>List
                     <button type="button" class="btn btn-info add-new" data-toggle="modal" data-target="#create-user"
@@ -112,126 +113,122 @@
                 </div>
 
                 <!-- TABLE -------->
-                <!-- card body -->
-                <div class="card-body">
-                        @csrf
-                        <!-- Update............... -->
-                        <div class="modal fade" id="update-user" tabindex="-1" role="dialog" aria-labelledby="updateLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document" >
-                                <div class="modal-content">
+                <!-- UPDATE-->
+                <!-- Update............... -->
+                <div class="modal fade" id="update-user" tabindex="-1" role="dialog" aria-labelledby="updateLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document" >
+                        <div class="modal-content">
 
-                                    <!-- Modal Header -->
-                                    <div class="modal-header">
-                                        <h4 class="modal-title" id="updateLabel"> Update Infomation</h4>
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    </div>
-
-                                    <!-- Modal body -->
-                                    <div class="modal-body">
-                                        <form id="user-update-form" method="POST" action="">
-                                            @csrf
-                                            <div class="form-group row">
-                                                <label for="name"
-                                                    class="col-md-4 col-form-label text-md-right">{{ __('User Name') }}</label>
-
-                                                <div class="col-md-6">
-                                                    <input id="update-name" type="text"
-                                                        class="form-control @error('name') is-invalid @enderror"
-                                                        name="name" value="{{ old('name') }}" required
-                                                        autocomplete="name" autofocus >
-
-                                                    @error('name')
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="email"
-                                                    class="col-md-4 col-form-label text-md-right">{{ __('Email') }}</label>
-
-                                                <div class="col-md-6">
-                                                    <input id="update-email" type="email"
-                                                        class="form-control @error('email') is-invalid @enderror"
-                                                        name="email" value="{{ old('email') }}" required
-                                                        autocomplete="email" autofocus >
-
-                                                    @error('email')
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
-                                                </div>
-                                            </div>
-
-
-                                            <div class="form-group row">
-                                                <label for="role"
-                                                    class="col-md-4 col-form-label text-md-right">{{ __('Role') }}</label>
-                                                <div class="col-md-6">
-                                                    <select class="custom-select" id="update-role" name="role">
-                                                        <option selected>Choose...</option>
-                                                        <option value="manager">Manager</option>
-                                                        <option value="worker">Worker</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-primary">Update</button>
-                                        </form>
-                                    </div>
-
-
-                                </div>
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="updateLabel"> Update Infomation</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
                             </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <form id="user-update-form" method="POST" action="">
+                                    @csrf
+                                    <div class="form-group row">
+                                        <label for="name"
+                                            class="col-md-4 col-form-label text-md-right">{{ __('User Name') }}</label>
+
+                                        <div class="col-md-6">
+                                            <input id="update-name" type="text"
+                                                class="form-control @error('name') is-invalid @enderror"
+                                                name="name" value="{{ old('name') }}" required
+                                                autocomplete="name" autofocus >
+
+                                            @error('name')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="email"
+                                            class="col-md-4 col-form-label text-md-right">{{ __('Email') }}</label>
+
+                                        <div class="col-md-6">
+                                            <input id="update-email" type="email"
+                                                class="form-control @error('email') is-invalid @enderror"
+                                                name="email" value="{{ old('email') }}" required
+                                                autocomplete="email" autofocus >
+
+                                            @error('email')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group row">
+                                        <label for="role"
+                                            class="col-md-4 col-form-label text-md-right">{{ __('Role') }}</label>
+                                        <div class="col-md-6">
+                                            <select class="custom-select" id="update-role" name="role">
+                                                <option selected>Choose...</option>
+                                                <option value="manager">Manager</option>
+                                                <option value="worker">Worker</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Update</button>
+                                </form>
+                            </div>
+
+
                         </div>
-                        <table id="example2" class="table table-bordered table-hover">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Role</th>
-                                    <th>Manager By</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @if(count($users) <= 0)
-                                <div class="list-group-item list-group-item-action"> Don't have Worker </div>
-                                @else
-                                {{-- <div>adadasdasd</div> --}}
+                    </div>
+                </div>
+            <table id="example2" class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if(count($users) <= 0)
+                    <div class="list-group-item list-group-item-action"> Don't have Worker </div>
+                    @else
+                    {{-- <div>adadasdasd</div> --}}
 
-                                    @foreach ($users as $user)
-                                        <tr>
-                                            <td>{{ $user->name }}</td>
-                                            <td>
-                                                {{ $user->email }}
-                                            </td>
-                                            <td> {{ $user->role }} </td>
-                                            <td> {{ $user->manager }}</td>
-                                            <td>
-                                                <button class="btn btn-primary btn-user-edit" data-toggle="modal"
-                                                    data-target="#update-user"
-                                                    value="{{ route('admin.user.edit', ['id' => $user->id]) }}">
-                                                    Edit
-                                                </button>
-                                                <a type="button" class="btn btn-primary btn-user-delete"
-                                                    href="{{ route('admin.user.delete', ['id' => $user->id]) }}"
-                                                    onclick="return confirm('Are you sure ????');">
-                                                    Delete
-                                                </a>
+                        @foreach ($users as $user)
+                            <tr>
+                                <td>{{ $user->name }}</td>
+                                <td>
+                                    {{ $user->email }}
+                                </td>
+                                <td> {{ $user->role }} </td>
+                                <td>
+                                    <button class="btn btn-primary btn-user-edit" data-toggle="modal"
+                                        data-target="#update-user"
+                                        value="{{ route('admin.user.edit', ['id' => $user->id]) }}">
+                                        <i class="fa fa-edit" alt="Edit" aria-hidden="true"></i>
+                                    </button>
+                                    <a type="button" class="btn btn-primary btn-user-delete"
+                                        href="{{ route('admin.user.delete', ['id' => $user->id]) }}"
+                                        onclick="return confirm('Are you sure ????');">
+                                        <i class="fa fa-trash" alt="Delete" aria-hidden="true"></i>
+                                    </a>
 
-                                            </td>
-                                        </tr>
-                                    @endforeach
+                                </td>
+                            </tr>
+                        @endforeach
 
 
-                                @endif
+                    @endif
 
-                            </tbody>
-                    </table>
+                </tbody>
+            </table>
                 </div>
             </div>
         </div>

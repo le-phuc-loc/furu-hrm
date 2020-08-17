@@ -26,15 +26,12 @@ class ProjectController extends Controller
 
         $validatedData = $request->validate( [
             'project_name' => 'required',
-            'project_from_date' => 'date',
+            'project_from_date' => 'date|after',
             'project_to_date' => 'date|after:project_from_date',
             'time_checkin' => 'date_format:H:i',
             'time_checkout' => 'date_format:H:i|after:time_checkin',
-        ],
-        [
-            'project_to_date.after'=>'Please check...',
-            'time_checkout.after'=>'Time checkout is after ...'
-        ]);
+            ]
+        );
 
         $obj = new Project();
         $obj->project_name = $request->project_name;
@@ -72,15 +69,19 @@ class ProjectController extends Controller
 
     public function update(Request $request, $id) {
         // dd($request->input());
-        $validatedData = $request->validate( [
+        $validatedData = $request->validate(
+            [
             'project_name' => 'required',
             'from_date' => 'date',
             'to_date' => 'date|after:from_date',
-            // 'time_checkin' => 'date_format:H:i',
-            // 'time_checkout' => 'date_format:H:i|after:time_checkin',
-        ]);
+            'time_checkin' => '',
+            'time_checkout' => 'after:time_checkin',
+            ],
+            [
+                'time_checkout'=>'asdjasdkajsdk',
+            ]
 
-
+        );
         $obj = Project::find($id);
         $obj->project_name = $request->project_name;
         $obj->number_worker = $request->number_worker;
@@ -139,7 +140,6 @@ class ProjectController extends Controller
         // dd(ProjectUser::select('user_id')->where('project_id', $id)->get()->pluck('user_id'));
         return view('role/admin/project/assigned')->with([
             'project' => $project,
-            'managers' => $managers,
             'workers' => $workers,
             'admin' => $admin,
         ]);
@@ -158,7 +158,7 @@ class ProjectController extends Controller
         $obj->save();
         // dd($obj);
         // dd($user);
-        return redirect()->route('admin.project.assigned');
+        return redirect()->route('admin.project.assigned',['id'=>$id]);
     }
 
     public function deleteAssigned(Request $request, $id) {

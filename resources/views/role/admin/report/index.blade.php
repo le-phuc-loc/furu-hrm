@@ -120,10 +120,11 @@
                             </button>             
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 @if (count($projects) <= 0)
-                                    <div class="dropdown-item"> Don't have any project </div>
+                                    <a class="dropdown-item"> Don't have any project </div>
                                 @else
                                     @foreach ($projects as $project)
-                                        <a class="dropdown-item" href="{{ route('admin.report.index', ['project_id' => $project->id]) }}">
+                                        <a class="dropdown-item"
+                                            href="{{ route('admin.report.index', ['project_id' => $project->id]) }}">
                                             {{ $project->project_name }}
                                         </a>
                                     @endforeach
@@ -157,28 +158,33 @@
                                 <tbody>
 
 
-                                        @if(count($users) <= 0)
-                                            <div class="list-group-item list-group-item-action"> Don't
-                                                    have user
-                                            </div>
-                                        @else
-                                        {{-- {{ dd($users->find(9)->absentApplication)->reports }} --}}
-                                            @foreach($users as $user)
-                                                <tr>
-                                                    <td>{{ $user->name }}</td>
-                                                    <td>{{ $user->email }}</td>
-                                                    <td>
-                                                        {{ $user->role }}
-                                                    </td>
-                                                    <td> {{ $user->absentApplication->pluck('number_off')->sum() }} </td>
-                                                    {{-- <td> {{ $user->absentApplication()}} </td> --}}
-                                                    <td> {{ $user->reports->pluck('time_working')->sum() }} </td>
-                                                    {{-- <td> {{ $user->reports()}} </td> --}}
+                                    @if (count($users) <= 0)
+                                        <div class="list-group-item list-group-item-action"> Don't
+                                            have user
+                                        </div>
+                                    @else
+                                        {{-- {{ dd($users->find(9)->absentApplication) }}
+                                        --}}
+                                        @foreach ($users as $user)
+                                            <tr>
+                                                <td>{{ $user->name }}</td>
+                                                <td>{{ $user->email }}</td>
+                                                <td>
+                                                    {{ $user->role }}
+                                                </td>
+                                                <td> {{ $user->absentApplication->pluck('number_off')->sum() }} </td>
+                                                {{-- <td> {{ $user->absentApplication() }}
+                                                </td> --}}
+                                                <td>
+                                                    {{ $user->reports->pluck('time_working')->sum() }}
+                                                    {{-- {{ $user->reports->selectRaw }}
+                                                    --}}
+                                                </td>
 
 
-                                                </tr>
-                                            @endforeach
-                                        @endif
+                                            </tr>
+                                        @endforeach
+                                    @endif
                                 </tbody>
                             </table>
                         </div>
