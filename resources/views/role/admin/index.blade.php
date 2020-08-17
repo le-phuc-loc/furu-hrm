@@ -32,8 +32,8 @@
                         Dashboard
                 </a>
                 <ul class="collapse list-unstyled" id="homeSubmenu1">
-                    <li class="active"><a href="{{route('admin.report.index')}}"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-                    <li class="active"><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
+                    <li class="active"><a href="{{route('admin.dashboard.working')}}"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
+                    <li class="active"><a href="{{route('admin.dashboard.absent')}}"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
                 </ul>
             </li>
 

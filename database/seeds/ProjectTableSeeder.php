@@ -68,5 +68,17 @@ class ProjectTableSeeder extends Seeder
             'time_checkout' => '17:30',
             'managed'=>'6'
         ]);
+
+        DB::table('projects')->insert([
+            'project_name'=>'Space starlight',
+            'from_date'=>'2020-01-01',
+            'to_date'=>'2020-12-12',
+            'location_id'=>'4',
+            'created_at'=>now(),
+            'updated_at'=>now(),
+            'time_checkin' => '7:00',
+            'time_checkout' => '17:30',
+            'managed'=>'6'
+        ]);
     }
 }

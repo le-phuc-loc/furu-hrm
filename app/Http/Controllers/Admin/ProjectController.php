@@ -60,6 +60,10 @@ class ProjectController extends Controller
         $location->place_id = $request->place_id;
         $location->save();
 
+<<<<<<< HEAD
+=======
+        // var_dump($location);
+>>>>>>> ef95cb8b19a4f82dca0cc305371337f7ad1b0e4f
         $obj->location_id = $location->id;
         $obj->users()->attach($request->user_id);
         $obj->save();

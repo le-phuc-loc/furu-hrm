@@ -112,6 +112,14 @@ Route::group([
     });
 
 
+    Route::group([
+        'prefix' => 'dashboard',
+    ], function() {
+        Route::get('/working', 'DashboardController@timeWorking')->name('admin.dashboard.working');
+        Route::get('/absent', 'DashboardController@timeAbsent')->name('admin.dashboard.absent');
+
+
+    });
 
 
 });
