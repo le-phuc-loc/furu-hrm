@@ -343,7 +343,7 @@
             function initAutocomplete(m_lat = -33.8688, m_lng = 151.2195, map_id = "map", state = "create") {
                 m_lat = parseFloat(m_lat);
                 m_lng = parseFloat(m_lng);
-                position = new google.maps.LatLng(m_lat, m_lng);
+                var position = new google.maps.LatLng(m_lat, m_lng);
                 // confirm(m_lat + "-------" + m_lng);
                 const map = new google.maps.Map(document.getElementById(map_id), {
                     center: position,
