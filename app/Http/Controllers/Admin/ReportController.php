@@ -5,23 +5,12 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
-
+use Yajra\Datatables\Datatables;
+use App\Report;
 use \App\User;
 use \App\Project;
-
 class ReportController extends Controller
 {
-    //
-    public function totalTime(){
-        $data = DB::table('reports')->get()->toArray();
-       
-        $time_checkout= hour('H:i:s', $date) ;
-        $time_checkin = hour('H:i:s') ; 
-                    
-        echo $time_working = (strtotime($time_checkout) - strtotime($time_checkin)) / (60 * 60 * 24);
-    
-    }  
     public function index(Request $request) {
 
         // dd(User::with(['absentApplication', 'reports'])->get());
@@ -82,4 +71,17 @@ class ReportController extends Controller
         ]);
         // return $users[1];
     }
+    public function datatables()
+    {
+        $users = User::select('name', 'email', 'role')->get();
+        return Datatables::of($users)
+        ->addColumn('action', function ($user) {
+            $deletebtn = '<a class="btn btn-secondary btn-sm" href=""><i class="fa fa-trash-o"></i></a>';
+
+            return $deletebtn;
+        })
+        ->removeColumn('id')
+        ->rawColumns(['action'])
+        ->make(true);
+   }
 }

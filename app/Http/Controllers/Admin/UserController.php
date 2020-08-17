@@ -11,6 +11,7 @@ class UserController extends Controller
 {
     //
     public function index() {
+        // $products = User::sortable()->paginate(5);
         $users = User::all();
         return view('role/admin/user/index', [
             'users' => $users,

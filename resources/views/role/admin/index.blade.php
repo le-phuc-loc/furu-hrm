@@ -1,10 +1,12 @@
 @extends('layouts.side_bar')
 @section('sidebar-menu')
-    <nav>
+    <nav class="">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-            <li class="active">
-                <a href="{{ route('admin.user.index') }}">
-                    <span class="fa fa-user mr-3"></span>
+
+            <li class="nav-item">
+                <a href="{{ route('admin.user.index') }}" class="nav-link ">
+                    <i class="nav-icon fas fa-user-tie" ></i>
+                    <p>
                         Users
                 </a>
             </li>
