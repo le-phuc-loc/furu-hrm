@@ -42,7 +42,9 @@ class UserController extends Controller
 
     public function edit($id) {
         $user = User::find($id);
-        return response()->json(['user' => $user], 200);
+        return view('role/admin/user/edit',[
+            'user'=>$user,
+        ]);
     }
 
     public function update(Request $request, $id) {
