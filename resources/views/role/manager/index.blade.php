@@ -6,38 +6,28 @@
             <!-- Add icons to the links using the .nav-icon class
                 with font-awesome or any other icon font library -->
 
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('manager.user.index') }}">
-                    <i class="nav-icon fas fa-user-tie"></i>
-                    <p>
-                        User
-
-                    </p>
-
+            <li class="active">
+                <a href="{{ route('manager.user.index') }}">
+                    <span class="fa fa-user mr-3"></span>
+                        Users
                 </a>
             </li>
-            <li class="nav-item">
-                <a href="{{ route('manager.project.index') }}" class="nav-link">
-                    <i class="nav-icon fa fa-bars"></i>
-                    <p>
+            <li class="active">
+                <a href="{{ route('manager.project.index') }}">
+                    <span class="fa fa-user mr-3"></span>
                         Projects
-                    </p>
                 </a>
             </li>
-            <li class="nav-item">
-                <a href="{{ route('manager.absent.index') }}" class="nav-link">
-                    <i class="nav-icon fa fa fa-edit"></i>
-                    <p>
-                        Absent
-                    </p>
+            <li class="active">
+                <a href="{{ route('manager.user.index') }}">
+                    <span class="fa fa-user mr-3"></span>
+                        Absents
                 </a>
             </li>
-            <li class="nav-item">
-                <a href="{{ route('manager.report.index') }}" class="nav-link">
-                    <i class="nav-icon fas fa-book"></i>
-                    <p>
+            <li class="active">
+                <a href="{{ route('manager.user.index') }}">
+                    <span class="fa fa-user mr-3"></span>
                         Report
-                    </p>
                 </a>
             </li>
         </ul>

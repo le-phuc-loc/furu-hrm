@@ -1,5 +1,6 @@
 @extends('layouts.side_bar')
 @section('sidebar-menu')
+
     <nav>
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="active">
@@ -8,28 +9,16 @@
                         Users
                 </a>
             </li>
-            <div class="dropdown">
-                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                  Dropdown button
-                </button>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#">Link 1</a>
-                  <a class="dropdown-item" href="#">Link 2</a>
-                  <a class="dropdown-item" href="#">Link 3</a>
-                </div>
-              </div>
-            <li class="active dropdown">
-                <a href="{{ route('admin.project.index') }}" class="dropdown-toggle" data-toggle="dropdown">
+
+            <li class="active">
+                <a href="{{route('admin.project.index')}}">
                     <i class="fa fa-tasks mr-3"></i>
                     <span>Project</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                      </span>
                 </a>
-                <ul class="dropdown-menu">
-                    <li><a  href="index.html"><i class="fa fa-circle-o dropdown-item"></i> Dashboard v1</a></li>
-                    <li class="active"><a href="index2.html"><i class="fa fa-circle-o dropdown-item"></i> Dashboard v2</a></li>
-                </ul>
+                {{-- <ul class="collapse list-unstyled" id="homeSubmenu">
+                    <li class="active"><a href="{{route('admin.project.index')}}"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
+                    <li class="active"><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
+                </ul> --}}
             </li>
             <li class="active">
                 <a href="{{ route('admin.absent.index') }}">
@@ -38,13 +27,18 @@
                 </a>
             </li>
             <li class="active">
-                <a href="{{ route('admin.absent.index') }}">
+                <a href="#homeSubmenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                     <span class="fa fa-home mr-3"></span>
                         Dashboard
                 </a>
+                <ul class="collapse list-unstyled" id="homeSubmenu1">
+                    <li class="active"><a href="{{route('admin.report.index')}}"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
+                    <li class="active"><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
+                </ul>
             </li>
 
         </ul>
+
     </nav>
     <!-- CREATE PROJECT -->
     {{-- <div class="modal fade" id="modal-create-project">
@@ -285,4 +279,18 @@
             </div>
         </form>
     </div> --}}
+    <style>
+    a[data-toggle="collapse"] {
+        position: relative;
+    }
+    .dropdown-toggle::after {
+        display: block;
+        position: absolute;
+        top: 50%;
+        right: 20px;
+        transform: translateY(-50%);
+    }
+
+          </style>
 @endsection
+

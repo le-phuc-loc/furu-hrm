@@ -6,13 +6,12 @@
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table mr-1"></i>List
-            <button type="button" class="btn btn-info add-new" data-toggle="modal" id="btn-create-project"
-                data-target="#modal-create-project" style="float: right;"> <i class="fa fa-plus"></i>
+            <a type="button" class="btn btn-info add-new" href="{{ route('admin.project.create')}}" style="float: right;"> <i class="fa fa-plus"></i>
                 Create
-            </button>
+            </a>
         </div>
         <!-- CREATE PROJECT -->
-        <div class="modal fade" id="modal-create-project">
+        {{-- <div class="modal fade" id="modal-create-project">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
 
@@ -116,9 +115,9 @@
 
                 </div>
             </div>
-        </div>
+        </div> --}}
         {{-- Update Project --}}
-            <form id="project-update-form" method="POST" action="">
+            {{-- <form id="project-update-form" method="POST" action="">
                 @csrf
                 <div class="modal fade" id="update-project" tabindex="-1" role="dialog" aria-labelledby="updateLabel"
                     aria-hidden="true">
@@ -224,7 +223,7 @@
                         </div>
                     </div>
                 </div>
-            </form>
+            </form> --}}
         <table class="table table-bordered table-hover">
             <thead>
                 <tr>

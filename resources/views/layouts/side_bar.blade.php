@@ -50,7 +50,7 @@
 
                 <li>
                     <a class="d-block" href="{{ route('logout') }}" onclick="event.preventDefault();
-        document.getElementById('logout-form').submit();"><span class="fa fa-sign-out mr-3"></span> Sign Out</a>
+                        document.getElementById('logout-form').submit();"><span class="fa fa-sign-out mr-3"></span> Sign Out</a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
                     </form>
