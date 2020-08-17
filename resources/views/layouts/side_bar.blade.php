@@ -12,7 +12,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" ></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
     <script src="{{ asset('js/main.js') }}" defer></script>
 
 
@@ -23,9 +23,17 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+
+    <style>
+        #map{
+            /* width: 100%; */
+            height: 200px;
+        }
+    </style>
 
 </head>
 
@@ -36,9 +44,9 @@
                 <button type="button" id="sidebarCollapse" class="btn btn-primary">
                 </button>
             </div>
-            <div class="img bg-wrap text-center py-4" style="background-image: url(images/bg_1.jpg);">
+            <div class="img bg-wrap text-center py-4" style="background-image: url({{ asset('images/bg_1.jpg') }});">
                 <div class="user-logo">
-                    <div class="img" style="background-image: url(images/logo.jpg);"></div>
+                    <div class="img" style="background-image: url({{ asset('images/logo.jpg') }});"></div>
                     <h3>Catriona Henderson</h3>
                 </div>
             </div>
@@ -66,7 +74,7 @@
     </div>
 
     <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcQ8aJDgCEdlPz5MPuWkXfjQMKwAULO-k&callback=initMap">
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsMyaK7aIpFYjTIbPBafSnxxOg3SwSIIk&libraries=places&callback=initAutocomplete">
     </script>
     {{-- <script src="/vendor/jquery/jquery.min.js"></script> --}}
     {{-- <script src="/vendor/datatables/jquery.dataTables.min.js"></script>
