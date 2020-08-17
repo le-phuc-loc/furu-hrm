@@ -10938,7 +10938,7 @@ a[data-toggle=collapse] {
   font-size: 13px;
   border-radius: 4px;
   box-shadow: none !important;
-  border: transparent;
+  /* border: transparent; */
 }
 
 .form-control:focus,

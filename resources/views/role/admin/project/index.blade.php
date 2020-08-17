@@ -256,21 +256,15 @@
 
                             <td> {{ $project->location->location_name }} </td>
                             <td>
-                                <button class="btn btn-primary btn-edit-project" data-toggle="modal"
-                                    data-target="#update-project"
-                                    value="{{ route('admin.project.edit', ['id' => $project->id]) }}">
-                                    <i class="fa fa-edit" alt="Edit" aria-hidden="true"></i>
-                                </button>
+                                <a type="button" class="btn btn-primary btn-edit-project"
+                                    href="{{ route('admin.project.edit', ['id' => $project->id]) }}">
+                                    <i class="fa fa-edit" style="color:white" alt="Edit" aria-hidden="true"></i>
+                                </a>
                                 <a type="button" class="btn btn-primary btn-project-delete"
                                     href="{{ route('admin.project.delete', ['id' => $project->id]) }}"
                                     onclick="return confirm('Are you sure ????');">
                                     <i class="fa fa-trash" alt="Delete" aria-hidden="true"></i>
                                 </a>
-
-                                {{-- <a type="button" class="btn btn-primary btn-edit-project"
-                                    href="{{ route('admin.project.assign', ['id' => $project->id]) }}">
-                                    <i class="fa fa-edit" aria-hidden="true"></i>
-                                </a> --}}
 
                                 <a class="btn btn-primary btn-assign-project" role="button"
                                     href="{{ route('admin.project.assigned', ['id' => $project->id]) }}">
@@ -287,7 +281,7 @@
     </div>
 
 
-    <script>
+    {{-- <script>
         $(document).ready(function(e) {
             $('.modal').modal({
                 backdrop: 'static',
@@ -436,5 +430,5 @@
 
         });
 
-    </script>
+    </script> --}}
 @endsection

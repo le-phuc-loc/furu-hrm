@@ -16,6 +16,9 @@ class UserController extends Controller
             'users' => $users,
         ]);
     }
+    public function create(){
+        return view('role/admin/user/create');
+    }
 
     public function store(Request $request) {
         // dd($req->input());

@@ -68,8 +68,10 @@ class ProjectController extends Controller
     }
 
     public function edit($id) {
-        $obj = Project::with(['location', 'manager', 'users'])->find($id);
-        return response()->json(['project' => $obj], 200);
+        $project = Project::with(['location', 'manager', 'users'])->find($id);
+        return view('role/admin/project/edit',[
+            'project'=>$project,
+        ]);
     }
 
     public function update(Request $request, $id) {

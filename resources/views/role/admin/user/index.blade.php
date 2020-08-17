@@ -1,18 +1,14 @@
 @extends('role.admin.index')
 @section('content')
     <h2 class="mb-4">List User</h2>
-    {{-- incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-    voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-    culpa qui officia deserunt mollit anim id est laborum.</p> --}}
     <div class="card mb-4">
         <!-- CREATE USER -->
         <div class="card-header">
             <i class="fas fa-table"></i>List
-            <button type="button" class="btn btn-info add-new" data-toggle="modal" data-target="#create-user"
+            <a type="button" class="btn btn-info add-new" href="{{ route('admin.user.create')}}"
                 style="float: right;"> <i class="fa fa-plus"></i>
                 Create
-            </button>
+            </a>
         </div>
         <!-- Modal Create-->
         <div class="modal fade" id="create-user">

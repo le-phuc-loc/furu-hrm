@@ -1,12 +1,13 @@
-@extends('role.admin.index')
 
+@extends('role.admin.index')
 @section('content')
+{{-- <link href="/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet"> --}}
     <h2 class="mb-4">Absents</h2>
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table mr-1"></i>List
         </div>
-        <table class="table table-bordered">
+        <table class="table table-bordered" id="example">
             <thead>
                 <tr>
                     <th>Name</th>
@@ -18,10 +19,7 @@
                     <th>Action</th>
                 </tr>
             </thead>
-
             <tbody>
-
-
                 @if (count($absents) <= 0)
                     <div class="list-group-item list-group-item-action"> Don't
                         have absent form
@@ -191,4 +189,9 @@
         })
 
     </script>
+    @section('script')
+
+    @endsection
+
+
 @endsection

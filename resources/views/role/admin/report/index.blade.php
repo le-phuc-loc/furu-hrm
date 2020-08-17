@@ -1,99 +1,79 @@
 @extends('role.admin.index')
 
 @section('content')
-    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
-        crossorigin="anonymous" />
+    <h2 class="mb-4">Dashboard</h1>
+        <div class="card mb-4">
+            <div class="card-header">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
-    <script>
-        $(document).ready(function() {
-            $('#dataTable1').DataTable();
-        });
-
-    </script>
-    <div id="layoutSidenav_content">
-        <main>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <h1 class="mt-4">Dashboard</h1>
+                        Choose project
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        @if (count($projects) <= 0)
+                            <a class="dropdown-item"> Don't have any project
                     </div>
-                </div>
-                <br>
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                @else
+                    @foreach ($projects as $project)
+                        <a class="dropdown-item" href="{{ route('admin.report.index', ['project_id' => $project->id]) }}">
+                            {{ $project->project_name }}
+                        </a>
+                    @endforeach
+                    @endif
 
-                                Choose project
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                @if (count($projects) <= 0)
-                                    <a class="dropdown-item"> Don't have any project </div>
-                                @else
-                                    @foreach ($projects as $project)
-                                        <a class="dropdown-item"
-                                            href="{{ route('admin.report.index', ['project_id' => $project->id]) }}">
-                                            {{ $project->project_name }}
-                                        </a>
-                                    @endforeach
-                                @endif
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Role</th>
-                                        <th>Number days off</th>
-                                        <th>Time working</th>
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-
-
-                                    @if (count($users) <= 0)
-                                        <div class="list-group-item list-group-item-action"> Don't
-                                            have user
-                                        </div>
-                                    @else
-                                        {{-- {{ dd($users->find(9)->absentApplication) }}
-                                        --}}
-                                        @foreach ($users as $user)
-                                            <tr>
-                                                <td>{{ $user->name }}</td>
-                                                <td>{{ $user->email }}</td>
-                                                <td>
-                                                    {{ $user->role }}
-                                                </td>
-                                                <td> {{ $user->absentApplication->pluck('number_off')->sum() }} </td>
-                                                {{-- <td> {{ $user->absentApplication() }}
-                                                </td> --}}
-                                                <td>
-                                                    {{ $user->reports->pluck('time_working')->sum() }}
-                                                    {{-- {{ $user->reports->selectRaw }}
-                                                    --}}
-                                                </td>
-
-
-                                            </tr>
-                                        @endforeach
-                                    @endif
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
                 </div>
             </div>
-        </main>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="example" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Number days off</th>
+                            <th>Time working</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+
+                        @if (count($users) <= 0)
+                            <div class="list-group-item list-group-item-action"> Don't
+                                have user
+                            </div>
+                        @else
+                            {{-- {{ dd($users->find(9)->absentApplication) }}
+                            --}}
+                            @foreach ($users as $user)
+                                <tr>
+                                    <td>{{ $user->name }}</td>
+                                    <td>{{ $user->email }}</td>
+                                    <td>
+                                        {{ $user->role }}
+                                    </td>
+                                    <td> {{ $user->absentApplication->pluck('number_off')->sum() }} </td>
+                                    {{-- <td> {{ $user->absentApplication() }}
+                                    </td> --}}
+                                    <td>
+                                        {{ $user->reports->pluck('time_working')->sum() }}
+                                        {{-- {{ $user->reports->selectRaw }}
+                                        --}}
+                                    </td>
+
+
+                                </tr>
+                            @endforeach
+                        @endif
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        </div>
+
         {{-- Reject --}}
         <div class="modal fade" id="timework-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
@@ -133,5 +113,15 @@
                 </div>
             </div>
         </div>
-    </div>
-@endsection
+        </div>
+        @section('script')
+        <link href="/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+        <script src="/vendor/datatables/jquery.dataTables.min.js"></script>
+        <script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('#example').DataTable();
+            } );
+            </script>
+        @endsection
+    @endsection

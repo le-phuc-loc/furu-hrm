@@ -71,7 +71,7 @@ Route::group([
         Route::post('/create', 'ProjectController@store')->name('admin.project.store');
 
 
-        Route::get('/update/{id}', 'ProjectController@edit')->name('admin.project.edit');
+        Route::get('/edit/{id}', 'ProjectController@edit')->name('admin.project.edit');
         Route::post('/update/{id}', 'ProjectController@update')->name('admin.project.update');
 
         Route::get('/delete/{id}', 'ProjectController@delete')->name('admin.project.delete');
