@@ -24,12 +24,16 @@
                         Absent Application
                 </a>
             </li>
+<<<<<<< HEAD
             <li class="nav-item">
                 <a href="{{ route('worker.user.index') }}" class="nav-link">
                     <i class="nav-icon fa fa fa-edit"></i>
                         User
                 </a>
             </li>
+=======
+
+>>>>>>> ab9014dc7e9131aa74fb2b0c88e2a9b254fefd3e
         </ul>
 
          <!-- INFORMATION USER MODAL -->

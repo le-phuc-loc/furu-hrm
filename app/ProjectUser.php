@@ -20,4 +20,5 @@ class ProjectUser extends Pivot
     public function user() {
         return $this->belongsTo('\App\User');
     }
+
 }

@@ -35,6 +35,17 @@ class Project extends Model
         return $this->hasMany('\App\ProjectUser');
     }
 
+    // public function absentApplication(){
+    //     return $this->hasManyThrough(
+    //         '\App\AbsentApplication',
+    //         '\App\User',
+    //         'i',
+    //         'project_user_id',
+    //         'id',
+    //         'id'
+    //     );
+    // }
+
     public function getFromDateAttribute($value) {
         return \Carbon\Carbon::parse($this->attributes['from_date'])->format('Y-m-d');
     }

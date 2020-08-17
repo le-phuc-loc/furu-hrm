@@ -26,8 +26,8 @@ class ProjectController extends Controller
 
         $validatedData = $request->validate( [
             'project_name' => 'required',
-            'project_from_date' => 'date|after',
-            'project_to_date' => 'date|after:project_from_date',
+            'project_from_date' =>['required' ,'date|after'],
+            'project_to_date' => ['required','date|after:project_from_date'],
             'time_checkin' => 'date_format:H:i',
             'time_checkout' => 'date_format:H:i|after:time_checkin',
             ]
@@ -77,9 +77,6 @@ class ProjectController extends Controller
             'time_checkin' => '',
             'time_checkout' => 'after:time_checkin',
             ],
-            [
-                'time_checkout'=>'asdjasdkajsdk',
-            ]
 
         );
         $obj = Project::find($id);
