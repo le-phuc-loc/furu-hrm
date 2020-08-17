@@ -1,41 +1,49 @@
 @extends('layouts.side_bar')
 @section('sidebar-menu')
-    <nav class="mt-2">
+    <nav>
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-
-            <li class="nav-item">
-                <a href="{{ route('admin.user.index') }}" class="nav-link ">
-                    <i class="nav-icon fas fa-user-tie"></i>
-                    <p>
+            <li class="active">
+                <a href="{{ route('admin.user.index') }}">
+                    <span class="fa fa-user mr-3"></span>
                         Users
-                    </p>
-                </a>
-
-            </li>
-            <li class="nav-item">
-                <a href="{{ route('admin.project.index') }}" class="nav-link ">
-                    <i class="nav-icon fa fa-bars"></i>
-                    <p>
-                        Projects
-                    </p>
                 </a>
             </li>
-            <li class="nav-item">
-                <a href="{{ route('admin.absent.index') }} " class="nav-link ">
-                    <i class="nav-icon fa fa fa-edit"> </i>
-                    <p>
-                        Absent
-                    </p>
+            <div class="dropdown">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                  Dropdown button
+                </button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#">Link 1</a>
+                  <a class="dropdown-item" href="#">Link 2</a>
+                  <a class="dropdown-item" href="#">Link 3</a>
+                </div>
+              </div>
+            <li class="active dropdown">
+                <a href="{{ route('admin.project.index') }}" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-tasks mr-3"></i>
+                    <span>Project</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                      </span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a  href="index.html"><i class="fa fa-circle-o dropdown-item"></i> Dashboard v1</a></li>
+                    <li class="active"><a href="index2.html"><i class="fa fa-circle-o dropdown-item"></i> Dashboard v2</a></li>
+                </ul>
+            </li>
+            <li class="active">
+                <a href="{{ route('admin.absent.index') }}">
+                    <span class="fa fa-home mr-3"></span>
+                        Absents
                 </a>
             </li>
-            <li class="nav-item">
-                <a href="{{ route('admin.report.index')}} " class="nav-link ">
-                    <i class="nav-icon fas fa-address-book"> </i>
-                    <p>
+            <li class="active">
+                <a href="{{ route('admin.absent.index') }}">
+                    <span class="fa fa-home mr-3"></span>
                         Dashboard
-                    </p>
                 </a>
             </li>
+
         </ul>
     </nav>
     <!-- CREATE PROJECT -->
@@ -261,17 +269,15 @@
                             <div class="form-group" id="update-map">
 
                             </div>
-                            <div class="form-group row mb-0">
-                                <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-secondary">
-                                        {{ __('Update') }}
-                                    </button>
-                                </div>
-                            </div>
+
                         </div>
                         <!-- Modal footer -->
                         <div class="modal-footer">
+                                    <button type="submit" class="btn btn-secondary">
+                                    {{ __('Update') }}
+                                </button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
                         </div>
 
                     </div>

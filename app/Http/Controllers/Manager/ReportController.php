@@ -30,9 +30,6 @@ class ReportController extends Controller
                 ->get();
         }
         else {
-
-
-
             $reports =  Report::whereIn('project_user_id',
             ProjectUser::whereIn('project_id',
             User::find(Auth::user()->id)

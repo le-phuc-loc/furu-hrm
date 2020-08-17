@@ -1,17 +1,9 @@
 @extends('role.manager.index')
 
 @section('content')
-    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
         crossorigin="anonymous" />
-
-    <script>
-        $(document).ready(function() {
-            $('#dataTable1').DataTable();
-        });
-
-    </script>
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid">
@@ -32,7 +24,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
                                         <th>Name</th>
@@ -52,7 +44,7 @@
                                     @else
                                         @foreach($absents as $absent)
                                         <tr>
-                                            <td>{{ $absent->user->name }}</td>
+                                            <td>{{ $absent->user->  name }}</td>
                                             <td>{{ $absent->date_off }}</td>
                                             <td>
                                                 {{ $absent->number_off }}
@@ -71,7 +63,7 @@
                                                     </a>
                                                     <button class="btn btn-primary"
                                                         data-toggle="modal"
-                                                        data-name = "{{ $absent->name }}"
+                                                        data-name = "{{ $absent->user->name }}"
                                                         data-user_id = "{{ $absent->user_id }}"
                                                         data-absent_id = "{{ $absent->id }}"
                                                         data-target="#reject-modal">
@@ -220,11 +212,7 @@
 
             })
             $('.modal').modal({backdrop: 'static', keyboard: false, show: false});
-            // $(".btn-reject-report").click(function(e) {
-            //     // var updateUrl = $(this).val(button.data("project_name"));
-            //     confirm(button.data("project_name"));
 
-            // });
         })
     </script>
 @endsection

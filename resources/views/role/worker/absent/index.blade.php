@@ -225,12 +225,9 @@
     </div>
     <script>
         $(document).ready(function() {
-
-
             $('#create-modal').on('show.bs.modal', function (event) {
                 var button = $(event.relatedTarget)
                 $("#create-name").val(button.data("name"));
-
             })
             $('.modal').modal({backdrop: 'static', keyboard: false, show: false});
             $(".btn-edit-absent").click(function(e) {
