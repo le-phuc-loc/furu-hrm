@@ -30,7 +30,7 @@ class UserController extends Controller
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->password = bcrypt($request->name) ;
+        $user->password = bcrypt($request->password) ;
         $user->role = $request->role;
         $user->save();
 
@@ -46,13 +46,14 @@ class UserController extends Controller
 
         $validatedData = $request->validate(
             [
-                'name' => ['required', 'string', 'max:255', 'unique:users'],
-                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-                'password' => ['required', 'string', 'min:8'],
+                'name' => ['required', 'string', 'max:255', 'unique:users,name,'.$id],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,'.$id],
             ]
         );
+        // dd($request->input());
         $user = User::find($id);
         $user->name = $request->name;
+        $user->email=$request->email;
         $user->role = $request->role;
         $user->save();
         // dd($user);

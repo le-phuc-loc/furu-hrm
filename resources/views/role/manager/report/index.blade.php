@@ -31,7 +31,6 @@
                                 @endif
                             </div>
                         </div>
-                    </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
@@ -58,7 +57,7 @@
                                         @foreach ($reports as $report)
                                             <tr>
                                                 {{-- {{ dd($report->project_user->user) }} --}}
-                                                <td>{{ $report->project_user->user->name }}</td>
+                                                <td>{{ $report->project_user->user->name  }}</td>
                                                 <td>{{ $report->project_user->user->email }}</td>
                                                 <td> {{ $report->content }}</td>
                                                 <td>
@@ -145,6 +144,11 @@
                                         <div class="col-md-6">
                                             <textarea class="form-control" name="content" rows="3"></textarea>
                                         </div>
+                                        @error('content')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
                                     </div>
 
 

@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
+use Auth;
+
 
 class LoginController extends Controller
 {
@@ -43,4 +47,19 @@ class LoginController extends Controller
     public function username(){
         return 'name';
     }
+
+    // public function login(Request $request){
+
+    //     $validatedData = $request->validate( [
+    //         'name' => ['required', 'string', 'max:255'],
+    //         'password' => ['required', 'string', 'min:8'],
+    //     ]);
+    //     if (Auth::attempt(['name' => $name, 'password' => $password])) {
+    //         // Success
+    //         return redirect()->intended('/');
+    //     } else {
+    //         // Go back on error (or do what you want)
+    //         return redirect()->back();
+    //     }
+    // }
 }

@@ -25,13 +25,21 @@ class AbsentApplication extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\User','user_id','id');
     }
 
-    public function getDateOffAttribute($value) {
-        return \Carbon\Carbon::parse($this->attributes['date_off'])->format('Y-m-d');
+    public function project(){
+        return $this->belongsTo('App\Project');
     }
 
+
+    public function getDateOffStartAttribute($value) {
+        return \Carbon\Carbon::parse($this->attributes['date_off_start'])->format('Y-m-d');
+    }
+
+    public function getDateOffEndAttribute($value) {
+        return \Carbon\Carbon::parse($this->attributes['date_off_end'])->format('Y-m-d');
+    }
 
 
 

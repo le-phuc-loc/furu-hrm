@@ -18,22 +18,7 @@ class ReportController extends Controller
 {
     //
     public function index(Request $request) {
-        // Report::whereIn('project_user_id', ProjectUser::whereIn('project_id',
-        // User::find(Auth::user()->id)
-        //     ->projects()
-        //     ->get()
-        //     ->pluck('id'))
-        //     ->get()->pluck('id'))
-        //     ->get();
-        // dd(Report::whereIn('project_user_id', ProjectUser::whereIn('project_id',
-        // User::find(Auth::user()->id)
-        //     ->projects()
-        //     ->get()
-        //     ->pluck('id'))
-        //     ->get()->pluck('id'))
-        //     ->get());
-        // dd(Report::whereIn('id', User::find(Auth::user()->id)
-        //     ));
+
         if(isset($request->project_id)) {
             $reports = Project::find($request->project_id)
                 ->reports()
@@ -93,6 +78,10 @@ class ReportController extends Controller
 
 
     public function reject(Request $request, $id) {
+        $validatedData = $request->validate(
+            [
+                'content'=>'required',
+            ]);
         if (!isset($request->user_id)) {
             return redirect()->route('manager.report.index');
         }

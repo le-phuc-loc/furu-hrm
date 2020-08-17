@@ -14,8 +14,7 @@ const mix = require('laravel-mix');
 mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css').sourceMaps();
 // mix.js('node_modules/popper.js/dist/popper.js', 'public/js');
-
-mix.copy('resources/dist/img/AdminLTELogo.png', 'public/images', false );
-mix.copy('resources/dist/img/avatar5.png', 'public/images', false );
-
+mix.js('resources/js/main.js', 'public/js')
+    .sass('resources/sass/style.scss', 'public/css').sourceMaps();
+mix.copy('resources/images/','public/images');
 // mix.webpackConfig({ node: { fs: 'empty' }})

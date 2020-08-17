@@ -26,8 +26,8 @@ class ProjectController extends Controller
 
         $validatedData = $request->validate( [
             'project_name' => 'required',
-            'project_from_date' => 'date',
-            'project_to_date' => 'date|after:project_from_date',
+            'project_from_date' =>['required' ,'date|after'],
+            'project_to_date' => ['required','date|after:project_from_date'],
             'time_checkin' => 'date_format:H:i',
             'time_checkout' => 'date_format:H:i|after:time_checkin',
             ]
@@ -66,14 +66,16 @@ class ProjectController extends Controller
 
     public function update(Request $request, $id) {
         // dd($request->input());
-        $validatedData = $request->validate( [
+        $validatedData = $request->validate(
+            [
             'project_name' => 'required',
-            'project_from_date' => 'date',
-            'project_to_date' => 'date|after:project_from_date',
-            'time_checkin' => 'date_format:H:i',
-            'time_checkout' => 'date_format:H:i|after:time_checkin',
-        ]);
+            'from_date' => 'date',
+            'to_date' => 'date|after:from_date',
+            'time_checkin' => '',
+            'time_checkout' => 'after:time_checkin',
+            ],
 
+        );
         $obj = Project::find($id);
         $obj->project_name = $request->project_name;
         $obj->number_worker = $request->number_worker;
@@ -89,7 +91,7 @@ class ProjectController extends Controller
         ]);
         $obj->users()->attach($request->user_id);
         $obj->save();
-        // dd($user);
+        // dd($obj);
         return redirect()->route('admin.project.index');
     }
 
@@ -150,7 +152,7 @@ class ProjectController extends Controller
         $obj->save();
         // dd($obj);
         // dd($user);
-        return redirect()->route('admin.project.assigned');
+        return redirect()->route('admin.project.assigned',['id'=>$id]);
     }
 
     public function deleteAssigned(Request $request, $id) {

@@ -8,7 +8,7 @@
 
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('manager.user.index') }}">
-                    <i class="nav-icon fas fa-address-book"></i>
+                    <i class="nav-icon fas fa-user-tie"></i>
                     <p>
                         User
 
@@ -18,7 +18,7 @@
             </li>
             <li class="nav-item">
                 <a href="{{ route('manager.project.index') }}" class="nav-link">
-                    <i class="nav-icon fas fa-book"></i>
+                    <i class="nav-icon fa fa-bars"></i>
                     <p>
                         Projects
                     </p>
@@ -26,7 +26,7 @@
             </li>
             <li class="nav-item">
                 <a href="{{ route('manager.absent.index') }}" class="nav-link">
-                    <i class="nav-icon fas fa-book"></i>
+                    <i class="nav-icon fa fa fa-edit"></i>
                     <p>
                         Absent
                     </p>

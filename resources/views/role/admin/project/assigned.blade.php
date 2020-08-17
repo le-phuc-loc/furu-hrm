@@ -73,16 +73,14 @@
                                                     Don't have worker
                                                 @else
                                                     @foreach ($workers as $worker)
-                                                       @if (count($worker->projects()->get()) < 2)
-                                                            <li class="list-group-item">
-                                                                {{ $worker->name }} - {{ $worker->role }}
+                                                        <li class="list-group-item">
+                                                            {{ $worker->name }} - {{ $worker->role }}
 
-                                                                <a href="{{ route('admin.project.deleteAssigned', ['id' => $project->id, 'user_id' => $worker->id]) }}">
-                                                                    <i class="fa fa-trash" aria-hidden="true"></i>
-                                                                </a>
+                                                            <a href="{{ route('admin.project.deleteAssigned', ['id' => $project->id, 'user_id' => $worker->id]) }}">
+                                                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                                            </a>
 
-                                                            </li>
-                                                       @endif
+                                                        </li>
                                                     @endforeach
                                                 @endif
 

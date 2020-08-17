@@ -9,7 +9,7 @@
                         {{ __('Assign Project') }}
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="">
+                    <form method="POST" action="{{route('admin.project.assign_post',['id'=>$project->id])}}">
                             @csrf
 
                             <div class="form-group row">

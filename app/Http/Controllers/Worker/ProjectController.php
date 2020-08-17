@@ -16,8 +16,8 @@ class ProjectController extends Controller
     //
     public function index() {
         $objs = User::find(Auth::user()->id)->projects()
-            ->where('to_date', '>=', Carbon::now())
-            ->where('from_date', '<=', Carbon::now())
+            ->where('to_date', '>=', Carbon::now('Asia/Ho_Chi_Minh'))
+            ->where('from_date', '<=', Carbon::now('Asia/Ho_Chi_Minh'))
             ->get();
         // dd($obj);
         return view('role/worker/project/index', [
