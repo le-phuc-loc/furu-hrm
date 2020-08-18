@@ -9,6 +9,7 @@
         $(document).ready(function() {
             $('#dataTable1').DataTable();
         });
+    </script>
     <h2 class="mb-4">List User</h2>
     <div class="card mb-4">
         <!-- CREATE USER -->
@@ -215,26 +216,26 @@
 
     <script>
         // $(document).ready(function(e) {
-        //     $(".btn-user-edit").click(function(e) {
-        //         var updateUrl = $(this).val();
-        //         console.log(updateUrl);
-        //         e.preventDefault();
-        //         $.ajax({
-        //             type: 'GET',
-        //             url: updateUrl,
-        //             success: function(result) {
+            $(".btn-user-edit").click(function(e) {
+                var updateUrl = $(this).val();
+                console.log(updateUrl);
+                e.preventDefault();
+                $.ajax({
+                    type: 'GET',
+                    url: updateUrl,
+                    success: function(result) {
 
-        //                 console.log(result.user);
-        //                 $("#update-name").val(result.user.name);
-        //                 $("#update-email").val(result.user.email);
-        //                 $("#update-manager").val(result.user.manager);
-        //                 $("#update-role").val(result.user.role);
-        //                 $("#user-update-form").attr('action', "/admin/user/update/" + result
-        //                     .user.id);
-        //             }
-        //         });
-        //     });
-        // });
+                        console.log(result.user);
+                        $("#update-name").val(result.user.name);
+                        $("#update-email").val(result.user.email);
+                        $("#update-manager").val(result.user.manager);
+                        $("#update-role").val(result.user.role);
+                        $("#user-update-form").attr('action', "/admin/user/update/" + result
+                            .user.id);
+                    }
+                });
+            });
+        });
 
     </script>
 @endsection

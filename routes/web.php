@@ -225,6 +225,21 @@ Route::group(['namespace' => 'Worker', 'prefix' => 'worker','middleware'=>'worke
         Route::get('/delete/{id}', 'AbsentController@delete')->name('worker.absent.delete');
 
     });
+    Route::group(['prefix' => 'user'], function() {
+        Route::get('/', 'UserController@index')->name('worker.user.index');
+        // Route::get('/info/{id}', 'UserController@show')->name('manager.user.show');
+
+
+        Route::get('/create', 'UserController@create')->name('worker.user.create');
+        Route::post('/create', 'UserController@store')->name('worker.user.store');
+
+
+        Route::get('/update/{id}', 'UserController@edit')->name('worker.user.edit');
+        Route::post('/update/{id}', 'UserController@update')->name('worker.user.update');
+
+        // Route::get('/delete/{id}', 'UserController@delete')->name('manager.user.delete');
+    });
+
 });
 
 

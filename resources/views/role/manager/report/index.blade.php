@@ -59,7 +59,7 @@
                                             @if ($report->state != 2)
                                                 <a type="button"
                                                     href="{{ route('manager.report.approve', ['id' => $report->id, 'user_id' => $report->project_user->user->id]) }}"
-                                                    class="btn btn-primary">
+                                                    class=" ">
                                                     Approve
                                                 </a>
                                                 <button type="button" class="btn btn-primary btn-reject-report"

@@ -23,6 +23,13 @@
                     Absent Application
                 </a>
             </li>
+            <li class="active">
+                <a href="{{ route('worker.user.index') }}">
+                    <span class="fa fa-edit mr-3"></span>
+                    INFORMATION
+                </a>
+            </li>
+
 
         </ul>
 
