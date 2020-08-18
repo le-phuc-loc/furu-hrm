@@ -17,10 +17,10 @@
                         <tr>
                             <th>Name</th>
                             <th>Manage by </th>
-                            <th>Number</th>
                             <th>From date</th>
                             <th>To date</th>
                             <th>Location</th>
+                            <th>Time Working</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -37,10 +37,10 @@
                                 <tr>
                                     <td> {{ $project->project_name }} </td>
                                     <td> {{ $project->managed }} </td>
-                                    <td> {{ $project->number_worker }} </td>
                                     <td> {{ $project->from_date }} </td>
                                     <td> {{ $project->to_date }} </td>
                                     <td> {{ $project->location->location_name }} </td>
+                                    <td> {{ $project->time_working(Auth::user()->id) }} </td>
                                     <td>
                                         <a class="btn btn-primary"
                                                 href="{{ route('worker.report.index', ['project_id' => $project->id]) }}"

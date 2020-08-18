@@ -33,7 +33,7 @@ class AbsentController extends Controller
     public function store(Request $request) {
         $validator = Validator::make($request->all(), [
             'content' => 'required',
-            'date_off_start' => 'required|date',
+            'date_off_start' => 'required|date|after:'.Carbon::now()->addDays(14),
             'date_off_end' => 'required|date|after:date_off_start',
         ]);
         if ($validator->fails()) {
@@ -63,8 +63,8 @@ class AbsentController extends Controller
     public function update(Request $request, $id) {
         // dd($request->input());
         $validatedData = $request->validate( [
-            'date_off_start' => ['required'],
-            'date_off_end' => ['required'],
+            'date_off_start' => ['required','date'],
+            'date_off_end' => ['required','date','after:date_off_start'],
             'content' => ['required'],
 
         ]);

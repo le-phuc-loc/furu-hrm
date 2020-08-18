@@ -28,7 +28,7 @@ class RegisterAdminController extends Controller
             if($request->defaultkey!=$key){
                 return redirect()->route('register.admin');
             } ;
-            $validatedData = $request->validate( [
+            $request->validate([
                 'name' => ['required', 'string', 'max:255','unique:users'],
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
                 'password' => ['required', 'string', 'min:8', 'confirmed'],

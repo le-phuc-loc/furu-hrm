@@ -36,11 +36,10 @@
                                         <td> {{ $project->to_date }} </td>
                                         <td> {{ $project->location->location_name }} </td>
                                         <td>
-                                            <button class="btn btn-primary btn-edit-project" data-toggle="modal"
-                                                data-target="#update-project"
-                                                value="{{ route('manager.project.edit', ['id' => $project->id]) }}">
+                                            <a type="button" class="btn btn-primary btn-edit-project"
+                                                href="{{ route('manager.project.edit', ['id' => $project->id]) }}">
                                                 <i class="fa fa-edit" aria-hidden="true"></i>
-                                            </button>
+                                            </a>
                                             <a class="btn btn-primary"
                                                 href="{{ route('manager.user.index', ['project_id' => $project->id]) }}"
                                                 role="button">
@@ -58,7 +57,7 @@
         </div>
     </div>
 
-    <script>
+    {{-- <script>
         $(document).ready(function(e) {
             $('.modal').modal({
                 backdrop: 'static',
@@ -205,5 +204,5 @@
 
         });
 
-    </script>
+    </script> --}}
 @endsection

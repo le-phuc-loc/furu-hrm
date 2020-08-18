@@ -44,7 +44,7 @@ class AbsentController extends Controller
 
 
     public function reject(Request $request, $id) {
-        $validatedData = $request->validate(
+        $request->validate(
             [
                 'content'=>'required',
             ]);

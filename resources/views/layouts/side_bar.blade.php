@@ -52,6 +52,10 @@
             height: 100px;
             /* background-color: black; */
         }
+
+        .map {
+            height: 200px;
+        }
     </style>
 </head>
 <body>
@@ -65,8 +69,8 @@
             </div>
             <div class="img bg-wrap text-center py-4" style="background-image: url({{ asset('images/bg_1.jpg') }});">
                 <div class="user-logo">
-                    <div class="img" style="background-image: url({{ asset('images/logo.jpg') }});"></div>
-                    <h3>Catriona Henderson</h3>
+                    <div class="img" style="background-image: url({{ asset('images/avatar5.png') }});"></div>
+                    <h3>{{ Auth::user()->name }}</h3>
                 </div>
             </div>
             <ul class="list-unstyled components mb-5">
@@ -128,6 +132,7 @@
                 </div>
             </nav>
             <div id="content" class="p-4 p-md-5 pt-5">
+
                 @yield('content')
             </div>
             {{-- <div id="map"></div> --}}

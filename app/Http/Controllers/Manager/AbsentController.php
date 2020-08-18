@@ -45,7 +45,7 @@ class AbsentController extends Controller
             ->where('state', AbsentApplication::getAbsentWaitting())->get();
             // dd($absents);
         return view('role.manager.absent.index',compact('absents'));
-        
+
         // $absents = AbsentApplication::whereIn('user_id',
         //         User::whereIn('id',
         //         ProjectUser::whereIn('project_id',
@@ -77,11 +77,6 @@ class AbsentController extends Controller
 
 
     public function reject(Request $request, $id) {
-        $validatedData = $request->validate(
-            [
-                'content'=>'required',
-            ]);
-
         if (!isset($request->user_id)) {
             return redirect()->route('manager.absent.index');
         }
