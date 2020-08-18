@@ -10703,6 +10703,11 @@ h5,
   width: 100%;
 }
 
+.dropdown-item-custom:hover,
+.dropdown-item-custom:focus {
+  background-color: #212529 !important;
+}
+
 #sidebar {
   min-width: 300px;
   max-width: 300px;
@@ -10711,6 +10716,7 @@ h5,
   transition: all 0.3s;
   position: -webkit-sticky;
   position: sticky;
+  z-index: 100;
 }
 
 #sidebar .h6 {
@@ -10826,6 +10832,7 @@ h5,
   top: 20px;
   right: 0;
   margin-right: -35px;
+  z-index: 999;
   transition: 0.3s;
 }
 
@@ -10914,6 +10921,15 @@ a[data-toggle=collapse] {
   padding: 0;
   min-height: 100vh;
   transition: all 0.3s;
+  background-color: #000000;
+}
+
+.navbar-main {
+  width: 100%;
+  padding: 0;
+  min-height: 100vh;
+  transition: all 0.3s;
+  z-index: 10;
 }
 
 .btn.btn-primary {

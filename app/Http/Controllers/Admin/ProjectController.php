@@ -24,7 +24,11 @@ class ProjectController extends Controller
         ]);
     }
     public function create(){
-        return view('role/admin/project/create');
+        $managers = User::where('role', 'manager')->get();
+        return view('role/admin/project/create',[
+            'managers'=>$managers
+        ]);
+
     }
 
 
@@ -69,8 +73,10 @@ class ProjectController extends Controller
 
     public function edit($id) {
         $project = Project::with(['location', 'manager', 'users'])->find($id);
+        $managers = User::where('role', 'manager')->get();
         return view('role/admin/project/edit',[
             'project'=>$project,
+            'managers'=>$managers
         ]);
     }
 
