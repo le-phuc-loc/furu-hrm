@@ -1,97 +1,88 @@
 @extends('role.manager.index')
 
 @section('content')
-    <div id="layoutSidenav_content">
-        <main>
-            <div class="container-fluid">
-                <div class="row ">
-                    <div class="col-md-8">
-                        <h1 class="mt-4">PROJECT *NAME*</h1>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        {{ __('Report Project') }}
                     </div>
-                </div><br>
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-md-8">
-                            <div class="card">
-                                <div class="card-header d-flex justify-content-between align-items-center">
-                                    {{ __('Report Project') }}
+                    <div class="card-body">
+                        <form method="POST" action="">
+                            @csrf
+
+                            <form>
+                                <div class="form-group">
+                                    <label for="project_name">Name User</label>
+                                    <input type="text" class="form-control" readonly
+                                        value="{{ $report->project_user->user->name }}">
                                 </div>
-                                <div class="card-body">
-                                    <form method="POST" action="">
-                                        @csrf
-
-                                        <form>
-                                            <div class="form-group">
-                                                <label for="project_name">Name User</label>
-                                                <input type="text" class="form-control" readonly
-                                                  value="{{ $report->project_user->user->name }}">
-                                            </div>
-                                            <div class="form-row">
-                                              <div class="form-group col-md-6">
-                                                <label for="time_checkin">Time checkin</label>
-                                                <input type="time" class="form-control" id="time_checkin" readonly
-                                                    value="{{ $report->time_checkin }}">
-                                              </div>
-                                              <div class="form-group col-md-6">
-                                                <label for="location_checkin">Location checkin</label>
-                                                {{-- {{ dd($report->location_checkin) }} --}}
-                                                <input type="text" class="form-control" id="location_checkin" readonly
-                                                    value="{{ (isset($report->location_checkin)) ? $report->location_checkin->location_name : "" }}">
-                                              </div>
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="form-group col-md-6">
-                                                  <label for="time_checkout">Time checkout</label>
-                                                  <input type="time" class="form-control" id="time_checkout" readonly
-                                                    value="{{ $report->time_checkout }}">
-                                                </div>
-                                                <div class="form-group col-md-6">
-                                                  <label for="location_checkout">Location checkout</label>
-                                                  <input type="text" class="form-control" id="location_checkout" readonly
-                                                    value="{{ (isset($report->location_checkout)) ? $report->location_checkout->location_name : "" }}">
-                                                </div>
-                                              </div>
-                                            <div class="form-group">
-                                              <label for="project_name">Project</label>
-                                              <input type="text" class="form-control" id="project_name" readonly
-                                                value="{{ $report->project_user->project->project_name }}">
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="content">Content</label>
-                                                <textarea class="form-control"
-                                                name="content" rows="5" readonly>
-                                                    {{ $report->content }}
-                                                </textarea>
-                                            </div>
-
-                                            @if ($report->state != 2)
-                                                <a type="button" href="{{ route('manager.report.approve', ['id' => $report->id, 'user_id' => $report->project_user->user->id]) }}"
-                                                    class="btn btn-primary">
-                                                    Approve
-                                                </a>
-                                                <button type="button" class="btn btn-primary btn-reject-report" data-toggle="modal"
-                                                    data-target="#reject-modal"
-                                                    data-project_name = "{{ $report->project_user->project->project_name }}"
-                                                    data-name = "{{ $report->project_user->user->name }}"
-                                                    data-manager = "{{ $report->project_user->project->managed }}"
-                                                    data-user_id = "{{ $report->project_user->user->id }}"
-                                                    data-report_id = "{{ $report->id }}"
-                                                    >
-                                                    Reject
-                                                </button>
-                                            @endif
-
-
-                                    </form>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                    <label for="time_checkin">Time checkin</label>
+                                    <input type="time" class="form-control" id="time_checkin" readonly
+                                        value="{{ $report->time_checkin }}">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                    <label for="location_checkin">Location checkin</label>
+                                    {{-- {{ dd($report->location_checkin) }} --}}
+                                    <input type="text" class="form-control" id="location_checkin" readonly
+                                        value="{{ (isset($report->location_checkin)) ? $report->location_checkin->location_name : "" }}">
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="time_checkout">Time checkout</label>
+                                        <input type="time" class="form-control" id="time_checkout" readonly
+                                        value="{{ $report->time_checkout }}">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="location_checkout">Location checkout</label>
+                                        <input type="text" class="form-control" id="location_checkout" readonly
+                                        value="{{ (isset($report->location_checkout)) ? $report->location_checkout->location_name : "" }}">
+                                    </div>
+                                    </div>
+                                <div class="form-group">
+                                    <label for="project_name">Project</label>
+                                    <input type="text" class="form-control" id="project_name" readonly
+                                    value="{{ $report->project_user->project->project_name }}">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="content">Content</label>
+                                    <textarea class="form-control"
+                                    name="content" rows="5" readonly>
+                                        {{ $report->content }}
+                                    </textarea>
+                                </div>
+
+                                @if ($report->state != 2)
+                                    <a type="button" href="{{ route('manager.report.approve', ['id' => $report->id, 'user_id' => $report->project_user->user->id]) }}"
+                                        class="btn btn-primary">
+                                        Approve
+                                    </a>
+                                    <button type="button" class="btn btn-primary btn-reject-report" data-toggle="modal"
+                                        data-target="#reject-modal"
+                                        data-project_name = "{{ $report->project_user->project->project_name }}"
+                                        data-name = "{{ $report->project_user->user->name }}"
+                                        data-manager = "{{ $report->project_user->project->managed }}"
+                                        data-user_id = "{{ $report->project_user->user->id }}"
+                                        data-report_id = "{{ $report->id }}"
+                                        >
+                                        Reject
+                                    </button>
+                                @endif
+
+
+                        </form>
                     </div>
                 </div>
             </div>
-        </main>
+        </div>
     </div>
+
 
     {{-- reject model --}}
     <div class="modal fade" id="reject-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
