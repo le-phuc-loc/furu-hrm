@@ -1,7 +1,6 @@
 @extends('role.manager.index')
 
 @section('content')
-    <h2>ABSENTS</h2>
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table mr-1"></i>List
