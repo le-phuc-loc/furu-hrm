@@ -4,6 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use Illuminate\Support\Facades\DB;
+
+
 class Project extends Model
 {
     public function users(){
@@ -67,6 +70,34 @@ class Project extends Model
     //     'time_to_checkout' => 'date:hh:mm',
     // ];
 
+    function time_working($user_id = null) {
+
+        if($user_id != null) {
+            $time = 0;
+            $project_user_id = DB::table('project_user')
+                ->where('project_id', $this->id)
+                ->where('user_id', $user_id)
+                ->first();
+
+
+            // dd($project_user_id);
+            if ($project_user_id) {
+
+                $time = DB::table('reports')
+                ->where('project_user_id', $project_user_id->id)
+                ->get()
+                ->pluck('time_working')
+                ->sum();
+                // echo "  meo   ".$project_user_id->id;
+                return $time;
+            }
+            return $time;
+            // dd($time);
+        }
+
+
+        return $this->reports->pluck('time_working')->sum();
+    }
 
 
 }

@@ -14,13 +14,13 @@
             </li>
             <li class="active">
                 <a href="{{ route('manager.project.index') }}">
-                    <span class="fa fa-user mr-3"></span>
+                    <span class="fa fa-tasks mr-3"></span>
                         Projects
                 </a>
             </li>
             <li class="active">
                 <a href="{{ route('manager.absent.index') }}">
-                    <span class="fa fa-user mr-3"></span>
+                    <span class="fa fa-home mr-3"></span>
                         Absents
                 </a>
             </li>

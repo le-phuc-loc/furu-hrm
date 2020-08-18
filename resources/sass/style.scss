@@ -168,7 +168,7 @@ h1, h2, h3, h4, h5,
 		top: 20px;
 		right: 0;
         margin-right: -35px;
-        z-index: 999;
+        // z-index: 10;
 		@include transition(.3s);
 		.btn{
 			&.btn-primary{
@@ -262,7 +262,7 @@ a[data-toggle="collapse"] {
     padding: 0;
     min-height: 100vh;
     transition: all 0.3s;
-    z-index: 10;
+    // z-index: 10;
 }
 
 .btn{
@@ -282,7 +282,9 @@ a[data-toggle="collapse"] {
 	}
 }
 
-
+.modal{
+    // z-index: 1041 !important;
+}
 
 .form-control {
 	height: 40px!important;

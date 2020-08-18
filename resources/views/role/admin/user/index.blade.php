@@ -8,7 +8,7 @@
     <div class="card mb-4">
         <!-- CREATE USER -->
         <div class="card-header">
-            List
+            <span>LIST USERS </span>
             <a type="button" class="btn btn-info add-new" href="{{ route('admin.user.create')}}"
                 style="float: right;"> <i class="fa fa-plus"></i>
                 Create

@@ -10832,7 +10832,6 @@ h5,
   top: 20px;
   right: 0;
   margin-right: -35px;
-  z-index: 999;
   transition: 0.3s;
 }
 
@@ -10929,7 +10928,6 @@ a[data-toggle=collapse] {
   padding: 0;
   min-height: 100vh;
   transition: all 0.3s;
-  z-index: 10;
 }
 
 .btn.btn-primary {
