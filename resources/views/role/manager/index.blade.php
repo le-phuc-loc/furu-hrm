@@ -19,11 +19,16 @@
                 </a>
             </li>
             <li class="active">
-                <a href="{{ route('manager.absent.index') }}">
+                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                     <span class="fa fa-home mr-3"></span>
-                        Absents
+                        Dashboard
                 </a>
+                <ul class="collapse list-unstyled" id="homeSubmenu">
+                    <li class="active"><a href="{{route('admin.dashboard.working')}}"><i class="fa fa-circle-o mr-3"></i> Mine</a></li>
+                    <li class="active"><a href="{{ route('manager.absent.index') }}"><i class="fa fa-circle-o mr-3"></i> Worker</a></li>
+                </ul>
             </li>
+
             <li class="active">
                 <a href="{{ route('manager.report.index') }}">
                     <span class="fa fa-user mr-3"></span>
@@ -190,5 +195,16 @@
             </div>
         </div>
     </div>
-
+    <style>
+        a[data-toggle="collapse"] {
+            position: relative;
+        }
+        .dropdown-toggle::after {
+            display: block;
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+        }
+        </style>
 @endsection

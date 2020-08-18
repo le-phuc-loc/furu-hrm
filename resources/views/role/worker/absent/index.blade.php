@@ -60,7 +60,7 @@
                                         </button>
                                     @endif --}}
                                     <a type="button" class="btn btn-primary btn-edit-absent"
-                                    href="{{ route('worker.absent.edit', ['id' => $absent->id]) }}">
+                                        href="{{ route('worker.absent.edit', ['id' => $absent->id]) }}">
                                     <i class="fa fa-edit" aria-hidden="true"></i>
                                     </a>
                                     <a type="button" class="btn btn-primary btn-project-delete"
@@ -202,7 +202,7 @@
 
 
     </div>
-    <script>
+    {{-- <script>
         $(document).ready(function() {
             $('#create-modal').on('show.bs.modal', function (event) {
                 var button = $(event.relatedTarget)
@@ -231,5 +231,5 @@
 
             });
         })
-    </script>
+    </script> --}}
 @endsection

@@ -54,21 +54,24 @@ class AbsentController extends Controller
     }
 
     public function edit($id) {
-        $obj = AbsentApplication::with(['user'])->find($id);
-        return response()->json(['absent' => $obj], 200);
+        $absent = AbsentApplication::with(['user'])->find($id);
+        return view('role.worker.absent.edit',[
+            'absent'=>$absent,
+        ]);
     }
 
     public function update(Request $request, $id) {
         // dd($request->input());
         $validatedData = $request->validate( [
-            'date_off' => ['required'],
+            'date_off_start' => ['required'],
+            'date_off_end' => ['required'],
             'content' => ['required'],
 
         ]);
         $absent = AbsentApplication::find($id);
         $absent->user_id = Auth::user()->id;
-        $absent->date_off = $request->date_off;
-        $absent->number_off = $request->number_off;
+        $absent->date_off_start = $request->date_off_start;
+        $absent->date_off_start = $request->date_off_start;
         $absent->content = $request->content;
         $absent->state = AbsentApplication::getAbsentWaitting();
         $absent->save();

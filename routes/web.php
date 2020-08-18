@@ -220,7 +220,7 @@ Route::group(['namespace' => 'Worker', 'prefix' => 'worker','middleware'=>'worke
         Route::post('/create', 'AbsentController@store')->name('worker.absent.store');
 
 
-        Route::get('/update/{id}', 'AbsentController@edit')->name('worker.absent.edit');
+        Route::get('/edit/{id}', 'AbsentController@edit')->name('worker.absent.edit');
         Route::post('/update/{id}', 'AbsentController@update')->name('worker.absent.update');
 
         Route::get('/delete/{id}', 'AbsentController@delete')->name('worker.absent.delete');

@@ -20,8 +20,10 @@ class ProjectController extends Controller
             ->where('from_date', '<=', Carbon::now('Asia/Ho_Chi_Minh'))
             ->get();
         // dd($obj);
+        $user = User::with(['reports', 'projects'])->find(Auth::user()->id);
         return view('role/worker/project/index', [
             'projects' => $objs,
+            'user'=>$user
         ]);
     }
 }

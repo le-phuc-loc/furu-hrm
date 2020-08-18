@@ -160,10 +160,7 @@ class ProjectController extends Controller
         // dd($req->input());
         $obj = Project::find($id);
         $obj->managed = $request->manager;
-        foreach ($request->workers as $worker) {
-            $obj->users()->attach($worker);
-        }
-
+        $obj->users()->attach($request->workers);
 
         $obj->save();
         // dd($obj);
