@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         {{ __('PROJECT') }}
@@ -11,7 +11,6 @@
                     <div class="card-body">
                     <form method="POST" action="{{ route('admin.project.store') }}">
                             @csrf
-
                             <div class="form-group row">
                                 <label for="project_name"
                                     class="col-md-4 col-form-label text-md-right">{{ __('Project name') }}</label>
@@ -27,14 +26,31 @@
                             <div class="form-group row">
                                 <label for="managed"
                                     class="col-md-4 col-form-label text-md-right">{{ __('Managed by') }}</label>
-                                <div class="col-md-6">
-                                    <input id="managed" type="text"
-                                        class="form-control @error('managed') is-invalid @enderror" name="managed"
-                                        value="{{ old('managed') }}" required autocomplete="managed" autofocus>
-                                    @error('managed')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
+                                        <select class="form-control col-md-6" id="manager-select" name="manager">
+                                            {{-- <beautify start="@foreach" end="@endforeach"
+                                                exp="^^$managers as $manage^^"> --}}
+                                                {{-- <option class="project-manager" value="{{ $manage->id }}">
+                                                    {{ $manage->name }}</option> --}}
+                                                @if (count($managers) <= 0)
+                                                    <option class="project-manager disable" value="1">
+                                                        Don't have manager
+                                                    </option>
+                                                @else
+                                                    <option class="project-manager disable" disabled>
+                                                        Select Manager
+                                                    </option>
+
+                                                    @foreach ($managers as $manager)
+                                                        <option class="project-manager" value="{{ $manager->id }}">
+                                                            {{ $manager->name }}
+                                                        </option>
+                                                    @endforeach
+                                                @endif
+
+
+                                                {{-- </beautify> --}}
+                                        </select>
+                                        {{-- <input id="manager" type="text" name="manager"> --}}
                             </div>
 
                             <div class="form-group row">

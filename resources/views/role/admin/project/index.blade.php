@@ -2,7 +2,6 @@
 
 @section('content')
 
-    <h2 class="mb-4">List Projects</h2>
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table mr-1"></i>List
@@ -224,60 +223,62 @@
                     </div>
                 </div>
             </form> --}}
-        <table class="table table-bordered table-hover">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Manager by</th>
-                    <th>Number</th>
-                    <th>From date</th>
-                    <th>From to</th>
+        <div class="card-body">
+            <table id="dataTable1" class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Manager by</th>
+                        <th>Number</th>
+                        <th>From date</th>
+                        <th>From to</th>
 
-                    <th>location</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @if (count($projects) <= 0)
-                    <div class="list-group-item list-group-item-action"> Don't have Worker
-                    </div>
-                @else
-                    {{-- <div>adadasdasd</div> --}}
+                        <th>location</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (count($projects) <= 0)
+                        <div class="list-group-item list-group-item-action"> Don't have Worker
+                        </div>
+                    @else
+                        {{-- <div>adadasdasd</div> --}}
 
-                    @foreach ($projects as $project)
-                        <tr>
-                            <td>{{ $project->project_name }}</td>
-                            <td>{{ $project->managed }}</td>
-                            <td>
-                                {{ $project->number_worker }}
-                            </td>
-                            <td> {{ $project->from_date }} </td>
-                            <td> {{ $project->to_date }} </td>
+                        @foreach ($projects as $project)
+                            <tr>
+                                <td>{{ $project->project_name }}</td>
+                                <td>{{ $project->managed }}</td>
+                                <td>
+                                    {{ $project->number_worker }}
+                                </td>
+                                <td> {{ $project->from_date }} </td>
+                                <td> {{ $project->to_date }} </td>
 
-                            <td> {{ $project->location->location_name }} </td>
-                            <td>
-                                <a type="button" class="btn btn-primary btn-edit-project"
-                                    href="{{ route('admin.project.edit', ['id' => $project->id]) }}">
-                                    <i class="fa fa-edit" style="color:white" alt="Edit" aria-hidden="true"></i>
-                                </a>
-                                <a type="button" class="btn btn-primary btn-project-delete"
-                                    href="{{ route('admin.project.delete', ['id' => $project->id]) }}"
-                                    onclick="return confirm('Are you sure ????');">
-                                    <i class="fa fa-trash" alt="Delete" aria-hidden="true"></i>
-                                </a>
+                                <td> {{ $project->location->location_name }} </td>
+                                <td>
+                                    <a type="button" class="btn btn-primary btn-edit-project"
+                                        href="{{ route('admin.project.edit', ['id' => $project->id]) }}">
+                                        <i class="fa fa-edit" style="color:white" alt="Edit" aria-hidden="true"></i>
+                                    </a>
+                                    <a type="button" class="btn btn-primary btn-project-delete"
+                                        href="{{ route('admin.project.delete', ['id' => $project->id]) }}"
+                                        onclick="return confirm('Are you sure ????');">
+                                        <i class="fa fa-trash" alt="Delete" aria-hidden="true"></i>
+                                    </a>
 
-                                <a class="btn btn-primary btn-assign-project" role="button"
-                                    href="{{ route('admin.project.assigned', ['id' => $project->id]) }}">
-                                    <i class="fa fa-tasks" aria-hidden="true"></i>
-                                </a>
+                                    <a class="btn btn-primary btn-assign-project" role="button"
+                                        href="{{ route('admin.project.assigned', ['id' => $project->id]) }}">
+                                        <i class="fa fa-tasks" aria-hidden="true"></i>
+                                    </a>
 
-                            </td>
-                        </tr>
-                    @endforeach
-                @endif
+                                </td>
+                            </tr>
+                        @endforeach
+                    @endif
 
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
 
     </div>
 

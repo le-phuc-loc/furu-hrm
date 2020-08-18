@@ -2,77 +2,67 @@
 
 @section('content')
 
-    <div id="layoutSidenav_content">
-        <main>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <h3 class="mt-4">List of Reports</h3>
-                    </div>
-                </div>
-                <br>
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <i class="fas fa-table mr-1"></i>List about 30 days
-                        <button type="button" class="btn btn-info add-new" data-toggle="modal" data-target="#create-modal"
-                            style="float: right;"> <i class="fa fa-plus"></i>
-                            Create
-                        </button>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Project name</th>
-                                        <th>Content</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
+    <div class="card mb-4">
+        <div class="card-header">
+            <span>LIST REPORTS <span>
+            <button type="button" class="btn btn-info add-new" data-toggle="modal" data-target="#create-modal"
+                style="float: right;"> <i class="fa fa-plus"></i>
+                Create
+            </button>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Project name</th>
+                            <th>Content</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
 
-                                <tbody>
+                    <tbody>
 
-                                    @if (count($user->reports) <= 0)
-                                        <tr>
-                                            <td>
-                                                <div>
-                                                    Don't have any reports
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    @else
-                                        @foreach ($user->reports as $report)
-                                            <tr>
-                                                {{-- {{ dd($report->project_user->user) }} --}}
-                                                <td>{{ $report->project_user->user->name }}</td>
-                                                <td>{{ $report->project_user->project->project_name }}</td>
-                                                <td>{{ $report->content }}</td>
-                                                <td>
+                        @if (count($user->reports) <= 0)
+                            <tr>
+                                <td>
+                                    <div>
+                                        Don't have any reports
+                                    </div>
+                                </td>
+                            </tr>
+                        @else
+                            @foreach ($user->reports as $report)
+                                <tr>
+                                    {{-- {{ dd($report->project_user->user) }} --}}
+                                    <td>{{ $report->project_user->user->name }}</td>
+                                    <td>{{ $report->project_user->project->project_name }}</td>
+                                    <td>{{ $report->content }}</td>
+                                    <td>
 
-                                                    <a class="btn btn-primary" href="{{ route('worker.report.info', ['id' => $report->id]) }}"
-                                                        role="button">Detail</a>
+                                        <a class="btn btn-primary" href="{{ route('worker.report.info', ['id' => $report->id]) }}"
+                                            role="button">Detail</a>
 
-                                                    @if ($report->state == -1)
-                                                        <button class="btn btn-primary btn-checkout" value="{{ route('worker.report.checkout', ['id' => $report->id]) }}"
-                                                            role="button">Checkout</button>
-                                                    @elseif ($report->state == -2)
-                                                        <button class="btn btn-primary btn-checkin" value="{{ route('worker.report.checkin', ['id' => $report->id]) }}"
-                                                            role="button">Checkin </button>
-                                                    @endif
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    @endif
-                                </tbody>
-                            </table>
-                            {{-- <div id="map" style="background-color: black"></div> --}}
+                                        @if ($report->state == -1)
+                                            <button class="btn btn-primary btn-checkout" value="{{ route('worker.report.checkout', ['id' => $report->id]) }}"
+                                                role="button">Checkout</button>
+                                        @elseif ($report->state == -2)
+                                            <button class="btn btn-primary btn-checkin" value="{{ route('worker.report.checkin', ['id' => $report->id]) }}"
+                                                role="button">Checkin </button>
+                                        @endif
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @endif
+                    </tbody>
+                </table>
+                {{-- <div id="map" style="background-color: black"></div> --}}
 
-                        </div>
-                    </div>
-                </div>
             </div>
-        </main>
+        </div>
+    </div>
+
         <!-- Creaete REPORT MODAL -->
         <div class="modal fade" id="create-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">

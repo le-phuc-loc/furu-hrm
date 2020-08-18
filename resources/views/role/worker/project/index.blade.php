@@ -1,63 +1,55 @@
 @extends('role.worker.index')
 
 @section('content')
-<div id="layoutSidenav_content">
-    <main>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-6">
-                    <h1 class="mt-4">List Project</h1>
-                </div>
-            </div><br>
-            <div class="card mb-4">
-                <div class="card-header">
-                    <i class="fas fa-table mr-1"></i>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                            <thead>
+
+    <div class="card mb-4">
+        <div class="card-header">
+            <span>LIST PROJECTS</span>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Manage by </th>
+                            <th>Number</th>
+                            <th>From date</th>
+                            <th>To date</th>
+                            <th>Location</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @if (count($projects) <= 0)
+                            <tr>
+                                <td>
+                                    <div> Don't have project </div>
+                                </td>
+                            </tr>
+                        @else
+                            @foreach ($projects as $project)
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Manage by </th>
-                                    <th>Number</th>
-                                    <th>From date</th>
-                                    <th>To date</th>
-                                    <th>Location</th>
-                                    <th>Action</th>
+                                    <td> {{ $project->project_name }} </td>
+                                    <td> {{ $project->managed }} </td>
+                                    <td> {{ $project->number_worker }} </td>
+                                    <td> {{ $project->from_date }} </td>
+                                    <td> {{ $project->to_date }} </td>
+                                    <td> {{ $project->location->location_name }} </td>
+                                    <td>
+                                    </td>
                                 </tr>
-                            </thead>
+                            @endforeach
 
-                            <tbody>
-                                @if (count($projects) <= 0)
-                                    <tr>
-                                        <td>
-                                            <div> Don't have project </div>
-                                        </td>
-                                    </tr>
-                                @else
-                                    @foreach ($projects as $project)
-                                        <tr>
-                                            <td> {{ $project->project_name }} </td>
-                                            <td> {{ $project->managed }} </td>
-                                            <td> {{ $project->number_worker }} </td>
-                                            <td> {{ $project->from_date }} </td>
-                                            <td> {{ $project->to_date }} </td>
-                                            <td> {{ $project->location->location_name }} </td>
-                                            <td>
-                                            </td>
-                                        </tr>
-                                    @endforeach
+                        @endif
 
-                                @endif
-
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                    </tbody>
+                </table>
             </div>
         </div>
-    </main>
+    </div>
+
     <!-- INFORMATION USER MODAL -->
     <div class="card-body">
         <form id="project-update-form" method="POST" action="">
