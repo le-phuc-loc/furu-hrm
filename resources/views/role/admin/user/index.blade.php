@@ -1,5 +1,14 @@
 @extends('role.admin.index')
 @section('content')
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
+        crossorigin="anonymous" />
+
+    <script>
+        $(document).ready(function() {
+            $('#dataTable1').DataTable();
+        });
     <h2 class="mb-4">List User</h2>
     <div class="card mb-4">
         <!-- CREATE USER -->
@@ -10,7 +19,7 @@
                 Create
             </a>
         </div>
-        <!-- Modal Create-->
+        <!-- Modal create -->
         {{-- <div class="modal fade" id="create-user">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">

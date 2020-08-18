@@ -1,14 +1,7 @@
 
 @extends('role.manager.index')
 @section('content')
-    <div id="layoutSidenav_content">
-        <main>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <h1 class="mt-4">List Project</h1>
-                    </div>
-                </div><br>
+ <h2>PROJECTS</h2>
                 <div class="card mb-4">
                     <div class="card-header">
                         <i class="fas fa-table mr-1"></i>
@@ -66,8 +59,7 @@
                     </div>
                 </div>
             </div>
-        </main>
-    </div>
+
 
     <script>
         $(document).ready(function(e) {

@@ -278,6 +278,7 @@
 
             </tbody>
         </table>
+
     </div>
 
 
@@ -431,4 +432,77 @@
         });
 
     </script> --}}
+
+    <script>
+        function initAutocomplete() {
+
+var position = new google.maps.LatLng(-33.8688, 151.2195);
+// confirm(m_lat + "-------" + m_lng);
+const map = new google.maps.Map(document.getElementById("map"), {
+    center: position,
+    zoom: 13,
+    mapTypeId: "roadmap"
+}); // Create the search box and link it to the UI element.
+var input = document.getElementById("location-name");
+
+// confirm(state);
+
+var autocomplete = new google.maps.places.Autocomplete(input);
+autocomplete.bindTo("bounds", map);
+
+var marker = new google.maps.Marker({
+    map: map
+});
+marker.setPosition(position);
+
+google.maps.event.addListener(autocomplete, "place_changed", function() {
+    var place = autocomplete.getPlace();
+    map.fitBounds(place.geometry.viewport);
+    $("#lat").val(place.geometry.location.lat);
+    $("#lng").val(place.geometry.location.lng);
+    $("#location-name").val(place.formatted_address);
+    $("#place-id").val(place.place_id);
+
+    marker.setPosition(place.geometry.location);
+});
+
+google.maps.event.addListener(map, "click", function(event) {
+    marker.setPosition(event.latLng);
+
+    if (event.placeId) {
+
+        // confirm((event.placeId))
+
+        var request = {
+            placeId: event.placeId,
+            fields: ['formatted_address', 'geometry']
+        };
+
+        service = new google.maps.places.PlacesService(map);
+        service.getDetails(request, function(place, status) {
+            if (status == google.maps.places.PlacesServiceStatus.OK) {
+                $("#lat").val(place.geometry.location.lat);
+                $("#lng").val(place.geometry.location.lng);
+                $("#location-name").val(place.formatted_address);
+                $("#place-id").val(event.placeId);
+
+            } else {
+                // confirm(status);
+            }
+        });
+
+
+    } else {
+        $("#lat").val(event.latLng.lat);
+        $("#lng").val(event.latLng.lng);
+        $("#location-name").val("");
+        $("#place-id").val(event.placeId);
+
+
+    }
+
+});
+
+}
+    </script>
 @endsection

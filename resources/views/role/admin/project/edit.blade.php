@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         {{ __(' EDIT PROJECT') }}
@@ -99,9 +99,15 @@
                                     <input id="location-name" type="text" class="form-control controls" name="location_name"
                                         value="{{$project->location->location_name}}" >
 
-                                    <input type="hidden" id="lat" name="lat" step="any" class="form-control">
-                                    <input type="hidden" id="lng" name="lng" step="any" class="form-control">
-                                    <input type="hidden" id="place-id" name="place_id" class="form-control">
+                                    <input type="hidden" id="lat" name="lat" step="any"
+                                        value="{{ $project->location->lat }}"
+                                        class="form-control">
+                                    <input type="hidden" id="lng" name="lng" step="any"
+                                        value="{{ $project->location->lng }}"
+                                        class="form-control">
+                                    <input type="hidden" id="place-id" name="place_id"
+                                        value="{{ $project->location->place_id }}"
+                                        class="form-control">
                                 </div>
                             </div>
                             <div class="form-group" id="map">
@@ -120,4 +126,82 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function initAutocomplete() {
+
+            m_lat = $('#lat').val();
+            m_lng = $('#lng').val();
+
+            console.log(m_lat + "---" + m_lng);
+            var position = new google.maps.LatLng(m_lat, m_lng);
+            // confirm(m_lat + "-------" + m_lng);
+            const map = new google.maps.Map(document.getElementById("map"), {
+                center: position,
+                zoom: 13,
+                mapTypeId: "roadmap"
+            }); // Create the search box and link it to the UI element.
+            var input = document.getElementById("location-name");
+
+            // confirm(state);
+
+            var autocomplete = new google.maps.places.Autocomplete(input);
+            autocomplete.bindTo("bounds", map);
+
+            var marker = new google.maps.Marker({
+                map: map
+            });
+            marker.setPosition(position);
+
+            google.maps.event.addListener(autocomplete, "place_changed", function() {
+                var place = autocomplete.getPlace();
+                map.fitBounds(place.geometry.viewport);
+                $("#lat").val(place.geometry.location.lat);
+                $("#lng").val(place.geometry.location.lng);
+                $("#location-name").val(place.formatted_address);
+                $("#place-id").val(place.place_id);
+
+                marker.setPosition(place.geometry.location);
+            });
+
+            google.maps.event.addListener(map, "click", function(event) {
+                marker.setPosition(event.latLng);
+
+                if (event.placeId) {
+
+                    // confirm((event.placeId))
+
+                    var request = {
+                        placeId: event.placeId,
+                        fields: ['formatted_address', 'geometry']
+                    };
+
+                    service = new google.maps.places.PlacesService(map);
+                    service.getDetails(request, function(place, status) {
+                        if (status == google.maps.places.PlacesServiceStatus.OK) {
+                            $("#lat").val(place.geometry.location.lat);
+                            $("#lng").val(place.geometry.location.lng);
+                            $("#location-name").val(place.formatted_address);
+                            $("#place-id").val(event.placeId);
+
+                        } else {
+                            // confirm(status);
+                        }
+                    });
+
+
+                } else {
+                    $("#lat").val(event.latLng.lat);
+                    $("#lng").val(event.latLng.lng);
+                    $("#location-name").val("");
+                    $("#place-id").val(event.placeId);
+
+
+                }
+
+            });
+
+        }
+
+    </script>
 @endsection
