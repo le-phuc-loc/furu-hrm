@@ -5,11 +5,10 @@
     <div class="card mb-4">
         <div class="card-header">
             <span>LIST ABSENTS<span>
-            <button type="button" class="btn btn-info add-new" data-toggle="modal" data-target="#create-modal"
-                data-name="{{ Auth::user()->name }}"
-                style="float: right;"> <i class="fa fa-plus"></i>
+            <a type="button" class="btn btn-info add-new" href="{{ route('worker.absent.create')}}"
+                style="float: right; color:white"> <i class="fa fa-plus"></i>
                 Create
-            </button>
+            </a>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -17,10 +16,10 @@
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Date Off</th>
+                            <th>Start Off</th>
+                            <th>End off</th>
                             <th>Number days off</th>
                             <th>Content</th>
-                            <th>Created at</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -34,12 +33,13 @@
                             @foreach($absents as $absent)
                             <tr>
                                 <td>{{ $absent->user->name }}</td>
-                                <td>{{ $absent->date_off }}</td>
+                                <td>{{ $absent->date_off_start }}</td>
+                                <td>{{ $absent->date_off_end }}</td>
+
                                 <td>
                                     {{ $absent->number_off }}
                                 </td>
                                 <td> {{ $absent->content }} </td>
-                                <td> {{ $absent->created_at }} </td>
 
                                 <td>
                                     {{-- @if ($absent->state == 2)
@@ -59,10 +59,10 @@
                                             Reject
                                         </button>
                                     @endif --}}
-                                    <button class="btn btn-primary btn-edit-absent" data-toggle="modal" data-target="#update-absent-modal"
-                                    value="{{ route('worker.absent.edit', ['id' => $absent->id]) }}">
+                                    <a type="button" class="btn btn-primary btn-edit-absent"
+                                    href="{{ route('worker.absent.edit', ['id' => $absent->id]) }}">
                                     <i class="fa fa-edit" aria-hidden="true"></i>
-                                    </button>
+                                    </a>
                                     <a type="button" class="btn btn-primary btn-project-delete"
                                         href="{{ route('worker.absent.delete', ['id' => $absent->id]) }}"
                                         onclick="return confirm('Are you sure ????');">
@@ -78,7 +78,7 @@
         </div>
     </div>
 
-        <!-- Update Absense MODAL -->
+        <!-- create Absense MODAL -->
         <div class="modal fade" id="create-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -138,7 +138,7 @@
                 </div>
             </div>
         </div>
-
+    <!-- Update Absense MODAL -->
         <div class="modal fade" id="update-absent-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">

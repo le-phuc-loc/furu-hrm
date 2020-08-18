@@ -4,7 +4,6 @@
 
     <div class="card mb-4">
         <div class="card-header">
-            <span>LIST REPORTS <span>
             <button type="button" class="btn btn-info add-new" data-toggle="modal" data-target="#create-modal"
                 style="float: right;"> <i class="fa fa-plus"></i>
                 Create

@@ -38,6 +38,15 @@
                                     <td> {{ $project->to_date }} </td>
                                     <td> {{ $project->location->location_name }} </td>
                                     <td>
+                                        <a class="btn btn-primary"
+                                                href="{{ route('worker.report.index', ['project_id' => $project->id]) }}"
+                                                role="button">
+                                                <i class="fa fa-book" aria-hidden="true"></i>
+                                        </a>
+                                        <a type="button" class="btn btn-primary "
+                                            href="{{ route('worker.absent.index')}}">
+                                            <i class="fa fa-edit" style="color:white" alt="Edit" aria-hidden="true"></i>
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach

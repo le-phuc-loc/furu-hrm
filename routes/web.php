@@ -216,6 +216,7 @@ Route::group(['namespace' => 'Worker', 'prefix' => 'worker','middleware'=>'worke
 
         Route::get('/info/{id}', 'AbsentController@show')->name('worker.absent.info');
 
+        Route::get('/create', 'AbsentController@create')->name('worker.absent.create');
         Route::post('/create', 'AbsentController@store')->name('worker.absent.store');
 
 
