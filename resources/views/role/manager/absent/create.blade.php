@@ -1,4 +1,4 @@
-@extends('role.worker.index')
+@extends('role.manager.index')
 
 @section('content')
     <div class="container">
@@ -9,7 +9,7 @@
                         {{ __('CREATE ABSENT FORM') }}
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('worker.absent.store') }}">
+                        <form method="POST" action="{{ route('manager.absent.store') }}">
                             @csrf
 
                             <div class="form-group row">

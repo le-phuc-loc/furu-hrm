@@ -171,10 +171,11 @@ Route::group([
 
     Route::group(['prefix' => 'absent'], function () {
         Route::get('/', 'AbsentController@index')->name('manager.absent.index');
+        Route::get('/mine', 'AbsentController@mine')->name('manager.absent.mine');
 
         Route::get('/info/{id}', 'AbsentController@show')->name('manager.absent.info');
 
-
+        Route::get('/create', 'AbsentController@create')->name('manager.absent.create');
         Route::post('/create', 'AbsentController@store')->name('manager.absent.store');
 
         Route::get('/approve/{id}', 'AbsentController@approve')->name('manager.absent.approve');

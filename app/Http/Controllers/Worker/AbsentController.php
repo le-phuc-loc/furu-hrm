@@ -31,14 +31,12 @@ class AbsentController extends Controller
         return view('role/worker/absent/create');
     }
     public function store(Request $request) {
-        $validator = Validator::make($request->all(), [
+        $validatedData = $request->validate( [
             'content' => 'required',
             'date_off_start' => 'required|date|after:'.Carbon::now()->addDays(14),
             'date_off_end' => 'required|date|after:date_off_start',
         ]);
-        if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors()], 404);
-        }
+
 
         $absent = new AbsentApplication();
         $absent->content = $request->content;

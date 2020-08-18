@@ -21,10 +21,10 @@
             <li class="active">
                 <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                     <span class="fa fa-home mr-3"></span>
-                        Dashboard
+                        Absents
                 </a>
                 <ul class="collapse list-unstyled" id="homeSubmenu">
-                    <li class="active"><a href="{{route('admin.dashboard.working')}}"><i class="fa fa-circle-o mr-3"></i> Mine</a></li>
+                    <li class="active"><a href="{{route('manager.absent.mine')}}"><i class="fa fa-circle-o mr-3"></i> Mine</a></li>
                     <li class="active"><a href="{{ route('manager.absent.index') }}"><i class="fa fa-circle-o mr-3"></i> Worker</a></li>
                 </ul>
             </li>
