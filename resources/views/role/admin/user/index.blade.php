@@ -1,5 +1,14 @@
 @extends('role.admin.index')
 @section('content')
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
+        crossorigin="anonymous" />
+
+    <script>
+        $(document).ready(function() {
+            $('#dataTable1').DataTable();
+        });
     <h2 class="mb-4">List User</h2>
     <div class="card mb-4">
         <!-- CREATE USER -->
@@ -10,8 +19,8 @@
                 Create
             </a>
         </div>
-        <!-- Modal Create-->
-        <div class="modal fade" id="create-user">
+        <!-- Modal create -->
+        {{-- <div class="modal fade" id="create-user">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <form method="POST" action="{{ route('admin.user.store') }}">
@@ -94,9 +103,9 @@
                     </form>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <!-- Update............... -->
-        <div class="modal fade" id="update-user" tabindex="-1" role="dialog" aria-labelledby="updateLabel"
+        {{-- <div class="modal fade" id="update-user" tabindex="-1" role="dialog" aria-labelledby="updateLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -163,7 +172,7 @@
 
                 </div>
             </div>
-        </div>
+        </div> --}}
         <table id="example2" class="table table-bordered table-hover">
             <thead>
                 <tr>
@@ -187,10 +196,10 @@
                             </td>
                             <td> {{ $user->role }} </td>
                             <td>
-                                <button class="btn btn-primary btn-user-edit" data-toggle="modal" data-target="#update-user"
-                                    value="{{ route('admin.user.edit', ['id' => $user->id]) }}">
-                                    <i class="fa fa-edit" alt="Edit" aria-hidden="true"></i>
-                                </button>
+                                <a type="button" class="btn btn-primary btn-user-edit"
+                                    href="{{ route('admin.user.edit', ['id' => $user->id]) }}">
+                                    <i class="fa fa-edit" style="color: white;" ></i>
+                                </a>
                                 <a type="button" class="btn btn-primary btn-user-delete"
                                     href="{{ route('admin.user.delete', ['id' => $user->id]) }}"
                                     onclick="return confirm('Are you sure ????');">
@@ -205,27 +214,27 @@
     </div>
 
     <script>
-        $(document).ready(function(e) {
-            $(".btn-user-edit").click(function(e) {
-                var updateUrl = $(this).val();
-                console.log(updateUrl);
-                e.preventDefault();
-                $.ajax({
-                    type: 'GET',
-                    url: updateUrl,
-                    success: function(result) {
+        // $(document).ready(function(e) {
+        //     $(".btn-user-edit").click(function(e) {
+        //         var updateUrl = $(this).val();
+        //         console.log(updateUrl);
+        //         e.preventDefault();
+        //         $.ajax({
+        //             type: 'GET',
+        //             url: updateUrl,
+        //             success: function(result) {
 
-                        console.log(result.user);
-                        $("#update-name").val(result.user.name);
-                        $("#update-email").val(result.user.email);
-                        $("#update-manager").val(result.user.manager);
-                        $("#update-role").val(result.user.role);
-                        $("#user-update-form").attr('action', "/admin/user/update/" + result
-                            .user.id);
-                    }
-                });
-            });
-        });
+        //                 console.log(result.user);
+        //                 $("#update-name").val(result.user.name);
+        //                 $("#update-email").val(result.user.email);
+        //                 $("#update-manager").val(result.user.manager);
+        //                 $("#update-role").val(result.user.role);
+        //                 $("#user-update-form").attr('action', "/admin/user/update/" + result
+        //                     .user.id);
+        //             }
+        //         });
+        //     });
+        // });
 
     </script>
 @endsection
