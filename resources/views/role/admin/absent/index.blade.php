@@ -40,12 +40,12 @@
                                         Absent Application approved
                                     @else
                                         <a type="button"
-                                            href="{{ route('admin.absent.approve', ['id' => $absent->id, 'user_id' => $absent->user->id]) }}"
+                                            href="{{ route('admin.absent.approve', ['id' => $absent->id]) }}"
                                             class="btn btn-primary">
                                             <i class="fa fa-check" alt="Edit" aria-hidden="true"></i>
                                         </a>
                                         <button class="btn btn-primary" data-toggle="modal"
-                                            data-name="{{ $absent->user->name }}" data-user_id="{{ $absent->user->id }}"
+                                            data-name="{{ $absent->user->name }}"
                                             data-absent_id="{{ $absent->id }}" data-target="#reject-modal">
                                             <i class="fa fa-ban" alt="Edit" aria-hidden="true"></i>
                                         </button>
@@ -116,8 +116,7 @@
                 var button = $(event.relatedTarget)
                 $("#reject-name").val(button.data("name"));
                 $("#form-reject-report").attr('action', '/admin/absent/reject/' +
-                    button.data("absent_id") + "?user_id=" +
-                    button.data("user_id"));
+                    button.data("absent_id"));
             })
 
             $('.modal').modal({

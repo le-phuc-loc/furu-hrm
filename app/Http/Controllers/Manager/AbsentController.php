@@ -70,39 +70,41 @@ class AbsentController extends Controller
     }
 
     public function approve(Request $request, $id) {
-        // dd($request);
-        if (!isset($request->user_id)) {
-            return redirect()->route('manager.absent.index');
+        $absent = AbsentApplication::find($id);
+        // dd($absent->user);
+        // dd($absent->user->projects()->get());
+        if (!Auth::user()->can('approve', $absent)) {
+            return redirect()->route('home');
         }
-        else {
-            $user = User::find($request->user_id);
-            dispatch(new ProcessReportMail(Auth::user(), $user, "absent-allow"));
-            $absent = AbsentApplication::find($id);
-            $absent->state = AbsentApplication::getAbsentAllow();
-            $absent->save();
-        }
+
+        dispatch(new ProcessReportMail(Auth::user(), $absent->user, "absent-allow"));
+
+        $absent->state = AbsentApplication::getAbsentAllow();
+        $absent->save();
+
         return redirect()->route('manager.absent.index');
     }
 
 
 
     public function reject(Request $request, $id) {
-        if (!isset($request->user_id)) {
-            return redirect()->route('manager.absent.index');
+        $absent = AbsentApplication::find($id);
+        dd($absent);
+        if (!Auth::user()->can('reject', $absent)) {
+            return redirect()->route('home');
         }
-        else {
-            $user = User::find($request->user_id);
-            dispatch(new ProcessReportMail(Auth::user(), $user, "absent-reject", $request->content));
-            $absent = AbsentApplication::find($id);
-            $absent->state = AbsentApplication::getAbsentDraw();
-            $absent->save();
-        }
+
+        dispatch(new ProcessReportMail(Auth::user(), $absent->user, "absent-reject", $request->content));
+        $absent->state = AbsentApplication::getAbsentDraw();
+        $absent->save();
 
         return redirect()->route('manager.absent.index');
     }
+
     public function create(){
         return view('role/manager/absent/create');
     }
+
     public function store(Request $request) {
         $validatedData = $request->validate( [
             'content' => 'required',

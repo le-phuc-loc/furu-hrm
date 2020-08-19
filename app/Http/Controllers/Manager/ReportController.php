@@ -22,11 +22,13 @@ class ReportController extends Controller
         if(isset($request->project_id)) {
             $reports = Project::find($request->project_id)
                 ->reports()
+                ->where('state', Report::getReportWaitting())
                 ->get();
         }
         else if (isset($request->user_id)) {
             $reports = User::find($request->user_id)
                 ->reports()
+                ->where('state', Report::getReportWaitting())
                 ->get();
         }
         else {
@@ -58,9 +60,15 @@ class ReportController extends Controller
             return redirect()->route('manager.report.index');
         }
         else {
-            $user = User::find($request->user_id);
-            dispatch(new ProcessReportMail(Auth::user(), $user, "report-allow"));
             $report = Report::find($id);
+            $user = User::find($request->user_id);
+
+            if (!Auth::user()->can('approve', [$report, $user])) {
+                return redirect()->route('home');
+            }
+
+
+            dispatch(new ProcessReportMail(Auth::user(), $user, "report-allow"));
             $report->state = Report::getReportAllow();
             $report->save();
         }
@@ -71,6 +79,8 @@ class ReportController extends Controller
     public function show($id) {
         $report = Report::find($id);
 
+
+
         return view('role/manager/report/detail', [
             'report' => $report,
         ]);
@@ -78,17 +88,22 @@ class ReportController extends Controller
 
 
     public function reject(Request $request, $id) {
-        $validatedData = $request->validate(
-            [
-                'content'=>'required',
-            ]);
+
         if (!isset($request->user_id)) {
-            return redirect()->route('manager.report.index');
+            return redirect()->route('home');
         }
         else {
             $user = User::find($request->user_id);
-            dispatch(new ProcessReportMail(Auth::user(), $user, "report-reject", $request->content));
             $report = Report::find($id);
+
+
+            if (!Auth::user()->can('reject', [$report, $user])) {
+                // dd($user);
+                return redirect()->route('home');
+            }
+
+            dispatch(new ProcessReportMail(Auth::user(), $user, "report-reject", $request->content));
+
             $report->state = Report::getReportDraw();
             $report->save();
         }

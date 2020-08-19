@@ -191,16 +191,20 @@
                                     {{ $user->email }}
                                 </td>
                                 <td> {{ $user->role }} </td>
-                                <td>
-                                    <a type="button" class="btn btn-primary btn-user-edit"
-                                        href="{{ route('admin.user.edit', ['id' => $user->id]) }}">
+                                <td class="d-flex">
+                                    <a type="button" class="btn btn-primary btn-user-edit mr-2"
+                                        href="{{ route('admin.user.edit', ['user' => $user->id]) }}">
                                         <i class="fa fa-edit" style="color: white;" ></i>
                                     </a>
-                                    <a type="button" class="btn btn-primary btn-user-delete"
-                                        href="{{ route('admin.user.delete', ['id' => $user->id]) }}"
-                                        onclick="return confirm('Are you sure ????');">
-                                        <i class="fa fa-trash" alt="Delete" aria-hidden="true"></i>
-                                    </a>
+                                    <form action="{{ route('admin.user.destroy', ['user' => $user->id]) }}" method="POST">
+                                        @method('delete')
+                                        <button type="submit"
+                                            class="btn btn-primary btn-user-delete"
+                                            onclick="return confirm('Are you sure ????');">
+                                            <i class="fa fa-trash" alt="Delete" aria-hidden="true" ></i>
+                                        </button>
+                                    </form>
+
                                 </td>
                             </tr>
                         @endforeach

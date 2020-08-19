@@ -77,7 +77,7 @@ class AbsentController extends Controller
         return redirect()->route('worker.absent.index');
     }
 
-    public function delete($id) {
+    public function destroy($id) {
         AbsentApplication::find($id)->delete();
         return redirect()->route('worker.absent.index');
     }

@@ -40,12 +40,12 @@
                                             Absent Application approved
                                         @else
                                             <a type="button"
-                                                href="{{ route('manager.absent.approve', ['id' => $absent->id, 'user_id' => $absent->user_id]) }}"
+                                                href="{{ route('manager.absent.approve', ['id' => $absent->id]) }}"
                                                 class="btn btn-primary">
                                                 {{ __('Approve') }}
                                             </a>
                                             <button class="btn btn-primary" data-toggle="modal"
-                                                data-name="{{ $absent->user->name }}" data-user_id="{{ $absent->user_id }}"
+                                                data-name="{{ $absent->user->name }}"
                                                 data-absent_id="{{ $absent->id }}" data-target="#reject-modal">
                                                 Reject
                                             </button>
@@ -171,14 +171,13 @@
         </div>
     </div>
     </div>
-    {{-- <script>
+    <script>
         $(document).ready(function() {
             $('#reject-modal').on('show.bs.modal', function(event) {
                 var button = $(event.relatedTarget)
                 $("#reject-name").val(button.data("name"));
                 $("#form-reject-report").attr('action', '/manager/absent/reject/' +
-                    button.data("absent_id") + "?user_id=" +
-                    button.data("user_id"));
+                    button.data("absent_id"));
             })
 
             $('#create-modal').on('show.bs.modal', function(event) {
@@ -194,5 +193,5 @@
 
         })
 
-    </script> --}}
+    </script>
 @endsection

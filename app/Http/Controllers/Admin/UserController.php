@@ -20,6 +20,10 @@ class UserController extends Controller
         return view('role/admin/user/create');
     }
 
+    public function show($id) {
+        return redirect()->route('admin.user.index');
+    }
+
     public function store(Request $request) {
         // dd($req->input());
         $request->validate(
@@ -48,14 +52,14 @@ class UserController extends Controller
     }
 
     public function update(Request $request, $id) {
-
+        // dd($request->input());
         $request->validate(
             [
                 'name' => ['required', 'string', 'max:255', 'unique:users,name,'.$id],
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,'.$id],
             ]
         );
-        // dd($request->input());
+
         $user = User::find($id);
         $user->name = $request->name;
         $user->email=$request->email;
@@ -65,7 +69,7 @@ class UserController extends Controller
         return redirect()->route('admin.user.index');
     }
 
-    public function delete($id) {
+    public function destroy($id) {
         User::find($id)->delete();
         return redirect()->route('admin.user.index');
     }

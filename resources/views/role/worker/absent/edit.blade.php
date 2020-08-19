@@ -9,9 +9,9 @@
                         {{ __('EDIT ABSENT FORM') }}
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('worker.absent.update',['id'=>$absent->id]) }}">
+                        <form method="POST" action="{{ route('worker.absent.update',['absent'=>$absent->id]) }}">
                             @csrf
-
+                            @method('PUT')
                             <div class="form-group row">
                                 <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
                                 <div class="col-md-6">
