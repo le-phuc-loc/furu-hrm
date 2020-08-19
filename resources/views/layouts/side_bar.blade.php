@@ -143,9 +143,7 @@
     <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsMyaK7aIpFYjTIbPBafSnxxOg3SwSIIk&libraries=places&callback=initAutocomplete">
     </script>
-    {{-- <script src="/vendor/jquery/jquery.min.js"></script> --}}
-    {{-- <script src="/vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script> --}}
+
      @yield('script')
 </body>
 

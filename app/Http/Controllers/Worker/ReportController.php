@@ -116,7 +116,7 @@ class ReportController extends Controller
 
         $report->location_check_out = $location->id;
         $report->state = Report::getReportDraw();
-        $report->time_working = $time_checkout->diffInHours(Carbon::parse($report->time_checkin));
+        $report->time_working = Carbon::parse($time_checkout)->diffInHours(Carbon::parse($report->time_checkin));
         $report->save();
         return response()->json(['success'=>'Checkout successful!!']);
     }
