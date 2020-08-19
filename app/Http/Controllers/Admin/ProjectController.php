@@ -88,7 +88,6 @@ class ProjectController extends Controller
             'time_checkin' => '',
             'time_checkout' => 'after:time_checkin',
             ],
-
         );
         $obj = Project::find($id);
         $obj->project_name = $request->project_name;
