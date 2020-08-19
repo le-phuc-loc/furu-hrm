@@ -1,4 +1,4 @@
-@extends('role.worker.index')
+@extends('role.worker.layout')
 
 @section('content')
     <div class="container">
@@ -9,9 +9,9 @@
                         {{ __('EDIT ABSENT FORM') }}
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('worker.absent.update',['id'=>$absent->id]) }}">
+                        <form method="POST" action="{{ route('worker.absent.update',['absent'=>$absent->id]) }}">
                             @csrf
-
+                            @method('PUT')
                             <div class="form-group row">
                                 <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
                                 <div class="col-md-6">
@@ -49,7 +49,7 @@
                                     <button type="submit" class="btn btn-primary">
                                         {{ __('Edit') }}
                                     </button>
-                                    <button class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button class="btn btn-secondary" data-dismiss="modal" action="{{ route('worker.absent.index') }} ">Close</button>
                                 </div>
                             </div>
                         </form>

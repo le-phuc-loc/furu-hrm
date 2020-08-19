@@ -1,4 +1,4 @@
-@extends('role.manager.index')
+@extends('role.manager.layout')
 
 @section('content')
     <div class="card mb-4">
@@ -73,7 +73,7 @@
                                             @endif
 
                                             <a class="btn btn-primary"
-                                                href="{{ route('manager.report.info', ['id' => $report->id]) }}"
+                                                href="{{ route('manager.report.show', ['report' => $report->id]) }}"
                                                 role="button">Detail</a>
 
                                         </td>

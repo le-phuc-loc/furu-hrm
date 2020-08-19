@@ -1,4 +1,4 @@
-@extends('role.worker.index')
+@extends('role.worker.layout')
 
 @section('content')
 
@@ -17,6 +17,7 @@
                             <th>Name</th>
                             <th>Project name</th>
                             <th>Content</th>
+                            <th>Created at</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -38,6 +39,7 @@
                                     <td>{{ $report->project_user->user->name }}</td>
                                     <td>{{ $report->project_user->project->project_name }}</td>
                                     <td>{{ $report->content }}</td>
+                                    <td>{{ $report->created_at}}</td>
                                     <td>
 
                                         <a class="btn btn-primary" href="{{ route('worker.report.info', ['id' => $report->id]) }}"
@@ -130,6 +132,9 @@
                         success:function(data){
                             location.reload();
                             alert(data.success);
+                        },
+                        error: function(){
+                            alert('error!');
                         }
                     });
                 });
@@ -161,6 +166,9 @@
                             success:function(data){
                                 location.reload();
                                 alert(data.success);
+                            },
+                            error: function(){
+                                alert('error!');
                             }
                         });
                     });

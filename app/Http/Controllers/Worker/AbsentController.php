@@ -53,6 +53,10 @@ class AbsentController extends Controller
 
     public function edit($id) {
         $absent = AbsentApplication::with(['user'])->find($id);
+        if (!Auth::user()->can('update', $absent)) {
+            // dd($user);
+            return redirect()->route('home');
+        }
         return view('role.worker.absent.edit',[
             'absent'=>$absent,
         ]);
@@ -67,6 +71,11 @@ class AbsentController extends Controller
 
         ]);
         $absent = AbsentApplication::find($id);
+        if (!Auth::user()->can('update', $absent)) {
+            // dd($user);
+            return redirect()->route('home');
+        }
+
         $absent->user_id = Auth::user()->id;
         $absent->date_off_start = $request->date_off_start;
         $absent->date_off_start = $request->date_off_start;
@@ -77,8 +86,13 @@ class AbsentController extends Controller
         return redirect()->route('worker.absent.index');
     }
 
-    public function delete($id) {
-        AbsentApplication::find($id)->delete();
+    public function destroy($id) {
+        $absent = AbsentApplication::find($id);
+        if (!Auth::user()->can('delete', $absent)) {
+            // dd($user);
+            return redirect()->route('home');
+        }
+        $absent->delete();
         return redirect()->route('worker.absent.index');
     }
 

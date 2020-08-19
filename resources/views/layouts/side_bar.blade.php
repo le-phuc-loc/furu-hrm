@@ -118,9 +118,8 @@
                                 <div class="dropdown-menu dropdown-menu-right bg-dark" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item text-white dropdown-item-custom" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                          document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        <span class="fa fa-sign-out mr-2"></span>Logout</a>
                                     </a>
-
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                         style="display: none;">
                                         @csrf
@@ -144,9 +143,7 @@
     <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsMyaK7aIpFYjTIbPBafSnxxOg3SwSIIk&libraries=places&callback=initAutocomplete">
     </script>
-    {{-- <script src="/vendor/jquery/jquery.min.js"></script> --}}
-    {{-- <script src="/vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script> --}}
+
      @yield('script')
 </body>
 

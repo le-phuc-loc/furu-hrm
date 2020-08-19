@@ -1,4 +1,4 @@
-@extends('role.manager.index')
+@extends('role.manager.layout')
 
 @section('content')
     <div class="container">
@@ -9,9 +9,9 @@
                         {{ __(' EDIT PROJECT') }}
                     </div>
                     <div class="card-body">
-                    <form method="POST" action="{{route('manager.project.update',['id'=>$project->id])}}">
+                    <form method="POST" action="{{route('manager.project.update',['project'=>$project->id])}}">
                             @csrf
-
+                            @method('PUT')
                             <div class="form-group row">
                                 <label for="project_name"
                                     class="col-md-4 col-form-label text-md-right">{{ __('Project name') }}</label>

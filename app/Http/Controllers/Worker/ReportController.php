@@ -52,7 +52,10 @@ class ReportController extends Controller
 
     public function show($id) {
         $report = Report::find($id);
-
+        if (!Auth::user()->can('view', $report)) {
+            // dd($user);
+            return redirect()->route('home');
+        }
         return view('role/worker/report/detail', [
             'report' => $report,
         ]);
@@ -62,23 +65,27 @@ class ReportController extends Controller
 
     public function sendOrDraw(Request $request, $id)
     {
+        $report = Report::find($id);
+        if (!Auth::user()->can('update', $report)) {
+            // dd($user);
+            return redirect()->route('home');
+        }
         switch ($request->input('action')) {
             case 'draw':
-                $report = Report::find($id);
+
                 $report->content = $request->content;
                 $report->state = Report::getReportDraw();
-                $report->save();
+
 
             break;
 
             case 'send':
-                $report = Report::find($id);
                 $report->content = $request->content;
                 $report->state = Report::getReportWaitting();
-                $report->save();
+
             break;
         }
-
+        $report->save();
         return redirect()->route('worker.report.index');
 
     }
@@ -86,9 +93,17 @@ class ReportController extends Controller
     public function checkin(Request $request, $id) {
         // dd(Carbon::now()->format('H:i'));
         $report = Report::find($id);
+        $this->authorize('update', $report);
+        $project= $report->project_user->project;
+        // return (Carbon::now('Asia/Ho_Chi_Minh')->gte(Carbon::parse($project->time_checkin))) ? "true" : "false"  ;
+        if(!(Carbon::now('Asia/Ho_Chi_Minh')->gte(Carbon::parse($project->time_checkin)) &&
+            Carbon::now('Asia/Ho_Chi_Minh')->lte(Carbon::parse($project->time_checkout)   )))  {
 
+            return  response()->json(['Error'=>'Checkin failed!!'], 400);
+        }
         $report->time_checkin = Carbon::now('Asia/Ho_Chi_Minh')->format('H:i');
-        $location_name = $request->lat."+".$request->lng;
+
+        $location_name = Auth::user()->name."-checkin";
         $location = Location::create([
             'location_name' => $location_name,
             'lat' => $request->lat,
@@ -105,9 +120,17 @@ class ReportController extends Controller
     public function checkout(Request $request, $id) {
         // dd(Carbon::now()->format('H:i'));
         $report = Report::find($id);
+        $project=$report->project_user->project;
+        $this->authorize('update', $report);
+
+        if(!(Carbon::now('Asia/Ho_Chi_Minh')->gte(Carbon::parse($project->time_checkin)) &&
+        Carbon::now('Asia/Ho_Chi_Minh')->lte(Carbon::parse($project->time_checkout)   )))  {
+
+        return  response()->json(['Error'=>'Checkin failed!!'], 400);
+    }
         $time_checkout = Carbon::now('Asia/Ho_Chi_Minh')->format('H:i');
         $report->time_checkout = $time_checkout;
-        $location_name = $request->lat."+".$request->lng;
+        $location_name = Auth::user()->name."-checkout";
         $location = Location::create([
             'location_name' => $location_name,
             'lat' => $request->lat,
@@ -116,7 +139,7 @@ class ReportController extends Controller
 
         $report->location_check_out = $location->id;
         $report->state = Report::getReportDraw();
-        $report->time_working = $time_checkout->diffInHours(Carbon::parse($report->time_checkin));
+        $report->time_working = Carbon::parse($time_checkout)->diffInHours(Carbon::parse($report->time_checkin));
         $report->save();
         return response()->json(['success'=>'Checkout successful!!']);
     }

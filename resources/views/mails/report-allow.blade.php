@@ -1,5 +1,4 @@
 
-
 <p> Hello {{ $receiver->name }}</p>
 <div>
     I allowed your report

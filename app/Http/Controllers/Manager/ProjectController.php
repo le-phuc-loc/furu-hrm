@@ -27,13 +27,22 @@ class ProjectController extends Controller
 
 
     public function edit($id) {
-        $obj = Project::with(['location', 'manager', 'users'])->find($id);
+
+        $project = Project::with(['location', 'manager', 'users'])->find($id);
+
+        if (!Auth::user()->can('update', $project)) {
+            return redirect()->route('manager.project.index');
+        }
+        // $this->authorize('update', $project);
         return view('role/manager/project/edit',[
-            'project'=>$obj
+            'project'=>$project
         ]);
     }
 
     public function update(Request $request, $id) {
+
+
+
         $validatedData = $request->validate(
             [
             'project_name' => 'required',
@@ -44,24 +53,29 @@ class ProjectController extends Controller
             ],
 
         );
-        $obj = Project::find($id);
-        $obj->project_name = $request->project_name;
-        $obj->number_worker = $request->number_worker;
-        $obj->from_date = $request->from_date;
-        $obj->to_date = $request->to_date;
-        $obj->time_checkin = $request->time_checkin;
-        $obj->time_checkout = $request->time_checkout;
+        $project = Project::find($id);
+
+        if (!Auth::user()->can('update', $project)) {
+            return redirect()->route('manager.project.index');
+        }
+
+        $project->project_name = $request->project_name;
+        $project->number_worker = $request->number_worker;
+        $project->from_date = $request->from_date;
+        $project->to_date = $request->to_date;
+        $project->time_checkin = $request->time_checkin;
+        $project->time_checkout = $request->time_checkout;
 
         // $obj->location
-        $obj->location->update([
+        $project->location->update([
             'location_name' => $request->location_name,
             'lat' => $request->lat,
             'lng' => $request->lng,
             'place_id' => $request->place_id,
         ]);
 
-        $obj->users()->attach($request->user_id);
-        $obj->save();
+        $project->users()->attach($request->user_id);
+        $project->save();
         // dd($obj->location->location_name);
         // dd($obj);
         return redirect()->route('manager.project.index');

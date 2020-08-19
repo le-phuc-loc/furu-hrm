@@ -1,4 +1,4 @@
-@extends('role.worker.index')
+@extends('role.worker.layout')
 
 @section('content')
 
@@ -41,7 +41,7 @@
                                 </td>
                                 <td> {{ $absent->content }} </td>
 
-                                <td>
+                                <td class="d-flex">
                                     {{-- @if ($absent->state == 2)
                                         Absent Application approved
                                     @else
@@ -59,15 +59,19 @@
                                             Reject
                                         </button>
                                     @endif --}}
-                                    <a type="button" class="btn btn-primary btn-edit-absent"
-                                        href="{{ route('worker.absent.edit', ['id' => $absent->id]) }}">
-                                    Edit
+                                    <a type="button" class="btn btn-primary btn-edit-absent mr-2"
+                                        href="{{ route('worker.absent.edit', ['absent' => $absent->id]) }}">
+                                    <i class="fa fa-edit" aria-hidden="true"></i>
                                     </a>
-                                    <a type="button" class="btn btn-primary btn-project-delete"
-                                        href="{{ route('worker.absent.delete', ['id' => $absent->id]) }}"
-                                        onclick="return confirm('Are you sure ????');">
-                                       Delete
-                                    </a>
+                                    <form action="{{ route('worker.absent.destroy', ['absent' => $absent->id]) }}" method="POST">
+                                        @method('delete')
+                                        <button type="submit"
+                                            class="btn btn-primary btn-project-delete"
+                                            onclick="return confirm('Are you sure ????');">
+                                            <i class="fa fa-trash" aria-hidden="true"></i>
+                                        </button>
+                                    </form>
+
                                 </td>
                             </tr>
                             @endforeach

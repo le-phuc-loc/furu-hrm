@@ -1,4 +1,4 @@
-@extends('role.admin.index')
+@extends('role.admin.layout')
 
 @section('content')
     <div class="container">
@@ -9,7 +9,8 @@
                         {{ __(' EDIT PROJECT') }}
                     </div>
                     <div class="card-body">
-                    <form method="POST" action="{{route('admin.project.update',['id'=>$project->id])}}">
+                    <form method="POST" action="{{route('admin.project.update',['project'=>$project->id])}}">
+                        @method('PUT')
                             @csrf
 
                             <div class="form-group row">
