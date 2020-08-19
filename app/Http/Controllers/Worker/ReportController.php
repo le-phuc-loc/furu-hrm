@@ -94,9 +94,15 @@ class ReportController extends Controller
         // dd(Carbon::now()->format('H:i'));
         $report = Report::find($id);
         $this->authorize('update', $report);
+        $project= $report->project_user->project;
+        // return (Carbon::now('Asia/Ho_Chi_Minh')->gte(Carbon::parse($project->time_checkin))) ? "true" : "false"  ;
+        if(!(Carbon::now('Asia/Ho_Chi_Minh')->gte(Carbon::parse($project->time_checkin)) &&
+            Carbon::now('Asia/Ho_Chi_Minh')->lte(Carbon::parse($project->time_checkout)   )))  {
 
-
+            return  response()->json(['Error'=>'Checkin failed!!'], 400);
+        }
         $report->time_checkin = Carbon::now('Asia/Ho_Chi_Minh')->format('H:i');
+
         $location_name = Auth::user()->name."-checkin";
         $location = Location::create([
             'location_name' => $location_name,
@@ -114,10 +120,14 @@ class ReportController extends Controller
     public function checkout(Request $request, $id) {
         // dd(Carbon::now()->format('H:i'));
         $report = Report::find($id);
-
+        $project=$report->project_user->project;
         $this->authorize('update', $report);
 
+        if(!(Carbon::now('Asia/Ho_Chi_Minh')->gte(Carbon::parse($project->time_checkin)) &&
+        Carbon::now('Asia/Ho_Chi_Minh')->lte(Carbon::parse($project->time_checkout)   )))  {
 
+        return  response()->json(['Error'=>'Checkin failed!!'], 400);
+    }
         $time_checkout = Carbon::now('Asia/Ho_Chi_Minh')->format('H:i');
         $report->time_checkout = $time_checkout;
         $location_name = Auth::user()->name."-checkout";
