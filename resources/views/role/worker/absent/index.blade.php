@@ -61,12 +61,12 @@
                                     @endif --}}
                                     <a type="button" class="btn btn-primary btn-edit-absent"
                                         href="{{ route('worker.absent.edit', ['id' => $absent->id]) }}">
-                                    <i class="fa fa-edit" aria-hidden="true"></i>
+                                    Edit
                                     </a>
                                     <a type="button" class="btn btn-primary btn-project-delete"
                                         href="{{ route('worker.absent.delete', ['id' => $absent->id]) }}"
                                         onclick="return confirm('Are you sure ????');">
-                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                                       Delete
                                     </a>
                                 </td>
                             </tr>

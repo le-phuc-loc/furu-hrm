@@ -24,10 +24,10 @@ class RegisterAdminController extends Controller
     }
 
     public function register(Request $request) {
-        $key=config('key.default_code');
-            if($request->defaultkey!=$key){
-                return redirect()->route('register.admin');
-            } ;
+        // $key=config('key.default_code');
+            // if($request->defaultkey!=$key){
+            //     return redirect()->route('register.admin');
+            // } ;
             $request->validate([
                 'name' => ['required', 'string', 'max:255','unique:users'],
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],

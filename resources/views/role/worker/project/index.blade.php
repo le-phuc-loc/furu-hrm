@@ -45,11 +45,11 @@
                                         <a class="btn btn-primary"
                                                 href="{{ route('worker.report.index', ['project_id' => $project->id]) }}"
                                                 role="button">
-                                                <i class="fa fa-book" aria-hidden="true"></i>
+                                                Report
                                         </a>
                                         <a type="button" class="btn btn-primary "
                                             href="{{ route('worker.absent.index')}}">
-                                            <i class="fa fa-edit" style="color:white" alt="Edit" aria-hidden="true"></i>
+                                            Absent
                                         </a>
                                     </td>
                                 </tr>

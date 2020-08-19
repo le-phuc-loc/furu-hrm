@@ -20,7 +20,7 @@
             </li>
             <li class="active">
                 <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                    <span class="fa fa-home mr-3"></span>
+                    <span class="fa fa-user-times mr-3"></span>
                         Absents
                 </a>
                 <ul class="collapse list-unstyled" id="homeSubmenu">
@@ -31,7 +31,7 @@
 
             <li class="active">
                 <a href="{{ route('manager.report.index') }}">
-                    <span class="fa fa-user mr-3"></span>
+                    <span class="fa fa-file mr-3"></span>
                         Report
                 </a>
             </li>

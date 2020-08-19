@@ -10,7 +10,7 @@ body{
 	font-size: 14px;
 	line-height: 1.8;
 	font-weight: normal;
-	background: #000000;
+	background: rgb(168, 161, 161);
 	color: lighten($black,50%);
 }
 a {
@@ -254,7 +254,9 @@ a[data-toggle="collapse"] {
   padding: 0;
   min-height: 100vh;
   transition: all 0.3s;
-  background-color: #000000;
+//   background-color: #a057e6;
+  background-image: url('../images/bg_1.jpg');
+  background-size: 100%;
 }
 
 .navbar-main {

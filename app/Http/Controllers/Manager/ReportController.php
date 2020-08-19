@@ -23,14 +23,12 @@ class ReportController extends Controller
             $reports = Project::find($request->project_id)
                 ->reports()
                 ->where('state', Report::getReportWaitting())
-
                 ->get();
         }
         else if (isset($request->user_id)) {
             $reports = User::find($request->user_id)
                 ->reports()
                 ->where('state', Report::getReportWaitting())
-
                 ->get();
         }
         else {

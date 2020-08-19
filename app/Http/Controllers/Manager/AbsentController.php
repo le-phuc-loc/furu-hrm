@@ -120,7 +120,7 @@ class AbsentController extends Controller
         $absent->state = AbsentApplication::getAbsentWaitting();
 
         $absent->save();
-        return redirect()->route('manager.absent.index');
+        return redirect()->route('manager.absent.mine');
     }
 
 

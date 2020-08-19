@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'default_code' => env('DEFAULT_CODE','Hieub1609704')
+    'default_code' => env('DEFAULT_CODE','locloc')
 ];
