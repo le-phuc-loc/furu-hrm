@@ -1,9 +1,9 @@
 
-@extends('role.manager.index')
+@extends('role.manager.layout')
 @section('content')
     <div class="card mb-4">
         <div class="card-header">
-            <i class="fas fa-table mr-1"></i>
+            <span>LIST PROJECTS</span>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -38,12 +38,14 @@
                                         <td>
                                             <a type="button" class="btn btn-primary btn-edit-project"
                                                 href="{{ route('manager.project.edit', ['id' => $project->id]) }}">
-                                                <i class="fa fa-edit" aria-hidden="true"></i>
+                                                {{-- <i class="fa fa-edit" aria-hidden="true"></i> --}}
+                                                Edit
                                             </a>
                                             <a class="btn btn-primary"
                                                 href="{{ route('manager.user.index', ['project_id' => $project->id]) }}"
                                                 role="button">
-                                                <i class="fa fa-users" aria-hidden="true"></i>
+                                                {{-- <i class="fa fa-users" aria-hidden="true"></i> --}}
+                                            Workers
                                             </a>
                                         </td>
                                     </tr>

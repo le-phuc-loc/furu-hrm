@@ -1,4 +1,4 @@
-@extends('role.manager.index')
+@extends('role.manager.layout')
 
 @section('content')
     <div class="container">
