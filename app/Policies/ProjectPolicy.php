@@ -57,7 +57,7 @@ class ProjectPolicy
         if ($user->role == 'manager') {
             return $user->id === $project->managed;
         }
-        return false;
+        return true;
     }
 
     /**
