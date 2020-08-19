@@ -54,7 +54,7 @@ Route::group([
         Route::post('/create', 'UserController@store')->name('admin.user.store');
 
 
-        Route::get('/update/{id}', 'UserController@edit')->name('admin.user.edit');
+        Route::get('/edit/{id}', 'UserController@edit')->name('admin.user.edit');
         Route::post('/update/{id}', 'UserController@update')->name('admin.user.update');
 
         Route::get('/delete/{id}', 'UserController@delete')->name('admin.user.delete');
@@ -71,7 +71,7 @@ Route::group([
         Route::post('/create', 'ProjectController@store')->name('admin.project.store');
 
 
-        Route::get('/update/{id}', 'ProjectController@edit')->name('admin.project.edit');
+        Route::get('/edit/{id}', 'ProjectController@edit')->name('admin.project.edit');
         Route::post('/update/{id}', 'ProjectController@update')->name('admin.project.update');
 
         Route::get('/delete/{id}', 'ProjectController@delete')->name('admin.project.delete');
@@ -112,6 +112,14 @@ Route::group([
     });
 
 
+    Route::group([
+        'prefix' => 'dashboard',
+    ], function() {
+        Route::get('/working', 'DashboardController@timeWorking')->name('admin.dashboard.working');
+        Route::get('/absent', 'DashboardController@timeAbsent')->name('admin.dashboard.absent');
+
+
+    });
 
 
 });
@@ -163,10 +171,11 @@ Route::group([
 
     Route::group(['prefix' => 'absent'], function () {
         Route::get('/', 'AbsentController@index')->name('manager.absent.index');
+        Route::get('/mine', 'AbsentController@mine')->name('manager.absent.mine');
 
         Route::get('/info/{id}', 'AbsentController@show')->name('manager.absent.info');
 
-
+        Route::get('/create', 'AbsentController@create')->name('manager.absent.create');
         Route::post('/create', 'AbsentController@store')->name('manager.absent.store');
 
         Route::get('/approve/{id}', 'AbsentController@approve')->name('manager.absent.approve');
@@ -208,10 +217,11 @@ Route::group(['namespace' => 'Worker', 'prefix' => 'worker','middleware'=>'worke
 
         Route::get('/info/{id}', 'AbsentController@show')->name('worker.absent.info');
 
+        Route::get('/create', 'AbsentController@create')->name('worker.absent.create');
         Route::post('/create', 'AbsentController@store')->name('worker.absent.store');
 
 
-        Route::get('/update/{id}', 'AbsentController@edit')->name('worker.absent.edit');
+        Route::get('/edit/{id}', 'AbsentController@edit')->name('worker.absent.edit');
         Route::post('/update/{id}', 'AbsentController@update')->name('worker.absent.update');
 
         Route::get('/delete/{id}', 'AbsentController@delete')->name('worker.absent.delete');

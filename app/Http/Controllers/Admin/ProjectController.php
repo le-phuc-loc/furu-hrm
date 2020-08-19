@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
+
 
 
 use \App\Project;
@@ -20,27 +23,37 @@ class ProjectController extends Controller
             'projects' => $objs,
         ]);
     }
+    public function create(){
+        $managers = User::where('role', 'manager')->get();
+        return view('role/admin/project/create',[
+            'managers'=>$managers
+        ]);
+
+    }
+
 
     public function store(Request $request) {
         // dd($request->input());
-
-        $validatedData = $request->validate( [
+        $request->validate([
             'project_name' => 'required',
-            'project_from_date' => 'date|after',
-            'project_to_date' => 'date|after:project_from_date',
-            'time_checkin' => 'date_format:H:i',
-            'time_checkout' => 'date_format:H:i|after:time_checkin',
-            ]
-        );
+            'number_worker' => 'required',
+            'from_date' => 'required|date',
+            'managed' => 'required',
+            'to_date' => 'required|after:from_date',
+            'time_checkin' => 'required',
+            'time_checkout' => 'required|after:time_checkin',
+            'location_name' => 'required'
+        ]);
+
 
         $obj = new Project();
         $obj->project_name = $request->project_name;
+        $obj->managed=$request->managed;
         $obj->number_worker = $request->number_worker;
         $obj->from_date = $request->from_date;
         $obj->to_date = $request->to_date;
         $obj->time_checkin = $request->time_checkin;
         $obj->time_checkout = $request->time_checkout;
-
         //create location
         $location = new Location();
         $location->location_name = $request->location_name;
@@ -49,22 +62,20 @@ class ProjectController extends Controller
         $location->place_id = $request->place_id;
         $location->save();
 
-
-
-
-        // var_dump($location);
         $obj->location_id = $location->id;
         $obj->users()->attach($request->user_id);
         $obj->save();
-        // dd($obj);
-        // dd($location);
 
         return redirect()->route('admin.project.index');
     }
 
     public function edit($id) {
-        $obj = Project::with(['location', 'manager', 'users'])->find($id);
-        return response()->json(['project' => $obj], 200);
+        $project = Project::with(['location', 'manager', 'users'])->find($id);
+        $managers = User::where('role', 'manager')->get();
+        return view('role/admin/project/edit',[
+            'project'=>$project,
+            'managers'=>$managers
+        ]);
     }
 
     public function update(Request $request, $id) {
@@ -77,10 +88,6 @@ class ProjectController extends Controller
             'time_checkin' => '',
             'time_checkout' => 'after:time_checkin',
             ],
-            [
-                'time_checkout'=>'asdjasdkajsdk',
-            ]
-
         );
         $obj = Project::find($id);
         $obj->project_name = $request->project_name;
@@ -150,10 +157,7 @@ class ProjectController extends Controller
         // dd($req->input());
         $obj = Project::find($id);
         $obj->managed = $request->manager;
-        foreach ($request->workers as $worker) {
-            $obj->users()->attach($worker);
-        }
-
+        $obj->users()->attach($request->workers);
 
         $obj->save();
         // dd($obj);

@@ -1,42 +1,44 @@
 @extends('layouts.side_bar')
 @section('sidebar-menu')
-    <nav class="">
+
+    <nav>
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-
-            <li class="nav-item">
-                <a href="{{ route('admin.user.index') }}" class="nav-link ">
-                    <i class="nav-icon fas fa-user-tie" ></i>
-                    <p>
+            <li class="active">
+                <a href="{{ route('admin.user.index') }}">
+                    <span class="fa fa-user mr-3"></span>
                         Users
-                    </p>
                 </a>
+            </li>
 
+            <li class="active">
+                <a href="{{route('admin.project.index')}}">
+                    <i class="fa fa-tasks mr-3"></i>
+                    <span>Project</span>
+                </a>
+                {{-- <ul class="collapse list-unstyled" id="homeSubmenu">
+                    <li class="active"><a href="{{route('admin.project.index')}}"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
+                    <li class="active"><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
+                </ul> --}}
             </li>
-            <li class="nav-item">
-                <a href="{{ route('admin.project.index') }}" class="nav-link ">
-                    <i class="nav-icon fa fa-bars"></i>
-                    <p>
-                        Projects
-                    </p>
+            <li class="active">
+                <a href="{{ route('admin.absent.index') }}">
+                    <span class="fa fa-home mr-3"></span>
+                        Absents
                 </a>
             </li>
-            <li class="nav-item">
-                <a href="{{ route('admin.absent.index') }} " class="nav-link ">
-                    <i class="nav-icon fa fa fa-edit"> </i>
-                    <p>
-                        Absent
-                    </p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ route('admin.report.index')}} " class="nav-link ">
-                    <i class="nav-icon fas fa-address-book"> </i>
-                    <p>
+            <li class="active">
+                <a href="#homeSubmenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <span class="fa fa-home mr-3"></span>
                         Dashboard
-                    </p>
                 </a>
+                <ul class="collapse list-unstyled" id="homeSubmenu1">
+                    <li class="active"><a href="{{route('admin.dashboard.working')}}"><i class="fa fa-circle-o mr-3"></i> Time Working</a></li>
+                    <li class="active"><a href="{{route('admin.dashboard.absent')}}"><i class="fa fa-circle-o mr-3"></i> Time Absent</a></li>
+                </ul>
             </li>
+
         </ul>
+
     </nav>
     <!-- CREATE PROJECT -->
     {{-- <div class="modal fade" id="modal-create-project">
@@ -261,17 +263,15 @@
                             <div class="form-group" id="update-map">
 
                             </div>
-                            <div class="form-group row mb-0">
-                                <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-secondary">
-                                        {{ __('Update') }}
-                                    </button>
-                                </div>
-                            </div>
+
                         </div>
                         <!-- Modal footer -->
                         <div class="modal-footer">
+                                    <button type="submit" class="btn btn-secondary">
+                                    {{ __('Update') }}
+                                </button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
                         </div>
 
                     </div>
@@ -279,4 +279,17 @@
             </div>
         </form>
     </div> --}}
+    <style>
+    a[data-toggle="collapse"] {
+        position: relative;
+    }
+    .dropdown-toggle::after {
+        display: block;
+        position: absolute;
+        top: 50%;
+        right: 20px;
+        transform: translateY(-50%);
+    }
+    </style>
 @endsection
+

@@ -16,7 +16,8 @@ class CreateAbsentApplicationsTable extends Migration
         Schema::create('absent_applications', function (Blueprint $table) {
             $table->id();
             $table->integer('state')->default('-2');
-            $table->timestamp('date_off')->nullable();
+            $table->timestamp('date_off_start')->nullable();
+            $table->timestamp('date_off_end')->nullable();
             $table->integer('number_off')->nullable();
             $table->string('content');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');

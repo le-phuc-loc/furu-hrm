@@ -1,105 +1,84 @@
 @extends('role.worker.index')
 
 @section('content')
-    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
-        crossorigin="anonymous" />
 
-    <script>
-        $(document).ready(function() {
-            $('#dataTable1').DataTable();
-        });
+    <div class="card mb-4">
+        <div class="card-header">
+            <span>LIST ABSENTS<span>
+            <a type="button" class="btn btn-info add-new" href="{{ route('worker.absent.create')}}"
+                style="float: right; color:white"> <i class="fa fa-plus"></i>
+                Create
+            </a>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Start Off</th>
+                            <th>End off</th>
+                            <th>Number days off</th>
+                            <th>Content</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
 
-    </script>
-    <div id="layoutSidenav_content">
-        <main>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <h3 class="mt-4">List Absent</h3>
-                    </div>
-                </div>
-                <br>
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <i class="fas fa-table mr-1"></i>List
-                        <button type="button" class="btn btn-info add-new" data-toggle="modal" data-target="#create-modal"
-                            data-name="{{ Auth::user()->name }}"
-                            style="float: right;"> <i class="fa fa-plus"></i>
-                            Create
-                        </button>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Date Off</th>
-                                        <th>Number days off</th>
-                                        <th>Content</th>
-                                        <th>Created at</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
+                    <tbody>
+                        @if(count($absents) <= 0)
+                            <tr >
+                                <td>Don't have absent form</td>
+                            </tr>
+                        @else
+                            @foreach($absents as $absent)
+                            <tr>
+                                <td>{{ $absent->user->name }}</td>
+                                <td>{{ $absent->date_off_start }}</td>
+                                <td>{{ $absent->date_off_end }}</td>
 
-                                <tbody>
-                                    @if(count($absents) <= 0)
-                                        <tr >
-                                            <td>Don't have absent form</td>
-                                        </tr>
+                                <td>
+                                    {{ $absent->number_off }}
+                                </td>
+                                <td> {{ $absent->content }} </td>
+
+                                <td>
+                                    {{-- @if ($absent->state == 2)
+                                        Absent Application approved
                                     @else
-                                        @foreach($absents as $absent)
-                                        <tr>
-                                            <td>{{ $absent->user->name }}</td>
-                                            <td>{{ $absent->date_off }}</td>
-                                            <td>
-                                                {{ $absent->number_off }}
-                                            </td>
-                                            <td> {{ $absent->content }} </td>
-                                            <td> {{ $absent->created_at }} </td>
-
-                                            <td>
-                                                {{-- @if ($absent->state == 2)
-                                                    Absent Application approved
-                                                @else
-                                                    <a type="button"
-                                                    href="{{ route('manager.absent.approve', ['id' => $absent->id, 'user_id' => $absent->user->id]) }}"
-                                                    class="btn btn-primary">
-                                                        {{ __('Approve') }}
-                                                    </a>
-                                                    <button class="btn btn-primary"
-                                                        data-toggle="modal"
-                                                        data-name = "{{ $absent->user->name }}"
-                                                        data-user_id = "{{ $absent->user->id }}"
-                                                        data-absent_id = "{{ $absent->id }}"
-                                                        data-target="#reject-modal">
-                                                        Reject
-                                                    </button>
-                                                @endif --}}
-                                                <button class="btn btn-primary btn-edit-absent" data-toggle="modal" data-target="#update-absent-modal"
-                                                value="{{ route('worker.absent.edit', ['id' => $absent->id]) }}">
-                                                <i class="fa fa-edit" aria-hidden="true"></i>
-                                                </button>
-                                                <a type="button" class="btn btn-primary btn-project-delete"
-                                                    href="{{ route('worker.absent.delete', ['id' => $absent->id]) }}"
-                                                    onclick="return confirm('Are you sure ????');">
-                                                    <i class="fa fa-trash" aria-hidden="true"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                    @endif
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+                                        <a type="button"
+                                        href="{{ route('manager.absent.approve', ['id' => $absent->id, 'user_id' => $absent->user->id]) }}"
+                                        class="btn btn-primary">
+                                            {{ __('Approve') }}
+                                        </a>
+                                        <button class="btn btn-primary"
+                                            data-toggle="modal"
+                                            data-name = "{{ $absent->user->name }}"
+                                            data-user_id = "{{ $absent->user->id }}"
+                                            data-absent_id = "{{ $absent->id }}"
+                                            data-target="#reject-modal">
+                                            Reject
+                                        </button>
+                                    @endif --}}
+                                    <a type="button" class="btn btn-primary btn-edit-absent"
+                                        href="{{ route('worker.absent.edit', ['id' => $absent->id]) }}">
+                                    <i class="fa fa-edit" aria-hidden="true"></i>
+                                    </a>
+                                    <a type="button" class="btn btn-primary btn-project-delete"
+                                        href="{{ route('worker.absent.delete', ['id' => $absent->id]) }}"
+                                        onclick="return confirm('Are you sure ????');">
+                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            @endforeach
+                        @endif
+                    </tbody>
+                </table>
             </div>
-        </main>
+        </div>
+    </div>
 
-        <!-- Update Absense MODAL -->
+        <!-- create Absense MODAL -->
         <div class="modal fade" id="create-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -159,7 +138,7 @@
                 </div>
             </div>
         </div>
-
+    <!-- Update Absense MODAL -->
         <div class="modal fade" id="update-absent-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -223,14 +202,11 @@
 
 
     </div>
-    <script>
+    {{-- <script>
         $(document).ready(function() {
-
-
             $('#create-modal').on('show.bs.modal', function (event) {
                 var button = $(event.relatedTarget)
                 $("#create-name").val(button.data("name"));
-
             })
             $('.modal').modal({backdrop: 'static', keyboard: false, show: false});
             $(".btn-edit-absent").click(function(e) {
@@ -255,5 +231,5 @@
 
             });
         })
-    </script>
+    </script> --}}
 @endsection

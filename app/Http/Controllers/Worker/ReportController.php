@@ -105,8 +105,8 @@ class ReportController extends Controller
     public function checkout(Request $request, $id) {
         // dd(Carbon::now()->format('H:i'));
         $report = Report::find($id);
-
-        $report->time_checkout = Carbon::now('Asia/Ho_Chi_Minh')->format('H:i');
+        $time_checkout = Carbon::now('Asia/Ho_Chi_Minh')->format('H:i');
+        $report->time_checkout = $time_checkout;
         $location_name = $request->lat."+".$request->lng;
         $location = Location::create([
             'location_name' => $location_name,
@@ -116,7 +116,7 @@ class ReportController extends Controller
 
         $report->location_check_out = $location->id;
         $report->state = Report::getReportDraw();
-
+        $report->time_working = $time_checkout->diffInHours(Carbon::parse($report->time_checkin));
         $report->save();
         return response()->json(['success'=>'Checkout successful!!']);
     }

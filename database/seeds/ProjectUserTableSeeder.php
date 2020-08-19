@@ -13,37 +13,37 @@ class ProjectUserTableSeeder extends Seeder
     public function run()
     {
         DB::table('project_user')->insert([
-            'user_id'=>'1',
+            'user_id'=>'5',
             'project_id'=>'1',
             'created_at'=>now(),
             'updated_at'=>now(),
         ]);
         DB::table('project_user')->insert([
-            'user_id'=>'1',
+            'user_id'=>'9',
             'project_id'=>'2',
             'created_at'=>now(),
             'updated_at'=>now(),
         ]);
         DB::table('project_user')->insert([
-            'user_id'=>'1',
+            'user_id'=>'5',
             'project_id'=>'3',
             'created_at'=>now(),
             'updated_at'=>now(),
         ]);
         DB::table('project_user')->insert([
-            'user_id'=>'1',
+            'user_id'=>'6',
             'project_id'=>'4',
             'created_at'=>now(),
             'updated_at'=>now(),
         ]);
         DB::table('project_user')->insert([
-            'user_id'=>'1',
+            'user_id'=>'7',
             'project_id'=>'5',
             'created_at'=>now(),
             'updated_at'=>now(),
         ]);
         DB::table('project_user')->insert([
-            'user_id'=>'2',
+            'user_id'=>'7',
             'project_id'=>'1',
             'created_at'=>now(),
             'updated_at'=>now(),
@@ -91,8 +91,8 @@ class ProjectUserTableSeeder extends Seeder
             'updated_at'=>now(),
         ]);
         DB::table('project_user')->insert([
-            'user_id'=>'7',
-            'project_id'=>'5',
+            'user_id'=>'3',
+            'project_id'=>'6',
             'created_at'=>now(),
             'updated_at'=>now(),
         ]);

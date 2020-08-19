@@ -5,12 +5,14 @@ namespace App\Http\Controllers\Worker;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Validator;
 
 use \App\AbsentApplication;
 use \App\User;
 use \App\ProjectUser;
 use \App\Project;
 use Auth;
+use Carbon\Carbon;
 
 class AbsentController extends Controller
 {
@@ -25,15 +27,23 @@ class AbsentController extends Controller
         ]);
         // return view("role/manager/report/index");
     }
-
+    public function create(){
+        return view('role/worker/absent/create');
+    }
     public function store(Request $request) {
-
+        $validatedData = $request->validate( [
+            'content' => 'required',
+            'date_off_start' => 'required|date|after:'.Carbon::now()->addDays(14),
+            'date_off_end' => 'required|date|after:date_off_start',
+        ]);
 
 
         $absent = new AbsentApplication();
         $absent->content = $request->content;
-        $absent->date_off = $request->date_off;
-        $absent->number_off = $request->number_off;
+        $absent->date_off_start = $request->date_off_start;
+        $absent->date_off_end = $request->date_off_end;
+        $absent->number_off= Carbon::parse($request->date_off_end)
+            ->diffInDays(Carbon::parse($request->date_off_start));
         $absent->user_id = Auth::user()->id;
         $absent->state = AbsentApplication::getAbsentWaitting();
 
@@ -42,25 +52,25 @@ class AbsentController extends Controller
     }
 
     public function edit($id) {
-        $obj = AbsentApplication::with(['user'])->find($id);
-        return response()->json(['absent' => $obj], 200);
+        $absent = AbsentApplication::with(['user'])->find($id);
+        return view('role.worker.absent.edit',[
+            'absent'=>$absent,
+        ]);
     }
 
     public function update(Request $request, $id) {
         // dd($request->input());
         $validatedData = $request->validate( [
-            'project_name' => 'required',
-            'project_from_date' => 'date',
-            'project_to_date' => 'date|after:project_from_date',
-            'time_checkin' => 'date_format:H:i',
-            'time_checkout' => 'date_format:H:i|after:time_checkin',
-        ]);
+            'date_off_start' => ['required','date'],
+            'date_off_end' => ['required','date','after:date_off_start'],
+            'content' => ['required'],
 
+        ]);
         $absent = AbsentApplication::find($id);
-        $absent->content = $request->content;
-        $absent->date_off = $request->date_off;
-        $absent->number_off = $request->number_off;
         $absent->user_id = Auth::user()->id;
+        $absent->date_off_start = $request->date_off_start;
+        $absent->date_off_start = $request->date_off_start;
+        $absent->content = $request->content;
         $absent->state = AbsentApplication::getAbsentWaitting();
         $absent->save();
         // dd($user);

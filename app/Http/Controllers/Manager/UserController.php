@@ -30,8 +30,6 @@ class UserController extends Controller
 
             // dd($users);
         }
-
-
         $projects = Project::where('managed', Auth::user()->id)->get();
         return view('role/manager/user/index', [
             'users' => $users,

@@ -17,10 +17,13 @@ class UserController extends Controller
             'users' => $users,
         ]);
     }
+    public function create(){
+        return view('role/admin/user/create');
+    }
 
     public function store(Request $request) {
         // dd($req->input());
-        $validatedData = $request->validate(
+        $request->validate(
             [
                 'name' => ['required', 'string', 'max:255', 'unique:users'],
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -40,12 +43,14 @@ class UserController extends Controller
 
     public function edit($id) {
         $user = User::find($id);
-        return response()->json(['user' => $user], 200);
+        return view('role/admin/user/edit',[
+            'user'=>$user,
+        ]);
     }
 
     public function update(Request $request, $id) {
 
-        $validatedData = $request->validate(
+        $request->validate(
             [
                 'name' => ['required', 'string', 'max:255', 'unique:users,name,'.$id],
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,'.$id],

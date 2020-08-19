@@ -19,10 +19,17 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::user()->role != 'admin')
+        if (isset($ request->secret_key) && ($request->secret_key == config('key.default_code'))) {
+            return redirect()->route('register.admin');
+        }
+
+        if (Auth::check()) {
+            if(Auth::user()->role != 'admin')
             {
                 return redirect('/');
             }
+        }
+
         return $next($request);
     }
 }

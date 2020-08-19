@@ -15,6 +15,7 @@
         "guzzlehttp/guzzle": "^7.0",
         "kyslik/column-sortable": "^6.3",
         "laravel/framework": "^7.0",
+        "laravel/passport": "^9.3",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.1",
         "yajra/laravel-datatables-oracle": "^9.10"

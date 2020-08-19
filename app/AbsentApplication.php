@@ -21,8 +21,6 @@ class AbsentApplication extends Model
         return self::$ABSENT_ALLOW;
     }
 
-
-
     public function user()
     {
         return $this->belongsTo('App\User','user_id','id');
@@ -33,10 +31,13 @@ class AbsentApplication extends Model
     }
 
 
-    public function getDateOffAttribute($value) {
-        return \Carbon\Carbon::parse($this->attributes['date_off'])->format('Y-m-d');
+    public function getDateOffStartAttribute($value) {
+        return \Carbon\Carbon::parse($this->attributes['date_off_start'])->format('Y-m-d');
     }
 
+    public function getDateOffEndAttribute($value) {
+        return \Carbon\Carbon::parse($this->attributes['date_off_end'])->format('Y-m-d');
+    }
 
 
 
