@@ -1,4 +1,4 @@
-@extends('role.manager.index')
+@extends('role.manager.layout')
 
 @section('content')
     <div class="card mb-4">
@@ -76,8 +76,6 @@
                         <ul class="list-group">
 
                             @csrf
-
-
 
                             <div class="form-group row">
                                 <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>

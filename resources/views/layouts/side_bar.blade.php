@@ -118,9 +118,8 @@
                                 <div class="dropdown-menu dropdown-menu-right bg-dark" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item text-white dropdown-item-custom" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                          document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        <span class="fa fa-sign-out mr-2"></span>Logout</a>
                                     </a>
-
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                         style="display: none;">
                                         @csrf

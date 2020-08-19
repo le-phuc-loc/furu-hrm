@@ -31,6 +31,9 @@ class AbsentPolicy
     public function view(User $user, AbsentApplication $absentApplication)
     {
         //
+        if ($user->role == "worker") {
+            return $user->id === $absentApplication->user_id;
+        }
     }
 
     /**
@@ -54,6 +57,9 @@ class AbsentPolicy
     public function update(User $user, AbsentApplication $absentApplication)
     {
         //
+        if ($user->role == "worker") {
+            return $user->id === $absentApplication->user_id;
+        }
     }
 
     /**
@@ -66,6 +72,9 @@ class AbsentPolicy
     public function delete(User $user, AbsentApplication $absentApplication)
     {
         //
+        if ($user->role == "worker") {
+            return $user->id === $absentApplication->user_id;
+        }
     }
 
     /**

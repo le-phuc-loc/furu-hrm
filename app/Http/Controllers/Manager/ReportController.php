@@ -79,7 +79,10 @@ class ReportController extends Controller
     public function show($id) {
         $report = Report::find($id);
 
-
+        if (!Auth::user()->can('view', $report)) {
+            // dd($user);
+            return redirect()->route('home');
+        }
 
         return view('role/manager/report/detail', [
             'report' => $report,

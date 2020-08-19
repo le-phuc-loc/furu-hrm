@@ -1,4 +1,4 @@
-@extends('role.manager.index')
+@extends('role.manager.layout')
 
 @section('content')
     <div class="container">
@@ -34,7 +34,7 @@
                                 <div class="col-md-6">
                                     <input id="managed" type="text"
                                         class="form-control @error('managed') is-invalid @enderror" name="managed"
-                                        value="{{$project->manager->name}}" required autocomplete="managed" autofocus readonly>
+                                        value="{{$project->manager->name}}" required autocomplete="managed" autofocus disabled>
 
                                     @error('project_name')
                                     <span class="invalid-feedback" role="alert">

@@ -1,10 +1,10 @@
-@extends('role.admin.index')
+@extends('role.admin.layout')
 
 @section('content')
 
     <div class="card mb-4">
         <div class="card-header">
-            <i class="fas fa-table mr-1"></i>List
+            <span>LIST PROJECTS</span>
             <a type="button" class="btn btn-info add-new" href="{{ route('admin.project.create')}}" style="float: right;"> <i class="fa fa-plus"></i>
                 Create
             </a>

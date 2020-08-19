@@ -1,4 +1,4 @@
-@extends('role.worker.index')
+@extends('role.worker.layout')
 
 @section('content')
 
@@ -130,6 +130,9 @@
                         success:function(data){
                             location.reload();
                             alert(data.success);
+                        },
+                        error: function(){
+                            alert('error!');
                         }
                     });
                 });
@@ -161,6 +164,9 @@
                             success:function(data){
                                 location.reload();
                                 alert(data.success);
+                            },
+                            error: function(){
+                                alert('error!');
                             }
                         });
                     });

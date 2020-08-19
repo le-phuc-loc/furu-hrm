@@ -35,6 +35,10 @@ class ReportPolicy
             return $user->id === $report->project_user->project->managed;
         }
 
+        if ($user->role == "worker") {
+            return $user->id === $report->project_user->user_id;
+        }
+
         return false;
     }
 
@@ -80,6 +84,9 @@ class ReportPolicy
     public function update(User $user, Report $report)
     {
         //
+        if ($user->role == "worker") {
+            return $user->id === $report->project_user->user_id;
+        }
     }
 
     /**
