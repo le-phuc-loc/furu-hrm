@@ -10650,7 +10650,7 @@ body {
   font-size: 14px;
   line-height: 1.8;
   font-weight: normal;
-  background: #000000;
+  background: #a8a1a1;
   color: gray;
 }
 
@@ -10920,7 +10920,8 @@ a[data-toggle=collapse] {
   padding: 0;
   min-height: 100vh;
   transition: all 0.3s;
-  background-color: #000000;
+  background-image: url(/images/bg_1.jpg?b9ac7de7494e3f871929dda4cb2107b4);
+  background-size: 100%;
 }
 
 .navbar-main {
