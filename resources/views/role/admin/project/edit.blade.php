@@ -63,7 +63,12 @@
                                     class="col-md-4 col-form-label text-md-right">{{ __('From date') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="project-from-date" type="date" class="form-control" name="from_date" value="{{$project->from_date}}">
+                                    <input id="project-from-date" type="date" class="form-control @error('from_date') is-invalid @enderror" name="from_date" value="{{$project->from_date}}">
+                                    @error('from_date')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -72,7 +77,12 @@
                                     class="col-md-4 col-form-label text-md-right">{{ __('To date') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="project-to-date" type="date" class="form-control" name="to_date" value="{{$project->to_date}}">
+                                    <input id="project-to-date" type="date" class="form-control @error('to_date') is-invalid @enderror" name="to_date" value="{{$project->to_date}}">
+                                    @error('to_date')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -80,7 +90,12 @@
                                     class="col-md-4 col-form-label text-md-right">{{ __('Time checkin') }}</label>
 
                                 <div class="col-md-6">
-                                    <input type="time" class="form-control" name="time_checkin" value="{{$project->time_checkin}}">
+                                    <input type="time" class="form-control @error('time_checkin') is-invalid @enderror" name="time_checkin " value="{{$project->time_checkin}}">
+                                    @error('time_checkin')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -88,12 +103,17 @@
                                     class="col-md-4 col-form-label text-md-right">{{ __('Time checkout') }}</label>
 
                                 <div class="col-md-6">
-                                    <input type="time" class="form-control" name="time_checkout" value="{{$project->time_checkout}}">
+                                    <input type="time" class="form-control @error('time_checkout') is-invalid @enderror" name="time_checkout" value="{{$project->time_checkout}}">
+                                    @error('time_checkout')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label for="password"
+                                <label for=""
                                     class="col-md-4 col-form-label text-md-right">{{ __('Location') }}</label>
                                 <div class="col-md-6">
                                     <input id="location-name" type="text" class="form-control controls" name="location_name"

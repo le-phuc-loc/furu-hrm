@@ -171,6 +171,7 @@ Route::group([
 
     Route::group(['prefix' => 'absent'], function () {
         Route::get('/', 'AbsentController@index')->name('manager.absent.index');
+        Route::get('/mine', 'AbsentController@mine')->name('manager.absent.mine');
 
         Route::get('/info/{id}', 'AbsentController@show')->name('manager.absent.info');
 
@@ -216,6 +217,7 @@ Route::group(['namespace' => 'Worker', 'prefix' => 'worker','middleware'=>'worke
 
         Route::get('/info/{id}', 'AbsentController@show')->name('worker.absent.info');
 
+        Route::get('/create', 'AbsentController@create')->name('worker.absent.create');
         Route::post('/create', 'AbsentController@store')->name('worker.absent.store');
 
 

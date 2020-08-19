@@ -24,13 +24,17 @@ class ProjectController extends Controller
         ]);
     }
     public function create(){
-        return view('role/admin/project/create');
+        $managers = User::where('role', 'manager')->get();
+        return view('role/admin/project/create',[
+            'managers'=>$managers
+        ]);
+
     }
 
 
     public function store(Request $request) {
         // dd($request->input());
-        $validator = Validator::make($request->all(), [
+        $request->validate([
             'project_name' => 'required',
             'number_worker' => 'required',
             'from_date' => 'required|date',
@@ -40,9 +44,7 @@ class ProjectController extends Controller
             'time_checkout' => 'required|after:time_checkin',
             'location_name' => 'required'
         ]);
-        if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors()], 404);
-        }
+
 
         $obj = new Project();
         $obj->project_name = $request->project_name;
@@ -69,8 +71,10 @@ class ProjectController extends Controller
 
     public function edit($id) {
         $project = Project::with(['location', 'manager', 'users'])->find($id);
+        $managers = User::where('role', 'manager')->get();
         return view('role/admin/project/edit',[
             'project'=>$project,
+            'managers'=>$managers
         ]);
     }
 
@@ -154,10 +158,7 @@ class ProjectController extends Controller
         // dd($req->input());
         $obj = Project::find($id);
         $obj->managed = $request->manager;
-        foreach ($request->workers as $worker) {
-            $obj->users()->attach($worker);
-        }
-
+        $obj->users()->attach($request->workers);
 
         $obj->save();
         // dd($obj);

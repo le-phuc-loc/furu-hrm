@@ -68,7 +68,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-secondary">Update</button>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <a type="button" class="btn btn-secondary" href="{{ route('worker.user.index') }}">Close</a>
                             </div>
                         </form>
                     </div>

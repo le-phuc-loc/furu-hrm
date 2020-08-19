@@ -32,8 +32,8 @@
                         Dashboard
                 </a>
                 <ul class="collapse list-unstyled" id="homeSubmenu1">
-                    <li class="active"><a href="{{route('admin.dashboard.working')}}"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-                    <li class="active"><a href="{{route('admin.dashboard.absent')}}"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
+                    <li class="active"><a href="{{route('admin.dashboard.working')}}"><i class="fa fa-circle-o mr-3"></i> Time Working</a></li>
+                    <li class="active"><a href="{{route('admin.dashboard.absent')}}"><i class="fa fa-circle-o mr-3"></i> Time Absent</a></li>
                 </ul>
             </li>
 
@@ -290,7 +290,6 @@
         right: 20px;
         transform: translateY(-50%);
     }
-
-          </style>
+    </style>
 @endsection
 

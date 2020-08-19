@@ -7,7 +7,12 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         {{ __('Assigned worker in Project') }}
+                        <a type="button" class="btn btn-primary"
+                            href="{{ route('admin.project.assign', ['id' => $project->id]) }}">
+                            {{ __('Assign') }}
+                        </a>
                     </div>
+
                     <div class="card-body">
 
                             <div class="form-group row">
@@ -100,10 +105,6 @@
 
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
-                                    <a type="button" class="btn btn-primary"
-                                        href="{{ route('admin.project.assign', ['id' => $project->id]) }}">
-                                        {{ __('Assign') }}
-                                    </a>
                                     <a type="button" class="btn btn-secondary"
                                          href="{{ route('admin.project.index') }}" >
                                          {{ __('Cancel')}}

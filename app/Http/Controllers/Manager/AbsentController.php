@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Manager;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use \App\AbsentApplication;
+use Illuminate\Support\Facades\Validator;
 use \App\User;
 use \App\Project;
 use \App\ProjectUser;
@@ -13,9 +13,19 @@ use Auth;
 use Illuminate\Support\Facades\DB;
 use Mail;
 use \App\Jobs\ProcessReportMail;
+use Carbon\Carbon;
+use \App\AbsentApplication;
+
 
 class AbsentController extends Controller
 {
+    public function mine(){
+        $absents=Auth::user()->absentApplication()->get();
+        // dd($absents);
+        return view('role/manager/absent/mine',[
+            'absents'=>$absents
+        ]);
+    }
     //
     public function index(Request $request) {
     //     // $absents=AbsentApplication::with('User')
@@ -45,7 +55,7 @@ class AbsentController extends Controller
             ->where('state', AbsentApplication::getAbsentWaitting())->get();
             // dd($absents);
         return view('role.manager.absent.index',compact('absents'));
-        
+
         // $absents = AbsentApplication::whereIn('user_id',
         //         User::whereIn('id',
         //         ProjectUser::whereIn('project_id',
@@ -77,11 +87,6 @@ class AbsentController extends Controller
 
 
     public function reject(Request $request, $id) {
-        $validatedData = $request->validate(
-            [
-                'content'=>'required',
-            ]);
-
         if (!isset($request->user_id)) {
             return redirect()->route('manager.absent.index');
         }
@@ -95,12 +100,22 @@ class AbsentController extends Controller
 
         return redirect()->route('manager.absent.index');
     }
-
+    public function create(){
+        return view('role/manager/absent/create');
+    }
     public function store(Request $request) {
+        $validatedData = $request->validate( [
+            'content' => 'required',
+            'date_off_start' => 'required|date|after:'.Carbon::now()->addDays(14),
+            'date_off_end' => 'required|date|after:date_off_start',
+        ]);
+
         $absent = new AbsentApplication();
         $absent->content = $request->content;
-        $absent->date_off = $request->date_off;
-        $absent->number_off = $request->number_off;
+        $absent->date_off_start = $request->date_off_start;
+        $absent->date_off_end = $request->date_off_end;
+        $absent->number_off= Carbon::parse($request->date_off_end)
+        ->diffInDays(Carbon::parse($request->date_off_start));
         $absent->user_id = Auth::user()->id;
         $absent->state = AbsentApplication::getAbsentWaitting();
 

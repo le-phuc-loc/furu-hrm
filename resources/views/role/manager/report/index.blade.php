@@ -1,7 +1,6 @@
 @extends('role.manager.index')
 
 @section('content')
-    <h2>REPORTS</h2>
     <div class="card mb-4">
         <div class="card-header">
             <div class="dropdown">

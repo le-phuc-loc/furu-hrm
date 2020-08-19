@@ -1,4 +1,4 @@
-@extends('role.admin.index')
+@extends('role.manager.index')
 
 @section('content')
     <div class="container">
@@ -6,72 +6,68 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
-                        {{ __('PROJECT') }}
+                        {{ __(' EDIT PROJECT') }}
                     </div>
                     <div class="card-body">
-                    <form method="POST" action="{{ route('admin.project.store') }}">
+                    <form method="POST" action="{{route('manager.project.update',['id'=>$project->id])}}">
                             @csrf
+
                             <div class="form-group row">
                                 <label for="project_name"
                                     class="col-md-4 col-form-label text-md-right">{{ __('Project name') }}</label>
                                 <div class="col-md-6">
                                     <input id="project_name" type="text"
                                         class="form-control @error('project_name') is-invalid @enderror" name="project_name"
-                                        value="{{ old('project_name') }}" required autocomplete="project_name" autofocus>
+                                        value="{{$project->project_name}}" required autocomplete="project_name" autofocus>
+
                                     @error('project_name')
-                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                                     @enderror
                                 </div>
                             </div>
+
                             <div class="form-group row">
                                 <label for="managed"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Managed by') }}</label>
-                                        <select class="form-control col-md-6" id="manager-select" name="manager">
-                                            {{-- <beautify start="@foreach" end="@endforeach"
-                                                exp="^^$managers as $manage^^"> --}}
-                                                {{-- <option class="project-manager" value="{{ $manage->id }}">
-                                                    {{ $manage->name }}</option> --}}
-                                                @if (count($managers) <= 0)
-                                                    <option class="project-manager disable" value="1">
-                                                        Don't have manager
-                                                    </option>
-                                                @else
-                                                    <option class="project-manager disable" disabled>
-                                                        Select Manager
-                                                    </option>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Managed_by') }}</label>
+                                <div class="col-md-6">
+                                    <input id="managed" type="text"
+                                        class="form-control @error('managed') is-invalid @enderror" name="managed"
+                                        value="{{$project->manager->name}}" required autocomplete="managed" autofocus readonly>
 
-                                                    @foreach ($managers as $manager)
-                                                        <option class="project-manager" value="{{ $manager->id }}">
-                                                            {{ $manager->name }}
-                                                        </option>
-                                                    @endforeach
-                                                @endif
-
-
-                                                {{-- </beautify> --}}
-                                        </select>
-                                        {{-- <input id="manager" type="text" name="manager"> --}}
+                                    @error('project_name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
                             </div>
 
                             <div class="form-group row">
                                 <label for="number" class="col-md-4 col-form-label text-md-right">{{ __('Number') }}</label>
                                 <div class="col-md-6">
-                                    <input type="number"
-                                        class="form-control @error('number_worker') is-invalid @enderror"
+                                    <input id="name" type="number"
+                                        class="form-control @error('project_name') is-invalid @enderror" value="{{$project->number_worker}}"
                                         name="number_worker" min="1">
                                     @error('number_worker')
-                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
                                     @enderror
                                 </div>
                             </div>
+
                             <div class="form-group row">
                                 <label for="project-from-date"
                                     class="col-md-4 col-form-label text-md-right">{{ __('From date') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="project-from-date" type="date" class="form-control @error('from_date') is-invalid @enderror" name="from_date">
+                                    <input id="project-from-date" type="date" class="form-control @error('from_date') is-invalid @enderror" name="from_date" value="{{$project->from_date}}">
                                     @error('from_date')
-                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
                                     @enderror
                                 </div>
                             </div>
@@ -81,16 +77,25 @@
                                     class="col-md-4 col-form-label text-md-right">{{ __('To date') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="project-to-date" type="date" class="form-control @error('to_date') is-invalid @enderror" name="to_date">
+                                    <input id="project-to-date" type="date" class="form-control @error('to_date') is-invalid @enderror" name="to_date" value="{{$project->to_date}}">
                                     @error('to_date')
-                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
                                     @enderror
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label  class="col-md-4 col-form-label text-md-right">{{ __('Time checkin') }}</label>
+                                <label for="project-from-date"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Time checkin') }}</label>
+
                                 <div class="col-md-6">
-                                    <input type="time"  class="form-control" name="time_checkin">
+                                    <input type="time" class="form-control @error('time_checkin') is-invalid @enderror" name="time_checkin " value="{{$project->time_checkin}}">
+                                    @error('time_checkin')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -98,20 +103,31 @@
                                     class="col-md-4 col-form-label text-md-right">{{ __('Time checkout') }}</label>
 
                                 <div class="col-md-6">
-                                    <input type="time"  class="form-control" name="time_checkout">
+                                    <input type="time" class="form-control @error('time_checkout') is-invalid @enderror" name="time_checkout" value="{{$project->time_checkout}}">
+                                    @error('time_checkout')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label for="password"
+                                <label for=""
                                     class="col-md-4 col-form-label text-md-right">{{ __('Location') }}</label>
                                 <div class="col-md-6">
                                     <input id="location-name" type="text" class="form-control controls" name="location_name"
-                                        value="" placeholder="Enter place" required autofocus>
+                                        value="{{$project->location->location_name}}" >
 
-                                    <input type="hidden" id="lat" name="lat" step="any" class="form-control">
-                                    <input type="hidden" id="lng" name="lng" step="any" class="form-control">
-                                    <input type="hidden" id="place-id" name="place_id" class="form-control">
+                                    <input type="hidden" id="lat" name="lat" step="any"
+                                        value="{{ $project->location->lat }}"
+                                        class="form-control">
+                                    <input type="hidden" id="lng" name="lng" step="any"
+                                        value="{{ $project->location->lng }}"
+                                        class="form-control">
+                                    <input type="hidden" id="place-id" name="place_id"
+                                        value="{{ $project->location->place_id }}"
+                                        class="form-control">
                                 </div>
                             </div>
                             <div class="form-group" id="map">
@@ -119,9 +135,10 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-secondary">
-                                    {{ __('Create') }}
+                                    {{ __('Edit') }}
                                 </button>
-                                {{-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> --}}
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
                             </div>
                         </form>
                     </div>
@@ -130,12 +147,14 @@
         </div>
     </div>
 
-
-
     <script>
         function initAutocomplete() {
 
-            var position = new google.maps.LatLng(-33.8688, 151.2195);
+            m_lat = $('#lat').val();
+            m_lng = $('#lng').val();
+
+            console.log(m_lat + "---" + m_lng);
+            var position = new google.maps.LatLng(m_lat, m_lng);
             // confirm(m_lat + "-------" + m_lng);
             const map = new google.maps.Map(document.getElementById("map"), {
                 center: position,
@@ -205,6 +224,4 @@
         }
 
     </script>
-
-
 @endsection

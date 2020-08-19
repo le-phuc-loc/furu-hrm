@@ -104,7 +104,7 @@ eval("(function ($) {\n  \"use strict\";\n\n  var fullHeight = function fullHeig
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/loc/Documents/furu-hrm/resources/js/main.js */"./resources/js/main.js");
+module.exports = __webpack_require__(/*! D:\furu-hrm\resources\js\main.js */"./resources/js/main.js");
 
 
 /***/ })

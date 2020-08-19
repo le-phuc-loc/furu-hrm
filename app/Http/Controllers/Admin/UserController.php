@@ -22,7 +22,7 @@ class UserController extends Controller
 
     public function store(Request $request) {
         // dd($req->input());
-        $validatedData = $request->validate(
+        $request->validate(
             [
                 'name' => ['required', 'string', 'max:255', 'unique:users'],
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -49,7 +49,7 @@ class UserController extends Controller
 
     public function update(Request $request, $id) {
 
-        $validatedData = $request->validate(
+        $request->validate(
             [
                 'name' => ['required', 'string', 'max:255', 'unique:users,name,'.$id],
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,'.$id],

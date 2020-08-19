@@ -29,19 +29,22 @@ class ProjectController extends Controller
 
     public function edit($id) {
         $obj = Project::with(['location', 'manager', 'users'])->find($id);
-        return response()->json(['project' => $obj], 200);
+        return view('role/manager/project/edit',[
+            'project'=>$obj
+        ]);
     }
 
     public function update(Request $request, $id) {
-        // dd($request->input());
-        // $validatedData = $request->validate( [
-        //     'project_name' => 'required',
-        //     'project_from_date' => 'date',
-        //     'project_to_date' => 'date|after:project_from_date',
-        //     'time_checkin' => 'date_format:H:i',
-        //     'time_checkout' => 'date_format:H:i|after:time_checkin',
-        // ]);
+        $validatedData = $request->validate(
+            [
+            'project_name' => 'required',
+            'from_date' => 'date',
+            'to_date' => 'date|after:from_date',
+            'time_checkin' => '',
+            'time_checkout' => 'after:time_checkin',
+            ],
 
+        );
         $obj = Project::find($id);
         $obj->project_name = $request->project_name;
         $obj->number_worker = $request->number_worker;

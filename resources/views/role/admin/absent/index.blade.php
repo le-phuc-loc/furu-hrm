@@ -1,62 +1,62 @@
 
 @extends('role.admin.index')
 @section('content')
-{{-- <link href="/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet"> --}}
-    <h2 class="mb-4">Absents</h2>
     <div class="card mb-4">
         <div class="card-header">
-            <i class="fas fa-table mr-1"></i>List
+            <span>LIST</span>
         </div>
-        <table class="table table-bordered" id="example">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Role</th>
-                    <th>Date Off</th>
-                    <th>Number days off</th>
-                    <th>Content</th>
-                    <th>Created at</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @if (count($absents) <= 0)
-                    <div class="list-group-item list-group-item-action"> Don't
-                        have absent form
-                    </div>
-                @else
-                    @foreach ($absents as $absent)
-                        <tr>
-                            <td>{{ $absent->user->name }}</td>
-                            <td>{{ $absent->user->role }}</td>
-                            <td>{{ $absent->date_off }}</td>
-                            <td>
-                                {{ $absent->number_off }}
-                            </td>
-                            <td> {{ $absent->content }} </td>
-                            <td> {{ $absent->created_at }} </td>
+        <div class="card-body">
+            <table class="table table-bordered" id="dataTable1">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Role</th>
+                        <th>Date Off</th>
+                        <th>Number days off</th>
+                        <th>Content</th>
+                        <th>Created at</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (count($absents) <= 0)
+                        <div class="list-group-item list-group-item-action"> Don't
+                            have absent form
+                        </div>
+                    @else
+                        @foreach ($absents as $absent)
+                            <tr>
+                                <td>{{ $absent->user->name }}</td>
+                                <td>{{ $absent->user->role }}</td>
+                                <td>{{ $absent->date_off }}</td>
+                                <td>
+                                    {{ $absent->number_off }}
+                                </td>
+                                <td> {{ $absent->content }} </td>
+                                <td> {{ $absent->created_at }} </td>
 
-                            <td>
-                                @if ($absent->state == 2)
-                                    Absent Application approved
-                                @else
-                                    <a type="button"
-                                        href="{{ route('admin.absent.approve', ['id' => $absent->id, 'user_id' => $absent->user->id]) }}"
-                                        class="btn btn-primary">
-                                        <i class="fa fa-check" alt="Edit" aria-hidden="true"></i>
-                                    </a>
-                                    <button class="btn btn-primary" data-toggle="modal"
-                                        data-name="{{ $absent->user->name }}" data-user_id="{{ $absent->user->id }}"
-                                        data-absent_id="{{ $absent->id }}" data-target="#reject-modal">
-                                        <i class="fa fa-ban" alt="Edit" aria-hidden="true"></i>
-                                    </button>
-                                @endif
-                            </td>
-                        </tr>
-                    @endforeach
-                @endif
-            </tbody>
-        </table>
+                                <td>
+                                    @if ($absent->state == 2)
+                                        Absent Application approved
+                                    @else
+                                        <a type="button"
+                                            href="{{ route('admin.absent.approve', ['id' => $absent->id, 'user_id' => $absent->user->id]) }}"
+                                            class="btn btn-primary">
+                                            <i class="fa fa-check" alt="Edit" aria-hidden="true"></i>
+                                        </a>
+                                        <button class="btn btn-primary" data-toggle="modal"
+                                            data-name="{{ $absent->user->name }}" data-user_id="{{ $absent->user->id }}"
+                                            data-absent_id="{{ $absent->id }}" data-target="#reject-modal">
+                                            <i class="fa fa-ban" alt="Edit" aria-hidden="true"></i>
+                                        </button>
+                                    @endif
+                                </td>
+                            </tr>
+                        @endforeach
+                    @endif
+                </tbody>
+            </table>
+        </div>
     </div>
 
     {{-- Reject --}}

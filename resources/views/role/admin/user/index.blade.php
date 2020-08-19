@@ -1,20 +1,14 @@
 @extends('role.admin.index')
 @section('content')
-    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
-        crossorigin="anonymous" />
-
-    <script>
+    {{-- <script>
         $(document).ready(function() {
             $('#dataTable1').DataTable();
         });
-    </script>
-    <h2 class="mb-4">List User</h2>
+    </script> --}}
     <div class="card mb-4">
         <!-- CREATE USER -->
         <div class="card-header">
-            <i class="fas fa-table"></i>List
+            <span>LIST USERS </span>
             <a type="button" class="btn btn-info add-new" href="{{ route('admin.user.create')}}"
                 style="float: right;"> <i class="fa fa-plus"></i>
                 Create
@@ -174,68 +168,46 @@
                 </div>
             </div>
         </div> --}}
-        <table id="example2" class="table table-bordered table-hover">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Role</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @if (count($users) <= 0)
-                    <div class="list-group-item list-group-item-action"> Don't have Worker </div>
-                @else
-                    {{-- <div>adadasdasd</div> --}}
+        <div class="card-body">
+            <table id="dataTable1" class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (count($users) <= 0)
+                        <div class="list-group-item list-group-item-action"> Don't have Worker </div>
+                    @else
+                        {{-- <div>adadasdasd</div> --}}
 
-                    @foreach ($users as $user)
-                        <tr>
-                            <td>{{ $user->name }}</td>
-                            <td>
-                                {{ $user->email }}
-                            </td>
-                            <td> {{ $user->role }} </td>
-                            <td>
-                                <a type="button" class="btn btn-primary btn-user-edit"
-                                    href="{{ route('admin.user.edit', ['id' => $user->id]) }}">
-                                    <i class="fa fa-edit" style="color: white;" ></i>
-                                </a>
-                                <a type="button" class="btn btn-primary btn-user-delete"
-                                    href="{{ route('admin.user.delete', ['id' => $user->id]) }}"
-                                    onclick="return confirm('Are you sure ????');">
-                                    <i class="fa fa-trash" alt="Delete" aria-hidden="true"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    @endforeach
-                @endif
-            </tbody>
-        </table>
+                        @foreach ($users as $user)
+                            <tr>
+                                <td>{{ $user->name }}</td>
+                                <td>
+                                    {{ $user->email }}
+                                </td>
+                                <td> {{ $user->role }} </td>
+                                <td>
+                                    <a type="button" class="btn btn-primary btn-user-edit"
+                                        href="{{ route('admin.user.edit', ['id' => $user->id]) }}">
+                                        <i class="fa fa-edit" style="color: white;" ></i>
+                                    </a>
+                                    <a type="button" class="btn btn-primary btn-user-delete"
+                                        href="{{ route('admin.user.delete', ['id' => $user->id]) }}"
+                                        onclick="return confirm('Are you sure ????');">
+                                        <i class="fa fa-trash" alt="Delete" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    @endif
+                </tbody>
+            </table>
+        </div>
     </div>
 
-    <script>
-        // $(document).ready(function(e) {
-            $(".btn-user-edit").click(function(e) {
-                var updateUrl = $(this).val();
-                console.log(updateUrl);
-                e.preventDefault();
-                $.ajax({
-                    type: 'GET',
-                    url: updateUrl,
-                    success: function(result) {
-
-                        console.log(result.user);
-                        $("#update-name").val(result.user.name);
-                        $("#update-email").val(result.user.email);
-                        $("#update-manager").val(result.user.manager);
-                        $("#update-role").val(result.user.role);
-                        $("#user-update-form").attr('action', "/admin/user/update/" + result
-                            .user.id);
-                    }
-                });
-            });
-        });
-
-    </script>
 @endsection

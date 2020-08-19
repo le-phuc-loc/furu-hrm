@@ -1,21 +1,10 @@
 @extends('role.admin.index')
 
 @section('content')
-    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
-        crossorigin="anonymous" />
 
-    <script>
-        $(document).ready(function() {
-            $('#dataTable1').DataTable();
-        });
-
-    </script>
-    <h2>DASHBOARD</H2>
     <div class="card mb-4">
         <div class="card-header row" style="margin-right: -1px; margin-left: -1px">
-            <div class="dropdown">
+            <div class="dropdown mb-4" style="margin-right: 5px">
                 <button class="btn btn-secondary" type="button" id="dropdownMenuButton"
                         data-toggle="dropdown" >
 
@@ -32,7 +21,7 @@
                     @endfor
                 </div>
             </div>
-            <div class="dropdown col-md-4">
+            <div class="dropdown mb-4">
                 <button class="btn btn-secondary" type="button" id="dropdownMenuButton"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
@@ -52,7 +41,10 @@
             </div>
         </div>
         <div class="card-body">
+
             <div class="table-responsive">
+
+
                 <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
                     <thead>
                         <tr>
@@ -105,7 +97,6 @@
                 </table>
             </div>
         </div>
-    </div>
     </div>
 
 @endsection

@@ -40,7 +40,7 @@ class ReportTableSeeder extends Seeder
             'content'=>'Fly with Aliens',
             'time_working'=>'21',
             'project_user_id'=>'7',
-            'state' => '3',
+            'state' => '1',
         ]);
         DB::table('reports')->insert([
             'time_checkin'=>'2022-01-01 07:30:00',
@@ -50,7 +50,7 @@ class ReportTableSeeder extends Seeder
             'content'=>'Fly with Aliens 11111111111',
             'time_working'=>'119',
             'project_user_id'=>'6',
-            'state' => '3',
+            'state' => '1',
         ]);
         DB::table('reports')->insert([
             'time_checkin'=>'2022-01-01 07:30:00',
@@ -60,7 +60,7 @@ class ReportTableSeeder extends Seeder
             'content'=>'Fly with Aliens 22222222222222',
             'time_working'=>'1223',
             'project_user_id'=>'4',
-            'state' => '3',
+            'state' => '1',
         ]);
         DB::table('reports')->insert([
             'time_checkin'=>'2022-01-01 07:30:00',
@@ -70,7 +70,7 @@ class ReportTableSeeder extends Seeder
             'content'=>'Fly with Aliens 33444444444444' ,
             'time_working'=>'1344',
             'project_user_id'=>'5',
-            'state' => '3',
+            'state' => '1',
         ]);
 
         DB::table('reports')->insert([
@@ -81,7 +81,7 @@ class ReportTableSeeder extends Seeder
             'content'=>'Fly with Aliens 3344555555554' ,
             'time_working'=>'655',
             'project_user_id'=>'4',
-            'state' => '3',
+            'state' => '1',
         ]);
 
         DB::table('reports')->insert([
@@ -92,7 +92,7 @@ class ReportTableSeeder extends Seeder
             'content'=>'Fly with Aliens 334444666666666664444' ,
             'time_working'=>'615',
             'project_user_id'=>'5',
-            'state' => '3',
+            'state' => '1',
         ]);
 
         DB::table('reports')->insert([
@@ -103,7 +103,7 @@ class ReportTableSeeder extends Seeder
             'content'=>'Fly with Aliens 337777777777744' ,
             'time_working'=>'16',
             'project_user_id'=>'5',
-            'state' => '3',
+            'state' => '1',
         ]);
     }
 }

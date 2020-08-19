@@ -1,25 +1,21 @@
 @extends('role.manager.index')
 
 @section('content')
-    <h2>ABSENTS</h2>
     <div class="card mb-4">
         <div class="card-header">
-            <i class="fas fa-table mr-1"></i>List
-            <button type="button" class="btn btn-info add-new" data-toggle="modal" data-target="#create-modal"
-                data-name="{{ Auth::user()->name }}" style="float: right;"> <i class="fa fa-plus"></i>
-                Create
-            </button>
+            <span>WORKERS</span>
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Date Off</th>
-                            <th>Number days off</th>
+                            <th>Start off</th>
+                            <th>End off</th>
+                            {{-- <th>Number days off</th> --}}
                             <th>Content</th>
-                            <th>Created at</th>
+
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -33,12 +29,11 @@
                             @foreach ($absents as $absent)
                                 <tr>
                                     <td>{{ $absent->user->name }}</td>
-                                    <td>{{ $absent->date_off }}</td>
+                                    <td>{{ $absent->date_off_start }}</td>
                                     <td>
-                                        {{ $absent->number_off }}
+                                        {{ $absent->date_off_end }}
                                     </td>
                                     <td> {{ $absent->content }} </td>
-                                    <td> {{ $absent->created_at }} </td>
 
                                     <td>
                                         @if ($absent->state == 2)
@@ -176,7 +171,7 @@
         </div>
     </div>
     </div>
-    <script>
+    {{-- <script>
         $(document).ready(function() {
             $('#reject-modal').on('show.bs.modal', function(event) {
                 var button = $(event.relatedTarget)
@@ -199,5 +194,5 @@
 
         })
 
-    </script>
+    </script> --}}
 @endsection

@@ -1,7 +1,6 @@
 @extends('role.admin.index')
 
 @section('content')
-    <h2 class="mb-4">Dashboard</h1>
         <div class="card mb-4">
             <div class="card-header">
                 <div class="dropdown">
