@@ -132,6 +132,9 @@
                         success:function(data){
                             location.reload();
                             alert(data.success);
+                        },
+                        error: function(){
+                            alert('error!');
                         }
                     });
                 });
@@ -163,6 +166,9 @@
                             success:function(data){
                                 location.reload();
                                 alert(data.success);
+                            },
+                            error: function(){
+                                alert('error!');
                             }
                         });
                     });

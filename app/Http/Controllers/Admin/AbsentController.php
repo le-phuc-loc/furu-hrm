@@ -26,17 +26,16 @@ class AbsentController extends Controller
     }
 
     public function approve(Request $request, $id) {
-        // dd($request);
-        if (!isset($request->user_id)) {
-            return redirect()->route('admin.absent.index');
+        // $user = User::find($request->user_id);
+        $absent = AbsentApplication::find($id);
+
+
+        if (!Auth::user()->can('approve', $absent)) {
+            return redirect()->route('home');
         }
-        else {
-            $user = User::find($request->user_id);
-            dispatch(new ProcessReportMail(Auth::user(), $user, "absent-allow"));
-            $absent = AbsentApplication::find($id);
-            $absent->state = AbsentApplication::getAbsentAllow();
-            $absent->save();
-        }
+        dispatch(new ProcessReportMail(Auth::user(), $absent->user, "absent-allow"));
+        $absent->state = AbsentApplication::getAbsentAllow();
+        $absent->save();
 
         return redirect()->route('admin.absent.index');
     }
@@ -44,21 +43,16 @@ class AbsentController extends Controller
 
 
     public function reject(Request $request, $id) {
-        $request->validate(
-            [
-                'content'=>'required',
-            ]);
+        $absent = AbsentApplication::find($id);
 
-        if (!isset($request->user_id)) {
-            return redirect()->route('admin.absent.index');
+        if (!Auth::user()->can('reject', $absent)) {
+            return redirect()->route('home');
         }
-        else {
-            $user = User::find($request->user_id);
-            dispatch(new ProcessReportMail(Auth::user(), $user, "absent-reject", $request->content));
-            $absent = AbsentApplication::find($id);
-            $absent->state = AbsentApplication::getAbsentDraw();
-            $absent->save();
-        }
+
+        dispatch(new ProcessReportMail(Auth::user(), $absent->user, "absent-reject", $request->content));
+
+        $absent->state = AbsentApplication::getAbsentDraw();
+        $absent->save();
 
         return redirect()->route('admin.absent.index');
     }

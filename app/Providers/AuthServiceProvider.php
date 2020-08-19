@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\Gate;
 
 use Laravel\Passport\Passport;
 
+
+// use App\Policies\ProjectPolicy;
+// use App\Project;
+
 class AuthServiceProvider extends ServiceProvider
 {
     /**
@@ -16,6 +20,10 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         'App\Model' => 'App\Policies\ModelPolicy',
+        'App\Project' => 'App\Policies\ProjectPolicy',
+        'App\Report' => 'App\Policies\ReportPolicy',
+        'App\AbsentApplication' => 'App\Policies\AbsentPolicy',
+
     ];
 
     /**

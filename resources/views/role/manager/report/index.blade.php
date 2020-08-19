@@ -73,7 +73,7 @@
                                             @endif
 
                                             <a class="btn btn-primary"
-                                                href="{{ route('manager.report.info', ['id' => $report->id]) }}"
+                                                href="{{ route('manager.report.show', ['report' => $report->id]) }}"
                                                 role="button">Detail</a>
 
                                         </td>

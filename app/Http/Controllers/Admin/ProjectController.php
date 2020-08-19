@@ -31,14 +31,18 @@ class ProjectController extends Controller
 
     }
 
+    public function show($id) {
+        return redirect()->route('admin.project.index');
+    }
+
 
     public function store(Request $request) {
-        // dd($request->input());
+
         $request->validate([
             'project_name' => 'required',
             'number_worker' => 'required',
             'from_date' => 'required|date',
-            'managed' => 'required',
+            'manager' => 'required',
             'to_date' => 'required|after:from_date',
             'time_checkin' => 'required',
             'time_checkout' => 'required|after:time_checkin',
@@ -48,7 +52,7 @@ class ProjectController extends Controller
 
         $obj = new Project();
         $obj->project_name = $request->project_name;
-        $obj->managed=$request->managed;
+        $obj->managed=$request->manager;
         $obj->number_worker = $request->number_worker;
         $obj->from_date = $request->from_date;
         $obj->to_date = $request->to_date;
@@ -65,6 +69,8 @@ class ProjectController extends Controller
         $obj->location_id = $location->id;
         $obj->users()->attach($request->user_id);
         $obj->save();
+        // dd($obj);
+        // dd($request->input());
 
         return redirect()->route('admin.project.index');
     }
@@ -87,7 +93,7 @@ class ProjectController extends Controller
             'to_date' => 'date|after:from_date',
             'time_checkin' => '',
             'time_checkout' => 'after:time_checkin',
-            ],
+            ]
         );
         $obj = Project::find($id);
         $obj->project_name = $request->project_name;
@@ -108,7 +114,7 @@ class ProjectController extends Controller
         return redirect()->route('admin.project.index');
     }
 
-    public function delete($id) {
+    public function destroy($id) {
         Project::find($id)->delete();
         return redirect()->route('admin.project.index');
     }
