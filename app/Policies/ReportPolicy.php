@@ -39,7 +39,7 @@ class ReportPolicy
             return $user->id === $report->project_user->user_id;
         }
 
-        return false;
+        return true;
     }
 
     public function approve(User $user, Report $report, User $user_mail)
@@ -49,7 +49,7 @@ class ReportPolicy
             return $user->id === $report->project_user->project->managed && $user_mail->id === $report->project_user->user_id;
         }
 
-        return false;
+        return true;
     }
 
     public function reject(User $user, Report $report, User $user_mail)
@@ -59,7 +59,7 @@ class ReportPolicy
             return $user->id === $report->project_user->project->managed && $user_mail->id === $report->project_user->user_id;
         }
 
-        return false;
+        return true;
     }
 
 
@@ -87,6 +87,7 @@ class ReportPolicy
         if ($user->role == "worker") {
             return $user->id === $report->project_user->user_id;
         }
+        return true;
     }
 
     /**

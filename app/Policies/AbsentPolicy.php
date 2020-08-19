@@ -34,7 +34,9 @@ class AbsentPolicy
         if ($user->role == "worker") {
             return $user->id === $absentApplication->user_id;
         }
+        return true;
     }
+
 
     /**
      * Determine whether the user can create models.
@@ -60,6 +62,7 @@ class AbsentPolicy
         if ($user->role == "worker") {
             return $user->id === $absentApplication->user_id;
         }
+        return true;
     }
 
     /**
@@ -75,6 +78,7 @@ class AbsentPolicy
         if ($user->role == "worker") {
             return $user->id === $absentApplication->user_id;
         }
+            return true;
     }
 
     /**
@@ -109,7 +113,7 @@ class AbsentPolicy
             return (count($absent->user->projects()->where('managed', $user->id)->get()) > 0);
         }
 
-        return false;
+            return true;
     }
 
     public function reject(User $user, AbsentApplication $absent)
@@ -119,6 +123,6 @@ class AbsentPolicy
             return (count($absent->user->projects()->where('managed', $user->id)->get()) > 0);
         }
 
-        return false;
+        return true;
     }
 }
