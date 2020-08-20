@@ -14,6 +14,9 @@ use \App\Location;
 use \App\User;
 use \App\ProjectUser;
 
+use \App\Jobs\ProcessReportMail;
+use Auth;
+
 class ProjectController extends Controller
 {
     //
@@ -160,12 +163,33 @@ class ProjectController extends Controller
 
     public function assignPost(Request $request, $id) {
 
+
+
         // dd($req->input());
         $obj = Project::find($id);
-        $obj->managed = $request->manager;
-        $obj->users()->attach($request->workers);
+
+        if ($request->manager != $obj->managed) {
+            $obj->managed = $request->manager;
+            $manager = User::find($request->manager);
+            dispatch(new ProcessReportMail(Auth::user(), $manager, "assign-manager", $request->obj));
+
+        }
+        if (count($request->workers) > 0) {
+            $obj->users()->attach($request->workers);
+            foreach($request->workers as $worker) {
+                $worker = User::find($worker);
+                dispatch(new ProcessReportMail(Auth::user(), $worker, "assign-worker", $request->obj));
+
+            }
+
+        }
+
+
+
 
         $obj->save();
+
+
         // dd($obj);
         // dd($user);
         return redirect()->route('admin.project.assigned',['id'=>$id]);
