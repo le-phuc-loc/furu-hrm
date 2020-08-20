@@ -10,8 +10,11 @@ body{
 	font-size: 14px;
 	line-height: 1.8;
 	font-weight: normal;
-    background: rgb(235, 171, 206);
-    // background-image: url('../images/background.jpg');
+    // background: #fff;
+    background-image: url('../images/ghost.jpg');
+    background-position:center;
+    background-repeat: no-repeat;
+    background-size: cover;
 	color: lighten($black,50%);
 }
 a {
