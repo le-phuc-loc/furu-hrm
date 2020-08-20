@@ -137,7 +137,7 @@
                                 <button type="submit" class="btn btn-secondary">
                                     {{ __('Edit') }}
                                 </button>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <a type="button" class="btn btn-secondary" href="{{route('manager.project.index')}}"data-dismiss="modal">Close</a>
 
                             </div>
                         </form>

@@ -38,7 +38,7 @@
                                         <td>
                                             <a type="button" class="btn btn-primary btn-edit-project"
                                                 href="{{ route('manager.project.edit', ['project' => $project->id]) }}">
-                                                <i class="fa fa-edit" aria-hidden="true"></i>
+                                                Edit
                                             </a>
                                             <a class="btn btn-primary"
                                                 href="{{ route('manager.user.index', ['project_id' => $project->id]) }}"
