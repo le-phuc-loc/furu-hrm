@@ -89,7 +89,7 @@ class AbsentController extends Controller
 
     public function reject(Request $request, $id) {
         $absent = AbsentApplication::find($id);
-        dd($absent);
+        // dd($absent);
         if (!Auth::user()->can('reject', $absent)) {
             return redirect()->route('home');
         }

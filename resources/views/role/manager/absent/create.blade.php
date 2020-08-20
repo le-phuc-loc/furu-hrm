@@ -63,7 +63,7 @@
                                     <button type="submit" class="btn btn-primary">
                                         {{ __('Send') }}
                                     </button>
-                                    <button class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <a type="button" href="{{route('manager.absent.mine')}}"class="btn btn-secondary" data-dismiss="modal">Close</a>
                                 </div>
                             </div>
                         </form>

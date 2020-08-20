@@ -42,26 +42,12 @@
                                 <td> {{ $absent->content }} </td>
 
                                 <td class="d-flex">
-                                    {{-- @if ($absent->state == 2)
+                                    @if ($absent->state == 2)
                                         Absent Application approved
                                     @else
-                                        <a type="button"
-                                        href="{{ route('manager.absent.approve', ['id' => $absent->id, 'user_id' => $absent->user->id]) }}"
-                                        class="btn btn-primary">
-                                            {{ __('Approve') }}
-                                        </a>
-                                        <button class="btn btn-primary"
-                                            data-toggle="modal"
-                                            data-name = "{{ $absent->user->name }}"
-                                            data-user_id = "{{ $absent->user->id }}"
-                                            data-absent_id = "{{ $absent->id }}"
-                                            data-target="#reject-modal">
-                                            Reject
-                                        </button>
-                                    @endif --}}
                                     <a type="button" class="btn btn-primary btn-edit-absent mr-2"
                                         href="{{ route('worker.absent.edit', ['absent' => $absent->id]) }}">
-                                    <i class="fa fa-edit" aria-hidden="true"></i>
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
                                     </a>
                                     <form action="{{ route('worker.absent.destroy', ['absent' => $absent->id]) }}" method="POST">
                                         @method('delete')
@@ -71,7 +57,7 @@
                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                         </button>
                                     </form>
-
+                                    @endif
                                 </td>
                             </tr>
                             @endforeach
