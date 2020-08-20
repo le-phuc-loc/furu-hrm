@@ -60,7 +60,7 @@ class UserController extends Controller
                 'name' => ['required', 'string', 'max:255', 'unique:users,name,'.$id],
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,'.$id],
                 'role'=>['required',Rule::in(['worker','manager'])]
-            ],
+            ]
 
         );
 
