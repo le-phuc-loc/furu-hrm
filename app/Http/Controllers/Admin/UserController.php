@@ -11,7 +11,9 @@ class UserController extends Controller
 {
     //
     public function index() {
-        $users = User::all();
+        $users = User::where('role', 'worker')
+            ->orWhere('role', 'manager')
+            ->get();
         return view('role/admin/user/index', [
             'users' => $users,
         ]);

@@ -12,6 +12,9 @@ use App\Mail\ReportAllowMail;
 use App\Mail\ReportRejectMail;
 use App\Mail\AbsentAllowMail;
 use App\Mail\AbsentRejectMail;
+use App\Mail\AssignManagerMail;
+use App\Mail\AssignWorkerMail;
+
 use Mail;
 
 class ProcessReportMail implements ShouldQueue
@@ -60,6 +63,14 @@ class ProcessReportMail implements ShouldQueue
             break;
             case "absent-reject":
                 $email = new AbsentRejectMail($this->sender, $this->receiver, $this->data);
+                Mail::to($this->receiver->email)->send($email);
+            break;
+            case "assign-manager":
+                $email = new AssignManagerMail($this->sender, $this->receiver, $this->data);
+                Mail::to($this->receiver->email)->send($email);
+            break;
+            case "assign-worker":
+                $email = new AssignWorkerMail($this->sender, $this->receiver, $this->data);
                 Mail::to($this->receiver->email)->send($email);
             break;
           }
