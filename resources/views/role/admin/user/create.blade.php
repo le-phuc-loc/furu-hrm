@@ -70,7 +70,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-secondary">Create</button>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <a type="button" class="btn btn-secondary" href="{{route('admin.user.index')}}"data-dismiss="modal">Close</a>
                             </div>
                         </form>
                     </div>

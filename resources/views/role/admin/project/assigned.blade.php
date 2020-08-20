@@ -2,7 +2,6 @@
 
 @section('content')
     <div class="container">
-
         <br><br><br>
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -23,17 +22,18 @@
                                     value="{{ $project->project_name }}" required autocomplete="project_name" autofocus
                                     readonly>
                             </div>
+                        </div>
                             {{-- {{ dd($project->manager->name) }} --}}
-                            <div class="form-group row">
-                                <label for="project_name"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Manager') }}</label>
-                                <div class="col-md-6">
-                                    {{-- {{dd($project->manager->name)}} --}}
-                                    <input class="form-control" type="text" value="{{ $project->manager->name }}" >
-                                    <input type="hidden" name="manager" value="{{ $project->manager->id }}">
-                                </div>
+                        <div class="form-group row">
+                            <label for="manager"
+                                class="col-md-4 col-form-label text-md-right">{{ __('Manager') }}</label>
+                            <div class="col-md-6">
+                                {{-- {{dd($project->manager->name)}} --}}
+                                <input class="form-control" type="text" value="{{ $project->manager->name }}" >
+                                <input type="hidden" name="manager" value="{{ $project->manager->id }}">
                             </div>
                         </div>
+
                         <div class="form-group row">
                             <label for="manager-select" class="col-md-4 col-form-label text-md-right">Worker
                                 select</label>
@@ -95,6 +95,9 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="card-footer ">
+                        <a type="button" style="float:right" class="btn btn-secondary" href="{{route('admin.project.index')}}"data-dismiss="modal">Close</a>
                     </div>
                 </div>
             </div>

@@ -136,8 +136,10 @@
                                 </div>
                             </div>
                         </form>
+                    </div>
 
-
+                    <div class="card-footer ">
+                        <a type="button" style="float:right" class="btn btn-secondary" href="{{route('admin.project.index')}}"data-dismiss="modal">Close</a>
                     </div>
                 </div>
             </div>
