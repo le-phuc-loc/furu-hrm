@@ -10,8 +10,8 @@
                     <tr>
                         <th>Name</th>
                         <th>Role</th>
-                        <th>Date Off</th>
-                        <th>Number days off</th>
+                        <th>Start off</th>
+                        <th>End off</th>
                         <th>Content</th>
                         <th>Created at</th>
                         <th>Action</th>
@@ -27,9 +27,9 @@
                             <tr>
                                 <td>{{ $absent->user->name }}</td>
                                 <td>{{ $absent->user->role }}</td>
-                                <td>{{ $absent->date_off }}</td>
+                                <td>{{ $absent->date_off_start }}</td>
                                 <td>
-                                    {{ $absent->number_off }}
+                                    {{ $absent->date_off_end }}
                                 </td>
                                 <td> {{ $absent->content }} </td>
                                 <td> {{ $absent->created_at }} </td>

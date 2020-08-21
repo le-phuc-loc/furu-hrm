@@ -232,9 +232,8 @@
                         <th>Number</th>
                         <th>From date</th>
                         <th>From to</th>
-
-                        <th>location</th>
-                        <th>Action</th>
+                        <th width="30%">location</th>
+                        <th width="15%">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -254,7 +253,11 @@
                                 <td> {{ $project->from_date }} </td>
                                 <td> {{ $project->to_date }} </td>
 
-                                <td> {{ $project->location->location_name }} </td>
+                                <td style="width:100px; height:100px">
+                                    <div class="scroll" >
+                                        {{ $project->location->location_name }}
+                                    </div>
+                                </td>
                                 <td class="d-flex">
                                     <a type="button" class="btn btn-primary btn-edit-project mr-2"
                                         href="{{ route('admin.project.edit', ['project' => $project->id]) }}">

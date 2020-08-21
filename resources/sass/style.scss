@@ -335,4 +335,11 @@ a[data-toggle="collapse"] {
 .navbar-dark .navbar-nav .nav-link {
     color: #e9ecef;
 }
+.scroll{
+    overflow-y:scroll;
+    height: 100px;
+}
+textarea.form-control{
+    height: auto !important;
+}
 

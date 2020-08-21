@@ -32,8 +32,8 @@
                                         <td> {{ $project->managed }} </td>
                                         <td> {{ $project->from_date }} </td>
                                         <td> {{ $project->to_date }} </td>
-                                        <td style="width: 100px; height: 100%">
-                                            <div style="overflow-y: scroll; height: 100px">
+                                        <td style="width: 100px; height: 100px">
+                                            <div class="scroll">
                                                 {{ $project->location->location_name }}
                                             </div>
                                         </td>

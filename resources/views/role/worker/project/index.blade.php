@@ -19,9 +19,9 @@
                             <th>Manage by </th>
                             <th>From date</th>
                             <th>To date</th>
-                            <th>Location</th>
+                            <th width="25%">Location</th>
                             <th>Time Working</th>
-                            <th>Action</th>
+                            <th width="20%">Action</th>
                         </tr>
                     </thead>
 
@@ -39,7 +39,11 @@
                                     <td> {{ $project->managed }} </td>
                                     <td> {{ $project->from_date }} </td>
                                     <td> {{ $project->to_date }} </td>
-                                    <td> {{ $project->location->location_name }} </td>
+                                    <td >
+                                        <div class="scroll">
+                                            {{ $project->location->location_name }}
+                                        </div>
+                                    </td>
                                     <td> {{ $project->time_working(Auth::user()->id) }} </td>
                                     <td>
                                         <a class="btn btn-primary"

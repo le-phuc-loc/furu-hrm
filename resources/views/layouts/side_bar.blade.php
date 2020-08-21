@@ -31,9 +31,14 @@
         $(document).ready(function() {
             $('#dataTable1').DataTable({
                 "lengthChange": false,
-                "pageLength":5
+                "pageLength":5,
             }
             );
+            $('#dataTable').DataTable({
+                "lengthChange": false,
+                "pageLength":5,
+                "order": [[ 3, "desc" ]]
+            });
         });
     </script>
 

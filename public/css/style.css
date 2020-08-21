@@ -11000,3 +11000,12 @@ a[data-toggle=collapse] {
   color: #e9ecef;
 }
 
+.scroll {
+  overflow-y: scroll;
+  height: 100px;
+}
+
+textarea.form-control {
+  height: auto !important;
+}
+
