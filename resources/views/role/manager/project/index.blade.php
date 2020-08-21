@@ -7,16 +7,15 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
+                <table class="table table-bordered" style="table-layout auto;width:100%" id="dataTable1"cellspacing="0">
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Manage by </th>
-                            <th>Number</th>
+                            <th >Manage by </th>
                             <th>From date</th>
                             <th>To date</th>
-                            <th>Location</th>
-                            <th>Action</th>
+                            <th width="30%">Location</th>
+                            <th width="20%">Action</th>
                         </tr>
                     </thead>
 
@@ -31,10 +30,13 @@
                                     <tr>
                                         <td> {{ $project->project_name }} </td>
                                         <td> {{ $project->managed }} </td>
-                                        <td> {{ $project->number_worker }} </td>
                                         <td> {{ $project->from_date }} </td>
                                         <td> {{ $project->to_date }} </td>
-                                        <td> {{ $project->location->location_name }} </td>
+                                        <td style="width: 100px; height: 100%">
+                                            <div style="overflow-y: scroll; height: 100px">
+                                                {{ $project->location->location_name }}
+                                            </div>
+                                        </td>
                                         <td>
                                             <a type="button" class="btn btn-primary btn-edit-project"
                                                 href="{{ route('manager.project.edit', ['project' => $project->id]) }}">
