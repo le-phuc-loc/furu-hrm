@@ -31,6 +31,7 @@
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Content</th>
+                                <th>Create at</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -53,6 +54,7 @@
                                         <td>{{ $report->project_user->user->name }}</td>
                                         <td>{{ $report->project_user->user->email }}</td>
                                         <td> {{ $report->content }}</td>
+                                        <td>{{$report->created_at}}</td>
                                         <td>
 
                                             @if ($report->state != 2)

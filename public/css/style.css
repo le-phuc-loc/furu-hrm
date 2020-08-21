@@ -10714,7 +10714,7 @@ h5,
 #sidebar {
   min-width: 300px;
   max-width: 300px;
-  background: #32373d;
+  background: #6c757d;
   color: #fff;
   transition: all 0.3s;
   position: -webkit-sticky;
@@ -10985,5 +10985,18 @@ a[data-toggle=collapse] {
 
 .subscribe-form .form-control {
   background: #4897fc;
+}
+
+.card-header {
+  background: #3e4750;
+  color: #fff;
+}
+
+.bg-dark {
+  background-color: #7e858c !important;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: #e9ecef;
 }
 
