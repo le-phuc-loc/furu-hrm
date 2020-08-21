@@ -50,7 +50,7 @@ class ProjectController extends Controller
             'to_date' => 'date|after:from_date',
             'time_checkin' => '',
             'time_checkout' => 'after:time_checkin',
-            ],
+            ]
 
         );
         $project = Project::find($id);
